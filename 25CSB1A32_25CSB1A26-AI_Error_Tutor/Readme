@@ -1,0 +1,34 @@
+# 🎓 AI Error Tutor: Resilient Multi-Pass Compiler & Self-Healing Pedagogical IDE
+
+**Course:** Compiler Design - Project Based Learning (CD-PBL-2026)  
+**Student Name:** Sujal Kumar  
+**Roll Number:** <YOUR_ROLL_NUMBER>  
+**Institutional Email:** <YOUR_NITW_EMAIL>  
+**Personal GitHub Repo:** https://github.com/guptakumarsujal32/Ai-Error-Tutor  
+
+---
+
+## 📌 Project Overview
+AI Error Tutor is an intelligent, pedagogical Python compiler and diagnostic tutor that:
+1. Employs a **4-Pass Multi-Error Self-Healing Repair Engine** (`analyze_all`) with resilient dynamic execution and cascade error tracking.
+2. Utilizes a **Multi-Agent Compiler System (MACS)** with 7 specialized agents communicating via a blackboard architecture.
+3. Operates a **3-Tier Hybrid AI Provider Chain** (Gemini API cloud primary via `google-genai` SDK, offline Ollama `qwen2.5-coder:3b`, and deterministic AST rule-based engine).
+4. Enforces an **Agentic AI (AAI) Security Guard & Attack Lab** mitigating the OWASP Top 10 (2025/2021) and OWASP Top 10 for LLMs.
+5. Features a **Two-Pane CodeChef-style IDE** with dual pedagogical modes (Direct Solution vs Socratic Progressive Clues) and 1-click verified fix application.
+
+---
+
+## 📂 Uploaded Submission Files & Deliverables
+
+| File Name | Description |
+|---|---|
+| `AI_Error_Tutor_Project_Documentation.docx` | Full 7,644-word academic research report formatted to IEEE specifications with 20 references. |
+| `OWASP_Top_10_Security_Analysis_AI_Error_Tutor.pdf` | 5-page publication-quality security defense analysis detailing A01–A10 mitigations and 33-seed attack lab matrix. |
+| `AI_Error_Tutor_Project.zip` | Complete executable source code bundle (excluding `.env` and `.venv`). |
+| `ai_error_tutor_architecture_white.png` | 350 DPI high-resolution system architecture diagram. |
+
+---
+
+## 🔗 Demonstration & Screen Recording Link
+* **Google Drive Link (NITW Access Only):** https://drive.google.com/drive/folders/1ZM036XeqjVVJLy6AYR6p1vLePTIPS9GU?usp=drive_link  
+  
