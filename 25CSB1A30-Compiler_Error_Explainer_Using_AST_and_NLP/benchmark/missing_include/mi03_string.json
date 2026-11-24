@@ -1,0 +1,9 @@
+{
+  "expected_status": "success",
+  "expected_category": null,
+  "expected_line": null,
+  "cwe": null,
+  "expected_security_verdict": "clean",
+  "notes": "string used without #include <string>; compiles clean on Apple Clang/libc++ due to transitive includes from <iostream>",
+  "expected_output": "Alice\n"
+}
