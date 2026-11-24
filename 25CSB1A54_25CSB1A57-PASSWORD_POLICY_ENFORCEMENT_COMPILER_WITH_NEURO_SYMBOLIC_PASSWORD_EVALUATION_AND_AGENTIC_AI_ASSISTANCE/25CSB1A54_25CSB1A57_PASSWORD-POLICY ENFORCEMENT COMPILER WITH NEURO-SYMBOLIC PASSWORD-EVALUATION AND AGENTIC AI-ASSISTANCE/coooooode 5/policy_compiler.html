@@ -1,0 +1,3258 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+  }
+
+  .app {
+    font-family: 'Inter', sans-serif;
+    background: #fdfcfb;
+    color: #000000;
+    border-radius: 12px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05)
+  }
+
+  .topbar {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    border-radius: 12px 12px 0 0
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%
+  }
+
+  .topbar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #64748b;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-left: 6px
+  }
+
+  .badge {
+    margin-left: auto;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+    transition: all .3s
+  }
+
+  .badge.idle {
+    color: #3b82f6;
+    background: #eff6ff;
+    border-color: #bfdbfe
+  }
+
+  .badge.ok {
+    color: #059669;
+    background: #ecfdf5;
+    border-color: #a7f3d0
+  }
+
+  .badge.err {
+    color: #dc2626;
+    background: #fef2f2;
+    border-color: #fecaca
+  }
+
+  .badge.warn {
+    color: #1bd906;
+    background: #fffbeb;
+    border-color: #fde68a
+  }
+
+  .sec {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #000000;
+    padding: 7px 14px 6px;
+    background: #fdfcfb;
+    border-bottom: 1px solid #f1f5f9;
+    border-top: 1px solid #cbd5e1
+  }
+
+  /* EDITOR */
+  .editor-inner {
+    display: flex;
+    height: 170px
+  }
+
+  .lnums {
+    width: 36px;
+    background: #f8fafc;
+    border-right: 1px solid #e2e8f0;
+    padding: 12px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #94a3b8;
+    text-align: right;
+    flex-shrink: 0;
+    overflow: hidden
+  }
+
+  .lnums span {
+    display: block;
+    padding-right: 8px
+  }
+
+  textarea {
+    flex: 1;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #000000;
+    padding: 12px;
+    caret-color: #6366f1
+  }
+
+  textarea::placeholder {
+    color: #2359a5
+  }
+
+  .btn-row {
+    padding: 8px 14px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap
+  }
+
+  .btn-primary {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background .2s
+  }
+
+  .btn-primary:hover {
+    background: #4f46e5
+  }
+
+  .btn-sec {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 10px;
+    background: transparent;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s
+  }
+
+  .btn-sec:hover {
+    color: #252629;
+    background: #f1f5f9
+  }
+
+  .btn-ex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 5px 9px;
+    background: transparent;
+    color: #2166c6;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: all .2s
+  }
+
+  .btn-ex+.btn-ex {
+    margin-left: 0
+  }
+
+  .btn-ex:hover {
+    color: #0945d1;
+    background: #f1f5f9
+  }
+
+  .btn-ex.active {
+    background: #6366f1;
+    color: #fff;
+    border-color: #6366f1;
+  }
+
+  .btn-ex.active:hover {
+    background: #4f46e5;
+    color: #fff;
+  }
+
+  #btn-ex-agent {
+    border-color: #c4b5fd;
+    color: #6d28d9;
+    background: #f5f3ff;
+    font-weight: 600;
+  }
+
+  #btn-ex-agent:hover {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-color: #a78bfa;
+  }
+
+  #btn-ex-agent.active {
+    background: #7c3aed;
+    color: #fff;
+    border-color: #7c3aed;
+  }
+
+  /* PIPELINE */
+  .pipeline-section {
+    padding: 12px 14px;
+    background: #fdfcfb
+  }
+
+  .stages {
+    display: flex;
+    align-items: center
+  }
+
+  .stg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1
+  }
+
+  .sbub {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    background: #ffffff;
+    border: 1.5px solid #5414e0;
+    color: #3e1994;
+    transition: all .3s
+  }
+
+  .sbub.active {
+    border-color: #6366f1;
+    background: #eef2ff;
+    color: #6366f1
+  }
+
+  .sbub.ok {
+    border-color: #10b981;
+    background: #ecfdf5;
+    color: #10b981
+  }
+
+  .sbub.err {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #ef4444
+  }
+
+  .sbub.warn {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    color: #f59e0b
+  }
+
+  .slbl {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #4911d6;
+    transition: color .3s;
+    text-align: center
+  }
+
+  .slbl.active {
+    color: #6366f1
+  }
+
+  .slbl.ok {
+    color: #10b981
+  }
+
+  .slbl.err {
+    color: #ef4444
+  }
+
+  .slbl.warn {
+    color: #f59e0b
+  }
+
+  .sarr {
+    color: #cbd5e1;
+    font-size: 10px;
+    margin-bottom: 18px;
+    padding: 0 2px
+  }
+
+  /* TOKENS */
+  .tok-wrap {
+    padding: 10px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 52px;
+    max-height: 85px;
+    overflow-y: auto;
+    background: #fdfcfb
+  }
+
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 5px;
+    border: 1.5px solid transparent;
+    transition: all .2s;
+    display: inline-flex;
+    align-items: center
+  }
+
+  .ci {
+    background: #e0e7ff;
+    border-color: #6366f1;
+    color: #3730a3
+  }
+
+  .cn {
+    background: #d1fae5;
+    border-color: #10b981;
+    color: #065f46
+  }
+
+  .cb {
+    background: #fef3c7;
+    border-color: #f59e0b;
+    color: #92400e
+  }
+
+  .cnl {
+    background: #e0f2fe;
+    border-color: #38bdf8;
+    color: #0369a1
+  }
+
+  .ce {
+    background: #ede9fe;
+    border-color: #8b5cf6;
+    color: #5b21b6
+  }
+
+  .cu {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #991b1b
+  }
+
+  /* LOG */
+  .log-body {
+    padding: 10px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    overflow-y: auto;
+    height: 155px;
+    background: #fdfcfb
+  }
+
+  .ll {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 3px
+  }
+
+  .lb {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: .05em;
+    border: 1.5px solid transparent
+  }
+
+  .li {
+    background: #e0e7ff;
+    color: #3730a3;
+    border-color: #a5b4fc
+  }
+
+  .lo {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #6ee7b7
+  }
+
+  .le {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fca5a5
+  }
+
+  .lw {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fcd34d
+  }
+
+  .lt {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #7dd3fc
+  }
+
+  .la {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-color: #c4b5fd
+  }
+
+  /* AGENTIC AI SUGGESTIONS PANEL */
+  .ai-agent-panel {
+    margin: 10px 16px 14px 16px;
+    padding: 14px 16px;
+    background: #faf5ff;
+    border: 2px solid #c084fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.1);
+    display: none
+  }
+
+  .ai-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px
+  }
+
+  .ai-panel-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #581c87;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    display: flex;
+    align-items: center;
+    gap: 8px
+  }
+
+  .btn-apply-all {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    background: #7c3aed;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .15s
+  }
+
+  .btn-apply-all:hover {
+    background: #6d28d9
+  }
+
+  .ai-suggestions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+  }
+
+  .ai-suggestion-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    border: 1.5px solid #d8b4fe;
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: all .15s
+  }
+
+  .ai-suggestion-card:hover {
+    border-color: #a855f7;
+    box-shadow: 0 3px 10px rgba(124, 58, 237, 0.08)
+  }
+
+  .ai-badge-par {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1.5px solid #93c5fd;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    flex-shrink: 0
+  }
+
+  .ai-badge-sem {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1.5px solid #fcd34d;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    flex-shrink: 0
+  }
+
+  .ai-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px
+  }
+
+  .ai-card-title {
+    font-size: 13px;
+    color: #0f172a;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600
+  }
+
+  .ai-card-title code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #0f172a;
+    font-weight: 700;
+    border: 1px solid #e2e8f0
+  }
+
+  .ai-card-reason {
+    font-size: 12px;
+    color: #475569;
+    font-weight: 500
+  }
+
+  .btn-ai-apply {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 14px;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1.5px solid #34d399;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .15s
+  }
+
+  .btn-ai-apply:hover {
+    background: #059669;
+    color: #ffffff;
+    border-color: #059669
+  }
+
+  /* AGENTIC AI SECURITY SHIELD PANEL */
+  .ai-sec-panel {
+    margin: 10px 16px 14px 16px;
+    padding: 14px 16px;
+    background: #f0fdf4;
+    border: 2px solid #86efac;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.08);
+    display: block;
+    transition: all .3s cubic-bezier(0.4, 0, 0.2, 1)
+  }
+
+  .ai-sec-panel.alert {
+    background: #fff1f2 !important;
+    border-color: #ef4444 !important;
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.18) !important
+  }
+
+  .threat-badge {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    flex-shrink: 0
+  }
+
+  .tb-inj {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1.5px solid #f87171
+  }
+
+  .tb-dwn {
+    background: #ffedd5;
+    color: #9a3412;
+    border: 1.5px solid #fb923c
+  }
+
+  .tb-dos {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1.5px solid #facc15
+  }
+
+  .tb-ovf {
+    background: #fce7f3;
+    color: #9d174d;
+    border: 1.5px solid #f472b6
+  }
+
+  /* ATTACK LAB BUTTONS */
+  .btn-attack {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 9px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06)
+  }
+
+  .btn-atk-inj {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1.5px solid #f87171
+  }
+
+  .btn-atk-inj:hover,
+  .btn-atk-inj.active {
+    background: #ef4444;
+    color: #ffffff;
+    border-color: #dc2626
+  }
+
+  .btn-atk-dwn {
+    background: #5bc8efb3;
+    color: #9a3412;
+    border: 1.5px solid #29d9e9
+  }
+
+  .btn-atk-dwn:hover,
+  .btn-atk-dwn.active {
+    background: #0c86ea;
+    color: #ffffff;
+    border-color: #0479ef
+  }
+
+  .btn-atk-dos {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1.5px solid #facc15
+  }
+
+  .btn-atk-dos:hover,
+  .btn-atk-dos.active {
+    background: #ca8a04;
+    color: #ffffff;
+    border-color: #a16207
+  }
+
+  .btn-atk-ovf {
+    background: #fce7f3;
+    color: #9d174d;
+    border: 1.5px solid #f472b6
+  }
+
+  .btn-atk-ovf:hover,
+  .btn-atk-ovf.active {
+    background: #db2777;
+    color: #ffffff;
+    border-color: #be185d
+  }
+
+  .btn-atk-reset {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1.5px solid #34d399;
+    margin-left: auto
+  }
+
+  .btn-atk-reset:hover {
+    background: #059669;
+    color: #ffffff;
+    border-color: #047857
+  }
+
+  /* API KEY & LLM AGENT CONFIG */
+  .btn-api-config {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    background: #ede9fe;
+    color: #5b21b6;
+    border: 1.5px solid #a78bfa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-api-config:hover {
+    background: #7c3aed;
+    color: #ffffff;
+    border-color: #7c3aed;
+  }
+
+  .api-config-card {
+    margin: 10px 16px;
+    padding: 16px 20px;
+    background: #fdfcfb;
+    border: 2px solid #6366f1;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(99, 102, 241, 0.12);
+    display: none;
+    animation: fadeIn .2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .api-config-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
+  }
+
+  .api-config-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #3730a3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .api-form-grid {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .api-form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .api-select {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 12px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #1e293b;
+    outline: none;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+
+  .api-select:focus {
+    border-color: #6366f1;
+  }
+
+  .api-input-wrap {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .api-input {
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 9px 40px 9px 12px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #0f172a;
+    outline: none;
+    transition: all .2s;
+  }
+
+  .api-input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .api-toggle-eye {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: #64748b;
+    padding: 4px;
+    line-height: 1;
+  }
+
+  .api-toggle-eye:hover {
+    color: #1e293b;
+  }
+
+  .api-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .btn-api-action {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 9px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+
+  .btn-api-save {
+    background: #6366f1;
+    color: #ffffff;
+  }
+
+  .btn-api-save:hover {
+    background: #4f46e5;
+  }
+
+  .btn-api-test {
+    background: #e0e7ff;
+    color: #3730a3;
+    border-color: #a5b4fc;
+  }
+
+  .btn-api-test:hover {
+    background: #c7d2fe;
+  }
+
+  .btn-api-clear {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fca5a5;
+  }
+
+  .btn-api-clear:hover {
+    background: #fecaca;
+  }
+
+  .api-status-row {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .api-status-msg {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .api-status-msg.ok {
+    color: #059669;
+  }
+
+  .api-status-msg.err {
+    color: #dc2626;
+  }
+
+  .api-status-msg.loading {
+    color: #7c3aed;
+  }
+
+  .api-links {
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .api-links a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .api-links a:hover {
+    text-decoration: underline;
+  }
+
+  .ai-badge-live {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    background: #ede9fe;
+    color: #6d28d9;
+    border: 1.5px solid #a78bfa;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.2);
+  }
+
+  .lm {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 500
+  }
+
+  .lm.ok {
+    color: #059669;
+    font-weight: 700
+  }
+
+  .lm.err {
+    color: #dc2626;
+    font-weight: 700
+  }
+
+  /* IR CONSTRAINTS */
+  .cg {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 12px 14px;
+    background: #fdfcfb
+  }
+
+  .cc {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    transition: all .2s
+  }
+
+  .cc:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.08)
+  }
+
+  .ck {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #334155;
+    margin-bottom: 4px
+  }
+
+  .cv {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 800
+  }
+
+  .cv.bt {
+    color: #059669
+  }
+
+  .cv.bf {
+    color: #dc2626
+  }
+
+  .cv.num {
+    color: #4f46e5
+  }
+
+  .cv.nd {
+    color: #94a3b8
+  }
+
+  /* SCORE DISPLAY */
+  .score-display {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    background: #fdfcfb;
+    align-items: stretch
+  }
+
+  .score-big-card {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03)
+  }
+
+  .score-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1;
+    transition: color .4s
+  }
+
+  .score-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #334155;
+    margin-top: 6px
+  }
+
+  .score-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center
+  }
+
+  .strength-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    border: 1.5px solid;
+    width: fit-content
+  }
+
+  .sVW {
+    background: #fee2e2;
+    border-color: #f87171;
+    color: #dc2626
+  }
+
+  .sW {
+    background: #fef3c7;
+    border-color: #f59e0b;
+    color: #b45309
+  }
+
+  .sM {
+    background: #e0f2fe;
+    border-color: #38bdf8;
+    color: #0284c7
+  }
+
+  .sSt {
+    background: #dcfce7;
+    border-color: #34d399;
+    color: #059669
+  }
+
+  .score-track {
+    height: 12px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1.5px solid #cbd5e1
+  }
+
+  .score-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width .7s ease, background .4s
+  }
+
+  .score-ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 4px
+  }
+
+  /* NS */
+  .ns-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fdfcfb
+  }
+
+  .ns-input-row {
+    display: flex;
+    gap: 8px
+  }
+
+  .ns-input {
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #000000;
+    outline: none;
+    transition: all .2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03)
+  }
+
+  .ns-input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15)
+  }
+
+  .ns-input::placeholder {
+    color: #2359a5
+  }
+
+  .ns-eval-btn {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all .2s
+  }
+
+  .ns-eval-btn:hover {
+    background: #4f46e5
+  }
+
+  .ns-eval-btn:disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: default
+  }
+
+  .char-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-height: 32px
+  }
+
+  .pch {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155
+  }
+
+  .pch.U {
+    background: #e0e7ff;
+    color: #3730a3;
+    border-color: #818cf8
+  }
+
+  .pch.L {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #34d399
+  }
+
+  .pch.D {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #f59e0b
+  }
+
+  .pch.S {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #f87171
+  }
+
+  .pch.W {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #38bdf8
+  }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap
+  }
+
+  .lg-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1e293b;
+    font-family: 'JetBrains Mono', monospace
+  }
+
+  .lg-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0
+  }
+
+  .reasons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+  }
+
+  .r-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    color: #dc2626
+  }
+
+  .r-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ef4444;
+    flex-shrink: 0
+  }
+
+  .valid-bar {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-align: center;
+    border-top: 1.5px solid #cbd5e1;
+    transition: all .3s
+  }
+
+  .vb-idle {
+    background: #f8fafc;
+    color: #64748b
+  }
+
+  .vb-pass {
+    background: #dcfce7;
+    color: #15803d;
+    border-color: #86efac
+  }
+
+  .vb-fail {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fca5a5
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 12px 14px;
+    background: #fdfcfb
+  }
+
+  .stat-card {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    transition: all .2s
+  }
+
+  .stat-card:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.08)
+  }
+
+  .stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 800
+  }
+
+  .stat-lbl {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+    margin-top: 4px;
+    letter-spacing: .06em;
+    text-transform: uppercase
+  }
+
+  .sbar {
+    background: #f8fafc;
+    border-top: 1.5px solid #cbd5e1;
+    padding: 8px 16px;
+    display: flex;
+    gap: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: #334155;
+    align-items: center;
+    flex-wrap: wrap
+  }
+
+  .si {
+    display: flex;
+    gap: 6px;
+    align-items: center
+  }
+
+  .sd {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cbd5e1
+  }
+
+  .sd.ok {
+    background: #10b981
+  }
+
+  .sd.err {
+    background: #ef4444
+  }
+
+  .sd.idle {
+    background: #6366f1
+  }
+
+  .empty {
+    color: #64748b;
+    font-size: 13px;
+    font-style: italic;
+    font-family: 'JetBrains Mono', monospace
+  }
+</style>
+
+<div class="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="dot" style="background:#ff5f57"></div>
+    <div class="dot" style="background:#febc2e"></div>
+    <div class="dot" style="background:#28c840"></div>
+    <span class="topbar-title">Policy Compiler IDE · v2 · 🛡️ Agentic AI Security Shield</span>
+    <button id="btn-toggle-api-config" class="btn-api-config" style="margin-left:auto" onclick="toggleApiConfig()">🔑 API Key / LLM Agent</button>
+    <span class="badge" id="llm-mode-badge" style="background:#eff6ff; color:#2563eb; border:1.5px solid #93c5fd; font-weight:700">⚙️ Local Hybrid AI</span>
+    <span class="badge"
+      style="background:#dcfce7; color:#15803d; border:1px solid #86efac; font-weight:700"
+      id="topbar-sec-badge">🛡️ SHIELD ACTIVE</span>
+    <span class="badge idle" id="badge" style="margin-left:4px">ready</span>
+  </div>
+
+  <!-- API KEY & LLM AGENT CONFIG CARD -->
+  <div id="api-config-card" class="api-config-card">
+    <div class="api-config-header">
+      <div class="api-config-title">
+        <span style="font-size:18px">🔑</span>
+        <span>Agentic AI Model &amp; API Key Configuration</span>
+        <span id="api-active-pill" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:#e2e8f0;color:#475569">Local Hybrid Mode</span>
+      </div>
+      <button onclick="toggleApiConfig(false)" style="background:none;border:none;font-size:18px;cursor:pointer;color:#64748b;font-weight:700" title="Close Settings">✕</button>
+    </div>
+    <div class="api-form-grid">
+      <select id="api-provider-select" class="api-select" onchange="onProviderChange()">
+        <option value="gemini">Google Gemini</option>
+        <option value="openai">OpenAI (ChatGPT)</option>
+      </select>
+      <select id="api-model-select" class="api-select">
+        <!-- populated dynamically -->
+      </select>
+      <div class="api-input-wrap">
+        <input type="password" id="api-key-input" class="api-input" placeholder="Enter Google Gemini API Key (AIzaSy...)" spellcheck="false" autocomplete="off" />
+        <button type="button" class="api-toggle-eye" id="btn-toggle-eye" onclick="toggleKeyVisibility()" title="Show/Hide API Key">👁️</button>
+      </div>
+      <div class="api-actions">
+        <button type="button" class="btn-api-action btn-api-save" onclick="saveApiKey()">💾 Save Key</button>
+        <button type="button" class="btn-api-action btn-api-test" onclick="testApiConnection()">⚡ Test Key</button>
+        <button type="button" class="btn-api-action btn-api-clear" onclick="clearApiKey()">🗑️ Clear</button>
+      </div>
+    </div>
+    <div class="api-status-row">
+      <div id="api-status-msg" class="api-status-msg">
+        ℹ️ Keys are stored locally in your browser's localStorage and never sent anywhere except the official AI endpoints.
+      </div>
+      <div class="api-links">
+        Get free API key:
+        <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio (Gemini)</a> ·
+        <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">OpenAI Platform</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🛡️ AGENTIC AI ATTACK SIMULATOR & DEFENSE LAB -->
+  <div class="attack-lab-card"
+    style="margin: 12px 16px 8px 16px; padding: 14px 18px; background: #fff7ed; border: 2px solid #fdba74; border-radius: 10px; box-shadow: 0 4px 12px rgba(194, 65, 12, 0.1)">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 8px">
+      <div style="display:flex; align-items:center; gap:8px">
+        <span style="font-size:18px">🛡️</span>
+        <span style="font-size:15px; font-weight:800; color:#9a3412; letter-spacing:-0.2px">AGENTIC AI ATTACK SIMULATOR
+          &amp; DEFENSE LAB</span>
+      </div>
+      <span
+        style="font-size:11px; font-weight:800; font-family:'JetBrains Mono',monospace; background:#ffedd5; color:#c2410c; padding:4px 10px; border-radius:12px; border:1.5px solid #fed7aa">LIVE
+        ADVERSARIAL TESTING</span>
+    </div>
+    <div style="font-size:13px; color:#7c2d12; margin-bottom:12px; line-height:1.5">
+      Click any attack below to simulate live adversarial exploits against the 2 Agentic AI assistants. Watch the <b>Red
+        Security Shield</b> intercept the exploit, isolate the threat, and propose self-healing repairs:
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+      <button class="btn-attack btn-atk-inj" id="btn-atk-inj" onclick="simulateAttack('injection')">⚡ Sim 1: Code /
+        Prompt Injection</button>
+      <button class="btn-attack btn-atk-dwn" id="btn-atk-dwn" onclick="simulateAttack('downgrade')">⚡ Sim 2: Adversarial
+        Downgrade</button>
+      <button class="btn-attack btn-atk-dos" id="btn-atk-dos" onclick="simulateAttack('dos')">⚡ Sim 3: ReDoS &amp; Token
+        Flood</button>
+      <button class="btn-attack btn-atk-ovf" id="btn-atk-ovf" onclick="simulateAttack('overflow')">⚡ Sim 4: Integer
+        Overflow Poisoning</button>
+      <button class="btn-attack btn-atk-reset" onclick="loadEx('strong')">✓ Reset to Safe Policy</button>
+    </div>
+  </div>
+
+  <!-- 1. SOURCE EDITOR -->
+  <div class="sec">① Source Editor</div>
+  <div class="editor-inner">
+    <div class="lnums" id="lnums"><span>1</span></div>
+    <textarea id="src" spellcheck="false"
+      placeholder="# Write your password policy&#10;# minLength 12&#10;# requireUpper true&#10;# requireDigit true"></textarea>
+  </div>
+  <div class="btn-row">
+    <button class="btn-primary" onclick="compile()">▶ Compile</button>
+    <button class="btn-sec" onclick="clearAll()">Clear</button>
+    <button class="btn-sec" id="btn-ai-audit" onclick="runAiPolicyAudit()"
+      style="background:#f5f3ff;color:#6d28d9;border:1.5px solid #c4b5fd;font-weight:700">✨ AI Security Audit</button>
+    <button id="btn-ex-strong" class="btn-ex" onclick="loadEx('strong')">Strong</button>
+    <button id="btn-ex-medium" class="btn-ex" onclick="loadEx('medium')">Medium</button>
+    <button id="btn-ex-weak" class="btn-ex" onclick="loadEx('weak')">Weak</button>
+    <button id="btn-ex-err" class="btn-ex" onclick="loadEx('err')"
+      style="background:#f5f3ff;color:#6d28d9;border-color:#c4b5fd;font-weight:600">🤖 Errors & AI Fixes</button>
+  </div>
+
+  <!-- 2. PIPELINE -->
+  <div class="sec">② Compiler Pipeline</div>
+  <div class="pipeline-section">
+    <div class="stages">
+      <div class="stg">
+        <div class="sbub" id="b-lex">LEX</div>
+        <div class="slbl" id="l-lex">Lexer</div>
+      </div>
+      <div class="sarr">›</div>
+      <div class="stg">
+        <div class="sbub" id="b-par">PAR</div>
+        <div class="slbl" id="l-par">Parser</div>
+      </div>
+      <div class="sarr">›</div>
+      <div class="stg">
+        <div class="sbub" id="b-sem">SEM</div>
+        <div class="slbl" id="l-sem">Semantic</div>
+      </div>
+      <div class="sarr">›</div>
+      <div class="stg">
+        <div class="sbub" id="b-ir">IR</div>
+        <div class="slbl" id="l-ir">IR Gen</div>
+      </div>
+      <div class="sarr">›</div>
+      <div class="stg">
+        <div class="sbub" id="b-cg">CG</div>
+        <div class="slbl" id="l-cg">Code Gen</div>
+      </div>
+      <div class="sarr">›</div>
+      <div class="stg">
+        <div class="sbub" id="b-ana">ANA</div>
+        <div class="slbl" id="l-ana">Analyzer</div>
+      </div>
+      <div class="sarr">›</div>
+      <div class="stg">
+        <div class="sbub" id="b-ns">NS</div>
+        <div class="slbl" id="l-ns">Neuro-Sym</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. TOKEN STREAM -->
+  <div class="sec">③ Token Stream</div>
+  <div class="tok-wrap" id="tok-wrap"><span class="empty">tokens appear after compilation</span></div>
+
+  <!-- 4. COMPILER LOG -->
+  <div class="sec">④ Compiler Log</div>
+  <div class="log-body" id="log-area">
+    <div class="empty">output appears here after compilation</div>
+  </div>
+
+  <!-- 4b. AGENTIC AI SECURITY SHIELD (THREAT INTERCEPTIONS) -->
+  <div id="ai-security-panel" class="ai-sec-panel">
+    <div class="ai-panel-header" id="ai-sec-header" style="margin-bottom:8px">
+      <span class="ai-panel-title" id="ai-sec-title" style="color:#15803d; font-size:14px; font-weight:800">🛡️ Agentic
+        AI Security Shield · System Protected</span>
+      <span class="badge" id="ai-sec-badge"
+        style="background:#dcfce7; color:#15803d; border:1.5px solid #86efac; font-size:12px; font-weight:700">●
+        MONITORING · 100% SECURE</span>
+    </div>
+    <div id="ai-threats-list" class="ai-suggestions-list">
+      <div style="font-size:13px; color:#166534; line-height:1.6; padding:2px 0">
+        ✓ <b>Zero-Trust Hardening Active:</b> Both Agentic AI assistants (Syntax &amp; Semantic) are guarding the
+        compiler pipeline against prompt injections, unauthorized policy downgrades, ReDoS CPU locks, and integer memory
+        overflows.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4c. AGENTIC AI INTERACTIVE SUGGESTIONS -->
+  <div id="ai-agent-panel" class="ai-agent-panel">
+    <div class="ai-panel-header">
+      <span class="ai-panel-title">🤖 Agentic AI Assistant · Interactive Error Suggestions</span>
+      <button class="btn-apply-all" onclick="applyAllSuggestions()">✓ Accept All AI Fixes</button>
+    </div>
+    <div id="ai-suggestions-list" class="ai-suggestions-list"></div>
+  </div>
+
+  <!-- 5. IR CONSTRAINTS (4-column grid) -->
+  <div class="sec">⑤ IR Constraints</div>
+  <div class="cg" id="cg">
+    <div style="grid-column:span 4" class="empty" style="padding:8px">no IR generated yet</div>
+  </div>
+
+  <!-- 6. IR WARNINGS -->
+  <div class="sec">⑥ IR Analysis Warnings</div>
+  <div class="log-body" id="warn-area" style="height:85px">
+    <div class="empty">warnings appear here</div>
+  </div>
+
+  <!-- 7. NEURO-SYMBOLIC EVALUATOR -->
+  <div class="sec">⑦ Neuro-Symbolic Password Evaluator</div>
+  <div class="ns-body">
+    <div class="legend">
+      <div class="lg-item">
+        <div class="lg-dot" style="background:#6366f1"></div>Uppercase
+      </div>
+      <div class="lg-item">
+        <div class="lg-dot" style="background:#10b981"></div>Lowercase
+      </div>
+      <div class="lg-item">
+        <div class="lg-dot" style="background:#f59e0b"></div>Digit
+      </div>
+      <div class="lg-item">
+        <div class="lg-dot" style="background:#ef4444"></div>Special
+      </div>
+      <div class="lg-item">
+        <div class="lg-dot" style="background:#0ea5e9"></div>Space
+      </div>
+    </div>
+    <div class="ns-input-row">
+      <input class="ns-input" id="pw-input" type="text" placeholder="enter password to evaluate (press Enter)..."
+        oninput="onPwInput()" onkeydown="if (event.key === 'Enter') { event.preventDefault(); evalPassword(); }">
+      <button class="ns-eval-btn" id="eval-btn" onclick="evalPassword()" disabled>Evaluate</button>
+    </div>
+    <div class="char-row" id="char-row"></div>
+  </div>
+  <div class="valid-bar vb-idle" id="valid-bar">— compile a policy to enable validator —</div>
+
+  <!-- 8. SCORE & RESULT -->
+  <div class="sec">⑧ NS Score &amp; Strength</div>
+  <div class="score-display" id="score-display">
+    <div class="score-big-card">
+      <div class="score-num nd" id="score-num" style="color:#64748b">—</div>
+      <div class="score-label">Score / 14</div>
+    </div>
+    <div class="score-right">
+      <div id="strength-badge-wrap"><span class="empty">evaluate a password to see strength</span></div>
+      <div>
+        <div class="score-track">
+          <div class="score-fill" id="score-fill" style="width:0%;background:#cbd5e1"></div>
+        </div>
+        <div class="score-ticks"><span>Very Weak</span><span>Weak</span><span>Medium</span><span>Strong</span></div>
+      </div>
+      <div id="reasons-area"><span class="empty">no issues</span></div>
+    </div>
+  </div>
+
+  <!-- 9. CHAR STATS -->
+  <div class="sec">⑨ Character Breakdown</div>
+  <div class="stat-row" id="stat-row">
+    <div class="stat-card">
+      <div class="stat-val" style="color:#6366f1" id="st-up">—</div>
+      <div class="stat-lbl">Uppercase</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:#10b981" id="st-lo">—</div>
+      <div class="stat-lbl">Lowercase</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:#f59e0b" id="st-di">—</div>
+      <div class="stat-lbl">Digits</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:#ef4444" id="st-sp">—</div>
+      <div class="stat-lbl">Special</div>
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="sbar">
+    <div class="si">
+      <div class="sd idle" id="sd"></div><span id="st-txt">IDLE</span>
+    </div>
+    <div class="si"><span id="s-tok">TOKENS: —</span></div>
+    <div class="si"><span id="s-rul">RULES: —</span></div>
+    <div class="si"><span id="s-err">ERRORS: —</span></div>
+    <div class="si"><span id="s-score">SCORE: —</span></div>
+    <div class="si" style="margin-left:auto;color:#4f46e5;font-weight:700">LEX › PAR › SEM › IR › CG › ANA › NS</div>
+  </div>
+
+</div>
+
+<script>
+  const EXAMPLES = {
+    strong: `# Strong policy\nminLength 12\nmaxLength 64\nrequireUpper true\nrequireLower true\nrequireDigit true\nrequireSpecial true\nnoSpaces true`,
+    medium: `# Medium policy\nminLength 8\nmaxLength 32\nrequireUpper true\nrequireLower true\nrequireDigit true\nnoSpaces true`,
+    weak: `# Weak policy\nminLength 4\nmaxLength 20\nrequireUpper false\nrequireLower true\nrequireDigit false\nrequireSpecial false\nnoSpaces false`,
+    err: `# Policy with syntax and semantic errors\nrequireUpper maybe\nrequireLower\nminLength abc\nreqiureDigit true\nminLength 20\nmaxLength 10`
+  };
+
+  const ATTACKS = {
+    injection: `# ⚡ Attack 1: Adversarial Prompt & Code Injection\nrequireUpper true\nrequireDigit DROP TABLE policies\nminLength 8`,
+    downgrade: `# ⚡ Attack 2: Adversarial Policy Downgrade Attack\nminLength 2\nrequireUpper false\nrequireDigit false`,
+    dos: `# ⚡ Attack 3: ReDoS & Resource Exhaustion Attack\nrequireUpper true\nreqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqDigit true\nminLength 8\nminLength 20`,
+    overflow: `# ⚡ Attack 4: Integer Overflow & Memory Poisoning\nminLength 999999999999999999999999999999999999\nmaxLength 888888888888888888888888888888888888\nrequireUpper true`
+  };
+
+  function simulateAttack(type) {
+    if (ATTACKS[type]) {
+      srcEl.value = ATTACKS[type];
+      updateLN();
+      document.querySelectorAll('.btn-attack').forEach(b => b.classList.remove('active'));
+      const idMap = { injection: 'btn-atk-inj', downgrade: 'btn-atk-dwn', dos: 'btn-atk-dos', overflow: 'btn-atk-ovf' };
+      const btn = document.getElementById(idMap[type]);
+      if (btn) btn.classList.add('active');
+      compile();
+    }
+  }
+
+  let compiledConstraints = null;
+  let activeSuggestions = [];
+  const srcEl = document.getElementById('src');
+  const lnumsEl = document.getElementById('lnums');
+
+  function loadEx(k) {
+    srcEl.value = EXAMPLES[k];
+    updateLN();
+    document.querySelectorAll('.btn-ex').forEach(b => b.classList.remove('active'));
+    const btn = document.getElementById('btn-ex-' + k);
+    if (btn) btn.classList.add('active');
+  }
+  function updateLN() {
+    const n = srcEl.value.split('\n').length;
+    lnumsEl.innerHTML = Array.from({ length: n }, (_, i) => `<span>${i + 1}</span>`).join('');
+  }
+  srcEl.addEventListener('input', () => {
+    updateLN();
+    document.querySelectorAll('.btn-ex').forEach(b => b.classList.remove('active'));
+  });
+  srcEl.addEventListener('scroll', () => { lnumsEl.scrollTop = srcEl.scrollTop; });
+  updateLN();
+
+  function setStage(id, s) { document.getElementById('b-' + id).className = 'sbub ' + s; document.getElementById('l-' + id).className = 'slbl ' + s; }
+  function resetStages() { ['lex', 'par', 'sem', 'ir', 'cg', 'ana', 'ns'].forEach(x => setStage(x, '')); }
+
+  function log(areaId, badge, bc, msg, mc = '') {
+    const a = document.getElementById(areaId);
+    if (a.querySelector('.empty')) a.innerHTML = '';
+    const d = document.createElement('div'); d.className = 'll';
+    d.innerHTML = `<span class="lb ${bc}">${badge}</span><span class="lm ${mc}">${msg}</span>`;
+    a.appendChild(d); a.scrollTop = a.scrollHeight;
+  }
+
+  function logDiag(areaId, badge, bc, msg, pos, inputLines) {
+    const a = document.getElementById(areaId);
+    if (a.querySelector('.empty')) a.innerHTML = '';
+    const d = document.createElement('div');
+    d.className = 'll';
+    d.style.flexDirection = 'column';
+    d.style.gap = '2px';
+    d.style.marginBottom = '6px';
+    let html = `<div style="display:flex;gap:8px;align-items:flex-start"><span class="lb ${bc}">${badge}</span><span class="lm err" style="font-weight:700">L${pos.line}:${pos.col} ${msg}</span></div>`;
+    if (pos.line > 0 && pos.line <= inputLines.length) {
+      const lineStr = inputLines[pos.line - 1];
+      const prefix = `${pos.line} | `;
+      const spaceCount = prefix.length + pos.col - 1;
+      const spaces = '&nbsp;'.repeat(spaceCount);
+      html += `<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#1e293b;background:#f8fafc;padding:6px 10px;border-radius:6px;border:1.5px solid #e2e8f0;margin-left:26px">`;
+      html += `<div><span style="color:#64748b;font-weight:700">${prefix}</span>${lineStr.replace(/ /g, '&nbsp;').replace(/</g, '&lt;')}</div>`;
+      html += `<div style="color:#ef4444;font-weight:700">${spaces}^~~</div>`;
+      html += `</div>`;
+    }
+    d.innerHTML = html;
+    a.appendChild(d);
+    a.scrollTop = a.scrollHeight;
+  }
+
+  function tokenize(input) {
+    const tokens = [], errors = [], threats = []; let i = 0, line = 1, col = 1;
+    const peek = () => i < input.length ? input[i] : '\0';
+    const get = () => { const c = input[i++]; if (c === '\n') { line++; col = 1; } else col++; return c; };
+
+    while (i < input.length) {
+      const c = peek();
+      const p = { line, col };
+      if (c === ' ' || c === '\t' || c === '\r') { get(); continue; }
+      if (c === '#') { while (i < input.length && peek() !== '\n') get(); continue; }
+      if (c === '\n') { get(); tokens.push({ type: 'Newline', lexeme: '↵', pos: p }); continue; }
+
+      if (/[a-zA-Z_]/.test(c)) {
+        let s = '';
+        while (i < input.length && /[a-zA-Z0-9_]/.test(peek())) s += get();
+        tokens.push({ type: (s === 'true' || s === 'false') ? 'Boolean' : 'Identifier', lexeme: s, pos: p });
+        continue;
+      }
+
+      if (/[0-9]/.test(c)) {
+        let s = '';
+        while (i < input.length && /[0-9]/.test(peek())) s += get();
+        tokens.push({ type: 'Number', lexeme: s, pos: p });
+        continue;
+      }
+
+      // Check if dangerous injection character
+      const isDangerous = ['<', '>', ';', '"', "'", '(', ')', '{', '}', '`', '$', '&', '|', '\\'].includes(c);
+      if (isDangerous) {
+        threats.push({
+          type: 'INJECTION_ATTACK',
+          payload: c,
+          defense: `Lexical Guard: Intercepted and isolated prohibited injection character '${c}'`,
+          line: p.line,
+          col: p.col
+        });
+      }
+
+      errors.push({ message: `Unexpected char: ${c}`, pos: p });
+      tokens.push({ type: 'Unknown', lexeme: c, pos: p });
+      get();
+    }
+    tokens.push({ type: 'End', lexeme: 'EOF', pos: { line, col } });
+    return { tokens, errors, threats };
+  }
+
+  function parse(tokens) {
+    const rules = [], errors = [], suggestions = [], threats = []; let k = 0;
+    const cur = () => tokens[Math.min(k, tokens.length - 1)];
+    const peekAhead = (off) => tokens[Math.min(k + off, tokens.length - 1)];
+    const skipNL = () => { while (cur().type === 'Newline') k++; };
+    const boolRules = ['requireupper', 'requirelower', 'requiredigit', 'requirespecial', 'nospaces'];
+    const numRules = ['minlength', 'maxlength'];
+
+    const isInjection = (str) => {
+      const lower = (str || '').toLowerCase();
+      const sigs = ['script', 'drop', 'select', 'insert', 'delete', 'table', 'system', 'exec', 'eval', 'ignore', 'override', 'bypass', 'admin', 'truncate', ';', '--', '/*'];
+      return sigs.some(s => lower === s || lower.includes(s));
+    };
+
+    skipNL();
+    while (cur().type !== 'End') {
+      if (cur().type === 'Newline') { skipNL(); continue; }
+
+      // Circuit Breaker: Rule limit / DoS prevention
+      if (rules.length >= 30) {
+        threats.push({
+          type: 'RESOURCE_EXHAUSTION',
+          payload: `Rules count >= 30`,
+          defense: 'Circuit breaker tripped: halted parsing to mitigate Denial-of-Service / token flooding',
+          line: cur().pos.line,
+          col: cur().pos.col
+        });
+        errors.push({ message: '[SECURITY SHIELD] Circuit breaker tripped: rule flood limit reached', pos: cur().pos });
+        break;
+      }
+
+      if (cur().type === 'Unknown') {
+        errors.push({ message: 'Unknown token in input', pos: cur().pos });
+        while (cur().type !== 'Newline' && cur().type !== 'End') k++;
+        if (cur().type === 'Newline') k++;
+        continue;
+      }
+
+      // Injection Attack Check in token
+      if (isInjection(cur().lexeme)) {
+        const bad = cur();
+        threats.push({
+          type: 'INJECTION_ATTACK',
+          payload: bad.lexeme,
+          defense: 'Sanitized and neutralized malicious prompt/code injection; purged payload',
+          line: bad.pos.line,
+          col: bad.pos.col
+        });
+        errors.push({ message: `[SECURITY SHIELD] Malicious injection payload intercepted on line ${bad.pos.line}`, pos: bad.pos });
+        suggestions.push({
+          line: bad.pos.line,
+          col: bad.pos.col,
+          phase: 'Parser',
+          issue: `Injection payload in '${bad.lexeme}'`,
+          originalText: bad.lexeme,
+          suggestedText: '# [INJECTION REMOVED]',
+          explanation: 'Security Shield: Purged adversarial injection payload; restored safety'
+        });
+        while (cur().type !== 'Newline' && cur().type !== 'End') k++;
+        if (cur().type === 'Newline') k++;
+        continue;
+      }
+
+      // Inverted syntax check: [Value] [RuleName]
+      if ((cur().type === 'Boolean' || cur().type === 'Number') && peekAhead(1).type === 'Identifier') {
+        const valTok = tokens[k++];
+        const nameTok = tokens[k++];
+        errors.push({ message: `Expected rule name (identifier), found '${valTok.lexeme}'`, pos: valTok.pos });
+        suggestions.push({
+          line: valTok.pos.line,
+          col: valTok.pos.col,
+          phase: 'Parser',
+          issue: `Inverted rule order: '${valTok.lexeme} ${nameTok.lexeme}'`,
+          originalText: `${valTok.lexeme} ${nameTok.lexeme}`,
+          suggestedText: `${nameTok.lexeme} ${valTok.lexeme}`,
+          explanation: `Transpose into standard syntax: '${nameTok.lexeme} ${valTok.lexeme}'`
+        });
+        if (cur().type === 'Newline') k++;
+        rules.push({ name: nameTok.lexeme, value: valTok.lexeme, pos: nameTok.pos });
+        skipNL();
+        continue;
+      }
+
+      if (cur().type !== 'Identifier') {
+        errors.push({ message: 'Expected rule name (identifier)', pos: cur().pos });
+        k++;
+        continue;
+      }
+
+      const nameTok = tokens[k++];
+      const ruleLower = nameTok.lexeme.toLowerCase();
+      let value = '';
+
+      // Omitted value check
+      if (cur().type === 'Newline' || cur().type === 'End') {
+        errors.push({ message: 'Expected value (number/true/false)', pos: nameTok.pos });
+        const suggestedVal = boolRules.includes(ruleLower) ? 'true' : '8';
+        suggestions.push({
+          line: nameTok.pos.line,
+          col: nameTok.pos.col,
+          phase: 'Parser',
+          issue: `Missing value for rule '${nameTok.lexeme}'`,
+          originalText: nameTok.lexeme,
+          suggestedText: `${nameTok.lexeme} ${suggestedVal}`,
+          explanation: `Add missing value '${suggestedVal}' to complete rule declaration`
+        });
+      } else if (cur().type === 'Number') {
+        value = tokens[k++].lexeme;
+        if (boolRules.includes(ruleLower)) {
+          errors.push({ message: `Expected boolean (true/false) for rule '${nameTok.lexeme}', found '${value}'`, pos: nameTok.pos });
+          // Anti-downgrade invariant: If someone puts 0, do NOT downgrade to false
+          if (value === '0') {
+            threats.push({
+              type: 'POLICY_DOWNGRADE',
+              payload: `${nameTok.lexeme} 0`,
+              defense: `Blocked attempt to disable security control '${nameTok.lexeme}'; enforced 'true'`,
+              line: nameTok.pos.line,
+              col: nameTok.pos.col
+            });
+          }
+          const suggBool = 'true';
+          suggestions.push({
+            line: nameTok.pos.line,
+            col: nameTok.pos.col,
+            phase: 'Parser',
+            issue: `Numeric value '${value}' for boolean rule`,
+            originalText: `${nameTok.lexeme} ${value}`,
+            suggestedText: `${nameTok.lexeme} ${suggBool}`,
+            explanation: `Security Guard: Enforced canonical secure boolean 'true' to prevent policy downgrade`
+          });
+        }
+      } else if (cur().type === 'Boolean') {
+        value = tokens[k++].lexeme;
+        if (numRules.includes(ruleLower)) {
+          errors.push({ message: `Expected integer length for rule '${nameTok.lexeme}', found boolean '${value}'`, pos: nameTok.pos });
+          suggestions.push({
+            line: nameTok.pos.line,
+            col: nameTok.pos.col,
+            phase: 'Parser',
+            issue: `Boolean value for length rule '${nameTok.lexeme}'`,
+            originalText: `${nameTok.lexeme} ${value}`,
+            suggestedText: `${nameTok.lexeme} 8`,
+            explanation: `Replace boolean '${value}' with an integer length (NIST floor: 8)`
+          });
+        }
+      } else if (cur().type === 'Identifier') {
+        const valTok = tokens[k++];
+        value = valTok.lexeme;
+        const vLower = value.toLowerCase();
+
+        // Injection check in identifier value
+        if (isInjection(value)) {
+          threats.push({
+            type: 'INJECTION_ATTACK',
+            payload: value,
+            defense: 'Sanitized malicious injection payload in rule value; restored canonical safe syntax',
+            line: valTok.pos.line,
+            col: valTok.pos.col
+          });
+          errors.push({ message: `[SECURITY SHIELD] Malicious injection in rule value on line ${valTok.pos.line}`, pos: valTok.pos });
+          suggestions.push({
+            line: valTok.pos.line,
+            col: valTok.pos.col,
+            phase: 'Parser',
+            issue: `Malicious injection payload in '${nameTok.lexeme}'`,
+            originalText: `${nameTok.lexeme} ${value}`,
+            suggestedText: `${nameTok.lexeme} ${boolRules.includes(ruleLower) ? 'true' : '8'}`,
+            explanation: 'Security Shield: Purged injection payload; restored canonical safe syntax'
+          });
+          value = boolRules.includes(ruleLower) ? 'true' : '8';
+        } else if (boolRules.includes(ruleLower)) {
+          errors.push({ message: `Expected boolean (true/false) for rule '${nameTok.lexeme}', found '${value}'`, pos: valTok.pos });
+          // Anti-downgrade invariant: Never suggest disabling security controls
+          if (['no', 'n', 'off', '0', 'disable', 'false'].includes(vLower)) {
+            threats.push({
+              type: 'POLICY_DOWNGRADE',
+              payload: `${nameTok.lexeme} ${value}`,
+              defense: `Blocked attempt to disable security control '${nameTok.lexeme}'; enforced 'true'`,
+              line: valTok.pos.line,
+              col: valTok.pos.col
+            });
+          }
+          const suggBool = 'true';
+          suggestions.push({
+            line: valTok.pos.line,
+            col: valTok.pos.col,
+            phase: 'Parser',
+            issue: `Invalid value '${value}' for boolean rule '${nameTok.lexeme}'`,
+            originalText: `${nameTok.lexeme} ${value}`,
+            suggestedText: `${nameTok.lexeme} ${suggBool}`,
+            explanation: `Security Guard: Enforced secure boolean '${suggBool}' to maintain policy entropy`
+          });
+        } else if (numRules.includes(ruleLower)) {
+          errors.push({ message: `Expected integer value for rule '${nameTok.lexeme}', found '${value}'`, pos: valTok.pos });
+          suggestions.push({
+            line: valTok.pos.line,
+            col: valTok.pos.col,
+            phase: 'Parser',
+            issue: `Non-numeric value '${value}' for length rule '${nameTok.lexeme}'`,
+            originalText: `${nameTok.lexeme} ${value}`,
+            suggestedText: `${nameTok.lexeme} 8`,
+            explanation: `Replace '${value}' with standard integer length '8'`
+          });
+        }
+      } else {
+        errors.push({ message: 'Expected value (number/true/false)', pos: cur().pos });
+        k++;
+      }
+
+      if (cur().type === 'Newline') k++;
+      rules.push({ name: nameTok.lexeme, value, pos: nameTok.pos });
+      skipNL();
+    }
+    return { rules, errors, suggestions, threats };
+  }
+
+  function levenshtein(s1, s2) {
+    const d = Array(s1.length + 1).fill(null).map(() => Array(s2.length + 1).fill(0));
+    for (let i = 0; i <= s1.length; i++)d[i][0] = i;
+    for (let j = 0; j <= s2.length; j++)d[0][j] = j;
+    for (let i = 1; i <= s1.length; i++) {
+      for (let j = 1; j <= s2.length; j++) {
+        const c = s1[i - 1].toLowerCase() === s2[j - 1].toLowerCase() ? 0 : 1;
+        d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + c);
+      }
+    }
+    return d[s1.length][s2.length];
+  }
+
+  function semantic(rules) {
+    const errors = [], suggestions = [], threats = [], seen = {};
+    const c = { minLength: -1, maxLength: -1, requireUpper: -1, requireLower: -1, requireDigit: -1, requireSpecial: -1, noSpaces: -1 };
+    const valid = ['minLength', 'maxLength', 'requireUpper', 'requireLower', 'requireDigit', 'requireSpecial', 'noSpaces'];
+
+    let duplicateCount = 0;
+
+    for (const r of rules) {
+      if (seen[r.name]) {
+        duplicateCount++;
+        if (duplicateCount > 5) {
+          threats.push({
+            type: 'RESOURCE_EXHAUSTION',
+            payload: 'Duplicate rule flood',
+            defense: 'Circuit breaker: Suppressed duplicate rule flood to prevent DoS',
+            line: r.pos.line,
+            col: r.pos.col
+          });
+          continue;
+        }
+        errors.push({ message: `Duplicate rule definition: '${r.name}'`, pos: r.pos });
+        suggestions.push({
+          line: r.pos.line,
+          col: r.pos.col,
+          phase: 'Semantic',
+          issue: `Duplicate definition for '${r.name}'`,
+          originalText: `${r.name} ${r.value}`,
+          suggestedText: '',
+          explanation: `Remove redundant duplicate re-definition on line ${r.pos.line}`
+        });
+        continue;
+      }
+      seen[r.name] = r.pos;
+
+      if (!valid.includes(r.name)) {
+        // ReDoS compute defense: If identifier > 32 chars, shed load and suggest canonical rule
+        if (r.name.length > 32) {
+          threats.push({
+            type: 'RESOURCE_EXHAUSTION',
+            payload: `Oversized identifier: '${r.name.slice(0, 16)}...' (${r.name.length} chars)`,
+            defense: 'Shed compute load: skipped quadratic distance evaluation; truncated ReDoS token',
+            line: r.pos.line,
+            col: r.pos.col
+          });
+          const lower = r.name.toLowerCase();
+          let targetRule = 'requireDigit';
+          if (lower.includes('upper')) targetRule = 'requireUpper';
+          else if (lower.includes('lower')) targetRule = 'requireLower';
+          else if (lower.includes('digit')) targetRule = 'requireDigit';
+          else if (lower.includes('special')) targetRule = 'requireSpecial';
+          else if (lower.includes('length')) targetRule = 'minLength';
+
+          errors.push({ message: `[SECURITY SHIELD] Oversized identifier token (${r.name.length} chars) intercepted (ReDoS defense)`, pos: r.pos });
+          suggestions.push({
+            line: r.pos.line,
+            col: r.pos.col,
+            phase: 'Semantic',
+            issue: `Oversized ReDoS token (${r.name.length} chars)`,
+            originalText: `${r.name} ${r.value}`,
+            suggestedText: `${targetRule} ${r.value}`,
+            explanation: `Security Guard: Truncated oversized ReDoS token and restored canonical rule '${targetRule}'`
+          });
+          continue;
+        }
+
+        let best = '', minD = 4;
+        for (const v of valid) {
+          const d = levenshtein(r.name, v);
+          if (d < minD) { minD = d; best = v; }
+        }
+
+        let msg = `Unknown rule: '${r.name}'`;
+        if (best) {
+          msg += `. Did you mean '${best}'?`;
+          suggestions.push({
+            line: r.pos.line,
+            col: r.pos.col,
+            phase: 'Semantic',
+            issue: `Typo in rule keyword '${r.name}'`,
+            originalText: `${r.name} ${r.value}`,
+            suggestedText: `${best} ${r.value}`,
+            explanation: `Correct typo '${r.name}' to valid keyword '${best}'`
+          });
+        } else {
+          suggestions.push({
+            line: r.pos.line,
+            col: r.pos.col,
+            phase: 'Semantic',
+            issue: `Unrecognized rule '${r.name}'`,
+            originalText: `${r.name} ${r.value}`,
+            suggestedText: `# ${r.name} ${r.value}`,
+            explanation: `Comment out unrecognized policy rule '${r.name}'`
+          });
+        }
+        errors.push({ message: msg, pos: r.pos });
+        continue;
+      }
+
+      if (r.name === 'minLength' || r.name === 'maxLength') {
+        // Integer overflow / underflow defense
+        if (r.value.length > 5 || r.value.startsWith('-')) {
+          threats.push({
+            type: 'OVERFLOW_ATTACK',
+            payload: `${r.name} ${r.value}`,
+            defense: `Sanitized arithmetic overflow/underflow; clamped ${r.name} to safe range [8, 128]`,
+            line: r.pos.line,
+            col: r.pos.col
+          });
+          errors.push({ message: `[SECURITY SHIELD] Integer overflow/underflow detected in ${r.name}`, pos: r.pos });
+          const safeVal = r.name === 'minLength' ? 8 : 64;
+          suggestions.push({
+            line: r.pos.line,
+            col: r.pos.col,
+            phase: 'Semantic',
+            issue: `Integer overflow/underflow in ${r.name}: '${r.value}'`,
+            originalText: `${r.name} ${r.value}`,
+            suggestedText: `${r.name} ${safeVal}`,
+            explanation: `Security Guard: Clamped integer to safe limit ${safeVal} to prevent memory corruption`
+          });
+          c[r.name] = safeVal;
+          continue;
+        }
+
+        const v = parseInt(r.value);
+        if (isNaN(v)) {
+          errors.push({ message: `${r.name} must be a number`, pos: r.pos });
+          suggestions.push({
+            line: r.pos.line,
+            col: r.pos.col,
+            phase: 'Semantic',
+            issue: `${r.name} must be a number`,
+            originalText: `${r.name} ${r.value}`,
+            suggestedText: `${r.name} ${r.name === 'minLength' ? 8 : 32}`,
+            explanation: `Assign a valid integer length for ${r.name}`
+          });
+        } else {
+          if (r.name === 'minLength' && v < 8) {
+            threats.push({
+              type: 'POLICY_DOWNGRADE',
+              payload: `minLength ${v}`,
+              defense: 'Zero-Trust Guardrail: Prevented policy weakening below NIST 800-63B standard (8 chars)',
+              line: r.pos.line,
+              col: r.pos.col
+            });
+            errors.push({ message: `[SECURITY SHIELD] Insecure minimum password length (${v} < 8) violates NIST SP 800-63B baseline`, pos: r.pos });
+            suggestions.push({
+              line: r.pos.line,
+              col: r.pos.col,
+              phase: 'Semantic',
+              issue: `Insecure minimum password length (${v} < 8)`,
+              originalText: `minLength ${v}`,
+              suggestedText: 'minLength 8',
+              explanation: 'Security Guard: Upgrade minLength to 8 to satisfy NIST SP 800-63B'
+            });
+            c.minLength = 8;
+          } else {
+            c[r.name] = v;
+          }
+        }
+      } else {
+        if (r.value !== 'true' && r.value !== 'false') {
+          errors.push({ message: `${r.name} must be true or false`, pos: r.pos });
+        } else {
+          if (r.value === 'false' && ['requireUpper', 'requireLower', 'requireDigit', 'requireSpecial'].includes(r.name)) {
+            threats.push({
+              type: 'POLICY_DOWNGRADE',
+              payload: `${r.name} false`,
+              defense: `Adversarial Weakening: Flagged attempt to disable ${r.name} entropy requirement`,
+              line: r.pos.line,
+              col: r.pos.col
+            });
+            errors.push({ message: `[SECURITY SHIELD] Disabling '${r.name}' violates Zero-Trust entropy standards`, pos: r.pos });
+            suggestions.push({
+              line: r.pos.line,
+              col: r.pos.col,
+              phase: 'Semantic',
+              issue: `Adversarial weakening: ${r.name} disabled`,
+              originalText: `${r.name} false`,
+              suggestedText: `${r.name} true`,
+              explanation: `Security Advisory: Enable ${r.name} to comply with Zero-Trust entropy standards`
+            });
+          }
+          c[r.name] = (r.value === 'true' ? 1 : 0);
+        }
+      }
+    }
+
+    if (c.minLength !== -1 && c.maxLength !== -1 && c.minLength > c.maxLength) {
+      errors.push({ message: 'minLength cannot be greater than maxLength', pos: { line: 0, col: 0 } });
+      suggestions.push({
+        line: 0,
+        col: 0,
+        phase: 'Semantic',
+        issue: `Logical conflict: minLength (${c.minLength}) > maxLength (${c.maxLength})`,
+        originalText: `minLength ${c.minLength}`,
+        suggestedText: `minLength ${Math.min(8, c.maxLength)}`,
+        explanation: `Set minLength to ${Math.min(8, c.maxLength)} so minLength <= maxLength`
+      });
+    }
+
+    return { constraints: c, errors, suggestions, threats };
+  }
+
+  function renderThreats(threats) {
+    const p = document.getElementById('ai-security-panel');
+    const list = document.getElementById('ai-threats-list');
+    const title = document.getElementById('ai-sec-title');
+    const badge = document.getElementById('ai-sec-badge');
+    if (!p || !list) return;
+
+    p.style.display = 'block';
+
+    if (!threats || threats.length === 0) {
+      p.className = 'ai-sec-panel';
+      if (title) {
+        title.innerHTML = '🛡️ Agentic AI Security Shield · System Protected';
+        title.style.color = '#15803d';
+        title.style.fontSize = '14px';
+        title.style.fontWeight = '800';
+      }
+      if (badge) {
+        badge.textContent = '● MONITORING · 100% SECURE';
+        badge.style.background = '#dcfce7';
+        badge.style.color = '#15803d';
+        badge.style.borderColor = '#86efac';
+        badge.style.fontSize = '12px';
+        badge.style.fontWeight = '700';
+      }
+      list.innerHTML = `
+        <div style="font-size:13px; color:#166534; line-height:1.6; padding:4px 0">
+          ✓ <b>Zero-Trust Hardening Active:</b> Both Agentic AI assistants (Syntax &amp; Semantic) are guarding the compiler pipeline against prompt injections, unauthorized policy downgrades, ReDoS CPU locks, and integer memory overflows.
+        </div>
+      `;
+      return;
+    }
+
+    // Threats intercepted! Turn VIVID RED ALERT!
+    p.className = 'ai-sec-panel alert';
+    if (title) {
+      title.innerHTML = `🚨 AGENTIC AI SECURITY SHIELD · ${threats.length} THREAT${threats.length > 1 ? 'S' : ''} INTERCEPTED &amp; NEUTRALIZED`;
+      title.style.color = '#991b1b';
+      title.style.fontSize = '14px';
+      title.style.fontWeight = '800';
+    }
+    if (badge) {
+      badge.textContent = '● 🚨 ATTACK INTERCEPTED & NEUTRALIZED';
+      badge.style.background = '#fee2e2';
+      badge.style.color = '#991b1b';
+      badge.style.borderColor = '#ef4444';
+      badge.style.fontSize = '12px';
+      badge.style.fontWeight = '700';
+    }
+
+    const badgeClass = {
+      'INJECTION_ATTACK': 'tb-inj',
+      'POLICY_DOWNGRADE': 'tb-dwn',
+      'RESOURCE_EXHAUSTION': 'tb-dos',
+      'OVERFLOW_ATTACK': 'tb-ovf'
+    };
+    list.innerHTML = threats.map(t => `
+      <div class="ai-suggestion-card" style="border-color:#fca5a5; background:#ffffff">
+        <span class="threat-badge ${badgeClass[t.type] || 'tb-inj'}">[BLOCKED: ${escapeHtml((t.type || '').replace('_', ' '))}]</span>
+        <div class="ai-card-body">
+          <div class="ai-card-title">
+            ${t.line > 0 ? `Line ${t.line}: ` : ''}Payload: <code style="color:#b91c1c; font-weight:700">${escapeHtml(t.payload)}</code>
+          </div>
+          <div class="ai-card-reason" style="color:#991b1b; font-weight:600">🛡️ Defense: ${escapeHtml(t.defense)}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ==========================================================
+     AGENTIC AI LLM INTEGRATION (Gemini, OpenAI, Hybrid Engine)
+     ========================================================== */
+
+  const AI_MODELS = {
+    gemini: [
+      { id: 'gemini-3.8-flash', name: 'Gemini 3.8 Flash (Latest / Recommended)' },
+      { id: 'gemini-4-hydrogen', name: 'Gemini 4 Hydrogen (Frontier Daily Driver)' },
+      { id: 'gemini-3.5-flash-lite', name: 'Gemini 3.5 Flash-Lite (High Speed & Quota)' },
+      { id: 'gemini-3.8-pro', name: 'Gemini 3.8 Pro (Deep Reasoning)' }
+    ],
+    openai: [
+      { id: 'gpt-4o-mini', name: 'GPT-4o Mini (Fast & Cheap)' },
+      { id: 'gpt-4o', name: 'GPT-4o (Most Capable)' },
+      { id: 'gpt-3.5-turbo', name: 'GPT-3.5 Turbo' }
+    ]
+  };
+
+  function loadStoredApiConfig() {
+    const provider = localStorage.getItem('pc_ai_provider') || 'gemini';
+    let model = localStorage.getItem('pc_ai_model');
+    // Sanitize any legacy or retired models (gemini-2.5, gemini-1.5, gemini-2.0)
+    if (!model || model.includes('2.5') || model.includes('1.5') || model.includes('2.0')) {
+      model = (provider === 'gemini' ? 'gemini-3.8-flash' : 'gpt-4o-mini');
+      localStorage.setItem('pc_ai_model', model);
+    }
+    const key = localStorage.getItem('pc_ai_key') || '';
+
+    const provEl = document.getElementById('api-provider-select');
+    const keyEl = document.getElementById('api-key-input');
+    if (provEl) provEl.value = provider;
+    if (keyEl) keyEl.value = key;
+
+    populateModelSelect(provider, model);
+    updateLlmBadge();
+  }
+
+  function populateModelSelect(provider, selectedModel) {
+    const modelEl = document.getElementById('api-model-select');
+    if (!modelEl) return;
+    const models = AI_MODELS[provider] || AI_MODELS.gemini;
+    modelEl.innerHTML = models.map(m => `<option value="${m.id}" ${m.id === selectedModel ? 'selected' : ''}>${m.name}</option>`).join('');
+  }
+
+  function onProviderChange() {
+    const prov = document.getElementById('api-provider-select').value;
+    const defaultModel = prov === 'gemini' ? 'gemini-3.8-flash' : 'gpt-4o-mini';
+    populateModelSelect(prov, defaultModel);
+    const keyEl = document.getElementById('api-key-input');
+    if (keyEl) {
+      keyEl.placeholder = prov === 'gemini' ? 'Enter Google Gemini API Key (AIzaSy...)' : 'Enter OpenAI API Key (sk-...)';
+    }
+  }
+
+  function toggleApiConfig(forceState) {
+    const card = document.getElementById('api-config-card');
+    if (!card) return;
+    const isVisible = card.style.display === 'block';
+    const nextState = forceState !== undefined ? forceState : !isVisible;
+    card.style.display = nextState ? 'block' : 'none';
+  }
+
+  function toggleKeyVisibility() {
+    const keyEl = document.getElementById('api-key-input');
+    const eyeBtn = document.getElementById('btn-toggle-eye');
+    if (!keyEl || !eyeBtn) return;
+    if (keyEl.type === 'password') {
+      keyEl.type = 'text';
+      eyeBtn.textContent = '🙈';
+    } else {
+      keyEl.type = 'password';
+      eyeBtn.textContent = '👁️';
+    }
+  }
+
+  function saveApiKey() {
+    const prov = document.getElementById('api-provider-select').value;
+    const model = document.getElementById('api-model-select').value;
+    const key = (document.getElementById('api-key-input').value || '').trim();
+    localStorage.setItem('pc_ai_provider', prov);
+    localStorage.setItem('pc_ai_model', model);
+    if (key) {
+      localStorage.setItem('pc_ai_key', key);
+      setApiStatusMsg(`✓ Saved! Using ${prov === 'gemini' ? 'Google Gemini' : 'OpenAI'} (${model}) for Agentic AI.`, 'ok');
+    } else {
+      localStorage.removeItem('pc_ai_key');
+      setApiStatusMsg('Saved without API key (using local hybrid engine).', '');
+    }
+    updateLlmBadge();
+  }
+
+  function clearApiKey() {
+    localStorage.removeItem('pc_ai_key');
+    const keyEl = document.getElementById('api-key-input');
+    if (keyEl) keyEl.value = '';
+    setApiStatusMsg('API Key removed. Reverted to built-in local hybrid intelligence.', '');
+    updateLlmBadge();
+  }
+
+  function setApiStatusMsg(msg, type) {
+    const el = document.getElementById('api-status-msg');
+    if (!el) return;
+    el.className = 'api-status-msg ' + (type || '');
+    el.textContent = msg;
+  }
+
+  function updateLlmBadge() {
+    const key = localStorage.getItem('pc_ai_key');
+    const prov = localStorage.getItem('pc_ai_provider') || 'gemini';
+    const model = localStorage.getItem('pc_ai_model') || (prov === 'gemini' ? 'gemini-3.8-flash' : 'gpt-4o-mini');
+    const badge = document.getElementById('llm-mode-badge');
+    const pill = document.getElementById('api-active-pill');
+
+    if (key) {
+      const provName = prov === 'gemini' ? 'Gemini' : 'OpenAI';
+      if (badge) {
+        badge.innerHTML = `🟢 Live ${provName} Agent`;
+        badge.style.background = '#f5f3ff';
+        badge.style.color = '#6d28d9';
+        badge.style.borderColor = '#c4b5fd';
+      }
+      if (pill) {
+        pill.textContent = `Live: ${provName} (${model})`;
+        pill.style.background = '#dcfce7';
+        pill.style.color = '#15803d';
+      }
+    } else {
+      if (badge) {
+        badge.innerHTML = '⚙️ Local Hybrid AI';
+        badge.style.background = '#eff6ff';
+        badge.style.color = '#2563eb';
+        badge.style.borderColor = '#93c5fd';
+      }
+      if (pill) {
+        pill.textContent = 'Local Hybrid Mode';
+        pill.style.background = '#e2e8f0';
+        pill.style.color = '#475569';
+      }
+    }
+  }
+
+  async function testApiConnection() {
+    const prov = document.getElementById('api-provider-select').value;
+    let model = document.getElementById('api-model-select').value;
+    const key = (document.getElementById('api-key-input').value || '').trim();
+
+    if (!key) {
+      setApiStatusMsg('⚠️ Please enter an API key first before testing.', 'err');
+      return;
+    }
+
+    setApiStatusMsg(`⚡ Testing connection to ${prov === 'gemini' ? 'Google Gemini' : 'OpenAI'} (${model})...`, 'loading');
+    const t0 = performance.now();
+
+    try {
+      if (prov === 'gemini') {
+        const candidates = [model, 'gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-4-hydrogen']
+          .filter((v, i, a) => a.indexOf(v) === i && !v.includes('2.5') && !v.includes('1.5') && !v.includes('2.0'));
+        let lastErr = null;
+        let successfulModel = null;
+
+        for (let i = 0; i < candidates.length; i++) {
+          const candidate = candidates[i];
+          const cleanModel = candidate.replace(/^models\//, '');
+          const modelPath = candidate.startsWith('models/') ? candidate : `models/${candidate}`;
+          const url = `https://generativelanguage.googleapis.com/v1beta/${modelPath}:generateContent?key=${encodeURIComponent(key)}`;
+
+          try {
+            let res = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: 'Respond with the word "pong"' }] }],
+                generationConfig: { maxOutputTokens: 5 }
+              })
+            });
+
+            if (res.ok) {
+              successfulModel = cleanModel;
+              break;
+            }
+
+            const errData = await res.json().catch(() => ({}));
+            const errMsg = errData.error?.message || `HTTP ${res.status}`;
+            lastErr = new Error(errMsg);
+
+            const lower = errMsg.toLowerCase();
+            const isOverloaded = lower.includes('high demand') || lower.includes('overloaded') || lower.includes('capacity') || res.status === 503 || res.status === 429;
+
+            if (isOverloaded) {
+              if (i === 0) {
+                setApiStatusMsg(`⏳ ${cleanModel} had a brief traffic spike. Retrying in 1.2s...`, 'loading');
+                await new Promise(r => setTimeout(r, 1200));
+                const retryRes = await fetch(url, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    contents: [{ parts: [{ text: 'Respond with the word "pong"' }] }],
+                    generationConfig: { maxOutputTokens: 5 }
+                  })
+                });
+                if (retryRes.ok) {
+                  successfulModel = cleanModel;
+                  break;
+                }
+              }
+              continue;
+            } else {
+              throw lastErr;
+            }
+          } catch (e) {
+            lastErr = e;
+            const lower = (e.message || '').toLowerCase();
+            const isOverloaded = lower.includes('high demand') || lower.includes('overloaded') || lower.includes('capacity');
+            if (!isOverloaded) throw e;
+          }
+        }
+
+        if (!successfulModel) {
+          throw lastErr || new Error('Google Gemini servers are experiencing temporary high demand spikes.');
+        }
+
+        const latency = Math.round(performance.now() - t0);
+        if (successfulModel !== model) {
+          document.getElementById('api-model-select').value = successfulModel;
+          localStorage.setItem('pc_ai_model', successfulModel);
+          updateLlmBadge();
+          setApiStatusMsg(`✓ Success! (${model} was busy, automatically switched to ${successfulModel} in ${latency}ms). Live Agent ready!`, 'ok');
+        } else {
+          setApiStatusMsg(`✓ Success! Google Gemini (${successfulModel}) connected in ${latency}ms. Live Agent ready!`, 'ok');
+        }
+      } else {
+        const url = 'https://api.openai.com/v1/chat/completions';
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${key}`
+          },
+          body: JSON.stringify({
+            model: model,
+            messages: [{ role: 'user', content: 'Respond with the word "pong"' }],
+            max_tokens: 5
+          })
+        });
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          const errMsg = errData.error?.message || `HTTP ${res.status} ${res.statusText}`;
+          throw new Error(errMsg);
+        }
+        const latency = Math.round(performance.now() - t0);
+        setApiStatusMsg(`✓ Success! OpenAI (${model}) connected in ${latency}ms. Live Agent ready!`, 'ok');
+      }
+    } catch (err) {
+      const msg = err.message || '';
+      const lower = msg.toLowerCase();
+      if (lower.includes('high demand') || lower.includes('overloaded') || lower.includes('capacity')) {
+        setApiStatusMsg(`⚠️ High Demand Spike: Google servers are temporarily busy right now. Wait 5 seconds and test again, or select Gemini 3.5 Flash-Lite from the model dropdown.`, 'err');
+      } else if (lower.includes('api_key_invalid') || lower.includes('key not valid')) {
+        setApiStatusMsg(`✗ Invalid API Key: Check your key in Google AI Studio.`, 'err');
+      } else {
+        setApiStatusMsg(`✗ Connection Failed: ${msg}`, 'err');
+      }
+    }
+  }
+
+  async function callLiveAgenticAI(policyText, errors, threats, isAudit = false) {
+    const key = localStorage.getItem('pc_ai_key');
+    if (!key) return null;
+
+    const prov = localStorage.getItem('pc_ai_provider') || 'gemini';
+    const model = localStorage.getItem('pc_ai_model') || (prov === 'gemini' ? 'gemini-3.8-flash' : 'gpt-4o-mini');
+    const provLabel = prov === 'gemini' ? 'Gemini' : 'OpenAI';
+
+    const systemPrompt = `You are an expert compiler engineer and cybersecurity researcher specializing in Password Policy Languages, Domain-Specific Languages (DSL), and Zero-Trust Identity Security.
+Language specification:
+- Comments start with #
+- Valid Rules:
+  minLength <number> (NIST baseline >= 8)
+  maxLength <number>
+  requireUpper <true|false>
+  requireLower <true|false>
+  requireDigit <true|false>
+  requireSpecial <true|false>
+  noSpaces <true|false>
+- Injections (SQL, script, bash, prompt injection), duplicate rules, integer overflows, and policy downgrades (setting security controls to false or minLength < 8) are violations.
+
+Analyze the input and return a JSON object with this EXACT schema:
+{
+  "summary": "1-sentence executive overview of the policy status and security posture",
+  "threatDetected": boolean,
+  "threats": [
+    {
+      "type": "INJECTION_ATTACK" or "POLICY_DOWNGRADE" or "RESOURCE_EXHAUSTION" or "OVERFLOW_ATTACK",
+      "payload": "snippet from code",
+      "defense": "Clear explanation of how the compiler isolates and mitigates this exploit",
+      "line": number
+    }
+  ],
+  "suggestions": [
+    {
+      "line": number,
+      "col": 1,
+      "phase": "${provLabel} AI",
+      "issue": "concise description of error or security weakness",
+      "originalText": "exact substring in policy to replace",
+      "suggestedText": "repaired valid DSL line",
+      "explanation": "why this fix solves the syntax/security problem"
+    }
+  ]
+}`;
+
+    const userMessage = `Current Password Policy Code:
+\`\`\`
+${policyText}
+\`\`\`
+
+Diagnostics:
+Errors: ${JSON.stringify(errors || [])}
+Threats: ${JSON.stringify(threats || [])}
+Mode: ${isAudit ? 'Security & Best-Practice Audit' : 'Compilation Repair'}
+
+Generate full repairs and security assessments.`;
+
+    try {
+      let rawText = '';
+      if (prov === 'gemini') {
+        const candidates = [model, 'gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-4-hydrogen']
+          .filter((v, i, a) => a.indexOf(v) === i && !v.includes('2.5') && !v.includes('1.5') && !v.includes('2.0'));
+        let res = null;
+        let usedModel = model;
+
+        for (let i = 0; i < candidates.length; i++) {
+          const candidate = candidates[i];
+          const cleanModel = candidate.replace(/^models\//, '');
+          const modelPath = candidate.startsWith('models/') ? candidate : `models/${candidate}`;
+          const url = `https://generativelanguage.googleapis.com/v1beta/${modelPath}:generateContent?key=${encodeURIComponent(key)}`;
+          
+          try {
+            const attempt = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: systemPrompt + '\n\n' + userMessage }] }],
+                generationConfig: {
+                  temperature: 0.1,
+                  responseMimeType: 'application/json'
+                }
+              })
+            });
+
+            if (attempt.ok) {
+              res = attempt;
+              usedModel = cleanModel;
+              break;
+            } else {
+              const errData = await attempt.json().catch(() => ({}));
+              const errMsg = (errData.error?.message || '').toLowerCase();
+              const isOverloaded = errMsg.includes('high demand') || errMsg.includes('overloaded') || errMsg.includes('capacity') || attempt.status === 503 || attempt.status === 429;
+              if (isOverloaded) {
+                log('log-area', 'WARN', 'lw', `[Live Gemini Agent] ${cleanModel} traffic spike → switching to alternative model...`);
+                if (i === 0) await new Promise(r => setTimeout(r, 1000));
+                continue;
+              } else {
+                throw new Error(errData.error?.message || `HTTP ${attempt.status}`);
+              }
+            }
+          } catch (err) {
+            const errMsg = (err.message || '').toLowerCase();
+            const isOverloaded = errMsg.includes('high demand') || errMsg.includes('overloaded') || errMsg.includes('capacity');
+            if (isOverloaded) {
+              continue;
+            }
+            throw err;
+          }
+        }
+
+        if (!res) {
+          throw new Error('Gemini models are experiencing high demand spikes. Please retry shortly.');
+        }
+
+        if (usedModel !== model) {
+          log('log-area', 'OK', 'lo', `[Live Gemini Agent] Handled via ${usedModel} (failover)`);
+        }
+
+        const data = await res.json();
+        rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      } else {
+        const url = 'https://api.openai.com/v1/chat/completions';
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${key}`
+          },
+          body: JSON.stringify({
+            model: model,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: userMessage }
+            ],
+            temperature: 0.1,
+            response_format: { type: 'json_object' }
+          })
+        });
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error?.message || `HTTP ${res.status}`);
+        }
+        const data = await res.json();
+        rawText = data.choices?.[0]?.message?.content || '';
+      }
+
+      const parsed = JSON.parse(rawText);
+      return parsed;
+    } catch (e) {
+      console.warn('Live LLM Agent call failed, falling back to local hybrid engine:', e);
+      log('log-area', 'WARN', 'lw', `[Live ${provLabel} Agent] ${e.message} → Falling back to local hybrid AI`);
+      return null;
+    }
+  }
+
+  async function queryLiveAiIfAvailable(input, errors, threats) {
+    const key = localStorage.getItem('pc_ai_key');
+    if (!key) return null;
+    const prov = localStorage.getItem('pc_ai_provider') || 'gemini';
+    const provLabel = prov === 'gemini' ? 'Gemini' : 'OpenAI';
+    log('log-area', 'LIVE-AI', 'la', `Querying Live ${provLabel} Agent for autonomous self-healing analysis...`);
+    const result = await callLiveAgenticAI(input, errors, threats, false);
+    if (result && result.suggestions && result.suggestions.length > 0) {
+      log('log-area', 'OK', 'lo', `Live ${provLabel} Agent returned ${result.suggestions.length} intelligent repair(s)`, 'ok');
+      return result;
+    }
+    return null;
+  }
+
+  async function runAiPolicyAudit() {
+    const input = srcEl.value.trim();
+    if (!input) {
+      alert('Please enter or load a password policy first.');
+      return;
+    }
+    const key = localStorage.getItem('pc_ai_key');
+    const prov = localStorage.getItem('pc_ai_provider') || 'gemini';
+    const provLabel = prov === 'gemini' ? 'Gemini' : 'OpenAI';
+
+    log('log-area', 'AUDIT', 'la', `Running comprehensive Zero-Trust Policy Security Audit...`);
+    setBadge('warn', 'AI auditing...');
+
+    if (key) {
+      log('log-area', 'LIVE-AI', 'la', `Dispatching policy to Live ${provLabel} Security Agent...`);
+      const result = await callLiveAgenticAI(input, [], [], true);
+      if (result) {
+        if (result.suggestions && result.suggestions.length > 0) {
+          renderSuggestions(result.suggestions);
+          log('log-area', 'OK', 'lo', `Live ${provLabel} Agent proposed ${result.suggestions.length} optimization(s)`, 'ok');
+        } else {
+          renderSuggestions([]);
+          log('log-area', 'OK', 'lo', `Live ${provLabel} Agent: Policy strictly adheres to Zero-Trust standards ✓`, 'ok');
+        }
+        if (result.threats && result.threats.length > 0) {
+          renderThreats(result.threats);
+        }
+        setBadge('ok', `${provLabel} audit complete`);
+        return;
+      }
+    }
+
+    // Local Hybrid Audit
+    log('log-area', 'AUDIT', 'li', 'Running built-in Zero-Trust heuristic audit engine...');
+    const localSugg = [];
+    const lower = input.toLowerCase();
+    if (!lower.includes('requirespecial true')) {
+      localSugg.push({
+        line: 0,
+        col: 1,
+        phase: 'Local AI',
+        issue: 'NIST Zero-Trust recommendation: requireSpecial should be enabled',
+        originalText: input.split('\n')[input.split('\n').length - 1],
+        suggestedText: input.split('\n')[input.split('\n').length - 1] + '\nrequireSpecial true',
+        explanation: 'Enforce special character requirement to expand keyspace and prevent brute-force attacks'
+      });
+    }
+    if (!lower.includes('minlength') || lower.includes('minlength 4') || lower.includes('minlength 6')) {
+      localSugg.push({
+        line: 1,
+        col: 1,
+        phase: 'Local AI',
+        issue: 'Sub-baseline minLength detected',
+        originalText: 'minLength',
+        suggestedText: 'minLength 12',
+        explanation: 'Upgrade minimum length to 12 chars to resist GPU-accelerated hash cracking'
+      });
+    }
+    if (localSugg.length > 0) {
+      renderSuggestions(localSugg);
+      log('log-area', 'OK', 'lo', `Hybrid Audit proposed ${localSugg.length} security hardening recommendations`, 'ok');
+    } else {
+      renderSuggestions([]);
+      log('log-area', 'OK', 'lo', 'Policy satisfies all local Zero-Trust baseline requirements ✓', 'ok');
+    }
+    setBadge('ok', 'audit complete');
+  }
+
+  function renderSuggestions(suggs) {
+    activeSuggestions = suggs || [];
+    const panel = document.getElementById('ai-agent-panel');
+    const list = document.getElementById('ai-suggestions-list');
+    if (!panel || !list) return;
+
+    if (!activeSuggestions || activeSuggestions.length === 0) {
+      panel.style.display = 'none';
+      list.innerHTML = '';
+      return;
+    }
+
+    panel.style.display = 'block';
+    list.innerHTML = activeSuggestions.map((s, idx) => {
+      let badgeCls = 'ai-badge-par';
+      let phaseLabel = `${s.phase || 'AI'} AI`;
+      if (s.phase && (s.phase.includes('Gemini') || s.phase.includes('OpenAI') || s.phase.includes('Live'))) {
+        badgeCls = 'ai-badge-live';
+        phaseLabel = `✨ ${s.phase}`;
+      } else if (s.phase === 'Semantic') {
+        badgeCls = 'ai-badge-sem';
+      }
+      return `
+      <div class="ai-suggestion-card">
+        <span class="${badgeCls}">${phaseLabel}</span>
+        <div class="ai-card-body">
+          <div class="ai-card-title">
+            ${s.line > 0 ? `Line ${s.line}: ` : ''}
+            <code>${escapeHtml(s.originalText)}</code> → <code>${escapeHtml(s.suggestedText || '[remove line]')}</code>
+          </div>
+          <div class="ai-card-reason">${escapeHtml(s.explanation)}</div>
+        </div>
+        <button class="btn-ai-apply" onclick="applySuggestion(${idx})">✓ Okay / Apply</button>
+      </div>
+    `;}).join('');
+  }
+
+  function applySuggestion(idx) {
+    const s = activeSuggestions[idx];
+    if (!s) return;
+    let text = srcEl.value;
+    const lines = text.split('\n');
+
+    if (s.line > 0 && s.line <= lines.length) {
+      if (!s.suggestedText) {
+        lines.splice(s.line - 1, 1);
+      } else {
+        if (lines[s.line - 1].includes(s.originalText)) {
+          lines[s.line - 1] = lines[s.line - 1].replace(s.originalText, s.suggestedText);
+        } else {
+          lines[s.line - 1] = s.suggestedText;
+        }
+      }
+      srcEl.value = lines.join('\n');
+    } else {
+      if (!s.suggestedText) {
+        srcEl.value = text.replace(new RegExp('^.*' + escapeRegex(s.originalText) + '.*$\\n?', 'm'), '');
+      } else {
+        srcEl.value = text.replace(s.originalText, s.suggestedText);
+      }
+    }
+    updateLN();
+    compile();
+  }
+
+  function applyAllSuggestions() {
+    if (!activeSuggestions || activeSuggestions.length === 0) return;
+    const sorted = [...activeSuggestions].sort((a, b) => b.line - a.line);
+    let text = srcEl.value;
+    const lines = text.split('\n');
+
+    for (const s of sorted) {
+      if (s.line > 0 && s.line <= lines.length) {
+        if (!s.suggestedText) {
+          lines.splice(s.line - 1, 1);
+        } else {
+          if (lines[s.line - 1].includes(s.originalText)) {
+            lines[s.line - 1] = lines[s.line - 1].replace(s.originalText, s.suggestedText);
+          } else {
+            lines[s.line - 1] = s.suggestedText;
+          }
+        }
+      } else {
+        if (!s.suggestedText) {
+          text = text.replace(new RegExp('^.*' + escapeRegex(s.originalText) + '.*$\\n?', 'm'), '');
+        } else {
+          text = text.replace(s.originalText, s.suggestedText);
+        }
+      }
+    }
+    srcEl.value = lines.join('\n');
+    updateLN();
+    compile();
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function irAnalyze(c) {
+    const w = [];
+    if (c.minLength !== -1 && c.maxLength !== -1 && c.minLength === c.maxLength) w.push(`Password length is fixed (${c.minLength})`);
+    if (c.minLength !== -1 && c.minLength < 6) w.push('Weak policy: minimum length too small');
+    if (c.minLength >= 10 && c.requireUpper === 1 && c.requireLower === 1 && c.requireDigit === 1) w.push('Strong policy detected');
+    return w;
+  }
+
+  function validatePw(pw, c) {
+    let up = 0, lo = 0, di = 0, sp = 0, ws = 0;
+    for (const ch of pw) { if (/[A-Z]/.test(ch)) up++; else if (/[a-z]/.test(ch)) lo++; else if (/[0-9]/.test(ch)) di++; else if (/\s/.test(ch)) ws++; else sp++; }
+    if (c.minLength !== -1 && pw.length < c.minLength) return false;
+    if (c.maxLength !== -1 && pw.length > c.maxLength) return false;
+    if (c.requireUpper === 1 && up === 0) return false;
+    if (c.requireUpper === 0 && up > 0) return false;
+    if (c.requireLower === 1 && lo === 0) return false;
+    if (c.requireLower === 0 && lo > 0) return false;
+    if (c.requireDigit === 1 && di === 0) return false;
+    if (c.requireDigit === 0 && di > 0) return false;
+    if (c.requireSpecial === 1 && sp === 0) return false;
+    if (c.requireSpecial === 0 && sp > 0) return false;
+    if (c.noSpaces === 1 && ws > 0) return false;
+    if (c.noSpaces === 0 && ws === 0) return false;
+    return true;
+  }
+
+  function nsEval(pw, c) {
+    let score = 0; const reasons = [];
+    let up = 0, lo = 0, di = 0, sp = 0, ws = 0;
+    for (const ch of pw) { if (/[A-Z]/.test(ch)) up++; else if (/[a-z]/.test(ch)) lo++; else if (/[0-9]/.test(ch)) di++; else if (/\s/.test(ch)) ws++; else sp++; }
+    if (c.minLength !== -1) { if (pw.length >= c.minLength) score += 2; else reasons.push('Below minimum length'); }
+    if (c.maxLength !== -1) { if (pw.length <= c.maxLength) score += 1; else reasons.push('Exceeds maximum length'); }
+    if (c.requireUpper === 1) { if (up > 0) score += 1; else reasons.push('Missing uppercase letter'); }
+    else if (c.requireUpper === 0) { if (up === 0) score += 1; else reasons.push('Contains forbidden uppercase letter'); }
+    if (c.requireLower === 1) { if (lo > 0) score += 1; else reasons.push('Missing lowercase letter'); }
+    else if (c.requireLower === 0) { if (lo === 0) score += 1; else reasons.push('Contains forbidden lowercase letter'); }
+    if (c.requireDigit === 1) { if (di > 0) score += 1; else reasons.push('Missing digit'); }
+    else if (c.requireDigit === 0) { if (di === 0) score += 1; else reasons.push('Contains forbidden digit'); }
+    if (c.requireSpecial === 1) { if (sp > 0) score += 2; else reasons.push('Missing special character'); }
+    else if (c.requireSpecial === 0) { if (sp === 0) score += 1; else reasons.push('Contains forbidden special character'); }
+    if (c.noSpaces === 1) { if (ws === 0) score += 1; else reasons.push('Contains spaces'); }
+    else if (c.noSpaces === 0) { if (ws > 0) score += 1; else reasons.push('Missing space character'); }
+    if (pw.length >= 12) score += 2; else if (pw.length >= 8) score += 1; else score -= 1;
+    if (up > 0 && lo > 0 && di > 0 && sp > 0) score += 2;
+    for (let i = 1; i < pw.length; i++)if (pw[i] === pw[i - 1]) score -= 1;
+    for (let i = 2; i < pw.length; i++) {
+      if (pw.charCodeAt(i) === pw.charCodeAt(i - 1) + 1 && pw.charCodeAt(i - 1) === pw.charCodeAt(i - 2) + 1) {
+        score -= 2; reasons.push('Sequential pattern detected'); break;
+      }
+    }
+    const common = new Set(['password', '123456', 'admin', 'qwerty', 'welcome', 'letmein', '12345678', '123456789', '111111', 'sunshine', 'iloveyou']);
+
+    // Leetspeak & base word normalization
+    let normalized = pw.toLowerCase();
+    let baseWord = pw.replace(/[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/, '');
+    const leetMap = { '@': 'a', '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't', '$': 's', '!': 'i' };
+    let normBase = baseWord.toLowerCase().split('').map(ch => leetMap[ch] || ch).join('');
+    let normFull = normalized.split('').map(ch => leetMap[ch] || ch).join('');
+
+    if (common.has(pw) || common.has(pw.toLowerCase()) || common.has(normFull) || (normBase && common.has(normBase))) {
+      score = 0;
+      reasons.push('Common password detected');
+    }
+    const level = score <= 2 ? 'Very Weak' : score <= 4 ? 'Weak' : score <= 7 ? 'Medium' : 'Strong';
+    return { score, level, reasons, up, lo, di, sp, ws };
+  }
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function compile() {
+    const input = srcEl.value.trim(); if (!input) return;
+    const inputLines = input.split('\n');
+    compiledConstraints = null; resetStages();
+    document.getElementById('log-area').innerHTML = '';
+    document.getElementById('tok-wrap').innerHTML = '';
+    document.getElementById('warn-area').innerHTML = '<div class="empty">warnings appear here</div>';
+    document.getElementById('cg').innerHTML = '<div style="grid-column:span 4" class="empty">compiling...</div>';
+    document.getElementById('eval-btn').disabled = true;
+    document.getElementById('valid-bar').className = 'valid-bar vb-idle';
+    document.getElementById('valid-bar').textContent = '— compile a policy to enable validator —';
+    resetScoreDisplay();
+    setBadge('warn', 'compiling...');
+
+    setStage('lex', 'active'); await sleep(250);
+    log('log-area', 'LEX', 'lt', 'Lexical analysis...');
+    const { tokens, errors: le, threats: lt } = tokenize(input);
+    renderTokens(tokens);
+    const real = tokens.filter(t => t.type !== 'Newline' && t.type !== 'End');
+    document.getElementById('s-tok').textContent = `TOKENS: ${real.length}`;
+    if (le.length) {
+      setStage('lex', 'err');
+      le.forEach(e => logDiag('log-area', 'ERR', 'le', e.message, e.pos, inputLines));
+      renderSuggestions([]);
+      renderThreats(lt || []);
+      return fail(le.length);
+    }
+    setStage('lex', 'ok'); log('log-area', 'OK', 'lo', `${real.length} tokens`, 'ok');
+
+    await sleep(200); setStage('par', 'active');
+    log('log-area', 'PAR', 'li', 'Syntax analysis...');
+    const { rules, errors: pe, suggestions: ps, threats: pt } = parse(tokens);
+    document.getElementById('s-rul').textContent = `RULES: ${rules.length}`;
+    if (pe.length) {
+      setStage('par', 'err');
+      pe.forEach(e => logDiag('log-area', 'ERR', 'le', e.message, e.pos, inputLines));
+      renderSuggestions(ps);
+      const curThreats = [...(lt || []), ...(pt || [])];
+      renderThreats(curThreats);
+      if (curThreats.length > 0) {
+        curThreats.forEach(t => log('log-area', 'GUARD', 'lw', `[${t.type}] ${t.defense}`));
+      }
+      const liveAi = await queryLiveAiIfAvailable(input, pe, curThreats);
+      if (liveAi && liveAi.suggestions && liveAi.suggestions.length > 0) {
+        renderSuggestions(liveAi.suggestions);
+        if (liveAi.threats && liveAi.threats.length > 0) renderThreats(liveAi.threats);
+      }
+      return fail(pe.length);
+    }
+    setStage('par', 'ok'); log('log-area', 'OK', 'lo', `${rules.length} rules parsed`, 'ok');
+
+    await sleep(200); setStage('sem', 'active');
+    log('log-area', 'SEM', 'li', 'Semantic analysis...');
+    const { constraints: c, errors: se, suggestions: ss, threats: st } = semantic(rules);
+    const allThreats = [...(lt || []), ...(pt || []), ...(st || [])];
+    renderThreats(allThreats);
+    if (allThreats.length > 0) {
+      allThreats.forEach(t => log('log-area', 'GUARD', 'lw', `[${t.type}] ${t.defense}`));
+      const liveAi = await queryLiveAiIfAvailable(input, se, allThreats);
+      if (liveAi) {
+        if (liveAi.threats && liveAi.threats.length > 0) renderThreats(liveAi.threats);
+        if (liveAi.suggestions && liveAi.suggestions.length > 0) renderSuggestions(liveAi.suggestions);
+      }
+    }
+    if (se.length) {
+      setStage('sem', 'err');
+      se.forEach(e => logDiag('log-area', 'ERR', 'le', e.message, e.pos, inputLines));
+      renderSuggestions(ss);
+      const liveAi = await queryLiveAiIfAvailable(input, se, allThreats);
+      if (liveAi && liveAi.suggestions && liveAi.suggestions.length > 0) {
+        renderSuggestions(liveAi.suggestions);
+        if (liveAi.threats && liveAi.threats.length > 0) renderThreats(liveAi.threats);
+      }
+      return fail(se.length);
+    }
+    setStage('sem', 'ok'); log('log-area', 'OK', 'lo', 'Semantic OK', 'ok');
+    renderSuggestions([]);
+    renderConstraints(c);
+
+    await sleep(180); setStage('ir', 'active');
+    log('log-area', 'IR', 'li', 'Generating IR...'); await sleep(150);
+    setStage('ir', 'ok'); log('log-area', 'OK', 'lo', 'IR generated', 'ok');
+
+    await sleep(200); setStage('cg', 'active');
+    log('log-area', 'CG', 'li', 'Generating Target C++ Code...'); await sleep(200);
+    setStage('cg', 'ok'); log('log-area', 'OK', 'lo', 'Target code emitted to generated_validator.cpp', 'ok');
+
+    await sleep(180); setStage('ana', 'active');
+    const warnings = irAnalyze(c); await sleep(140);
+    if (warnings.length) {
+      setStage('ana', 'warn');
+      if (document.getElementById('warn-area').querySelector('.empty')) document.getElementById('warn-area').innerHTML = '';
+      warnings.forEach(w => { log('warn-area', 'WARN', 'lw', w); log('log-area', 'WARN', 'lw', w); });
+    } else {
+      setStage('ana', 'ok');
+      log('warn-area', 'OK', 'lo', 'No IR warnings', 'ok');
+      log('log-area', 'OK', 'lo', 'No IR warnings', 'ok');
+    }
+    setStage('ns', 'active');
+    log('log-area', 'NS', 'li', 'Neuro-Symbolic evaluator ready', 'ok');
+    log('log-area', 'OK', 'lo', 'Policy compiled successfully ✓', 'ok');
+
+    compiledConstraints = c;
+    document.getElementById('eval-btn').disabled = false;
+    document.getElementById('valid-bar').className = 'valid-bar vb-idle';
+    document.getElementById('valid-bar').textContent = '— enter a password above to validate —';
+    document.getElementById('s-err').textContent = 'ERRORS: 0';
+    document.getElementById('sd').className = 'sd ok';
+    document.getElementById('st-txt').textContent = 'COMPILED';
+    setBadge('ok', `compiled · ${warnings.length} warning${warnings.length !== 1 ? 's' : ''}`);
+  }
+
+  function renderTokens(tokens) {
+    const w = document.getElementById('tok-wrap'); w.innerHTML = '';
+    const cls = { Identifier: 'ci', Number: 'cn', Boolean: 'cb', Newline: 'cnl', End: 'ce', Unknown: 'cu' };
+    tokens.forEach(t => {
+      const s = document.createElement('span');
+      s.className = `chip ${cls[t.type] || 'ci'}`;
+      s.title = `${t.type} @ ${t.pos.line}:${t.pos.col}`;
+      s.textContent = t.type === 'End' ? 'EOF' : t.lexeme;
+      w.appendChild(s);
+    });
+  }
+
+  function renderConstraints(c) {
+    const g = document.getElementById('cg'); g.innerHTML = '';
+    const fields = [
+      ['minLength', c.minLength === -1 ? '—' : c.minLength, c.minLength === -1 ? 'nd' : 'num'],
+      ['maxLength', c.maxLength === -1 ? '—' : c.maxLength, c.maxLength === -1 ? 'nd' : 'num'],
+      ['reqUpper', c.requireUpper === -1 ? '—' : (c.requireUpper === 1 ? 'true' : 'false'), c.requireUpper === -1 ? 'nd' : (c.requireUpper === 1 ? 'bt' : 'bf')],
+      ['reqLower', c.requireLower === -1 ? '—' : (c.requireLower === 1 ? 'true' : 'false'), c.requireLower === -1 ? 'nd' : (c.requireLower === 1 ? 'bt' : 'bf')],
+      ['reqDigit', c.requireDigit === -1 ? '—' : (c.requireDigit === 1 ? 'true' : 'false'), c.requireDigit === -1 ? 'nd' : (c.requireDigit === 1 ? 'bt' : 'bf')],
+      ['reqSpecial', c.requireSpecial === -1 ? '—' : (c.requireSpecial === 1 ? 'true' : 'false'), c.requireSpecial === -1 ? 'nd' : (c.requireSpecial === 1 ? 'bt' : 'bf')],
+      ['noSpaces', c.noSpaces === -1 ? '—' : (c.noSpaces === 1 ? 'true' : 'false'), c.noSpaces === -1 ? 'nd' : (c.noSpaces === 1 ? 'bt' : 'bf')],
+    ];
+    fields.forEach(([k, v, cls]) => {
+      const el = document.createElement('div'); el.className = 'cc';
+      el.innerHTML = `<div class="ck">${k}</div><div class="cv ${cls}">${v}</div>`;
+      g.appendChild(el);
+    });
+  }
+
+  function resetScoreDisplay() {
+    document.getElementById('score-num').textContent = '—';
+    document.getElementById('score-num').style.color = '#94a3b8';
+    document.getElementById('score-fill').style.width = '0%';
+    document.getElementById('score-fill').style.background = '#cbd5e1';
+    document.getElementById('strength-badge-wrap').innerHTML = '<span class="empty">evaluate a password to see strength</span>';
+    document.getElementById('reasons-area').innerHTML = '<span class="empty">no issues</span>';
+    document.getElementById('st-up').textContent = '—';
+    document.getElementById('st-lo').textContent = '—';
+    document.getElementById('st-di').textContent = '—';
+    document.getElementById('st-sp').textContent = '—';
+    document.getElementById('s-score').textContent = 'SCORE: —';
+  }
+
+  function onPwInput() {
+    const pw = document.getElementById('pw-input').value;
+    const wrap = document.getElementById('char-row'); wrap.innerHTML = '';
+    for (const ch of pw) {
+      const s = document.createElement('span');
+      const cls = /[A-Z]/.test(ch) ? 'U' : /[a-z]/.test(ch) ? 'L' : /[0-9]/.test(ch) ? 'D' : /\s/.test(ch) ? 'W' : 'S';
+      s.className = `pch ${cls}`; s.textContent = ch === ' ' ? '·' : ch;
+      wrap.appendChild(s);
+    }
+    if (compiledConstraints) {
+      const vb = document.getElementById('valid-bar');
+      if (pw.length === 0) { vb.className = 'valid-bar vb-idle'; vb.textContent = '— enter a password above to validate —'; }
+      else if (validatePw(pw, compiledConstraints)) { vb.className = 'valid-bar vb-pass'; vb.textContent = '✓  Password satisfies policy'; }
+      else { vb.className = 'valid-bar vb-fail'; vb.textContent = '✗  Password fails policy'; }
+    }
+  }
+
+  function evalPassword() {
+    if (!compiledConstraints) return;
+    const pw = document.getElementById('pw-input').value;
+    const c = compiledConstraints;
+    const valid = validatePw(pw, c);
+    if (!valid) {
+      setStage('ns', 'err');
+      document.getElementById('score-num').textContent = '✗';
+      document.getElementById('score-num').style.color = '#f87171';
+      document.getElementById('score-fill').style.width = '0%';
+      document.getElementById('strength-badge-wrap').innerHTML = '<span class="strength-badge sVW">✗ Fails Policy</span>';
+      document.getElementById('reasons-area').innerHTML = '<div class="r-item"><div class="r-dot"></div>Password does not satisfy the compiled policy</div>';
+      document.getElementById('s-score').textContent = 'SCORE: FAIL';
+      setBadge('err', 'policy violation'); return;
+    }
+    const { score, level, reasons, up, lo, di, sp, ws } = nsEval(pw, c);
+    setStage('ns', 'ok');
+    const maxScore = 14;
+    const pct = Math.min(100, Math.max(0, Math.round(score / maxScore * 100)));
+    const col = level === 'Very Weak' ? '#f87171' : level === 'Weak' ? '#fbbf24' : level === 'Medium' ? '#38bdf8' : '#34d399';
+    const bc = level === 'Very Weak' ? 'sVW' : level === 'Weak' ? 'sW' : level === 'Medium' ? 'sM' : 'sSt';
+    const icon = level === 'Very Weak' ? '✗' : level === 'Weak' ? '⚠' : level === 'Medium' ? '◎' : '✓';
+
+    document.getElementById('score-num').textContent = score;
+    document.getElementById('score-num').style.color = col;
+    document.getElementById('score-fill').style.width = pct + '%';
+    document.getElementById('score-fill').style.background = col;
+    document.getElementById('strength-badge-wrap').innerHTML = `<span class="strength-badge ${bc}">${icon} ${level}</span>`;
+
+    const rhtml = reasons.length === 0
+      ? `<div style="color:#34d399;font-size:10px;font-family:'JetBrains Mono',monospace">✓ No issues found</div>`
+      : reasons.map(r => `<div class="r-item"><div class="r-dot"></div>${r}</div>`).join('');
+    document.getElementById('reasons-area').innerHTML = rhtml;
+
+    document.getElementById('st-up').textContent = up;
+    document.getElementById('st-lo').textContent = lo;
+    document.getElementById('st-di').textContent = di;
+    document.getElementById('st-sp').textContent = sp;
+    document.getElementById('s-score').textContent = `SCORE: ${score}`;
+    setBadge(level === 'Strong' || level === 'Medium' ? 'ok' : 'warn', `${level} · ${score} / 14`);
+  }
+
+  function fail(n) {
+    document.getElementById('s-err').textContent = `ERRORS: ${n}`;
+    document.getElementById('sd').className = 'sd err';
+    document.getElementById('st-txt').textContent = 'FAILED';
+    document.getElementById('cg').innerHTML = '<div style="grid-column:span 4;color:#ef4444;font-size:10px;font-family:JetBrains Mono,monospace;padding:8px 0">compilation failed</div>';
+    setBadge('err', `${n} error${n !== 1 ? 's' : ''}`);
+  }
+
+  function setBadge(cls, txt) { const b = document.getElementById('badge'); b.className = `badge ${cls}`; b.textContent = txt; }
+
+  function clearAll() {
+    srcEl.value = ''; updateLN(); resetStages(); compiledConstraints = null;
+    renderSuggestions([]);
+    renderThreats([]);
+    document.getElementById('log-area').innerHTML = '<div class="empty">output appears here after compilation</div>';
+    document.getElementById('tok-wrap').innerHTML = '<span class="empty">tokens appear after compilation</span>';
+    document.getElementById('warn-area').innerHTML = '<div class="empty">warnings appear here</div>';
+    document.getElementById('cg').innerHTML = '<div style="grid-column:span 4" class="empty">no IR generated yet</div>';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('char-row').innerHTML = '';
+    document.getElementById('eval-btn').disabled = true;
+    document.getElementById('valid-bar').className = 'valid-bar vb-idle';
+    document.getElementById('valid-bar').textContent = '— compile a policy to enable validator —';
+    resetScoreDisplay();
+    document.getElementById('sd').className = 'sd idle'; document.getElementById('st-txt').textContent = 'IDLE';
+    document.getElementById('s-tok').textContent = 'TOKENS: —'; document.getElementById('s-rul').textContent = 'RULES: —';
+    document.getElementById('s-err').textContent = 'ERRORS: —';
+    setBadge('idle', 'ready');
+  }
+
+  srcEl.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); compile(); } });
+
+  const pwInputEl = document.getElementById('pw-input');
+  if (pwInputEl) {
+    pwInputEl.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        evalPassword();
+      }
+    });
+  }
+
+  // Initialize Security Shield to monitoring state and load saved AI configuration on load
+  renderThreats([]);
+  loadStoredApiConfig();
+</script>

@@ -1,0 +1,3 @@
+requireUpper true
+requireDigit DROP TABLE policies
+minLength 8

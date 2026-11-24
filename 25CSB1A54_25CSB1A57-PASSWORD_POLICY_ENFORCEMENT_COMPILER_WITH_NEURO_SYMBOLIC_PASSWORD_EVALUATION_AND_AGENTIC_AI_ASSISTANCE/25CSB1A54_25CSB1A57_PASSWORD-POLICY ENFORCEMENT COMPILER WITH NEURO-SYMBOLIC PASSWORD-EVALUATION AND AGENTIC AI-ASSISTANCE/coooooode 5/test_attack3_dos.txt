@@ -1,0 +1,5 @@
+# ⚡ Attack 3: ReDoS & Resource Exhaustion Attack
+requireUpper true
+reqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqDigit true
+minLength 8
+minLength 20
