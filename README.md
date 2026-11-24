@@ -29,7 +29,7 @@
 | :--- | :--- |
 | **`Readme.md`** | Project submission document detailing student credentials, file descriptions, Google Drive links, and setup instructions. |
 | **`Compiler Error Explainer Integrated Report.pdf`** | Comprehensive integrated final lab report (25 MB) detailing theoretical background, compiler pipeline mapping, ML models, security gates, and ablation benchmarks. |
-| **`Compiler Error Explainer with NLP.pdf`  / `.pages`** | Project documentation reports in PDF, Microsoft Word, and Apple Pages formats. |
+| **`Compiler Error Explainer with NLP.pdf` / `.pages`** | Project documentation reports in PDF and Apple Pages formats. |
 | **`PBL_Report.md`** | Academic lab report in Markdown format structured for PBL evaluation. |
 | **`DOCUMENTATION.md`** | Technical system documentation covering module APIs, classes, and architectural specifications. |
 | **`project_explanation.md`** | High-level architectural walkthrough of core compiler concepts, IR design, and ML pipeline. |
@@ -45,3 +45,63 @@
 | **`run.sh`** | Quick-start shell script to launch the application. |
 
 ---
+
+## 🚀 Overview & Key Features
+
+Traditional compiler diagnostics often provide technical, terse messages without explaining the root cause of a programming error or how to remediate it. This project designs and implements an intelligent post-compilation pipeline layered atop the standard `g++`/`clang++` toolchain.
+
+### Key Capabilities:
+1. **Compiler Diagnostic Normalization & Lexing:** Intercepts raw GCC/Clang diagnostic streams, tokenizes errors using a finite automaton regex scanner, and normalizes them into structured Intermediate Representation (IR).
+2. **Machine Learning Error Classification:** Uses a trained Logistic Regression classifier with TF-IDF n-gram feature extraction across 10 semantic error categories with fallback mechanisms.
+3. **Iterative Bounded Auto-Healing:** Applies source-to-source peephole rewrite rules in a bounded iterative convergence loop (up to 10 iterations) with fixed-point tracking.
+4. **Abstract Syntax Tree (AST) & Call Graph Exploration:** Integrates Clang LibTooling AST extraction, interactive AST tree navigation, and control-flow/call-graph visualization.
+5. **6-Gate Sandboxed Safety Verification:** Multi-tier pre- and post-compilation gates protecting against memory corruptions (buffer overflows, format string vulnerabilities, command injection) and malicious patch smuggling.
+6. **Energy & Carbon Telemetry:** Tracks execution-time kilowatt-hour energy usage and CO₂ emission metrics per compilation attempt powered by CodeCarbon.
+7. **Dual Interface:** Full desktop GUI (PyQt6) and industrial Visual Studio Code Extension with an embedded analytics Webview dashboard.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Programming Languages:** Python 3.10+, C++17, TypeScript / JavaScript
+* **GUI & Visualization:** PyQt6, QCustomPlot / Matplotlib, Graphviz
+* **Machine Learning & NLP:** scikit-learn, TF-IDF Vectorizer, NumPy, Google Gemini & Groq LLM bridges
+* **Static Analysis & Compilers:** GCC (`g++`), Clang / LLVM (`clang++`), `clang-format`
+* **Telemetry & Testing:** CodeCarbon, psutil, pytest
+
+---
+
+## 💻 Setup & Installation Instructions
+
+### Prerequisites
+* GCC / G++ supporting C++17
+* Clang / LLVM (optional, for AST dumping and formatting)
+* Python 3.10 or higher
+
+### Installation
+```bash
+# 1. Create and activate a Python virtual environment
+python3 -m venv .venv
+source .venv/bin/activate    # On Windows: .venv\Scripts\activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+```
+
+### Running the Desktop GUI
+```bash
+python -m src.main
+# or using the quick-launch script:
+chmod +x run.sh && ./run.sh
+```
+
+### Running Automated Test Suites
+```bash
+pytest tests/
+python benchmark/run_benchmark.py
+```
+
+### Installing the VS Code Extension
+Open Visual Studio Code, navigate to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`), select **"Install from VSIX..."** from the top right menu (`...`), and select:
+`vscode-extension/compiler-error-explainer-0.1.0.vsix`
