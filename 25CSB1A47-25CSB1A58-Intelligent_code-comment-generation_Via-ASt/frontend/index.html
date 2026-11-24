@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AST Studio · Autonomous AI Engineering Workforce</title>
+    <meta name="description"
+        content="Enterprise developer workbench for Python AST code analysis, AI multi-agent orchestration, defensive security simulation, and continuous review.">
+    <link rel="stylesheet" href="vendor/fonts/fonts.css">
+    <link rel="stylesheet" href="vendor/highlight/github.min.css">
+    <link rel="stylesheet" href="styles.css?v=10">
+    <link rel="stylesheet" href="agentic-workspace.css?v=10">
+    <!-- Vendored Highlight.js -->
+    <script src="vendor/highlight/highlight.min.js"></script>
+    <script src="vendor/highlight/python.min.js"></script>
+</head>
+
+<body>
+    <header class="app-header glass">
+        <a class="brand" href="/" aria-label="AST Studio home">
+            <span class="brand-mark" aria-hidden="true">A</span>
+            <span class="brand-copy">
+                <span class="logo">AST Studio</span>
+                <span class="brand-subtitle">Autonomous AI Engineering Workspace</span>
+            </span>
+        </a>
+        <div class="header-badges">
+            <button id="btn-open-settings" class="btn-settings-chip" type="button"
+                title="Configure AI Provider, API Keys, and Docstring Style"
+                aria-label="Configure AI Provider, API Keys, and Docstring Style">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                    </path>
+                </svg>
+                <span id="active-provider-label">AI Engine Settings</span>
+            </button>
+            <div class="health-indicator">
+                <span id="health-dot" class="pulse-dot"></span>
+                <span id="health-text">Connecting...</span>
+            </div>
+        </div>
+    </header>
+
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <section id="security-alert" class="security-alert" role="alert" aria-live="assertive">
+        <div class="security-alert-content">
+            <strong>Security Risks Detected (Code Not Executed)</strong>
+            <p>Static AST security checks identified potentially unsafe patterns. Fix or auto-remediate these findings
+                before generating documentation.</p>
+            <ul id="security-findings"></ul>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+            <button id="btn-banner-remediate-generate" class="btn-primary btn-small" type="button">Auto-Fix Security
+                &amp; Generate AST Comments</button>
+            <button id="btn-banner-simulate" class="btn-primary btn-small" type="button">Run Security Probe</button>
+            <button id="btn-review-security" class="btn-secondary btn-small" type="button">Review Findings</button>
+        </div>
+    </section>
+
+    <main class="app-container">
+        <!-- LEFT PANEL: Editor -->
+        <section class="panel editor-panel">
+            <div class="panel-header">
+                <div class="editor-toolbar">
+                    <div class="panel-heading">
+                        <span class="panel-title">Python Source Engine</span>
+                        <span class="panel-subtitle">Edit, benchmark, or load scenarios</span>
+                    </div>
+                    <div class="toolbar">
+                        <select id="example-select" aria-label="Load a code example">
+                            <option value="">Select Scenario / Example</option>
+                            <option value="1">1. Simple Math & Helper Function</option>
+                            <option value="2">2. SQL Injection Vulnerability</option>
+                            <option value="3">3. Command Injection & Shell RCE</option>
+                            <option value="4">4. SSRF & Insecure Request</option>
+                            <option value="5">5. Insecure Pickle Deserialization</option>
+                            <option value="6">6. ReDoS Regex Catastrophic Bomb</option>
+                            <option value="7">7. Path / Directory Traversal</option>
+                            <option value="8">8. Algorithmic Bottleneck (Quadratic)</option>
+                            <option value="9">9. Hardened ThreadSafe Stack</option>
+                            <option value="10">10. E-Commerce Order Domain Models (Real-World)</option>
+                            <option value="11">11. ML Z-Score Feature Pipeline (Real-World)</option>
+                            <option value="12">12. Async Scraper with Retry & Backoff (Real-World)</option>
+                            <option value="13">13. JWT Auth Guard & Claims Verifier (Real-World)</option>
+                            <option value="14">14. Concurrent LRU Cache with TTL (Real-World)</option>
+                        </select>
+                        <input type="file" id="file-input" accept=".py,.pyw,text/x-python" hidden>
+                        <input type="file" id="project-archive-input" accept=".zip,application/zip" hidden>
+                        <button class="btn-open-file" id="btn-open-file" type="button"
+                            title="Load a local Python file into the editor">
+                            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8">
+                                <path
+                                    d="M3 7.5A1.5 1.5 0 0 1 4.5 6H10l2 2h7.5A1.5 1.5 0 0 1 21 9.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z">
+                                </path>
+                                <path d="M12 11v6m-3-3 3-3 3 3"></path>
+                            </svg>
+                            <span>Open .py file</span>
+                        </button>
+                        <button class="btn-open-file" id="btn-upload-project" type="button"
+                            title="Upload a Python project ZIP archive">
+                            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8">
+                                <path
+                                    d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                </path>
+                            </svg>
+                            <span>Project ZIP</span>
+                        </button>
+                        <button class="btn-icon" id="btn-format" type="button"
+                            title="Formatting is unavailable because automatic re-indentation can change Python code behavior."
+                            aria-label="Format code unavailable" disabled>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="21" y1="10" x2="7" y2="10"></line>
+                                <line x1="21" y1="6" x2="3" y2="6"></line>
+                                <line x1="21" y1="14" x2="3" y2="14"></line>
+                                <line x1="21" y1="18" x2="7" y2="18"></line>
+                            </svg>
+                        </button>
+                        <button class="btn-icon" id="btn-copy-input" title="Copy editor code"
+                            aria-label="Copy input code">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        <button class="btn-icon" id="btn-clear" title="Clear editor (Ctrl+L)" aria-label="Clear editor">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
+                            </svg>
+                        </button>
+                        <button class="btn-icon" id="btn-view-ast" title="View AST diagram"
+                            aria-label="View AST diagram">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="5" r="3"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <circle cx="6" cy="19" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="12" y1="12" x2="6" y2="16"></line>
+                                <line x1="12" y1="12" x2="18" y2="16"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="stats" aria-live="polite">
+                    <span id="char-count">0</span> chars <span class="stats-separator">·</span>
+                    <span id="line-count">1</span> lines <span class="stats-separator">·</span>
+                    <span id="token-estimate">~0</span> tokens
+                </div>
+            </div>
+
+            <div class="project-workspace-panel" id="project-workspace-panel" style="display:none;">
+                <div class="project-workspace-header">
+                    <div class="project-workspace-title-row">
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            <strong>Project Workspace</strong>
+                        </div>
+                        <span class="badge" id="project-workspace-status">Ready</span>
+                    </div>
+                    <div class="project-workspace-active-row">
+                        <span class="project-active-file-label">Active:</span>
+                        <code id="project-active-file" class="project-active-file">Single-file context — related project files are not loaded.</code>
+                        <div id="project-context-files" class="project-context-files" style="display:none;">related project files are not loaded</div>
+                    </div>
+                    <div class="project-workspace-actions">
+                        <button type="button" id="btn-save-project-file" class="btn-secondary btn-tiny" disabled
+                            title="Save current file changes to workspace disk">Save File</button>
+                        <button type="button" id="btn-close-project-workspace" class="btn-ghost-sm"
+                            title="Close workspace panel">Close</button>
+                    </div>
+                </div>
+                <div class="project-file-tree" id="project-file-tree" role="tree" aria-label="Project Files"></div>
+            </div>
+
+            <div class="editor-container" id="editor-container">
+                <div class="editor-line-numbers" id="editor-line-numbers">
+                    <div class="line-num">1</div>
+                </div>
+                <pre id="editor-highlight" class="editor-highlight"><code class="language-python"></code></pre>
+                <div id="ghost-text" class="ghost-text"></div>
+                <textarea id="code-editor" aria-label="Python source code editor" spellcheck="false"
+                    placeholder="# Write or paste Python code here..."></textarea>
+            </div>
+
+            <div class="shortcuts-bar">
+                <span><kbd>Ctrl</kbd>+<kbd>Enter</kbd> Generate</span>
+                <span><kbd>Tab</kbd> Accept AI</span>
+                <span><kbd>Esc</kbd> Dismiss</span>
+                <span><kbd>Ctrl</kbd>+<kbd>L</kbd> Clear</span>
+                <label class="live-ai-control"
+                    title="When enabled, real-time AI code completion suggestions appear as ghost text while typing.">
+                    <input id="live-ai-toggle" type="checkbox" disabled>
+                    AI Suggestions while typing
+                </label>
+                <span id="live-ai-status" role="status" aria-live="polite">Checking AI availability…</span>
+                <span id="editor-live-status" role="status" aria-live="polite">Live analysis ready</span>
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL: Output & Studios -->
+        <section class="panel output-panel">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="tab-output">
+                    <svg class="workflow-icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <path d="M14 2v6h6M8 13h8m-8 4h8"></path>
+                    </svg> Output
+                </button>
+                <button class="tab-btn" data-tab="tab-ast">
+                    <svg class="workflow-icon icon-audit" aria-hidden="true" viewBox="0 0 24 24">
+                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                        <path d="m15.5 15.5 5 5M8 10.5l1.7 1.7L13 9"></path>
+                    </svg> AST Insights
+                </button>
+                <button class="tab-btn" data-tab="tab-quality">
+                    <svg class="workflow-icon icon-blue-team" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M3 3v18h18M8 16v-5m4 5V5m4 11v-8m4 8v-3"></path>
+                    </svg> Quality &amp; Health
+                </button>
+                <button class="tab-btn" data-tab="tab-assistant">
+                    <svg class="workflow-icon icon-audit" aria-hidden="true" viewBox="0 0 24 24">
+                        <rect x="4" y="7" width="16" height="13" rx="3"></rect>
+                        <path d="M12 3v4M8 12h.01M16 12h.01M9 16h6"></path>
+                    </svg> AI Agent Workforce
+                </button>
+                <button class="tab-btn" data-tab="tab-security">
+                    <svg class="workflow-icon icon-blue-team" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"></path>
+                        <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+                    </svg> Security Lab
+                </button>
+            </div>
+
+            <div class="tab-content-container">
+                <!-- Tab 1: Output -->
+                <div id="tab-output" class="tab-pane active">
+                    <div class="empty-state" id="empty-output">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <h3>Enterprise AST Code Documentation</h3>
+                        <p>Paste or edit Python in the source engine. Static analysis validates syntax and detects risks
+                            before safe, AST-grounded documentation is generated.</p>
+                        <div class="empty-state-steps">
+                            <div><span>01</span><strong>AST Static Inspection</strong><small>Parse abstract syntax tree
+                                    and identify vulnerabilities without execution.</small></div>
+                            <div><span>02</span><strong>Grounded Synthesis</strong><small>Generate verified,
+                                    deterministic or AI docstrings and comments.</small></div>
+                            <div><span>03</span><strong>Hardening &amp; Audit</strong><small>Review diffs, run
+                                    multi-agent workflows, and apply defensive patches.</small></div>
+                        </div>
+                    </div>
+                    <div class="output-content" id="output-content" style="display:none;">
+                        <div class="output-header">
+                            <div class="output-meta">
+                                <span id="execution-status" class="badge cyan">AST analysis only · code not
+                                    executed</span>
+                                <span id="output-stats" class="badge">0 lines before → 0 lines after</span>
+                            </div>
+                            <div class="output-actions">
+                                <button id="btn-toggle-diff" class="btn-secondary btn-small" type="button"
+                                    title="Toggle unified diff comparison against original source">Show Diff
+                                    View</button>
+                                <button id="btn-export-report" class="btn-secondary btn-small" type="button"
+                                    title="Export complete multi-agent and security analysis report as Markdown">Export
+                                    Report</button>
+                                <button id="btn-download-ast" class="btn-secondary btn-small" type="button"
+                                    title="Install Graphviz and add dot to PATH to enable AST PDF export" hidden
+                                    disabled>Download AST Graph PDF</button>
+                                <button id="btn-copy" class="btn-secondary btn-small" type="button" disabled>Copy
+                                    Code</button>
+                            </div>
+                        </div>
+                        <div id="output-name-warning" class="interpreter-warning" style="display:none;"></div>
+                        <div class="output-code-container" id="output-code-container">
+                            <div class="output-line-numbers" id="output-line-numbers">
+                                <div class="line-num">1</div>
+                            </div>
+                            <pre><code id="output-code" class="language-python"></code></pre>
+                            <div id="output-diff-view" class="diff-container" style="display:none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: AST Analysis -->
+                <div id="tab-ast" class="tab-pane">
+                    <div class="empty-state" id="empty-ast">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="5" r="3"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <circle cx="6" cy="19" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="12" y1="12" x2="6" y2="16"></line>
+                            <line x1="12" y1="12" x2="18" y2="16"></line>
+                        </svg>
+                        <h3>AST Analysis &amp; Explanations</h3>
+                        <p>Analyze code to explore its structure, complexity, security findings, and clear explanations
+                            of key logic.</p>
+                    </div>
+                    <div id="ast-content" class="ast-insights-content" style="display:none;">
+                        <div class="metrics-grid" id="ast-metrics"></div>
+                        <div class="collapsible-sections" id="ast-sections"></div>
+                        <section class="insights-explanations">
+                            <div class="insights-section-heading">
+                                <div>
+                                    <h3>Code explanations</h3>
+                                    <p>Understand important decisions, loops, recursion, and error-handling paths.</p>
+                                </div>
+                                <span class="badge cyan">AST-grounded</span>
+                            </div>
+                            <div class="empty-state compact-empty-state" id="empty-explanations">
+                                <p>No explanations available for this code yet.</p>
+                            </div>
+                            <div id="explanations-content" class="cards-list" style="display:none;"></div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Quality & Health -->
+                <div id="tab-quality" class="tab-pane">
+                    <div class="empty-state" id="empty-quality">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <h3>Quality &amp; Health Scorecard</h3>
+                        <p>Heuristic static analysis evaluates maintainability, security resilience, cyclomatic
+                            complexity, and code clarity.</p>
+                    </div>
+                    <div id="quality-content" class="quality-shell" style="display:none;">
+                        <div class="score-container">
+                            <div class="svg-gauge-wrapper">
+                                <svg class="svg-gauge" viewBox="0 0 160 160">
+                                    <defs>
+                                        <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#38bdf8" />
+                                            <stop offset="50%" stop-color="#10b981" />
+                                            <stop offset="100%" stop-color="#a855f7" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+                                    <circle id="gauge-circle" class="gauge-progress" cx="80" cy="80" r="70"></circle>
+                                </svg>
+                                <div class="gauge-center-content">
+                                    <span id="score-value">0</span>
+                                    <span class="gauge-label">Quality Score</span>
+                                </div>
+                            </div>
+                            <h3>Static Code Health Rating</h3>
+                            <span id="validation-badge" class="badge">Pending Analysis</span>
+                        </div>
+
+                        <!-- Quality Breakdown Dimension Progress Bars -->
+                        <div class="quality-breakdown-grid">
+                            <div class="quality-dim-card">
+                                <div class="quality-dim-header">
+                                    <span>Security Resilience</span>
+                                    <span id="dim-sec-val" class="quality-dim-value">100%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div id="dim-sec-fill" class="progress-fill emerald" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="quality-dim-card">
+                                <div class="quality-dim-header">
+                                    <span>Maintainability Index</span>
+                                    <span id="dim-maint-val" class="quality-dim-value">95%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div id="dim-maint-fill" class="progress-fill cyan" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="quality-dim-card">
+                                <div class="quality-dim-header">
+                                    <span>Complexity Health</span>
+                                    <span id="dim-comp-val" class="quality-dim-value">90%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div id="dim-comp-fill" class="progress-fill violet" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="quality-dim-card">
+                                <div class="quality-dim-header">
+                                    <span>Runtime &amp; Type Integrity</span>
+                                    <span id="dim-type-val" class="quality-dim-value">100%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div id="dim-type-fill" class="progress-fill emerald" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="quality-dim-card">
+                                <div class="quality-dim-header">
+                                    <span>Documentation Coverage</span>
+                                    <span id="dim-doc-val" class="quality-dim-value">100%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div id="dim-doc-fill" class="progress-fill cyan" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quality-actions-row" style="display:flex; gap:10px; margin: 12px 0;">
+                            <button id="btn-quick-optimize" class="btn-secondary btn-small" type="button">Optimize
+                                Algorithmic Bottlenecks</button>
+                            <button id="btn-quick-docs" class="btn-secondary btn-small" type="button">Generate Missing
+                                Docstrings</button>
+                        </div>
+
+                        <p class="quality-method">
+                            Heuristic static analysis score grounded in AST rule checks. Code is analyzed without
+                            execution.
+                        </p>
+                        <div class="quality-details" id="quality-details"></div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: AI Multi-Agents & Autonomous Swarm Studio (Conversational Workspace) -->
+                <div id="tab-assistant" class="tab-pane">
+                    <div class="assistant-shell nexus-conversational-workspace">
+                        <!-- 1. COLLAPSIBLE LEFT SIDEBAR -->
+                        <aside class="nexus-chat-sidebar" id="nexus-chat-sidebar">
+                            <div class="nexus-sidebar-top">
+                                <div class="nexus-sidebar-brand">
+                                    <span class="nexus-brand-avatar" aria-hidden="true">N</span>
+                                    <div class="nexus-brand-info">
+                                        <strong>AST Studio</strong>
+                                        <span>NEXUS Supervisor</span>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-sidebar-collapse" id="btn-toggle-nexus-sidebar"
+                                    title="Toggle Sidebar">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M15 18l-6-6 6-6" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <button type="button" class="btn-new-conversation" id="btn-nexus-new-chat">
+                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>New Conversation</span>
+                            </button>
+
+                            <!-- Navigation Links -->
+                            <div class="nexus-sidebar-nav">
+                                <button type="button" class="nexus-nav-item" id="nav-nexus-code-editor"
+                                    title="Switch to Code Workspace">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="16 18 22 12 16 6"></polyline>
+                                        <polyline points="8 6 2 12 8 18"></polyline>
+                                    </svg>
+                                    <span>Code Workspace</span>
+                                </button>
+                                <button type="button" class="nexus-nav-item" id="nav-nexus-project-files"
+                                    title="Open Project Python File">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                        </path>
+                                    </svg>
+                                    <span>Project Files</span>
+                                </button>
+                                <button type="button" class="nexus-nav-item" id="nav-nexus-reports"
+                                    title="View Generated Deliverables & Reports">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    </svg>
+                                    <span>Generated Reports</span>
+                                </button>
+                                <button type="button" class="nexus-nav-item" id="nav-nexus-settings"
+                                    title="Configure AI Provider & Settings">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path
+                                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                        </path>
+                                    </svg>
+                                    <span>Settings</span>
+                                </button>
+                            </div>
+
+                            <!-- Recent Conversations -->
+                            <div class="nexus-sidebar-section">
+                                <div class="sidebar-section-title">Recent Conversations</div>
+                                <div class="nexus-conversations-list" id="nexus-recent-conversations-list">
+                                    <div class="sidebar-empty-hint">No saved conversations yet.</div>
+                                </div>
+                            </div>
+
+                            <!-- Agent Sessions -->
+                            <div class="nexus-sidebar-section">
+                                <div class="sidebar-section-title">Agent Sessions</div>
+                                <div class="nexus-sessions-list" id="nexus-recent-sessions-list">
+                                    <div class="sidebar-empty-hint">Active sessions appear here.</div>
+                                </div>
+                            </div>
+
+                            <!-- Sidebar Footer -->
+                            <div class="nexus-sidebar-footer">
+                                <div class="nexus-footer-provider">
+                                    <span class="provider-pulse-dot"></span>
+                                    <div class="provider-footer-info">
+                                        <strong id="nexus-footer-provider-name">Model Provider</strong>
+                                        <span id="nexus-footer-model-name">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <!-- 2. MAIN CONVERSATIONAL WORKSPACE -->
+                        <main class="nexus-main-chat">
+                            <!-- HEADER BAR -->
+                            <header class="nexus-chat-header">
+                                <div class="header-left">
+                                    <button type="button" class="btn-toggle-sidebar-mobile"
+                                        id="btn-toggle-nexus-sidebar-mobile" aria-label="Toggle Sidebar">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                    <div class="header-brand-wrap">
+                                        <span class="badge badge-nexus">NEXUS</span>
+                                        <h2 class="command-title" id="nexus-conversation-title">Autonomous AI Agent
+                                            Workforce</h2>
+                                        <span class="badge success" style="display:none;">Autonomous AI Workforce</span>
+                                        <span id="agentic-overall-status" class="badge">Ready</span>
+                                        <span id="nexus-execution-mode-badge" class="badge cyan">Model-Assisted</span>
+                                        <!-- Retained with display:none for telemetry state preservation -->
+                                        <span id="nexus-active-stage-badge" style="display:none;">Stage: Standby</span>
+                                        <span id="pipeline-overall-status" style="display:none;">Workflow Ready</span>
+                                        <span class="command-subtitle-tag" style="display:none;">(Reviewer Agent &amp;
+                                            Engineering Agent network)</span>
+                                    </div>
+                                </div>
+
+                                <div class="header-right">
+                                    <div class="agentic-provider-state" id="agentic-provider-badge" aria-live="polite">
+                                        <span class="provider-pulse-dot"></span>
+                                        <div class="provider-details">
+                                            <strong id="agentic-provider-name">Provider</strong>
+                                            <span id="agentic-provider-model">Model</span>
+                                        </div>
+                                    </div>
+                                    <small id="agentic-orchestrator-status" style="display:none;">Checking orchestration
+                                        runtime…</small>
+
+                                    <button type="button" class="btn-secondary btn-small btn-toggle-drawer"
+                                        id="btn-toggle-deep-inspector"
+                                        title="Toggle Full Workflow DAG, Comms &amp; Tool Terminal">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                            <polyline points="2 17 12 22 22 17"></polyline>
+                                            <polyline points="2 12 12 17 22 12"></polyline>
+                                        </svg>
+                                        <span>Workflow &amp; Tools ↗</span>
+                                    </button>
+                                </div>
+                            </header>
+
+                            <!-- Calm Progressive Workflow Timeline -->
+                            <div class="nexus-progress-timeline-bar" id="nexus-progress-timeline" style="display:none;"
+                                role="region" aria-label="Workflow progress timeline">
+                                <div class="timeline-step step-plan active" id="timeline-step-plan" data-step="plan">
+                                    <span class="timeline-step-badge">1</span>
+                                    <span class="timeline-step-label">Plan</span>
+                                </div>
+                                <div class="timeline-step-line" id="timeline-line-1"></div>
+                                <div class="timeline-step step-analyze" id="timeline-step-analyze" data-step="analyze">
+                                    <span class="timeline-step-badge">2</span>
+                                    <span class="timeline-step-label">Analyze</span>
+                                </div>
+                                <div class="timeline-step-line" id="timeline-line-2"></div>
+                                <div class="timeline-step step-candidate" id="timeline-step-candidate"
+                                    data-step="candidate">
+                                    <span class="timeline-step-badge">3</span>
+                                    <span class="timeline-step-label">Candidate</span>
+                                </div>
+                                <div class="timeline-step-line" id="timeline-line-3"></div>
+                                <div class="timeline-step step-verify" id="timeline-step-verify" data-step="verify">
+                                    <span class="timeline-step-badge">4</span>
+                                    <span class="timeline-step-label">Verify</span>
+                                </div>
+                                <div class="timeline-step-line" id="timeline-line-4"></div>
+                                <div class="timeline-step step-result" id="timeline-step-result" data-step="result">
+                                    <span class="timeline-step-badge">5</span>
+                                    <span class="timeline-step-label">Result</span>
+                                </div>
+                            </div>
+
+                            <!-- CONVERSATIONAL STREAM AREA -->
+                            <div class="nexus-messages-container" id="nexus-messages-container">
+                                <!-- Welcome Banner (Visible before user submits request) -->
+                                <div class="nexus-welcome-card" id="nexus-welcome-frame">
+                                    <div class="welcome-avatar-wrap">
+                                        <span class="welcome-nexus-logo">N</span>
+                                    </div>
+                                    <h3>Welcome to AST Studio</h3>
+                                    <p class="welcome-subheading">Your intelligent AI coding team is ready.</p>
+                                    <h4 class="welcome-question">How can NEXUS help you?</h4>
+
+                                    <div class="welcome-suggestions-grid">
+                                        <button type="button" class="suggestion-card"
+                                            data-intent="architecture_analysis"
+                                            data-task="Analyze Python AST structure and call graph">
+                                            <div class="suggestion-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <circle cx="11" cy="11" r="8"></circle>
+                                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                </svg></div>
+                                            <strong>Analyze Python Code</strong>
+                                            <span>AST topology, classes, functions and complexity metrics (ATLAS
+                                                only).</span>
+                                        </button>
+                                        <button type="button" class="suggestion-card" data-intent="security_scan"
+                                            data-task="Scan for security vulnerabilities only">
+                                            <div class="suggestion-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                                </svg></div>
+                                            <strong>Security Scan</strong>
+                                            <span>Scan vulnerabilities &amp; injection sinks without code modification
+                                                (SENTINEL only).</span>
+                                        </button>
+                                        <button type="button" class="suggestion-card" data-intent="documentation"
+                                            data-task="Generate docstrings specifying parameters and return semantics">
+                                            <div class="suggestion-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                                    </path>
+                                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                                </svg></div>
+                                            <strong>Generate Documentation</strong>
+                                            <span>Synthesize PEP-257 docstrings and structural documentation
+                                                (SCRIBE).</span>
+                                        </button>
+                                        <button type="button" class="suggestion-card" data-intent="optimization"
+                                            data-task="Optimize this function: analyze algorithmic complexity and optimize nested loops">
+                                            <div class="suggestion-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                                </svg></div>
+                                            <strong>Optimize Code</strong>
+                                            <span>Refactor performance bottlenecks and eager allocations (FORGE).</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Planning State Card (Visible when formulating/previewing task plan) -->
+                                <div class="nexus-planning-card" id="nexus-planning-card" style="display:none;"
+                                    role="region" aria-label="Task Execution Plan">
+                                    <div class="planning-card-header">
+                                        <div class="planning-header-left">
+                                            <span class="badge badge-nexus">NEXUS PLAN</span>
+                                            <strong class="planning-title" id="planning-profile-title">Proposed Task
+                                                Execution Plan</strong>
+                                            <span class="badge" id="planning-permission-badge">Read-Only</span>
+                                        </div>
+                                        <div class="planning-header-right">
+                                            <span class="badge cyan" id="planning-intent-badge">Intent:
+                                                Architecture</span>
+                                        </div>
+                                    </div>
+                                    <p class="planning-description" id="planning-description">Review the proposed
+                                        specialist team, active scope, and permissions before starting execution.</p>
+
+                                    <div class="planning-meta-grid">
+                                        <div class="planning-meta-card">
+                                            <span class="planning-meta-label">Active Scope</span>
+                                            <strong class="planning-meta-val" id="planning-scope-text">Editor Python
+                                                Source (0 lines)</strong>
+                                        </div>
+                                        <div class="planning-meta-card">
+                                            <span class="planning-meta-label">Permissions</span>
+                                            <strong class="planning-meta-val" id="planning-permissions-text">Analysis
+                                                only; no modifications</strong>
+                                        </div>
+                                        <div class="planning-meta-card">
+                                            <span class="planning-meta-label">Verification Standard</span>
+                                            <strong class="planning-meta-val"
+                                                id="planning-verification-text">Independent audit required</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="planning-specialists-section">
+                                        <div class="planning-specialists-header">
+                                            <strong>Proposed Specialists (<span
+                                                    id="planning-agent-count">1</span>):</strong>
+                                            <span class="planning-subtext">Smallest sufficient team selected for your
+                                                intent</span>
+                                        </div>
+                                        <div class="planning-specialists-list" id="planning-specialists-list">
+                                            <!-- Dynamically populated with proposed agents and why_agents rationale -->
+                                        </div>
+                                    </div>
+
+                                    <div class="planning-actions-bar">
+                                        <button type="button" class="btn-primary" id="btn-plan-start">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2.5">
+                                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                            </svg>
+                                            <span id="btn-plan-start-text">Start Analysis</span>
+                                        </button>
+                                        <button type="button" class="btn-secondary" id="btn-plan-edit">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 20h9"></path>
+                                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
+                                                </path>
+                                            </svg>
+                                            <span>Edit Prompt</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic Chat Messages Stream -->
+                                <div class="nexus-chat-feed" id="nexus-chat-feed">
+                                    <!-- Messages rendered here -->
+                                </div>
+
+                                <!-- Status Notice Card (Visible when workflow failed, cancelled, or stopped) -->
+                                <div class="nexus-status-notice-card" id="nexus-status-notice-card"
+                                    style="display:none;" role="alert" aria-live="polite">
+                                    <div class="notice-header">
+                                        <div class="notice-title-wrap">
+                                            <span class="notice-status-icon" id="notice-status-icon">⚠️</span>
+                                            <div>
+                                                <strong id="notice-status-title">Workflow Stopped</strong>
+                                                <p id="notice-status-message" class="notice-message">The workflow was
+                                                    stopped before completion.</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge" id="notice-status-badge">Stopped</span>
+                                    </div>
+                                    <div class="notice-details-grid">
+                                        <div class="notice-detail-item">
+                                            <span class="notice-label">Last Successful Stage:</span>
+                                            <strong id="notice-last-stage">Standby</strong>
+                                        </div>
+                                        <div class="notice-detail-item">
+                                            <span class="notice-label">Active Specialist:</span>
+                                            <strong id="notice-last-specialist">None</strong>
+                                        </div>
+                                        <div class="notice-detail-item">
+                                            <span class="notice-label">Candidate Changes:</span>
+                                            <strong id="notice-candidate-status">None created</strong>
+                                        </div>
+                                    </div>
+                                    <div class="notice-actions">
+                                        <button type="button" class="btn-secondary btn-small" id="btn-nexus-retry-safe">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67">
+                                                </path>
+                                            </svg>
+                                            <span>Safe Retry</span>
+                                        </button>
+                                        <button type="button" class="btn-ghost-sm" id="btn-notice-dismiss">
+                                            <span>Dismiss</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Live Compact Specialist Activity Card -->
+                                <div class="nexus-compact-activity-card" id="nexus-compact-activity-card"
+                                    style="display:none;">
+                                    <div class="compact-activity-header" id="btn-toggle-activity-details">
+                                        <div class="activity-header-title">
+                                            <span class="activity-pulse-dot"></span>
+                                            <strong id="nexus-activity-title">NEXUS is coordinating specialist
+                                                agents...</strong>
+                                            <span class="activity-stage-counter" id="nexus-activity-counter">0 / 6
+                                                Active</span>
+                                        </div>
+                                        <button type="button" class="btn-activity-toggle"
+                                            aria-label="Toggle specialist details">
+                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- 6 Specialist Agent Chips -->
+                                    <div class="compact-agent-chips-row">
+                                        <button type="button" class="compact-agent-chip agent-card-btn"
+                                            data-agent="architect" data-agent-key="architect" id="chip-agent-architect">
+                                            <span class="chip-status-dot status-standby"></span>
+                                            <div class="chip-name-group">
+                                                <strong>ATLAS</strong>
+                                                <small>Architecture</small>
+                                            </div>
+                                            <span class="chip-state-pill" id="chip-state-architect">Standby</span>
+                                        </button>
+                                        <button type="button" class="compact-agent-chip agent-card-btn"
+                                            data-agent="optimizer" data-agent-key="optimizer" id="chip-agent-optimizer">
+                                            <span class="chip-status-dot status-standby"></span>
+                                            <div class="chip-name-group">
+                                                <strong>FORGE</strong>
+                                                <small>Optimization</small>
+                                            </div>
+                                            <span class="chip-state-pill" id="chip-state-optimizer">Standby</span>
+                                        </button>
+                                        <button type="button" class="compact-agent-chip agent-card-btn"
+                                            data-agent="red_team" data-agent-key="red_team" id="chip-agent-red_team">
+                                            <span class="chip-status-dot status-standby"></span>
+                                            <div class="chip-name-group">
+                                                <strong>SENTINEL</strong>
+                                                <small>Security</small>
+                                            </div>
+                                            <span class="chip-state-pill" id="chip-state-red_team">Standby</span>
+                                        </button>
+                                        <button type="button" class="compact-agent-chip agent-card-btn"
+                                            data-agent="blue_team" data-agent-key="blue_team" id="chip-agent-blue_team">
+                                            <span class="chip-status-dot status-standby"></span>
+                                            <div class="chip-name-group">
+                                                <strong>REMEDY</strong>
+                                                <small>Remediation</small>
+                                            </div>
+                                            <span class="chip-state-pill" id="chip-state-blue_team">Standby</span>
+                                        </button>
+                                        <button type="button" class="compact-agent-chip agent-card-btn"
+                                            data-agent="docstring" data-agent-key="docstring" id="chip-agent-docstring">
+                                            <span class="chip-status-dot status-standby"></span>
+                                            <div class="chip-name-group">
+                                                <strong>SCRIBE</strong>
+                                                <small>Docstrings</small>
+                                            </div>
+                                            <span class="chip-state-pill" id="chip-state-docstring">Standby</span>
+                                        </button>
+                                        <button type="button" class="compact-agent-chip agent-card-btn"
+                                            data-agent="audit" data-agent-key="audit" id="chip-agent-audit">
+                                            <span class="chip-status-dot status-standby"></span>
+                                            <div class="chip-name-group">
+                                                <strong>VERITY</strong>
+                                                <small>Verification</small>
+                                            </div>
+                                            <span class="chip-state-pill" id="chip-state-audit">Standby</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Collapsible Detail Drawer for Selected Specialist -->
+                                    <div class="compact-agent-drawer" id="compact-agent-drawer" style="display:none;">
+                                        <div class="agent-drill-header">
+                                            <strong id="agent-drill-name">Specialist Details</strong>
+                                            <span class="badge" id="agent-drill-status">Standby</span>
+                                        </div>
+                                        <p class="agent-drill-task" id="agent-drill-task">No task selected.</p>
+                                        <div class="agent-drill-meta">
+                                            <div><strong>Operation:</strong> <span id="agent-drill-op">None</span></div>
+                                            <div><strong>Observations:</strong> <span id="agent-drill-obs">0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Live Agent Activity Feed Panel -->
+                                    <div class="nexus-live-activity-panel" id="nexus-live-activity-panel">
+                                        <div class="live-activity-header">
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <span class="activity-pulse-dot"></span>
+                                                <strong>Live Activity</strong>
+                                            </div>
+                                            <span id="live-activity-count" class="badge badge-subtle">0 actions</span>
+                                        </div>
+                                        <div id="nexus-live-activity-feed" class="nexus-live-activity-feed" role="region" aria-live="polite"
+                                            aria-label="Live Agent Activity Feed">
+                                            <div class="activity-feed-empty-hint">Waiting for agent activity...</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- In-Stream Human-in-the-Loop Operator Approval Card -->
+                                <div class="agentic-approval-center" id="agentic-approval-center" style="display:none;"
+                                    role="region" aria-live="assertive">
+                                    <div class="approval-header">
+                                        <div class="approval-title-wrap">
+                                            <span class="approval-icon-pulse">⚠️</span>
+                                            <div>
+                                                <div style="display:flex; align-items:center; gap:8px;">
+                                                    <span class="badge warning" id="approval-agent-badge">REMEDY</span>
+                                                    <strong id="approval-title">Human-in-the-Loop Operator Approval
+                                                        Required</strong>
+                                                </div>
+                                                <p id="approval-description" class="approval-desc">The specialist agent
+                                                    has proposed a code modification. Inspect the exact diff and
+                                                    operational consequences before granting permission.</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge warning">Action Paused</span>
+                                    </div>
+                                    <div class="approval-consequences-box" id="approval-consequences-box">
+                                        <strong>Operational Consequences:</strong>
+                                        <span id="approval-consequences-text">Modifies AST nodes in the active file.
+                                            Requires non-regression verification before completion.</span>
+                                    </div>
+                                    <div class="approval-diff-preview">
+                                        <div class="approval-diff-header">
+                                            <span>Proposed Modification Diff:</span>
+                                        </div>
+                                        <div id="approval-diff-container" class="diff-container approval-diff"></div>
+                                    </div>
+                                    <div class="approval-actions-bar">
+                                        <div class="approval-feedback-wrap">
+                                            <input type="text" id="agentic-approval-feedback"
+                                                placeholder="Optional operator feedback or constraint instructions for the agent..." />
+                                        </div>
+                                        <div class="approval-buttons">
+                                            <button id="btn-approve-action" class="btn-primary btn-small" type="button"
+                                                tabindex="0" aria-label="Approve candidate code modification">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2.5">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                                <span>Approve &amp; Continue</span>
+                                            </button>
+                                            <button id="btn-reject-action" class="btn-secondary btn-small"
+                                                type="button" tabindex="0" aria-label="Reject candidate code modification">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2.5">
+                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                </svg>
+                                                <span>Reject &amp; Request Revision</span>
+                                            </button>
+                                            <button id="btn-rollback-action" class="btn-secondary btn-small"
+                                                type="button" style="display:none;" tabindex="0" aria-label="Rollback changes to snapshot">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2.5">
+                                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                                    <path d="M3 3v5h5"></path>
+                                                </svg>
+                                                <span>Rollback</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- In-Stream Deliverables & Verified Output Card -->
+                                <div class="agent-sub-section agentic-results-center" id="agentic-results-center"
+                                    style="display:none; margin-top:16px;">
+                                    <div class="results-center-header">
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <span class="badge badge-nexus">DELIVERABLES</span>
+                                            <strong class="results-center-title">Multi-Agent Results &amp; Verified
+                                                Output Center</strong>
+                                        </div>
+                                        <div class="results-tabs-group" role="tablist">
+                                            <button class="results-tab-btn active" data-res-tab="diff"
+                                                type="button">Reviewer-Verified Candidate Diff</button>
+                                            <button class="results-tab-btn" data-res-tab="docs"
+                                                type="button">Ground-Truth Docstrings</button>
+                                            <button class="results-tab-btn" data-res-tab="optimizations"
+                                                type="button">Optimizations</button>
+                                            <button class="results-tab-btn" data-res-tab="security"
+                                                type="button">Security &amp; Hardening</button>
+                                            <button class="results-tab-btn" data-res-tab="verification"
+                                                type="button">Verification Audit</button>
+                                            <button class="results-tab-btn" data-res-tab="report"
+                                                type="button">Executive Report</button>
+                                        </div>
+                                    </div>
+                                    <div class="results-tab-panes">
+                                        <div id="results-pane-diff" class="results-pane active">
+                                            <div id="agentic-result-box" style="display:none;">
+                                                <div
+                                                    style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                                                    <div>
+                                                        <strong id="agentic-result-title">Reviewable Candidate
+                                                            Changes</strong>
+                                                        <p
+                                                            style="font-size:0.74rem; color:var(--text-secondary); margin:2px 0 0 0;">
+                                                            Inspect verified before-and-after AST diff before applying
+                                                            to editor.</p>
+                                                    </div>
+                                                    <div style="display:flex; gap:8px; align-items:center;">
+                                                        <button id="btn-apply-agentic-code"
+                                                            class="btn-primary btn-small" type="button">
+                                                            Apply Changes to Active Editor
+                                                        </button>
+                                                        <button id="btn-revert-agent-run"
+                                                            class="btn-secondary btn-small" type="button"
+                                                            style="display:none;">
+                                                            Revert to Previous
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div id="agentic-diff-container" class="diff-container"
+                                                    style="max-height:360px; overflow-y:auto;"></div>
+                                            </div>
+                                            <div id="results-empty-diff" class="agentic-empty-state"
+                                                style="padding:24px;">
+                                                <span>No candidate code modifications proposed for this run.</span>
+                                            </div>
+                                        </div>
+                                        <div id="results-pane-docs" class="results-pane" style="display:none;">
+                                            <div id="results-docs-content" class="results-content-box">
+                                                <pre
+                                                    id="scribe-docs-pre">Docstring deliverables will appear here after SCRIBE completes its task.</pre>
+                                            </div>
+                                        </div>
+                                        <div id="results-pane-optimizations" class="results-pane" style="display:none;">
+                                            <div class="results-content-box" id="results-optimizations-content">
+                                                <p style="color:var(--text-secondary);">No optimizations recorded.</p>
+                                            </div>
+                                        </div>
+                                        <div id="results-pane-security" class="results-pane" style="display:none;">
+                                            <div class="results-content-box" id="results-security-content">
+                                                <p style="color:var(--text-secondary);">No security findings recorded.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div id="results-pane-verification" class="results-pane" style="display:none;">
+                                            <div class="results-content-box" id="results-verification-content">
+                                                <p style="color:var(--text-secondary);">Verification audit pending.</p>
+                                            </div>
+                                        </div>
+                                        <div id="results-pane-report" class="results-pane" style="display:none;">
+                                            <div class="results-content-box" id="results-report-content">
+                                                <p style="color:var(--text-secondary);">Executive report will be
+                                                    generated when workflow completes.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. CHAT COMPOSER DOCK (BOTTOM) -->
+                            <footer class="nexus-composer-container">
+                                <!-- Attached Context Pill (shows only when code is present in editor) -->
+                                <div class="composer-context-bar" id="composer-context-bar">
+                                    <div class="context-file-pill" id="context-file-pill"
+                                        title="Code from active editor included in task context">
+                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                        </svg>
+                                        <span id="composer-file-label">Active Editor Code (<span
+                                                id="composer-code-lines">0</span> lines)</span>
+                                        <button type="button" class="btn-remove-context" id="btn-toggle-include-code"
+                                            title="Toggle code inclusion">✕</button>
+                                    </div>
+                                    <!-- Hidden backward compatibility presets container -->
+                                    <div class="assistant-actions intent-chips-scroll" style="display:none;"
+                                        aria-hidden="true">
+                                        <button type="button" class="assistant-action btn-agentic-preset intent-chip"
+                                            data-agentic-task="Perform full end-to-end code optimization, security defense, and non-regression audit."></button>
+                                    </div>
+                                </div>
+
+                                <!-- Multiline Input Wrapper -->
+                                <div class="composer-input-wrapper">
+                                    <textarea id="agentic-task-input" rows="1"
+                                        placeholder="How can NEXUS help you? (Press Enter to deploy, Shift+Enter for newline)"></textarea>
+                                    <textarea id="assistant-prompt" style="display:none;" aria-hidden="true"></textarea>
+                                </div>
+
+                                <!-- Toolbar Controls -->
+                                <div class="composer-toolbar">
+                                    <div class="toolbar-left">
+                                        <div class="command-mode-selector">
+                                            <label for="agentic-execution-mode">Mode:</label>
+                                            <select id="agentic-execution-mode">
+                                                <option value="model" selected>AI Model</option>
+                                                <option value="deterministic">Deterministic / Offline</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Collapsible Advanced Settings Dropdown -->
+                                        <div class="composer-advanced-settings" id="composer-advanced-settings">
+                                            <button type="button" class="btn-toggle-advanced-settings"
+                                                id="btn-toggle-advanced-settings"
+                                                title="Toggle Advanced Agentic Settings">
+                                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                    <path
+                                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                                    </path>
+                                                </svg>
+                                                <span>Advanced</span>
+                                                <svg class="chevron-icon" viewBox="0 0 24 24" width="10" height="10"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                                </svg>
+                                            </button>
+                                            <div class="advanced-settings-dropdown" id="advanced-settings-dropdown">
+                                                <div class="command-cycle-selector">
+                                                    <label for="agentic-max-cycles">Maximum Review Cycles:</label>
+                                                    <select id="agentic-max-cycles">
+                                                        <option value="3">3</option>
+                                                        <option value="5" selected>5</option>
+                                                        <option value="8">8</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                                <label class="command-toggle-label"
+                                                    title="When checked, any code modifications pause the workflow for operator approval">
+                                                    <input type="checkbox" id="agentic-require-approval-toggle">
+                                                    <span>Operator Approval</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="toolbar-right">
+                                        <button id="btn-agentic-reconnect" class="btn-secondary btn-small" type="button"
+                                            title="Reconnect to previous active session">
+                                            <svg class="button-icon" viewBox="0 0 24 24" width="13" height="13"
+                                                fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67">
+                                                </path>
+                                            </svg>
+                                            <span>Reconnect</span>
+                                        </button>
+                                        <button id="btn-agentic-cancel" class="btn-secondary btn-cancel-nexus btn-small"
+                                            type="button" disabled>
+                                            <svg class="button-icon" aria-hidden="true" viewBox="0 0 24 24" width="13"
+                                                height="13" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="6" y="6" width="12" height="12"></rect>
+                                            </svg>
+                                            <span>Abort</span>
+                                        </button>
+                                        <button id="btn-run-agentic" class="btn-primary btn-deploy-nexus" type="button">
+                                            <svg class="button-icon" aria-hidden="true" viewBox="0 0 24 24">
+                                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                            </svg>
+                                            <span class="btn-text">Ask NEXUS</span>
+                                        </button>
+                                        <button id="btn-nexus-propose-changes" class="btn-secondary btn-small" type="button" style="display:none;" title="Generate reviewable project change proposal">
+                                            <span>Generate Reviewable Proposal</span>
+                                        </button>
+                                        <button id="btn-project-propose" class="btn-secondary btn-small" type="button" style="display:none;" title="Generate reviewable project change proposal">
+                                            <span>Generate Reviewable Proposal</span>
+                                        </button>
+
+                                        <!-- Hidden compatibility buttons -->
+                                        <button id="btn-multi-agent-team" style="display:none;" aria-hidden="true"
+                                            type="button"></button>
+                                        <button id="btn-run-agentic-sub" style="display:none;" aria-hidden="true"
+                                            type="button"></button>
+                                        <button id="btn-run-specialists" class="btn-secondary btn-small" type="button"
+                                            title="Launch specialist workforce">
+                                            <span>Deploy Specialists</span>
+                                        </button>
+                                        <button id="btn-assistant" style="display:none;" aria-hidden="true"
+                                            type="button"></button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </main>
+
+                        <!-- 3. EXPANDABLE DEEP INSPECTION DRAWER -->
+                        <aside class="nexus-deep-drawer" id="nexus-deep-drawer">
+                            <div class="drawer-header">
+                                <div style="display:flex; align-items:center; gap:8px;">
+                                    <span class="badge cyan">Deep Telemetry</span>
+                                    <strong style="font-size:0.95rem;">Workflow DAG, Inspector &amp; Terminal</strong>
+                                </div>
+                                <button type="button" class="btn-close-drawer" id="btn-close-deep-drawer"
+                                    aria-label="Close telemetry drawer">✕</button>
+                            </div>
+
+                            <div class="drawer-tabs-bar">
+                                <button type="button" class="drawer-tab-btn active" data-drawer-tab="dag">Workflow
+                                    Graph</button>
+                                <button type="button" class="drawer-tab-btn" data-drawer-tab="comms">Agent
+                                    Handoffs</button>
+                                <button type="button" class="drawer-tab-btn"
+                                    data-drawer-tab="inspector">Inspector</button>
+                                <button type="button" class="drawer-tab-btn" data-drawer-tab="terminal">Tool
+                                    Console</button>
+                                <button type="button" class="drawer-tab-btn" data-drawer-tab="prof">Review
+                                    Engine</button>
+                            </div>
+
+                            <div class="drawer-content-pane">
+                                <!-- DAG Graph Pane -->
+                                <div id="drawer-pane-dag" class="drawer-tab-content active">
+                                    <div class="nexus-plan-section" id="nexus-plan-section">
+                                        <div class="plan-section-header">
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <span class="badge badge-nexus">NEXUS PLAN</span>
+                                                <strong id="nexus-plan-title">Execution Plan &amp; Dependency
+                                                    Schedule</strong>
+                                                <span id="nexus-plan-count" class="badge cyan">0 Tasks</span>
+                                            </div>
+                                            <span id="nexus-plan-status" class="badge">Standby</span>
+                                        </div>
+                                        <div class="nexus-plan-grid" id="nexus-plan-grid">
+                                            <div class="plan-standby-message">
+                                                <span>No execution plan active. Submit an engineering goal above to
+                                                    formulate a structured task plan and delegate to specialists.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pipeline-visualizer agentic-control-center" id="pipeline-visualizer">
+                                        <div class="agentic-live-layout">
+                                            <section class="agentic-panel agentic-graph-panel"
+                                                aria-labelledby="agentic-graph-title">
+                                                <div class="agentic-panel-heading">
+                                                    <div>
+                                                        <h3 id="agentic-graph-title">Autonomous orchestration graph</h3>
+                                                        <p>Real-time DAG topology, dynamic dependencies &amp; feedback
+                                                            loops.</p>
+                                                    </div>
+                                                    <div class="graph-heading-actions">
+                                                        <span class="agentic-graph-live"><span
+                                                                class="pulse-emerald"></span> Topology Active</span>
+                                                    </div>
+                                                </div>
+                                                <div id="agentic-graph-empty" class="agentic-empty-state"
+                                                    style="display:none;" hidden>
+                                                    <strong>No workflow has been run yet</strong>
+                                                    <span>Start a workflow to view NEXUS assignments and real task
+                                                        dependencies.</span>
+                                                </div>
+                                                <div class="canvas-svg-container">
+                                                    <svg id="agentic-workflow-graph" class="agentic-workflow-graph"
+                                                        viewBox="0 0 760 300" role="img"
+                                                        aria-label="NEXUS orchestration graph"></svg>
+                                                </div>
+                                                <div class="agentic-graph-legend">
+                                                    <span><i class="assignment"></i>NEXUS assignment</span>
+                                                    <span><i class="dependency"></i>Task dependency</span>
+                                                    <span><i class="handoff"></i>Recorded handoff</span>
+                                                    <span><i class="critique-loop"></i>Feedback Loop</span>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Comms Timeline Pane -->
+                                <div id="drawer-pane-comms" class="drawer-tab-content" style="display:none;">
+                                    <section class="agentic-panel agentic-communication-panel"
+                                        aria-labelledby="agentic-communication-title">
+                                        <div class="agentic-panel-heading">
+                                            <div>
+                                                <h3 id="agentic-communication-title">Agent communication</h3>
+                                                <p>Chronological handoffs, tools &amp; verified evidence.</p>
+                                            </div>
+                                            <span id="agentic-handoff-count" class="badge">0 handoffs</span>
+                                        </div>
+                                        <div id="agentic-communications" class="agentic-communications"
+                                            aria-live="polite">
+                                            <div class="agentic-empty-state">
+                                                <strong>Workforce Standby</strong>
+                                                <span>Messages, reasoning, and evidence handoffs stream here in real
+                                                    time.</span>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <!-- Inspector Pane -->
+                                <div id="drawer-pane-inspector" class="drawer-tab-content" style="display:none;">
+                                    <aside class="agentic-panel agentic-inspector-panel" id="agentic-agent-inspector"
+                                        aria-labelledby="agentic-inspector-title">
+                                        <div class="agentic-panel-heading">
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <h3 id="agentic-inspector-title">Agent inspector</h3>
+                                                <span id="agentic-inspector-subtitle" class="inspector-subtitle">Select
+                                                    an agent node above to inspect live context &amp; AST slice.</span>
+                                            </div>
+                                            <button id="btn-close-inspector" class="btn-secondary btn-tiny"
+                                                type="button" style="display:none;">Close</button>
+                                        </div>
+                                        <div id="agentic-inspector-content" class="agentic-inspector-content">
+                                            <div class="agentic-empty-state compact-empty">
+                                                <span>Click a specialist node on the DAG topology or roster to inspect
+                                                    its task, tools, results and communication history.</span>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                </div>
+
+                                <!-- Trajectory Console Pane -->
+                                <div id="drawer-pane-terminal" class="drawer-tab-content" style="display:none;">
+                                    <div class="agent-sub-section agent-terminal-console-section">
+                                        <div class="terminal-header-bar">
+                                            <div class="terminal-tabs-group" role="tablist">
+                                                <button class="terminal-tab-btn active" data-term-tab="all"
+                                                    type="button">All Events</button>
+                                                <button class="terminal-tab-btn" data-term-tab="tools" type="button">AST
+                                                    Tools</button>
+                                                <button class="terminal-tab-btn" data-term-tab="reasoning"
+                                                    type="button">Reasoning</button>
+                                                <button class="terminal-tab-btn" data-term-tab="findings"
+                                                    type="button">Findings</button>
+                                                <button class="terminal-tab-btn" data-term-tab="handoffs"
+                                                    type="button">Handoffs</button>
+                                                <button class="terminal-tab-btn" data-term-tab="approvals"
+                                                    type="button">Approvals</button>
+                                                <button class="terminal-tab-btn" data-term-tab="diffs"
+                                                    type="button">Diffs &amp; Patches</button>
+                                                <button class="terminal-tab-btn" data-term-tab="review"
+                                                    type="button">Verification</button>
+                                            </div>
+                                            <div class="terminal-stats-group">
+                                                <span id="agentic-step-counter" class="badge">0 steps · 0 model
+                                                    calls</span>
+                                                <span id="terminal-latency-badge" class="badge badge-subtle">Latency: 0
+                                                    ms</span>
+                                                <span id="terminal-cycle-badge" class="badge purple">Review Cycle:
+                                                    Standby</span>
+                                                <button id="btn-clear-terminal" class="btn-secondary btn-tiny"
+                                                    type="button" title="Clear console output">Clear</button>
+                                            </div>
+                                        </div>
+                                        <div id="agentic-stream-console" class="assistant-output terminal-body"
+                                            style="max-height: 280px; overflow-y: auto;">
+                                            <div class="terminal-welcome-frame">
+                                                <span class="terminal-prompt-prefix">nexus@ast-studio:~$</span>
+                                                <span class="terminal-welcome-text">Workforce initialized. Select an
+                                                    intent chip or enter an engineering objective above to deploy the
+                                                    NEXUS multi-agent swarm.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Review Engine Pane (Preserving Professor-Student Panel) -->
+                                <div id="drawer-pane-prof" class="drawer-tab-content" style="display:none;">
+                                    <div class="agent-sub-section professor-student-panel" id="professor-student-panel">
+                                        <div
+                                            style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+                                            <div>
+                                                <div
+                                                    style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
+                                                    <span class="badge">Iterative Agent Review</span>
+                                                    <span class="badge" id="prof-loop-status">Ready</span>
+                                                </div>
+                                                <strong class="professor-student-title">AUTONOMOUS REVIEW &amp;
+                                                    REFINEMENT</strong>
+                                                <p class="professor-student-description">A Reviewer Agent evaluates an
+                                                    Engineering Agent’s candidate, requests bounded improvements, and
+                                                    independently verifies the revised result. Review and apply
+                                                    candidate changes explicitly.</p>
+                                            </div>
+                                            <div style="display:flex; gap:10px; align-items:center;">
+                                                <div class="prof-iterations-selector"
+                                                    style="display:flex; align-items:center; gap:6px;">
+                                                    <label for="prof-max-iterations"
+                                                        style="font-size:0.76rem; font-weight:600; color:var(--text-secondary);">Max
+                                                        Iterations:</label>
+                                                    <select id="prof-max-iterations"
+                                                        style="padding:4px 8px; border-radius:5px; border:1px solid var(--border-light); font-size:0.74rem; background:var(--bg-card); color:var(--text-primary);">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3" selected>3</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+                                                <button id="btn-run-professor-student" class="btn-primary" type="button"
+                                                    style="white-space:nowrap;">
+                                                    Start Review Cycle
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="prof-student-results" style="display:none; margin-top:16px;">
+                                            <div class="professor-student-results-header">
+                                                <div style="display:flex; gap:12px; align-items:center;">
+                                                    <span id="prof-final-grade-badge" class="badge"
+                                                        style="font-size:1rem; padding:4px 10px; font-weight:700;">Grade
+                                                        -</span>
+                                                    <span id="prof-final-score-text"
+                                                        class="professor-student-score">Score: 0/100</span>
+                                                    <span id="prof-iterations-count" class="badge">0 iterations</span>
+                                                    <span id="prof-resolved-pill" class="badge success"
+                                                        style="display:none;">0 Resolved</span>
+                                                    <span id="prof-remaining-pill" class="badge error"
+                                                        style="display:none;">0 Remaining</span>
+                                                </div>
+                                                <span id="prof-approval-pill" class="badge">Evaluating</span>
+                                            </div>
+                                            <p id="prof-summary-text" class="professor-student-summary"></p>
+                                            <div id="prof-timeline-container"
+                                                style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+                                            </div>
+                                            <div id="prof-diff-box" style="display:none;">
+                                                <div
+                                                    style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                                    <strong class="professor-student-diff-title">Reviewer-Verified
+                                                        Candidate Diff</strong>
+                                                    <button id="btn-apply-prof-code" class="btn-primary btn-small"
+                                                        type="button">
+                                                        Apply Approved Code to Active Editor
+                                                    </button>
+                                                </div>
+                                                <div id="prof-diff-container"
+                                                    class="diff-container professor-student-diff"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage Detail Inspector Card -->
+                            <div id="pipeline-stage-detail" class="stage-inspector-card" style="display:none;">
+                                <div class="stage-inspector-header">
+                                    <div style="display:flex; gap:10px; align-items:center;">
+                                        <span id="stage-detail-badge" class="badge">Stage 1</span>
+                                        <strong id="stage-detail-title">Agent Details</strong>
+                                    </div>
+                                    <div style="display:flex; gap:8px; align-items:center;">
+                                        <span id="stage-detail-duration" class="badge">0 ms</span>
+                                        <button id="btn-close-stage-inspector" class="btn-secondary btn-small"
+                                            type="button">Close</button>
+                                    </div>
+                                </div>
+                                <div id="stage-detail-content" class="stage-inspector-body"></div>
+                            </div>
+
+                            <!-- Specialist roster buttons and backward-compatibility elements -->
+                            <div style="display:none;" aria-hidden="true">
+                                <button id="btn-agent-architect" data-agent-key="architect" type="button"></button>
+                                <button id="btn-agent-optimize" data-agent-key="optimizer" type="button"></button>
+                                <button id="btn-agent-simulate-attacks" data-agent-key="red_team"
+                                    type="button"></button>
+                                <button id="btn-agent-fix-attacks" data-agent-key="blue_team" type="button"></button>
+                                <button id="btn-agent-docstring" data-agent-key="docstring" type="button"></button>
+                                <button id="btn-improve-quality" data-agent-key="audit" type="button"></button>
+                                <div class="agent-observability-grid" id="agentic-agent-telemetry" hidden></div>
+                                <div id="agentic-workforce-empty" hidden></div>
+                                <span id="nexus-supervisor-action-text"></span>
+                                <span id="workforce-stat-agent-count">6</span>
+                                <span id="workforce-stat-active">0</span>
+                                <span id="workforce-stat-completed">0</span>
+                                <span id="workforce-stat-failed">0</span>
+                                <div id="assistant-output"></div>
+                                <div id="agentic-node-architect"><span id="agentic-status-architect">Pending</span>
+                                </div>
+                                <div id="stage-node-1"></div>
+                                <div id="stage-node-2"></div>
+                                <div id="stage-node-3"></div>
+                                <div id="agentic-node-docstring"><span id="agentic-status-docstring">Pending</span>
+                                </div>
+                                <div id="stage-node-4"></div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+
+                <!-- Tab 5: Security Lab & Defensive Workbench -->
+                <div id="tab-security" class="tab-pane">
+                    <div class="security-lab-shell">
+                        <!-- Section 0: Active Code Security Assessment & Workbench -->
+                        <div class="sec-section" id="sec-active-code-section">
+                            <div class="sec-section-header">
+                                <div class="sec-section-title-group">
+                                    <h3><svg class="section-icon icon-red-team" aria-hidden="true" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="8"></circle>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v3m0 16v3M1 12h3m16 0h3"></path>
+                                        </svg> Defensive Security Workbench</h3>
+                                    <p>Static AST vulnerability analysis, assisted remediation, and security benchmarks
+                                        without executing code.</p>
+                                </div>
+                                <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                                    <button id="btn-sec-simulate-code" class="btn-primary" type="button">
+                                        <svg class="button-icon" aria-hidden="true" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="8"></circle>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v3m0 16v3M1 12h3m16 0h3"></path>
+                                        </svg>
+                                        Run Static Security Analysis
+                                    </button>
+                                    <button id="btn-sec-remediate-all" class="btn-secondary" type="button"
+                                        style="display:none;">
+                                        Generate Remediation
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Security Overview Metrics Card -->
+                            <div class="security-overview-panel" id="sec-overview-panel">
+                                <div class="sec-overview-header">
+                                    <div class="sec-posture-badge-group">
+                                        <div class="sec-score-circle">
+                                            <span id="sec-resilience-value">--</span>
+                                            <small>/100</small>
+                                        </div>
+                                        <div>
+                                            <strong id="sec-posture-title">Security Assessment</strong>
+                                            <p id="sec-score-derivation" class="quality-method"
+                                                style="margin:2px 0 0 0;">
+                                                Run a scan to calculate the heuristic score from 14 static AST checks.
+                                                Unscanned code is not treated as secure.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex; gap:8px; align-items:center;">
+                                        <span class="badge success" id="sec-safety-guarantee">AST Static Only · Zero
+                                            Code Execution</span>
+                                        <span class="badge" id="sec-last-scan-badge">Not analyzed</span>
+                                    </div>
+                                </div>
+
+                                <div class="sec-metrics-grid">
+                                    <div class="sec-metric-card">
+                                        <div class="sec-metric-val" id="sec-total-checks">--</div>
+                                        <div class="sec-metric-lbl">Checks Run</div>
+                                    </div>
+                                    <div class="sec-metric-card">
+                                        <div class="sec-metric-val" id="sec-vulns-detected">--</div>
+                                        <div class="sec-metric-lbl">Vulnerabilities Detected</div>
+                                    </div>
+                                    <div class="sec-metric-card">
+                                        <div class="sec-metric-val sec-crit" id="sec-critical-count">--</div>
+                                        <div class="sec-metric-lbl">Critical Severity</div>
+                                    </div>
+                                    <div class="sec-metric-card">
+                                        <div class="sec-metric-val sec-high" id="sec-high-count">--</div>
+                                        <div class="sec-metric-lbl">High Severity</div>
+                                    </div>
+                                    <div class="sec-metric-card">
+                                        <div class="sec-metric-val sec-med" id="sec-medlow-count">--</div>
+                                        <div class="sec-metric-lbl">Medium / Low</div>
+                                    </div>
+                                    <div class="sec-metric-card">
+                                        <div class="sec-metric-val sec-resolved" id="sec-resolved-count">0</div>
+                                        <div class="sec-metric-lbl">Remediated Findings</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Security Lab Sub-Navigation -->
+                            <div class="sec-subtabs-nav">
+                                <button class="sec-subtab-btn active" data-sectab="sectab-findings">
+                                    <span>Vulnerability Findings</span>
+                                    <span class="badge" id="sec-findings-tab-count">--</span>
+                                </button>
+                                <button class="sec-subtab-btn" data-sectab="sectab-remediation">
+                                    <span>Remediation Workspace</span>
+                                    <span class="badge" id="sec-remediation-tab-badge">Not scanned</span>
+                                </button>
+                                <button class="sec-subtab-btn" data-sectab="sectab-benchmark">
+                                    <span>Attack Suite Benchmark</span>
+                                </button>
+                                <button class="sec-subtab-btn" data-sectab="sectab-sandbox">
+                                    <span>Exploit Sandbox</span>
+                                </button>
+                                <button class="sec-subtab-btn" data-sectab="sectab-history">
+                                    <span>Remediation History</span>
+                                </button>
+                            </div>
+
+                            <!-- Subtab 1: Active Code Findings Output -->
+                            <div id="sectab-findings" class="sec-subtab-pane active">
+                                <div id="sec-code-simulation-output" class="assistant-output" role="status"
+                                    aria-live="polite">
+                                    <p>Click <strong>Run Static Security Analysis</strong> above to inspect your code
+                                        for supported vulnerability patterns without execution.</p>
+                                </div>
+                            </div>
+
+                            <!-- Subtab 2: Security Remediation Workspace -->
+                            <div id="sectab-remediation" class="sec-subtab-pane">
+                                <div id="sec-remediation-workspace" class="sec-remediation-shell">
+                                    <div class="empty-state" id="empty-sec-remediation">
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5">
+                                            <path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"></path>
+                                            <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+                                        </svg>
+                                        <h4>Security Remediation Workspace</h4>
+                                        <p>Run <strong>Static Security Analysis</strong> or select a finding to review
+                                            defensive corrections, inspect unified diffs, and approve patches.</p>
+                                    </div>
+                                    <div id="sec-remediation-content" style="display:none;">
+                                        <div class="sec-remediation-header-bar">
+                                            <div>
+                                                <strong id="sec-remediation-title">Defensive Remediation Patch</strong>
+                                                <p id="sec-remediation-desc" class="quality-method"
+                                                    style="margin:2px 0 0 0;"></p>
+                                            </div>
+                                            <div style="display:flex; gap:8px;">
+                                                <button id="btn-sec-apply-diff" class="btn-primary btn-small"
+                                                    type="button">Approve &amp; Apply Patch to Editor</button>
+                                                <button id="btn-sec-dismiss-diff" class="btn-secondary btn-small"
+                                                    type="button">Dismiss</button>
+                                            </div>
+                                        </div>
+                                        <div class="sec-defensive-controls" id="sec-defensive-controls-box">
+                                            <strong>Defensive Controls Applied:</strong>
+                                            <ul id="sec-defensive-controls-list"></ul>
+                                        </div>
+                                        <div id="sec-diff-preview" class="diff-container" style="margin-top:10px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Subtab 3: Synthetic Attack Suite Benchmark -->
+                            <div id="sectab-benchmark" class="sec-subtab-pane">
+                                <div class="sec-section-header" style="margin-top: 10px;">
+                                    <div class="sec-section-title-group">
+                                        <h4>Synthetic Attack Suite Benchmark</h4>
+                                        <p>Global defense benchmark: Evaluates detection accuracy across labeled
+                                            synthetic attack prompts and test cases (policy bypass, prompt injection,
+                                            SQL injection, private data exfiltration). <em>(Global system benchmark
+                                                evaluating guardrails, independent of active editor source).</em></p>
+                                    </div>
+                                    <button id="btn-security-evaluate" class="btn-primary" type="button">Run Attack
+                                        Suite Benchmark</button>
+                                </div>
+
+                                <!-- 2x2 Confusion Matrix Visualizer -->
+                                <div id="confusion-matrix-container" style="display:none;">
+                                    <div class="matrix-container">
+                                        <div class="matrix-cell tp">
+                                            <div class="matrix-cell-tag">
+                                                <span>True Positives (TP)</span>
+                                                <span>Attack Detected</span>
+                                            </div>
+                                            <div class="matrix-cell-count" id="matrix-tp">0</div>
+                                            <div class="matrix-cell-desc">Malicious payloads successfully blocked by
+                                                guardrails</div>
+                                        </div>
+                                        <div class="matrix-cell fp">
+                                            <div class="matrix-cell-tag">
+                                                <span>False Positives (FP)</span>
+                                                <span>Benign Flagged</span>
+                                            </div>
+                                            <div class="matrix-cell-count" id="matrix-fp">0</div>
+                                            <div class="matrix-cell-desc">Safe operations incorrectly flagged as attacks
+                                            </div>
+                                        </div>
+                                        <div class="matrix-cell fn">
+                                            <div class="matrix-cell-tag">
+                                                <span>False Negatives (FN)</span>
+                                                <span>Attack Missed</span>
+                                            </div>
+                                            <div class="matrix-cell-count" id="matrix-fn">0</div>
+                                            <div class="matrix-cell-desc">Attacks that bypassed static detection</div>
+                                        </div>
+                                        <div class="matrix-cell tn">
+                                            <div class="matrix-cell-tag">
+                                                <span>True Negatives (TN)</span>
+                                                <span>Benign Allowed</span>
+                                            </div>
+                                            <div class="matrix-cell-count" id="matrix-tn">0</div>
+                                            <div class="matrix-cell-desc">Legitimate developer requests properly
+                                                permitted</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Key Performance Metric Cards -->
+                                    <div class="benchmark-metrics-row">
+                                        <div class="benchmark-card">
+                                            <div class="benchmark-val" id="bm-accuracy">0%</div>
+                                            <div class="benchmark-lbl">Accuracy</div>
+                                        </div>
+                                        <div class="benchmark-card">
+                                            <div class="benchmark-val" id="bm-precision">0%</div>
+                                            <div class="benchmark-lbl">Precision</div>
+                                        </div>
+                                        <div class="benchmark-card">
+                                            <div class="benchmark-val" id="bm-recall">0%</div>
+                                            <div class="benchmark-lbl">Recall</div>
+                                        </div>
+                                        <div class="benchmark-card">
+                                            <div class="benchmark-val" id="bm-f1">0.00</div>
+                                            <div class="benchmark-lbl">F1 Score</div>
+                                        </div>
+                                        <div class="benchmark-card">
+                                            <div class="benchmark-val" id="bm-fpr">0%</div>
+                                            <div class="benchmark-lbl">False Pos. Rate</div>
+                                        </div>
+                                        <div class="benchmark-card">
+                                            <div class="benchmark-val" id="bm-latency">0 ms</div>
+                                            <div class="benchmark-lbl">Mean Latency</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Filterable Attack Case Table -->
+                                    <div class="sec-table-toolbar">
+                                        <input type="text" id="sec-case-search" class="sec-search-input"
+                                            placeholder="Search test cases or attack types...">
+                                        <div class="sec-filters">
+                                            <button class="sec-filter-chip active" data-filter="all">All Cases</button>
+                                            <button class="sec-filter-chip" data-filter="attacks">Attacks</button>
+                                            <button class="sec-filter-chip" data-filter="benign">Benign</button>
+                                            <button class="sec-filter-chip" data-filter="blocked">Blocked</button>
+                                            <button class="sec-filter-chip" data-filter="allowed">Allowed</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-container">
+                                        <table id="sec-cases-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Case ID</th>
+                                                    <th>Attack Vector</th>
+                                                    <th>Expected</th>
+                                                    <th>Decision</th>
+                                                    <th>Risk Score</th>
+                                                    <th>Severity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="sec-cases-tbody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div id="security-evaluation" class="assistant-output" role="status" aria-live="polite">
+                                    <p>Click <strong>Run Attack Suite Benchmark</strong> above to calculate the
+                                        confusion matrix and detection metrics across labeled synthetic attacks.</p>
+                                </div>
+                            </div>
+
+                            <!-- Subtab 4: Interactive Attack Simulator Sandbox -->
+                            <div id="sectab-sandbox" class="sec-subtab-pane">
+                                <div class="sec-section-header" style="margin-top: 10px;">
+                                    <div class="sec-section-title-group">
+                                        <h4>Interactive Attack Simulator Sandbox</h4>
+                                        <p>Choose a local Python file or use the code in the editor as the target. The
+                                            simulator checks the selected attack against that source without executing
+                                            it.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sandbox-source">
+                                    <div class="sandbox-source-copy">
+                                        <strong>Python source under test</strong>
+                                        <span id="sandbox-source-status" role="status" aria-live="polite">No code
+                                            loaded. Choose a .py file or paste code in the editor.</span>
+                                    </div>
+                                    <button id="btn-sandbox-open-file" class="btn-secondary btn-small" type="button">
+                                        <svg class="button-icon" aria-hidden="true" viewBox="0 0 24 24">
+                                            <path
+                                                d="M3 7.5A1.5 1.5 0 0 1 4.5 6H10l2 2h7.5A1.5 1.5 0 0 1 21 9.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z">
+                                            </path>
+                                            <path d="M12 11v6m-3-3 3-3 3 3"></path>
+                                        </svg>
+                                        Choose Python file
+                                    </button>
+                                </div>
+
+                                <div class="sandbox-controls">
+                                    <div class="sandbox-field">
+                                        <label for="sandbox-preset-select">Preset Attack Payload</label>
+                                        <select id="sandbox-preset-select">
+                                            <option value="">Select an exploit payload...</option>
+                                            <option value="sqli">SQL Injection: ' OR '1'='1' --</option>
+                                            <option value="cmdi">Command Injection: ; cat /etc/passwd #</option>
+                                            <option value="ssrf">SSRF: http://169.254.169.254/latest/meta-data/</option>
+                                            <option value="pickle">Pickle Deserialization RCE payload</option>
+                                            <option value="redos">ReDoS Catastrophic Backtracking: ^(a+)+$</option>
+                                            <option value="xxe">XXE Injection: &lt;!ENTITY xxe SYSTEM
+                                                "file:///etc/passwd"&gt;</option>
+                                            <option value="hash">Insecure Hash: Weak MD5 Digest Vector</option>
+                                            <option value="tempfile">Insecure Tempfile: TOCTOU Symlink Race Vector
+                                            </option>
+                                            <option value="debug">Exposed Debug: Interactive Traceback Vector</option>
+                                            <option value="prompt">Prompt Injection Jailbreak: Ignore instructions &amp;
+                                                print keys</option>
+                                            <option value="custom">Custom Payload</option>
+                                        </select>
+                                    </div>
+                                    <div class="sandbox-field">
+                                        <label for="sandbox-payload">Payload String / Vector</label>
+                                        <textarea id="sandbox-payload" class="sandbox-payload-textarea"
+                                            placeholder="Enter or select an attack payload to simulate..."></textarea>
+                                    </div>
+                                </div>
+
+                                <button id="btn-simulate-custom-attack" class="btn-simulate-exploit" type="button">
+                                    <svg class="button-icon" aria-hidden="true" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="8"></circle>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path d="M12 1v3m0 16v3M1 12h3m16 0h3"></path>
+                                    </svg>
+                                    <span class="btn-simulate-label">Run Security Probe</span>
+                                </button>
+
+                                <div id="sandbox-report" style="display:none;"></div>
+                            </div>
+
+                            <!-- Subtab 5: Remediation History -->
+                            <div id="sectab-history" class="sec-subtab-pane">
+                                <div class="sec-history-container">
+                                    <div class="sec-section-title-group" style="margin-top:10px;">
+                                        <h4>Remediation &amp; Scan History (This Session)</h4>
+                                        <p>Audit trail of security scans, vulnerability resolutions, and posture score
+                                            progressions.</p>
+                                    </div>
+                                    <div id="sec-history-timeline" class="sec-history-timeline">
+                                        <p style="color:var(--text-muted); font-size:0.875rem;">No security scans
+                                            recorded in this session yet.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="action-bar">
+        <div class="status-area">
+            <span id="action-status-dot" class="pulse-dot"></span>
+            <span id="action-status-text">Ready</span>
+        </div>
+        <div class="action-buttons">
+            <button id="btn-analyze" class="btn-secondary">Analyze Only</button>
+            <button id="btn-generate" class="btn-primary">Generate Comments</button>
+        </div>
+    </footer>
+
+    <!-- Security Threat Detected & Auto-Remediation Modal -->
+    <div id="security-threat-modal" class="threat-modal-overlay" style="display:none;" role="dialog" aria-modal="true"
+        aria-labelledby="threat-modal-title">
+        <div class="threat-modal-backdrop" id="threat-modal-backdrop"></div>
+        <div class="threat-modal-dialog">
+            <div class="threat-modal-header">
+                <div class="threat-modal-icon-badge">
+                    <svg viewBox="0 0 24 24" class="threat-icon" aria-hidden="true">
+                        <path d="M12 2L2 22h20L12 2zm0 3.99L19.53 20H4.47L12 5.99zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <div class="threat-modal-titles">
+                    <div class="threat-modal-tag-row">
+                        <span id="threat-modal-badge" class="badge error">Vulnerability Flagged</span>
+                        <span id="threat-modal-cwe" class="threat-modal-cwe">CWE-89</span>
+                    </div>
+                    <h3 id="threat-modal-title">Security Finding Detected</h3>
+                </div>
+                <button id="btn-close-threat-modal" class="threat-modal-close" aria-label="Close modal">&times;</button>
+            </div>
+
+            <div class="threat-modal-body">
+                <p id="threat-modal-summary" class="threat-modal-desc">
+                    A potential vulnerability was detected in your code. SENTINEL can report the finding and REMEDY can
+                    prepare a patch for review.
+                </p>
+
+                <div class="threat-modal-detail-box">
+                    <div class="threat-detail-field" id="threat-modal-payload-row">
+                        <span class="threat-label">Attack Vector / Payload:</span>
+                        <code id="threat-modal-payload" class="threat-code-pill"></code>
+                    </div>
+                    <div id="threat-modal-target-row" class="threat-detail-field">
+                        <span class="threat-label">Vulnerable Location:</span>
+                        <span id="threat-modal-target" class="threat-target-line">Line 8</span>
+                    </div>
+                    <div id="threat-modal-snippet-row" class="threat-detail-field">
+                        <span class="threat-label">Vulnerable Source:</span>
+                        <pre class="threat-code-snippet"><code id="threat-modal-snippet"></code></pre>
+                    </div>
+                    <div id="threat-modal-mitigation-row" class="threat-detail-field">
+                        <span class="threat-label">Recommended Defense:</span>
+                        <span id="threat-modal-mitigation" class="threat-mitigation-text"></span>
+                    </div>
+                </div>
+
+                <div class="threat-modal-prompt">
+                    <span class="threat-prompt-icon">🛡️</span>
+                    <div>
+                        <strong>Would you like to automatically remediate and apply this security fix to your source
+                            code?</strong>
+                        <div class="threat-prompt-sub">The remediation agent will prepare a patch for your review.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="threat-modal-footer">
+                <button id="btn-threat-modal-dismiss" class="btn-secondary" type="button">Dismiss / Keep
+                    Unchanged</button>
+                <button id="btn-threat-modal-autofix" class="btn-primary btn-threat-fix" type="button">
+                    <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z" fill="currentColor"></path>
+                        <path d="m8.5 12 2.2 2.2 4.8-5" stroke="#fff" stroke-width="2" fill="none"></path>
+                    </svg>
+                    Yes, Fix Vulnerability Automatically
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Provider & Engine Settings Modal -->
+    <div id="settings-modal" class="settings-modal-overlay" style="display:none;" role="dialog" aria-modal="true"
+        aria-labelledby="settings-modal-title">
+        <div class="threat-modal-card settings-modal-card">
+            <div class="threat-modal-header">
+                <div class="threat-header-left">
+                    <span class="badge cyan">Engine Configuration</span>
+                    <h3 id="settings-modal-title" style="margin:0; font-size:1.15rem; color:var(--text-primary);">AI
+                        Provider &amp; Documentation Settings</h3>
+                </div>
+                <button id="btn-close-settings-modal" class="btn-modal-close" type="button"
+                    aria-label="Close settings modal">×</button>
+            </div>
+
+            <div class="threat-modal-body" style="gap:16px;">
+                <p style="margin:0; color:var(--text-secondary); font-size:0.875rem; line-height:1.5;">
+                    Configure your AI inference provider (Gemini, OpenAI, Groq, Anthropic, Copilot, Ollama, or Offline
+                    AST) and code documentation formatting standards.
+                </p>
+
+                <div class="settings-form-grid">
+                    <div class="settings-form-group">
+                        <label for="settings-provider-select" class="settings-label">AI Inference Provider</label>
+                        <select id="settings-provider-select" class="settings-input">
+                            <option value="ast">Deterministic AST Engine (Offline · Zero Cloud)</option>
+                            <option value="gemini">Google Gemini (Gemini 1.5 / 2.0 Flash)</option>
+                            <option value="openai">OpenAI (GPT-4o / GPT-4o-mini)</option>
+                            <option value="groq">Groq Cloud (Llama 3.3 70B Versatile · Fast)</option>
+                            <option value="anthropic">Anthropic Claude (Claude 3.5 Sonnet / Haiku)</option>
+                            <option value="copilot">GitHub Copilot</option>
+                            <option value="huggingface">Hugging Face Hub</option>
+                            <option value="ollama">Local Ollama (Local LLM Server)</option>
+                        </select>
+                    </div>
+
+                    <div class="settings-form-group">
+                        <label for="settings-docstring-style" class="settings-label">Docstring Standard / Style</label>
+                        <select id="settings-docstring-style" class="settings-input">
+                            <option value="google">Google Format (Args, Returns, Raises)</option>
+                            <option value="sphinx">Sphinx / reStructuredText (:param, :returns:)</option>
+                            <option value="numpy">NumPy Format (Parameters, Returns, Raises)</option>
+                            <option value="standard">PEP-257 Standard Summary</option>
+                        </select>
+                    </div>
+
+                    <div class="settings-form-group" id="settings-apikey-group">
+                        <label for="settings-api-key" class="settings-label">
+                            <span>Provider API Key</span>
+                            <span id="settings-key-status" class="settings-key-status">Key configured</span>
+                        </label>
+                        <div class="settings-input-with-button">
+                            <input type="password" id="settings-api-key" class="settings-input"
+                                placeholder="Enter provider API key (sk-... / gsk_... / AIza...)">
+                            <button id="btn-toggle-key-visibility" class="btn-secondary btn-small" type="button"
+                                title="Show or hide API key">Show</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-form-group">
+                        <label for="settings-model-name" class="settings-label">Model Identifier</label>
+                        <input type="text" id="settings-model-name" class="settings-input"
+                            placeholder="e.g. gpt-4o-mini, gemini-1.5-flash, llama-3.3-70b-versatile">
+                    </div>
+
+                    <div class="settings-form-group" id="settings-baseurl-group">
+                        <label for="settings-base-url" class="settings-label">Base URL (Optional / Custom Proxy)</label>
+                        <input type="text" id="settings-base-url" class="settings-input"
+                            placeholder="e.g. http://127.0.0.1:11434/v1 or custom API proxy">
+                    </div>
+                </div>
+
+                <div class="settings-form-group" id="settings-provider-status-group" style="margin-top:8px;">
+                    <label class="settings-label">Provider Connectivity Status</label>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span id="provider-connectivity-status" class="badge">CONFIGURED / NOT TESTED</span>
+                    </div>
+                </div>
+
+                <div id="settings-test-result" class="settings-test-banner" style="display:none;"></div>
+            </div>
+
+            <div class="threat-modal-footer">
+                <button id="btn-test-provider" class="btn-secondary" type="button">
+                    <span id="test-provider-spinner" class="button-spinner" style="display:none;"></span>
+                    <span>Test Connection &amp; Latency</span>
+                </button>
+                <button id="btn-save-settings" class="btn-primary" type="button">Save &amp; Apply Preferences</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <!-- Scenarios & Examples Data -->
+    <script type="application/json" id="example-1">
+def calculate_circle_metrics(radius):
+    if radius < 0:
+        raise ValueError("Radius must be non-negative")
+    pi = 3.141592653589793
+    area = pi * (radius ** 2)
+    circumference = 2 * pi * radius
+    return {"area": area, "circumference": circumference}
+    </script>
+    <script type="application/json" id="example-2">
+import sqlite3
+
+def get_user_records(user_id):
+    conn = sqlite3.connect('production.db')
+    cursor = conn.cursor()
+    query = f"SELECT id, username, email, role FROM users WHERE id = {user_id}"
+    cursor.execute(query)
+    return cursor.fetchall()
+    </script>
+    <script type="application/json" id="example-3">
+import os
+import subprocess
+
+def ping_host(host_address):
+    cmd = f"ping -c 1 {host_address}"
+    return subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    </script>
+    <script type="application/json" id="example-4">
+import requests
+
+def fetch_remote_resource(target_url):
+    response = requests.get(target_url, verify=False, timeout=5)
+    return response.text
+    </script>
+    <script type="application/json" id="example-5">
+import pickle
+
+def load_session_data(serialized_payload):
+    session_data = pickle.loads(serialized_payload)
+    return session_data
+    </script>
+    <script type="application/json" id="example-6">
+import re
+
+def validate_username(input_str):
+    pattern = re.compile(r"^(a+)+$")
+    return bool(pattern.match(input_str))
+    </script>
+    <script type="application/json" id="example-7">
+import os
+
+def read_user_file(filename):
+    filepath = os.path.join("/var/data/uploads", filename)
+    with open(filepath, "r") as f:
+        return f.read()
+    </script>
+    <script type="application/json" id="example-8">
+def find_duplicates(numbers):
+    duplicates = []
+    for i in range(len(numbers)):
+        for j in range(i + 1, len(numbers)):
+            if numbers[i] == numbers[j] and numbers[i] not in duplicates:
+                duplicates.append(numbers[i])
+    return duplicates
+    </script>
+    <script type="application/json" id="example-9">
+from threading import RLock
+
+class ThreadSafeStack:
+    """Clean, object-oriented stack implementation with defensive bounds checking."""
+    def __init__(self):
+        self._items = []
+        self._lock = RLock()
+
+    def is_empty(self) -> bool:
+        with self._lock:
+            return len(self._items) == 0
+
+    def push(self, item):
+        with self._lock:
+            self._items.append(item)
+
+    def pop(self):
+        with self._lock:
+            if self.is_empty():
+                raise IndexError("pop from empty stack")
+            return self._items.pop()
+
+    def peek(self):
+        with self._lock:
+            if self.is_empty():
+                raise IndexError("peek from empty stack")
+            return self._items[-1]
+
+    def size(self) -> int:
+        with self._lock:
+            return len(self._items)
+    </script>
+    <script type="application/json" id="example-10">
+from typing import List, Optional
+from datetime import datetime
+
+class OrderItem:
+    """Represents a validated purchase item with line-item SKU and pricing."""
+    def __init__(self, sku: str, quantity: int, unit_price: float):
+        if quantity <= 0:
+            raise ValueError("Quantity must be positive")
+        if unit_price <= 0.0:
+            raise ValueError("Unit price must be positive")
+        self.sku = sku
+        self.quantity = quantity
+        self.unit_price = unit_price
+
+class CustomerOrder:
+    """Enterprise customer order container with discount and tax calculations."""
+    def __init__(self, order_id: str, email: str, items: List[OrderItem], discount_rate: float = 0.0):
+        self.order_id = order_id
+        self.email = email
+        self.items = items
+        self.discount_rate = max(0.0, min(0.5, discount_rate))
+        self.created_at = datetime.utcnow()
+
+def calculate_order_total(order: CustomerOrder) -> float:
+    """Calculates discounted total with regional sales tax."""
+    if not order.items:
+        raise ValueError("Cannot calculate total for empty order.")
+    subtotal = sum(item.quantity * item.unit_price for item in order.items)
+    discount_amount = subtotal * order.discount_rate
+    tax_amount = (subtotal - discount_amount) * 0.0825
+    return round((subtotal - discount_amount) + tax_amount, 2)
+    </script>
+    <script type="application/json" id="example-11">
+import math
+from typing import List, Tuple
+
+def compute_z_score_normalization(values: List[float], clip_outliers: bool = True) -> Tuple[List[float], float, float]:
+    """Computes sample mean, variance, and normalized Z-scores with boundary clipping."""
+    if not values:
+        raise ValueError("Feature list cannot be empty for normalization.")
+    n = len(values)
+    mean_val = sum(values) / n
+    variance = sum((x - mean_val) ** 2 for x in values) / (n - 1 if n > 1 else 1)
+    std_dev = math.sqrt(variance)
+    if std_dev == 0.0:
+        return [0.0] * n, round(mean_val, 4), 0.0
+    normalized = []
+    for x in values:
+        z = (x - mean_val) / std_dev
+        if clip_outliers:
+            z = max(-3.0, min(3.0, z))
+        normalized.append(round(z, 4))
+    return normalized, round(mean_val, 4), round(std_dev, 4)
+    </script>
+    <script type="application/json" id="example-12">
+import asyncio
+import time
+from typing import Dict, Any
+
+class ResilientHttpScraper:
+    """Async scraper demonstrating exponential backoff, circuit-breaker retry limits, and status telemetry."""
+    def __init__(self, max_retries: int = 3, base_delay: float = 0.5):
+        self.max_retries = max_retries
+        self.base_delay = base_delay
+        self.metrics = {"requests": 0, "failures": 0, "successes": 0}
+
+    async def fetch_with_backoff(self, endpoint: str, simulated_errors: int = 0) -> Dict[str, Any]:
+        """Executes simulated async request with exponential backoff on transient failures."""
+        self.metrics["requests"] += 1
+        for attempt in range(1, self.max_retries + 1):
+            if attempt <= simulated_errors:
+                self.metrics["failures"] += 1
+                delay = self.base_delay * (2 ** (attempt - 1))
+                await asyncio.sleep(delay)
+                continue
+            self.metrics["successes"] += 1
+            return {
+                "endpoint": endpoint,
+                "status": 200,
+                "attempts_required": attempt,
+                "timestamp": time.time()
+            }
+        raise ConnectionError(f"Exceeded max retries ({self.max_retries}) contacting {endpoint}")
+    </script>
+    <script type="application/json" id="example-13">
+import time
+import base64
+import json
+import hmac
+import hashlib
+from typing import Any, Dict, List, Optional
+
+class TokenValidationError(Exception):
+    """Raised when cryptographic or claims validation fails."""
+    pass
+
+class JwtAuthGuard:
+    """Zero-dependency JWT signature and scope authorization verifier."""
+    def __init__(self, secret_key: str, required_issuer: str):
+        self.secret_key = secret_key.encode("utf-8")
+        self.required_issuer = required_issuer
+
+    def verify_token_claims(self, token: str, required_scopes: Optional[List[str]] = None) -> Dict[str, Any]:
+        """Decodes token, validates HMAC-SHA256 signature, expires stale sessions, and enforces role scopes."""
+        parts = token.split(".")
+        if len(parts) != 3:
+            raise TokenValidationError("Malformed JWT: expected 3 dot-delimited segments.")
+        header_b64, payload_b64, signature_b64 = parts
+        signing_input = f"{header_b64}.{payload_b64}".encode("utf-8")
+        expected_sig = base64.urlsafe_b64encode(
+            hmac.new(self.secret_key, signing_input, hashlib.sha256).digest()
+        ).decode("utf-8").rstrip("=")
+        if not hmac.compare_digest(signature_b64.rstrip("="), expected_sig):
+            raise TokenValidationError("Invalid cryptographic signature.")
+        padded_payload = payload_b64 + "=" * (-len(payload_b64) % 4)
+        claims = json.loads(base64.urlsafe_b64decode(padded_payload).decode("utf-8"))
+        if claims.get("iss") != self.required_issuer:
+            raise TokenValidationError(f"Issuer mismatch: expected {self.required_issuer}")
+        if claims.get("exp", 0) < time.time():
+            raise TokenValidationError("Session token has expired.")
+        if required_scopes:
+            user_scopes = set(claims.get("scopes", []))
+            for req in required_scopes:
+                if req not in user_scopes:
+                    raise TokenValidationError(f"Missing required permission scope: {req}")
+        return claims
+    </script>
+    <script type="application/json" id="example-14">
+import time
+from collections import OrderedDict
+from threading import RLock
+from typing import Any, Optional
+
+class ConcurrentLruCache:
+    """Thread-safe Least Recently Used (LRU) memory cache with time-to-live (TTL) expiry."""
+    def __init__(self, capacity: int = 128, default_ttl_seconds: float = 300.0):
+        if capacity <= 0:
+            raise ValueError("Cache capacity must be strictly positive.")
+        self.capacity = capacity
+        self.default_ttl = default_ttl_seconds
+        self._lock = RLock()
+        self._store = OrderedDict()
+
+    def get(self, key: str) -> Optional[Any]:
+        """Fetches item from cache, verifies TTL expiry, and updates LRU position."""
+        with self._lock:
+            if key not in self._store:
+                return None
+            val, expiry = self._store[key]
+            if time.time() > expiry:
+                del self._store[key]
+                return None
+            self._store.move_to_end(key)
+            return val
+
+    def put(self, key: str, value: Any, ttl: Optional[float] = None) -> None:
+        """Stores item, refreshes expiry, and evicts oldest items if capacity exceeded."""
+        ttl_seconds = ttl if ttl is not None else self.default_ttl
+        expiry = time.time() + ttl_seconds
+        with self._lock:
+            if key in self._store:
+                self._store.move_to_end(key)
+            self._store[key] = (value, expiry)
+            while len(self._store) > self.capacity:
+                self._store.popitem(last=False)
+    </script>
+
+    <!-- Modular Nexus JS Subsystems -->
+    <script defer src="js/store.js?v=10"></script>
+    <script defer src="js/api.js?v=10"></script>
+    <script defer src="js/sse_client.js?v=10"></script>
+    <script defer src="js/audit_renderer.js?v=10"></script>
+    <script defer src="js/workflow_controller.js?v=10"></script>
+    <script defer src="js/editor_manager.js?v=10"></script>
+    <script defer src="js/reviewer_cycle.js?v=10"></script>
+    <script defer src="js/settings_manager.js?v=10"></script>
+    <script defer src="js/ast_visualizer.js?v=10"></script>
+    <script defer src="workbench.js?v=10"></script>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+This directory contains vendored offline font assets licensed under the SIL Open Font License, Version 1.1:
+
+- Manrope: Copyright 2020 The Manrope Project Authors (https://github.com/sharanda/manrope)
+- JetBrains Mono: Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)

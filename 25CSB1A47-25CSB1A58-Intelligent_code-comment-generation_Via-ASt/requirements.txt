@@ -1,0 +1,25 @@
+# Core Web Framework
+Flask==3.1.3
+Werkzeug==3.1.6
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+itsdangerous==2.2.0
+click==8.3.1
+blinker==1.9.0
+
+# Environment Configuration & Server
+python-dotenv==1.2.2
+gunicorn==23.0.0
+
+# AST Visualization
+# AST PDF rendering also requires the Graphviz dot executable on PATH.
+graphviz==0.20.1
+
+# AI Model Hub & Supporting Runtime Libraries
+huggingface_hub==1.4.1
+filelock==3.24.3
+fsspec==2026.2.0
+packaging==26.0
+PyYAML==6.0.3
+tqdm==4.67.3
+typing_extensions==4.15.0
