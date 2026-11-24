@@ -1,0 +1,4 @@
+# ⚡ Attack 2: Adversarial Policy Downgrade Attack
+minLength 2
+requireUpper false
+requireDigit false
