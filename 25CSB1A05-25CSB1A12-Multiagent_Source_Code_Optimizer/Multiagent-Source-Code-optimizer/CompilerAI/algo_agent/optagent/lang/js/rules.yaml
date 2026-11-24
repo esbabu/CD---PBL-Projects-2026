@@ -1,0 +1,81 @@
+rules:
+  - id: js_list_to_set_includes
+    name: Replace Array.includes/indexOf in loop with Set
+    pattern: linear_membership
+    category: data_structure
+    preconditions: ["primitive_or_samevaluezero_elements"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: Maintain a companion Set alongside an array when checking membership via .includes() or .indexOf() inside a loop.
+
+  - id: js_nested_loop_to_map_index
+    name: Replace nested pair-search loop with Map inverted index + binary search
+    pattern: nested_loop
+    category: algorithmic
+    preconditions: ["pair_sum_or_match"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n log n)"
+    description: Build a Map from value to sorted index array and binary-search for the first valid index j > i, preserving lexicographically smallest (i, j).
+
+  - id: js_shift_queue_to_head_index
+    name: Replace Array.shift() queue loop with head index pointer
+    pattern: linear_shift
+    category: data_structure
+    preconditions: ["fifo_queue"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: Track queue head with an integer index instead of calling .shift() in a loop.
+
+  - id: js_spread_reduce_to_push
+    name: Replace [...acc, x] spread accumulation with push
+    pattern: spread_in_reduce
+    category: allocation
+    preconditions: ["fresh_accumulator_array"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: Mutate a freshly created accumulator array with .push() instead of copying via spread on every iteration.
+
+  - id: js_string_concat_to_array_join
+    name: Replace string += accumulation in loop with Array.push + join
+    pattern: string_concat
+    category: allocation
+    preconditions: ["string_accumulation"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: Collect string chunks in an array and call .join('') once after the loop.
+
+  - id: js_memoize_with_map
+    name: Memoize pure recursive function with Map
+    pattern: branching_recursion
+    category: dynamic_programming
+    preconditions: ["pure_recursive"]
+    breaks: []
+    expected_gain: "O(2^n) -> O(n)"
+    description: Cache subproblem results in a local Map to avoid exponential recomputation.
+
+  - id: js_typed_array_hot_loop
+    name: Use TypedArray (Int32Array / Float64Array) for numeric hot loops
+    pattern: numeric_hot_loop
+    category: memory_layout
+    preconditions: ["fixed_width_numeric"]
+    breaks: ["return_type"]
+    expected_gain: "2x-5x constant factor"
+    description: Store dense numeric buffers in Int32Array or Float64Array to avoid boxed values and GC churn.
+
+  - id: js_object_to_map_counts
+    name: Use Map instead of plain Object for dynamic string keys
+    pattern: dynamic_lookup
+    category: data_structure
+    preconditions: ["string_keys"]
+    breaks: ["key_enumeration_order"]
+    expected_gain: "1.5x-3x faster lookup and avoids prototype collisions"
+    description: Replace plain Object dictionary with Map; carries key_enumeration_order because integer-like keys sort differently in Object vs Map.
+
+  - id: js_map_to_object
+    name: Replace Map with plain Object for non-integer string keys
+    pattern: map_overhead
+    category: micro_optimization
+    preconditions: ["non_numeric_string_keys"]
+    breaks: ["key_enumeration_order"]
+    expected_gain: "1.2x-2x"
+    description: Replace Map with plain Object when key_enumeration_order is relaxed.

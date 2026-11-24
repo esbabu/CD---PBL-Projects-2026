@@ -1,0 +1,299 @@
+{
+  "schema_version": "1",
+  "language": "python",
+  "source_sha": "e1fa2e0a16df",
+  "source_path": "input.py",
+  "entry_point": "two_sum",
+  "source": "\ndef two_sum(nums, target):\n    for i in range(len(nums)):\n        for j in range(i+1, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n    return []\n",
+  "module_facts": {
+    "functions": {
+      "two_sum": {
+        "name": "two_sum",
+        "lineno": 2,
+        "end_lineno": 7,
+        "params": [
+          {
+            "name": "nums",
+            "annotation": null,
+            "default": null,
+            "kind": "positional"
+          },
+          {
+            "name": "target",
+            "annotation": null,
+            "default": null,
+            "kind": "positional"
+          }
+        ],
+        "returns_annotation": null,
+        "docstring": null,
+        "decorators": [],
+        "is_generator": false,
+        "is_async": false,
+        "is_recursive": false,
+        "in_recursive_cycle": false,
+        "branching_self_calls": 0,
+        "callees_local": [],
+        "callees_external": [
+          "len",
+          "range"
+        ],
+        "call_sites": [],
+        "effects": [],
+        "transitive_effect_kinds": [],
+        "mutated_params": [],
+        "reads_globals": [],
+        "raises": [],
+        "handled_exceptions": [],
+        "implicit_raises": [
+          "IndexError/KeyError (subscript)"
+        ],
+        "loop_count": 2,
+        "max_loop_depth": 2,
+        "float_reasons": [],
+        "sort_uses": [],
+        "unordered_iterations": [],
+        "cost_patterns": [],
+        "uses_hash_or_id": false,
+        "may_return_input_alias": false,
+        "extra": {}
+      }
+    },
+    "imports": {},
+    "module_vars": [],
+    "mutable_module_vars": [],
+    "module_side_effects": [],
+    "root_functions": [
+      "two_sum"
+    ]
+  },
+  "spec": {
+    "summary": "two_sum(nums, target) (python)",
+    "parameters": [],
+    "return_type": "",
+    "return_description": "",
+    "preconditions": [],
+    "postconditions": [],
+    "invariants": [],
+    "error_behavior": [],
+    "ordering_semantics": "",
+    "numeric_semantics": "",
+    "quirks": [],
+    "entry_point": "two_sum",
+    "version": 1,
+    "side_effects": [],
+    "determinism": "deterministic",
+    "reconciliation_notes": []
+  },
+  "contract": [
+    {
+      "aspect": "return_value",
+      "level": "must_preserve",
+      "applicable": true,
+      "rationale": "Core behaviour: identical results for every valid input.",
+      "source": "default"
+    },
+    {
+      "aspect": "return_type",
+      "level": "must_preserve",
+      "applicable": true,
+      "rationale": "Observed return types: ['list']. e.g. list vs tuple, int vs float (/ vs //) must not change.",
+      "source": "dynamic"
+    },
+    {
+      "aspect": "return_order",
+      "level": "must_preserve",
+      "applicable": true,
+      "rationale": "Element order of the result is observable (including dict insertion order).",
+      "source": "default"
+    },
+    {
+      "aspect": "float_exactness",
+      "level": "must_preserve",
+      "applicable": false,
+      "rationale": "Float results must match bit-for-bit: reassociation, FMA, or vectorised sums change low bits. Relax via constraints.float_rel_tol if acceptable.",
+      "source": "default"
+    },
+    {
+      "aspect": "arg_mutation",
+      "level": "must_preserve",
+      "applicable": true,
+      "rationale": "Original does not mutate inputs: an optimization must not start mutating them (in-place tricks!).",
+      "source": "static"
+    },
+    {
+      "aspect": "return_aliasing",
+      "level": "may_change",
+      "applicable": false,
+      "rationale": "Identity of the returned object is not relied upon.",
+      "source": "static"
+    },
+    {
+      "aspect": "stdout",
+      "level": "must_preserve",
+      "applicable": false,
+      "rationale": "Printed output (text and order) is observable behaviour.",
+      "source": "static"
+    },
+    {
+      "aspect": "exception_type",
+      "level": "must_preserve",
+      "applicable": true,
+      "rationale": "Original raises: explicit=none, observed=none, implicit=['IndexError/KeyError (subscript)']. Same inputs must raise the same exception TYPE.",
+      "source": "static"
+    },
+    {
+      "aspect": "exception_message",
+      "level": "may_change",
+      "applicable": true,
+      "rationale": "Message text is rarely relied upon; raise to MUST if callers parse it.",
+      "source": "default"
+    },
+    {
+      "aspect": "global_state",
+      "level": "must_preserve",
+      "applicable": false,
+      "rationale": "Module-level state is written (caches, counters). Removing or adding it changes cross-call behaviour.",
+      "source": "static"
+    },
+    {
+      "aspect": "external_io",
+      "level": "must_preserve",
+      "applicable": false,
+      "rationale": "File/network/process/stdin interaction must be preserved in kind and order.",
+      "source": "static"
+    },
+    {
+      "aspect": "determinism",
+      "level": "must_preserve",
+      "applicable": true,
+      "rationale": "Original is deterministic: the optimized version must be too.",
+      "source": "static"
+    },
+    {
+      "aspect": "sort_stability",
+      "level": "must_preserve",
+      "applicable": false,
+      "rationale": "Python's sort is stable; equal keys must keep original relative order. Replacing with heap/selection/unstable algorithms silently breaks this.",
+      "source": "static"
+    },
+    {
+      "aspect": "recursion_limit",
+      "level": "may_change",
+      "applicable": false,
+      "rationale": "An iterative rewrite that no longer hits RecursionError on deep inputs is an acceptable change.",
+      "source": "static"
+    }
+  ],
+  "constraints": {
+    "allow_approximation": false,
+    "allow_parallelism": false,
+    "allow_native_extensions": false,
+    "allow_new_dependencies": false,
+    "optimize_for": "balanced",
+    "float_rel_tol": null,
+    "input_size_hint": null,
+    "notes": null
+  },
+  "golden_seed": [
+    {
+      "origin": "heuristic",
+      "args": [
+        [
+          5,
+          0,
+          1,
+          -3
+        ],
+        5
+      ],
+      "kwargs": {},
+      "status": "ok",
+      "ret": [
+        0,
+        1
+      ],
+      "return_type": "list",
+      "exc_type": null,
+      "exc_msg": null,
+      "stdout": "",
+      "mutated_args": [],
+      "globals_changed": [],
+      "returns_input_alias": [],
+      "elapsed_s": 0.000022499996703118086,
+      "generator": false,
+      "nondeterministic_fields": []
+    },
+    {
+      "origin": "heuristic",
+      "args": [
+        [],
+        0
+      ],
+      "kwargs": {},
+      "status": "ok",
+      "ret": [],
+      "return_type": "list",
+      "exc_type": null,
+      "exc_msg": null,
+      "stdout": "",
+      "mutated_args": [],
+      "globals_changed": [],
+      "returns_input_alias": [],
+      "elapsed_s": 0.000014999997802078724,
+      "generator": false,
+      "nondeterministic_fields": []
+    },
+    {
+      "origin": "heuristic",
+      "args": [
+        [
+          5
+        ],
+        1
+      ],
+      "kwargs": {},
+      "status": "ok",
+      "ret": [],
+      "return_type": "list",
+      "exc_type": null,
+      "exc_msg": null,
+      "stdout": "",
+      "mutated_args": [],
+      "globals_changed": [],
+      "returns_input_alias": [],
+      "elapsed_s": 8.200004231184721e-6,
+      "generator": false,
+      "nondeterministic_fields": []
+    },
+    {
+      "origin": "heuristic",
+      "args": [
+        [
+          5,
+          5,
+          -3
+        ],
+        -3
+      ],
+      "kwargs": {},
+      "status": "ok",
+      "ret": [],
+      "return_type": "list",
+      "exc_type": null,
+      "exc_msg": null,
+      "stdout": "",
+      "mutated_args": [],
+      "globals_changed": [],
+      "returns_input_alias": [],
+      "elapsed_s": 0.000013200042303651571,
+      "generator": false,
+      "nondeterministic_fields": []
+    }
+  ],
+  "validation": {
+    "status": "skipped",
+    "rounds": []
+  },
+  "warnings": []
+}

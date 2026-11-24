@@ -1,0 +1,324 @@
+// Auto-generated OptAgent C++17 test driver (fork-per-case + STL marshalling + exception demangling)
+#include "harness_common.h"
+#if __has_include(<nlohmann/json.hpp>)
+#include <nlohmann/json.hpp>
+#else
+#include "json.hpp"
+#endif
+
+#include <exception>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <optional>
+#include <set>
+#include <sstream>
+#include <string>
+#include <tuple>
+#include <typeinfo>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+
+#if defined(__GNUC__) || defined(__clang__)
+#include <cxxabi.h>
+#endif
+
+#include "{{ target_filename }}"
+
+using nlohmann::json;
+
+static std::string opt_demangle(const char *name) {
+#if defined(__GNUC__) || defined(__clang__)
+    int status = 0;
+    char *dem = abi::__cxa_demangle(name, nullptr, nullptr, &status);
+    if (status == 0 && dem) {
+        std::string res(dem);
+        std::free(dem);
+        return res;
+    }
+    if (dem) std::free(dem);
+#endif
+    return name ? std::string(name) : std::string("unknown");
+}
+
+// ---------- Canonical C++ -> JSON encoders ----------
+template <typename T> json opt_encode(const T &v);
+
+inline json opt_encode(bool v) { return json(v); }
+inline json opt_encode(int v) { return json(v); }
+inline json opt_encode(long v) { return json(v); }
+inline json opt_encode(long long v) { return json(v); }
+inline json opt_encode(unsigned int v) { return json(v); }
+inline json opt_encode(unsigned long v) { return json(v); }
+inline json opt_encode(unsigned long long v) { return json(v); }
+inline json opt_encode(double v) {
+    if (std::isnan(v)) { json o = json::object(); o["__float__"] = "nan"; return o; }
+    if (std::isinf(v)) { json o = json::object(); o["__float__"] = v > 0 ? "inf" : "-inf"; return o; }
+    if (v == 0.0 && std::signbit(v)) { json o = json::object(); o["__float__"] = "-0"; return o; }
+    return json(v);
+}
+inline json opt_encode(float v) { return opt_encode(static_cast<double>(v)); }
+inline json opt_encode(const std::string &v) { return json(v); }
+
+template <typename T>
+json opt_encode(const std::vector<T> &vec) {
+    json a = json::array();
+    for (const auto &x : vec) a.push_back(opt_encode(x));
+    return a;
+}
+
+template <typename A, typename B>
+json opt_encode(const std::pair<A, B> &p) {
+    json o = json::object();
+    json arr = json::array();
+    arr.push_back(opt_encode(p.first));
+    arr.push_back(opt_encode(p.second));
+    o["__tuple__"] = arr;
+    return o;
+}
+
+template <typename T>
+json opt_encode(const std::set<T> &s) {
+    json o = json::object();
+    json arr = json::array();
+    for (const auto &x : s) arr.push_back(opt_encode(x));
+    o["__set__"] = arr;
+    return o;
+}
+
+template <typename T>
+json opt_encode(const std::unordered_set<T> &s) {
+    json o = json::object();
+    json arr = json::array();
+    for (const auto &x : s) arr.push_back(opt_encode(x));
+    o["__uset__"] = arr;
+    return o;
+}
+
+template <typename K, typename V>
+json opt_encode(const std::map<K, V> &m) {
+    json o = json::object();
+    json arr = json::array();
+    for (const auto &kv : m) {
+        json pair = json::array();
+        pair.push_back(opt_encode(kv.first));
+        pair.push_back(opt_encode(kv.second));
+        arr.push_back(pair);
+    }
+    o["__dict__"] = arr;
+    return o;
+}
+
+template <typename K, typename V>
+json opt_encode(const std::unordered_map<K, V> &m) {
+    json o = json::object();
+    json arr = json::array();
+    for (const auto &kv : m) {
+        json pair = json::array();
+        pair.push_back(opt_encode(kv.first));
+        pair.push_back(opt_encode(kv.second));
+        arr.push_back(pair);
+    }
+    o["__udict__"] = arr;
+    return o;
+}
+
+template <typename T>
+json opt_encode(const std::optional<T> &opt) {
+    return opt.has_value() ? opt_encode(*opt) : json(nullptr);
+}
+
+// ---------- Canonical JSON -> C++ decoders ----------
+template <typename T>
+T opt_decode(const json &j) {
+    return j.get<T>();
+}
+
+template <typename T>
+std::vector<T> opt_decode_vec(const json &j) {
+    std::vector<T> out;
+    if (j.is_array()) {
+        out.reserve(j.size());
+        for (size_t i = 0; i < j.size(); i++) out.push_back(opt_decode<T>(j[i]));
+    }
+    return out;
+}
+
+static void run_single_case(int idx, const json &cobj, double timeout_s, int rand_seed, FILE *out_fp) {
+    if (!cobj.contains("args") || !cobj.at("args").is_array()) {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"load_error\",\"exc_msg\":\"Missing args\"}\n", idx);
+        fflush(out_fp);
+        return;
+    }
+#if !defined(_WIN32)
+    int stdout_pipe[2], res_pipe[2];
+    if (pipe(stdout_pipe) != 0 || pipe(res_pipe) != 0) {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"crash\",\"exc_msg\":\"pipe() failed\"}\n", idx);
+        fflush(out_fp);
+        return;
+    }
+    pid_t pid = fork();
+    if (pid == 0) {
+        close(stdout_pipe[0]);
+        close(res_pipe[0]);
+        dup2(stdout_pipe[1], STDOUT_FILENO);
+        close(stdout_pipe[1]);
+        optagent_child_setup_limits(timeout_s, 1024);
+        std::srand(static_cast<unsigned int>(rand_seed));
+        errno = 0;
+        optagent_sancov_reset();
+
+        const json &args = cobj.at("args");
+        json out = json::object();
+        out["idx"] = idx;
+        out["status"] = "ok";
+        out["mut"] = json::object();
+        out["glob"] = json::object();
+        out["alias"] = json::array();
+        out["edges"] = json::array();
+        out["prop_failures"] = json::array();
+        out["sanitizer"] = nullptr;
+
+        try {
+            {% for b in sig.params %}
+            {% if b.ntype.kind == 'vector' %}
+            auto p_{{ b.name }} = opt_decode_vec<{{ b.ntype.elem.c_type if b.ntype.elem else 'int' }}>(args[{{ loop.index0 }}]);
+            std::string _before_{{ b.name }} = opt_encode(p_{{ b.name }}).dump();
+            {% elif b.ntype.kind == 'string' %}
+            std::string p_{{ b.name }} = args[{{ loop.index0 }}].get<std::string>();
+            std::string _before_{{ b.name }} = opt_encode(p_{{ b.name }}).dump();
+            {% else %}
+            {{ b.ntype.c_type }} p_{{ b.name }} = opt_decode<{{ b.ntype.c_type }}>(args[{{ loop.index0 }}]);
+            {% endif %}
+            {% endfor %}
+
+            double t0 = optagent_now_s();
+            {% if sig.return_type.kind != 'void' %}
+            auto _ret = {{ sig.name }}({% for b in sig.params %}{% if b.ntype.is_rvalue_ref %}std::move(p_{{ b.name }}){% else %}p_{{ b.name }}{% endif %}{{ ", " if not loop.last else "" }}{% endfor %});
+            OPTAGENT_DO_NOT_OPTIMIZE(_ret);
+            out["elapsed_s"] = optagent_now_s() - t0;
+            out["ret"] = opt_encode(_ret);
+            out["return_type"] = "{{ sig.return_type.c_type }}";
+            {% else %}
+            {{ sig.name }}({% for b in sig.params %}{% if b.ntype.is_rvalue_ref %}std::move(p_{{ b.name }}){% else %}p_{{ b.name }}{% endif %}{{ ", " if not loop.last else "" }}{% endfor %});
+            out["elapsed_s"] = optagent_now_s() - t0;
+            out["ret"] = nullptr;
+            out["return_type"] = "void";
+            {% endif %}
+            std::cout.flush();
+            fflush(stdout);
+
+            {% for b in sig.params %}
+            {% if b.ntype.kind in ('vector', 'string') and not b.ntype.is_rvalue_ref %}
+            {
+                json _after = opt_encode(p_{{ b.name }});
+                if (_after.dump() != _before_{{ b.name }}) {
+                    out["mut"]["arg{{ loop.index0 }}"] = _after;
+                }
+            }
+            {% endif %}
+            {% endfor %}
+        } catch (const std::exception &e) {
+            out["status"] = "exception";
+            out["exc_type"] = opt_demangle(typeid(e).name());
+            out["exc_msg"] = std::string(e.what()).substr(0, 500);
+        } catch (...) {
+            out["status"] = "exception";
+            out["exc_type"] = "<non-std>";
+            out["exc_msg"] = "non-std::exception thrown";
+        }
+
+        if (g_optagent_sancov_start && g_optagent_sancov_stop) {
+            json edges = json::array();
+            for (uint8_t *p = g_optagent_sancov_start; p < g_optagent_sancov_stop; p++) {
+                if (*p) edges.push_back(std::string("sc:") + std::to_string(p - g_optagent_sancov_start));
+            }
+            out["edges"] = edges;
+        }
+
+        std::string payload = out.dump();
+        ssize_t _w = write(res_pipe[1], payload.data(), payload.size());
+        (void)_w;
+        close(res_pipe[1]);
+        _exit(0);
+    }
+
+    close(stdout_pipe[1]);
+    close(res_pipe[1]);
+    int status = 0;
+    double deadline = optagent_now_s() + timeout_s + 1.0;
+    int timed_out = 0;
+    while (true) {
+        pid_t w = waitpid(pid, &status, WNOHANG);
+        if (w == pid) break;
+        if (optagent_now_s() > deadline) {
+            kill(pid, SIGKILL);
+            waitpid(pid, &status, 0);
+            timed_out = 1;
+            break;
+        }
+        struct timespec slp = {0, 2000000};
+        nanosleep(&slp, nullptr);
+    }
+
+    std::string res_str, out_str;
+    char buf[4096];
+    ssize_t n;
+    while ((n = read(res_pipe[0], buf, sizeof(buf))) > 0) res_str.append(buf, static_cast<size_t>(n));
+    close(res_pipe[0]);
+    while ((n = read(stdout_pipe[0], buf, sizeof(buf))) > 0) out_str.append(buf, static_cast<size_t>(n));
+    close(stdout_pipe[0]);
+
+    if (timed_out) {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"timeout\",\"exc_msg\":\"Case timed out\"}\n", idx);
+    } else if (WIFSIGNALED(status)) {
+        int sig = WTERMSIG(status);
+        const char *sname = optagent_signal_name(sig);
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"%s\",\"signal\":\"%s\",\"exc_msg\":\"Signal %s\"}\n",
+                idx, (sig == SIGALRM || sig == SIGXCPU) ? "timeout" : "crash", sname, sname);
+    } else if (!res_str.empty() && res_str.back() == '}') {
+        res_str.pop_back();
+        fputs(res_str.c_str(), out_fp);
+        fputs(",\"stdout\":", out_fp);
+        optagent_fprint_json_str(out_fp, out_str.c_str());
+        fputs("}\n", out_fp);
+    } else {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"crash\",\"exc_msg\":\"Child exited with code %d\"}\n", idx, WEXITSTATUS(status));
+    }
+    fflush(out_fp);
+#else
+    (void)timeout_s; (void)rand_seed;
+    fprintf(out_fp, "{\"idx\":%d,\"status\":\"load_error\",\"exc_msg\":\"Native fork harness requires POSIX/Docker\"}\n", idx);
+    fflush(out_fp);
+#endif
+}
+
+int main(int argc, char **argv) {
+    if (argc < 4) return 1;
+    std::ifstream cfg_in(argv[3]);
+    std::stringstream cfg_ss;
+    cfg_ss << cfg_in.rdbuf();
+    json cfg = json::parse(cfg_ss.str());
+    double timeout_s = cfg.contains("timeout") ? cfg.at("timeout").get<double>() : 2.0;
+    int rand_seed = cfg.contains("rand_seed") ? cfg.at("rand_seed").get<int>() : 20240607;
+    int start = cfg.contains("start") ? cfg.at("start").get<int>() : 0;
+
+    std::ifstream cases_in(argv[1]);
+    FILE *out_fp = fopen(argv[2], "a");
+    if (!out_fp) return 2;
+
+    std::string line;
+    int idx = 0;
+    while (std::getline(cases_in, line)) {
+        if (!line.empty() && idx >= start) {
+            run_single_case(idx, json::parse(line), timeout_s, rand_seed, out_fp);
+        }
+        idx++;
+    }
+    fprintf(out_fp, "{\"done\":true}\n");
+    fflush(out_fp);
+    fclose(out_fp);
+    return 0;
+}

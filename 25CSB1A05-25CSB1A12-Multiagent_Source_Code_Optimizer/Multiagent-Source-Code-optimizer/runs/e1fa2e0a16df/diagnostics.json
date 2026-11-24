@@ -1,0 +1,8 @@
+[
+  {
+    "stage": "oracle",
+    "error_type": "TypeError",
+    "error": "Oracle.load() got an unexpected keyword argument 'adapter'",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\jaish\\Desktop\\TOC FINAL FOLDER\\END FOLDER\\Multiagent-Source-Code-Optimizer\\CompilerAI\\algo_agent\\algo_agent\\optagent\\core\\stages.py\", line 40, in run_stage\n    value = fn()\n  File \"C:\\Users\\jaish\\Desktop\\TOC FINAL FOLDER\\END FOLDER\\Multiagent-Source-Code-Optimizer\\CompilerAI\\algo_agent\\algo_agent\\optagent\\agent.py\", line 460, in _do_oracle\n    return Oracle.load(sha, self.s, adapter=adapter)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: Oracle.load() got an unexpected keyword argument 'adapter'\n"
+  }
+]

@@ -1,0 +1,72 @@
+rules:
+  - id: c_hoist_strlen
+    name: Hoist strlen() out of loop condition
+    pattern: strlen_in_loop
+    category: loop_invariant
+    preconditions: ["immutable_string_in_loop"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: Compute size_t n = strlen(s) once before the loop instead of recomputing strlen(s) on every iteration.
+
+  - id: c_nested_loop_to_hash_table
+    name: Replace nested pair loop with open-addressed hash table / sorted index search
+    pattern: nested_loop
+    category: algorithmic
+    preconditions: ["pair_sum_or_match"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n log n)"
+    description: Build a sorted (value, index) array and binary-search for the earliest valid partner j > i, preserving lexicographically smallest (i, j) with zero UB.
+
+  - id: c_loop_to_memcpy_memset
+    name: Replace element-wise copy/zero loop with memcpy/memset
+    pattern: copy_loop
+    category: vectorization
+    preconditions: ["non_overlapping_contiguous_buffers"]
+    breaks: []
+    expected_gain: "3x-10x via SIMD libc routines"
+    description: Replace manual byte/element copy or fill loops with standard memcpy or memset.
+
+  - id: c_counting_radix_sort
+    name: Use counting or radix sort for small bounded integer ranges
+    pattern: unstable_sort
+    category: algorithmic
+    preconditions: ["bounded_small_integer_keys"]
+    breaks: []
+    expected_gain: "O(n log n) -> O(n)"
+    description: Replace qsort on dense small-range integers with linear-time counting/radix sort.
+
+  - id: c_loop_interchange_locality
+    name: Interchange nested loops for row-major cache locality
+    pattern: nested_loop
+    category: memory_layout
+    preconditions: ["independent_iterations"]
+    breaks: []
+    expected_gain: "2x-8x from L1 cache locality"
+    description: Reorder loop nesting so innermost accesses stride contiguously through memory.
+
+  - id: c_add_restrict
+    name: Annotate non-aliasing pointer parameters with restrict
+    pattern: pointer_aliasing
+    category: compiler_hint
+    preconditions: ["proven_disjoint_buffers"]
+    breaks: ["abi_signature"]
+    expected_gain: "1.2x-2x auto-vectorization"
+    description: Add C11 restrict qualifier to enable compiler vectorization (only when abi_signature allows).
+
+  - id: c_precompute_invariant
+    name: Hoist loop-invariant expressions and pointer arithmetic
+    pattern: linear_scan
+    category: loop_invariant
+    preconditions: ["pure_expression"]
+    breaks: []
+    expected_gain: "1.3x-2x"
+    description: Move invariant computations out of hot inner loops.
+
+  - id: c_widen_accumulator
+    name: Use wider integer accumulator (int64_t / long long) to prevent overflow
+    pattern: integer_accumulation
+    category: safety_and_perf
+    preconditions: ["signed_sum_loop"]
+    breaks: []
+    expected_gain: "Eliminates UB while keeping O(n) single-pass throughput"
+    description: Accumulate sums in long long / int64_t on valid inputs where original is UB-free.

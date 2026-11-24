@@ -1,0 +1,12 @@
+[
+  {
+    "problem_id": "pie_001",
+    "input_code": "def find_duplicates(items):\n    res = []\n    for i in range(len(items)):\n        for j in range(i + 1, len(items)):\n            if items[i] == items[j] and items[i] not in res:\n                res.append(items[i])\n    return res\n",
+    "reference_code": "def find_duplicates(items):\n    seen = set()\n    dup = set()\n    for x in items:\n        if x in seen:\n            dup.add(x)\n        seen.add(x)\n    return list(dup)\n",
+    "test_cases": [
+      {"input": [1, 2, 3, 2, 4, 1]},
+      {"input": [5, 5, 5, 5]},
+      {"input": [1, 2, 3]}
+    ]
+  }
+]

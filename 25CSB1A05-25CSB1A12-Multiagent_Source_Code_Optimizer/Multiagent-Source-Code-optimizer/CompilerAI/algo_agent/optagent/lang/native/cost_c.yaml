@@ -1,0 +1,13 @@
+# C11 standard library operation complexities (Step 3 Analyzer)
+costs:
+  strlen: "O(n)"
+  strcmp: "O(n)"
+  strncmp: "O(n)"
+  strchr: "O(n)"
+  strstr: "O(n*m)"
+  memcpy: "O(n)"
+  memmove: "O(n)"
+  memset: "O(n)"
+  memcmp: "O(n)"
+  qsort: "O(n log n)"
+  bsearch: "O(log n)"

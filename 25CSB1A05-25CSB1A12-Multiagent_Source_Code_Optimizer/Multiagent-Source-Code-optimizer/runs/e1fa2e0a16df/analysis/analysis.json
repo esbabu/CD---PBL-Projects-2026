@@ -1,0 +1,166 @@
+{
+  "schema_version": "3",
+  "source_sha": "e1fa2e0a16df",
+  "entry_point": "two_sum",
+  "functions": {
+    "two_sum": {
+      "name": "two_sum",
+      "static_time": "O(n^2)",
+      "static_space": "O(1)",
+      "empirical_time": "O(n)",
+      "empirical_space": "O(n)",
+      "time_fit": {
+        "model": "O(n)",
+        "formula": "degree ~ 1.00",
+        "r2": 0.85,
+        "aic": 0.0,
+        "bic": 0.0,
+        "confidence": 0.7,
+        "family": "all",
+        "mode": "all",
+        "n_points": 6,
+        "points": [
+          [
+            10,
+            0.000020400038920342922
+          ],
+          [
+            10,
+            0.000053999945521354675
+          ],
+          [
+            10,
+            0.000025800021830946207
+          ],
+          [
+            10,
+            0.000041599967516958714
+          ],
+          [
+            10,
+            0.000023200002033263445
+          ],
+          [
+            10,
+            0.000043000036384910345
+          ]
+        ]
+      },
+      "space_fit": {
+        "model": "O(n)",
+        "formula": "degree ~ 1.00",
+        "r2": 0.85,
+        "aic": 0.0,
+        "bic": 0.0,
+        "confidence": 0.7,
+        "family": "all",
+        "mode": "all",
+        "n_points": 6,
+        "points": [
+          [
+            10,
+            14640.0
+          ],
+          [
+            10,
+            3908.0
+          ],
+          [
+            10,
+            3583.0
+          ],
+          [
+            10,
+            4128.0
+          ],
+          [
+            10,
+            4144.0
+          ],
+          [
+            10,
+            4128.0
+          ]
+        ]
+      },
+      "reconciled_time": "O(n^2)",
+      "reconciled_space": "O(1)",
+      "recurrence": null,
+      "bottlenecks": [
+        {
+          "line": 4,
+          "code": "for j in range(i+1, len(nums)):",
+          "pattern": "nested_loop",
+          "share_of_time": 0.362,
+          "hits": 220,
+          "claimed_complexity": "O(n^2)",
+          "measured_complexity": "",
+          "detail": "loop header at depth 2"
+        },
+        {
+          "line": 5,
+          "code": "if nums[i] + nums[j] == target:",
+          "pattern": "hotspot",
+          "share_of_time": 0.271,
+          "hits": 182,
+          "claimed_complexity": "",
+          "measured_complexity": "",
+          "detail": "182 executions"
+        },
+        {
+          "line": 3,
+          "code": "for i in range(len(nums)):",
+          "pattern": "nested_loop",
+          "share_of_time": 0.124,
+          "hits": 44,
+          "claimed_complexity": "O(n^2)",
+          "measured_complexity": "",
+          "detail": "loop header at depth 2"
+        }
+      ],
+      "findings": [
+        "Disagreement: static analysis predicts worst-case O(n^2), but empirical fit observed O(n) (R^2 = 0.850). Preserving worst-case O(n^2); empirical may reflect early-exit or average-case scaling.",
+        "Static analysis proves O(1) auxiliary space (tracemalloc measured input argument scaling O(n))."
+      ]
+    }
+  },
+  "overall_time": "O(n^2)",
+  "overall_space": "O(1)",
+  "bottlenecks": [
+    {
+      "line": 4,
+      "code": "for j in range(i+1, len(nums)):",
+      "pattern": "nested_loop",
+      "share_of_time": 0.362,
+      "hits": 220,
+      "claimed_complexity": "O(n^2)",
+      "measured_complexity": "",
+      "detail": "loop header at depth 2"
+    },
+    {
+      "line": 5,
+      "code": "if nums[i] + nums[j] == target:",
+      "pattern": "hotspot",
+      "share_of_time": 0.271,
+      "hits": 182,
+      "claimed_complexity": "",
+      "measured_complexity": "",
+      "detail": "182 executions"
+    },
+    {
+      "line": 3,
+      "code": "for i in range(len(nums)):",
+      "pattern": "nested_loop",
+      "share_of_time": 0.124,
+      "hits": 44,
+      "claimed_complexity": "O(n^2)",
+      "measured_complexity": "",
+      "detail": "loop header at depth 2"
+    }
+  ],
+  "findings": [
+    "Disagreement: static analysis predicts worst-case O(n^2), but empirical fit observed O(n) (R^2 = 0.850). Preserving worst-case O(n^2); empirical may reflect early-exit or average-case scaling.",
+    "Static analysis proves O(1) auxiliary space (tracemalloc measured input argument scaling O(n))."
+  ],
+  "warnings": []
+}

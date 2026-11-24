@@ -1,0 +1,84 @@
+rules:
+  - id: list_to_set_membership
+    name: "Linear List Membership to Hash Set"
+    pattern: "linear_membership"
+    category: "data_structure_swap"
+    preconditions:
+      - "elements are hashable"
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: "Replace repetitive list `in` or `not in` membership tests with an auxiliary set lookup (O(1) average lookup)."
+
+  - id: nested_loop_to_hash_index
+    name: "Two-Pointer / Hash-Index Inverted Search"
+    pattern: "nested_loop"
+    category: "paradigm_shift"
+    preconditions:
+      - "elements are hashable"
+      - "pairwise relation check in nested loop"
+    breaks: []
+    expected_gain: "O(n^2) -> O(n log n) or O(n)"
+    description: "Replace nested pairwise loops (like two-sum or distance search) with an index map (pos dict) and binary search or direct hash lookup."
+
+  - id: string_join_accumulation
+    name: "String Concatenation to List Join"
+    pattern: "string_concat"
+    category: "loop_opt"
+    preconditions:
+      - "loop accumulates string with +="
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: "Collect substring fragments into a list and call str.join() at the end to avoid quadratic memory reallocations."
+
+  - id: deque_pop_front
+    name: "List Pop Front to Deque PopLeft"
+    pattern: "quadratic_pop"
+    category: "data_structure_swap"
+    preconditions:
+      - "frequent pop(0) or insert(0)"
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: "Replace collections.pop(0) with collections.deque.popleft() for O(1) FIFO operations."
+
+  - id: counter_frequency_map
+    name: "Counting Loop to Collections Counter"
+    pattern: "hotspot"
+    category: "data_structure_swap"
+    preconditions:
+      - "manual frequency dictionary counts"
+    breaks: []
+    expected_gain: "constant_factor"
+    description: "Use collections.Counter or optimized C-level frequency counting for fast dictionary construction."
+
+  - id: early_exit_guard
+    name: "Early Exit Guard Hoisting"
+    pattern: "hotspot"
+    category: "constant_factor"
+    preconditions:
+      - "terminating condition checkable early"
+    breaks: []
+    expected_gain: "constant_factor"
+    description: "Check base cases, empty collections, or boundary conditions before entering heavy loops."
+
+  - id: unstable_heap_selection
+    name: "Top-K Selection via Heap / Quickselect"
+    pattern: "sort"
+    category: "paradigm_shift"
+    preconditions:
+      - "function returns top/bottom K elements"
+    breaks:
+      - "sort_stability"
+    expected_gain: "O(n log n) -> O(n log k)"
+    description: "Use heapq.nlargest or quickselect for finding top K elements instead of full array sort. Breaks sort stability."
+
+  - id: in_place_array_sort
+    name: "In-Place Sort Mutation"
+    pattern: "sort"
+    category: "data_structure_swap"
+    preconditions:
+      - "input is a list"
+    breaks:
+      - "arg_mutation"
+    expected_gain: "O(n) -> O(1) space"
+    description: "Sort list directly in-place via list.sort() instead of sorted(). Breaks arg_mutation if caller expects immutable input."
+

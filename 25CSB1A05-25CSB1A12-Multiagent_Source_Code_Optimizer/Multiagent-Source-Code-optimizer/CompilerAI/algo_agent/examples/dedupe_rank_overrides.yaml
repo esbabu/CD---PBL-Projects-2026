@@ -1,0 +1,3 @@
+inputs:
+  - args: [["apple", "banana", "apple", "cherry", "date", "banana"], 3]
+

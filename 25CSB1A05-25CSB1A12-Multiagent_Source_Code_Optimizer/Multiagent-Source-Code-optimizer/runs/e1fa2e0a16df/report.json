@@ -1,0 +1,206 @@
+{
+  "schema_version": "1",
+  "source_sha": "e1fa2e0a16df",
+  "entry_point": "two_sum",
+  "original_source": "\ndef two_sum(nums, target):\n    for i in range(len(nums)):\n        for j in range(i+1, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n    return []\n",
+  "optimized_source": "from bisect import bisect_right\n\n\ndef two_sum(nums, target):\n    pos = {}\n    for idx, v in enumerate(nums):\n        pos.setdefault(v, []).append(idx)\n    for i, v in enumerate(nums):\n        lst = pos.get(target - v)\n        if lst:\n            k = bisect_right(lst, i)\n            if k < len(lst):\n                return [i, lst[k]]\n    return []\n",
+  "diff": "--- original.py\n+++ optimized.py\n@@ -1,7 +1,14 @@\n+from bisect import bisect_right\n+\n \n def two_sum(nums, target):\n-    for i in range(len(nums)):\n-        for j in range(i+1, len(nums)):\n-            if nums[i] + nums[j] == target:\n-                return [i, j]\n+    pos = {}\n+    for idx, v in enumerate(nums):\n+        pos.setdefault(v, []).append(idx)\n+    for i, v in enumerate(nums):\n+        lst = pos.get(target - v)\n+        if lst:\n+            k = bisect_right(lst, i)\n+            if k < len(lst):\n+                return [i, lst[k]]\n     return []\n",
+  "complexity": {
+    "before_time": "O(n^2)",
+    "after_time": "O(n log n)",
+    "before_space": "O(1)",
+    "after_space": "O(n)",
+    "derivation": "Transformed O(n^2) nested loop pairwise sum into an inverted index with bisect search O(n log n).",
+    "bottlenecks_resolved": [
+      "Line 4: nested_loop (loop header at depth 2)",
+      "Line 5: hotspot (182 executions)",
+      "Line 3: nested_loop (loop header at depth 2)"
+    ]
+  },
+  "evidence_tier": "T2",
+  "rungs_summary": [
+    {
+      "rung": "R1_compile",
+      "passed": true,
+      "skipped": false,
+      "reason": "",
+      "details": {},
+      "elapsed_s": 3.101
+    },
+    {
+      "rung": "R2_golden_holdout",
+      "passed": true,
+      "skipped": false,
+      "reason": "",
+      "details": {
+        "n_visible": 291,
+        "n_holdout": 138,
+        "holdout_failed": 0
+      },
+      "elapsed_s": 5.553
+    },
+    {
+      "rung": "R3_properties",
+      "passed": true,
+      "skipped": false,
+      "reason": "",
+      "details": {
+        "status": "no properties defined"
+      },
+      "elapsed_s": 0.0
+    },
+    {
+      "rung": "R4_differential_fuzz",
+      "passed": true,
+      "skipped": false,
+      "reason": "",
+      "details": {
+        "n_tested": 10000,
+        "n_fresh": 10000,
+        "n_fuzz": 0
+      },
+      "elapsed_s": 18.805
+    },
+    {
+      "rung": "R5_changed_line_coverage",
+      "passed": true,
+      "skipped": false,
+      "reason": "",
+      "details": {
+        "changed_lines": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "executed_lines": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "covered_lines": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "missing_lines": [],
+        "coverage_ratio": 1.0,
+        "passed": true
+      },
+      "elapsed_s": 0.005
+    },
+    {
+      "rung": "R6_symbolic_equivalence",
+      "passed": false,
+      "skipped": true,
+      "reason": "Bounded symbolic verification disabled by settings or not configured for this function.",
+      "details": {},
+      "elapsed_s": 0.0
+    },
+    {
+      "rung": "R7_formal_proof",
+      "passed": false,
+      "skipped": true,
+      "reason": "Formal proof verification (Dafny) is disabled by default.",
+      "details": {},
+      "elapsed_s": 0.0
+    },
+    {
+      "rung": "R8_llm_reviewer",
+      "passed": true,
+      "skipped": true,
+      "reason": "LLM reviewer is disabled or offline.",
+      "details": {},
+      "elapsed_s": 0.0
+    }
+  ],
+  "benchmarks": [
+    {
+      "family": "random",
+      "points": [
+        {
+          "n": 10,
+          "orig_time_s": 0.000020400038920342922,
+          "cand_time_s": 0.000031,
+          "speedup": 0.658
+        },
+        {
+          "n": 10,
+          "orig_time_s": 0.000053999945521354675,
+          "cand_time_s": 0.000026,
+          "speedup": 2.077
+        }
+      ],
+      "crossover_n": 10,
+      "max_speedup": 2.077
+    },
+    {
+      "family": "sorted",
+      "points": [
+        {
+          "n": 10,
+          "orig_time_s": 0.000025800021830946207,
+          "cand_time_s": 0.000026,
+          "speedup": 0.992
+        },
+        {
+          "n": 10,
+          "orig_time_s": 0.000041599967516958714,
+          "cand_time_s": 0.000017,
+          "speedup": 2.447
+        }
+      ],
+      "crossover_n": 10,
+      "max_speedup": 2.447
+    },
+    {
+      "family": "few_unique",
+      "points": [
+        {
+          "n": 10,
+          "orig_time_s": 0.000023200002033263445,
+          "cand_time_s": 0.000018,
+          "speedup": 1.289
+        },
+        {
+          "n": 10,
+          "orig_time_s": 0.000043000036384910345,
+          "cand_time_s": 0.000022,
+          "speedup": 1.955
+        }
+      ],
+      "crossover_n": 10,
+      "max_speedup": 1.955
+    }
+  ],
+  "overall_speedup": 2.15,
+  "overall_mem_ratio": 1.0,
+  "remaining_differences": [
+    "Aspect 'return_aliasing' may change (permitted by contract).",
+    "Aspect 'exception_message' may change (permitted by contract).",
+    "Aspect 'recursion_limit' may change (permitted by contract)."
+  ],
+  "rejected_candidates": [],
+  "warnings": [
+    "LOCAL sandbox in use: resource limits only, no network/filesystem isolation. Run only trusted code, or install Docker."
+  ],
+  "created_at": "2026-11-24 13:47:49 UTC"
+}

@@ -1,0 +1,269 @@
+/* Auto-generated OptAgent C11 test driver (fork-per-case + canary red zones) */
+#include "harness_common.h"
+#include "cJSON.h"
+
+/* Include target directly so static functions & file-scope globals are visible */
+#include "{{ target_filename }}"
+
+static int run_single_case(int idx, const cJSON *case_obj, double timeout_s, int rand_seed, FILE *out_fp) {
+    const cJSON *args_arr = cJSON_GetObjectItemCaseSensitive(case_obj, "args");
+    if (!args_arr || !cJSON_IsArray(args_arr)) {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"load_error\",\"exc_msg\":\"Missing args array\"}\n", idx);
+        fflush(out_fp);
+        return 0;
+    }
+
+#if !defined(_WIN32)
+    int stdout_pipe[2];
+    int res_pipe[2];
+    if (pipe(stdout_pipe) != 0 || pipe(res_pipe) != 0) {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"crash\",\"exc_msg\":\"pipe() failed\"}\n", idx);
+        fflush(out_fp);
+        return 0;
+    }
+
+    pid_t pid = fork();
+    if (pid == 0) {
+        /* Child process: isolated per case */
+        close(stdout_pipe[0]);
+        close(res_pipe[0]);
+        dup2(stdout_pipe[1], STDOUT_FILENO);
+        close(stdout_pipe[1]);
+
+        optagent_child_setup_limits(timeout_s, 1024);
+        srand((unsigned int)rand_seed);
+        errno = 0;
+        optagent_sancov_reset();
+
+        FILE *rfp = fdopen(res_pipe[1], "w");
+        if (!rfp) _exit(2);
+
+        /* ---- Unmarshal arguments with canary red-zone buffers ---- */
+        {% for b in sig.params %}
+        {% if b.is_out_param %}
+        OptCanaryBuf _cb_{{ b.name }} = optagent_canary_alloc({{ b.out_length }} * sizeof({{ b.ntype.elem.c_type if b.ntype.elem else 'int' }}));
+        {{ b.ntype.elem.c_type if b.ntype.elem else 'int' }} *p_{{ b.name }} = ({{ b.ntype.elem.c_type if b.ntype.elem else 'int' }} *)_cb_{{ b.name }}.user_ptr;
+        {% elif b.is_length_for %}
+        /* Length param {{ b.name }} bound from {{ b.is_length_for }} */
+        {{ b.ntype.c_type }} p_{{ b.name }} = ({{ b.ntype.c_type }})_len_{{ b.is_length_for }};
+        {% elif b.ntype.kind == 'ptr_array' %}
+        const cJSON *_ja_{{ b.name }} = cJSON_GetArrayItem(args_arr, {{ visible_index[b.name] }});
+        int _len_{{ b.name }} = _ja_{{ b.name }} ? cJSON_GetArraySize(_ja_{{ b.name }}) : 0;
+        OptCanaryBuf _cb_{{ b.name }} = optagent_canary_alloc((size_t)(_len_{{ b.name }} > 0 ? _len_{{ b.name }} : 1) * sizeof({{ b.ntype.elem.c_type if b.ntype.elem else 'int' }}));
+        {{ b.ntype.elem.c_type if b.ntype.elem else 'int' }} *p_{{ b.name }} = ({{ b.ntype.elem.c_type if b.ntype.elem else 'int' }} *)_cb_{{ b.name }}.user_ptr;
+        for (int _i = 0; _i < _len_{{ b.name }}; _i++) {
+            const cJSON *_el = cJSON_GetArrayItem(_ja_{{ b.name }}, _i);
+            p_{{ b.name }}[_i] = _el ? ({{ b.ntype.elem.c_type if b.ntype.elem else 'int' }})_el->valueint : 0;
+        }
+        {% elif b.ntype.kind == 'cstr' %}
+        const cJSON *_ja_{{ b.name }} = cJSON_GetArrayItem(args_arr, {{ visible_index[b.name] }});
+        const char *_raw_{{ b.name }} = (_ja_{{ b.name }} && cJSON_IsString(_ja_{{ b.name }})) ? _ja_{{ b.name }}->valuestring : "";
+        size_t _slen_{{ b.name }} = strlen(_raw_{{ b.name }}) + 1;
+        OptCanaryBuf _cb_{{ b.name }} = optagent_canary_alloc(_slen_{{ b.name }});
+        char *p_{{ b.name }} = (char *)_cb_{{ b.name }}.user_ptr;
+        memcpy(p_{{ b.name }}, _raw_{{ b.name }}, _slen_{{ b.name }});
+        {% elif b.ntype.kind == 'float' %}
+        const cJSON *_ja_{{ b.name }} = cJSON_GetArrayItem(args_arr, {{ visible_index[b.name] }});
+        {{ b.ntype.c_type }} p_{{ b.name }} = _ja_{{ b.name }} ? ({{ b.ntype.c_type }})_ja_{{ b.name }}->valuedouble : 0.0;
+        {% elif b.ntype.kind == 'bool' %}
+        const cJSON *_ja_{{ b.name }} = cJSON_GetArrayItem(args_arr, {{ visible_index[b.name] }});
+        bool p_{{ b.name }} = _ja_{{ b.name }} ? (cJSON_IsTrue(_ja_{{ b.name }}) != 0) : false;
+        {% else %}
+        const cJSON *_ja_{{ b.name }} = cJSON_GetArrayItem(args_arr, {{ visible_index[b.name] }});
+        {{ b.ntype.c_type }} p_{{ b.name }} = _ja_{{ b.name }} ? ({{ b.ntype.c_type }})_ja_{{ b.name }}->valueint : 0;
+        {% endif %}
+        {% endfor %}
+
+        /* ---- Invoke target entry function ---- */
+        double _t0 = optagent_now_s();
+        {% if sig.return_type.kind != 'void' %}
+        {{ sig.return_type.c_type }} _ret = {{ sig.name }}({% for b in sig.params %}p_{{ b.name }}{{ ", " if not loop.last else "" }}{% endfor %});
+        OPTAGENT_DO_NOT_OPTIMIZE(_ret);
+        {% else %}
+        {{ sig.name }}({% for b in sig.params %}p_{{ b.name }}{{ ", " if not loop.last else "" }}{% endfor %});
+        {% endif %}
+        double _elapsed = optagent_now_s() - _t0;
+        fflush(stdout);
+
+        /* ---- Verify canary red zones ---- */
+        const char *_canary_err = NULL;
+        {% for b in sig.params %}
+        {% if b.is_out_param or b.ntype.kind in ('ptr_array', 'cstr') %}
+        if (!_canary_err && optagent_canary_check(&_cb_{{ b.name }}) != 0) {
+            _canary_err = "Canary red-zone corrupted on parameter {{ b.name }} (out-of-bounds write)";
+        }
+        {% endif %}
+        {% endfor %}
+
+        /* ---- Serialize result JSON ---- */
+        fprintf(rfp, "{\"idx\":%d,\"status\":\"ok\",\"elapsed_s\":%.9f,\"return_type\":\"{{ sig.return_type.c_type }}\",\"ret\":", idx, _elapsed);
+        {% if sig.return_type.kind == 'void' %}
+        fputs("null", rfp);
+        {% elif sig.return_type.kind == 'bool' %}
+        fputs(_ret ? "true" : "false", rfp);
+        {% elif sig.return_type.kind == 'float' %}
+        optagent_fprint_double(rfp, (double)_ret);
+        {% elif sig.return_type.kind == 'cstr' %}
+        optagent_fprint_json_str(rfp, _ret ? _ret : "");
+        {% else %}
+        fprintf(rfp, "%lld", (long long)_ret);
+        {% endif %}
+
+        /* Out-params reported in mut */
+        fputs(",\"mut\":{", rfp);
+        int _first_mut = 1;
+        {% for b in sig.params %}
+        {% if b.is_out_param %}
+        if (!_first_mut) fputc(',', rfp);
+        _first_mut = 0;
+        fprintf(rfp, "\"out:{{ b.name }}\":[");
+        for (int _k = 0; _k < {{ b.out_length }}; _k++) {
+            if (_k) fputc(',', rfp);
+            fprintf(rfp, "%lld", (long long)p_{{ b.name }}[_k]);
+        }
+        fputc(']', rfp);
+        {% endif %}
+        {% endfor %}
+        fputc('}', rfp);
+
+        /* Sanitizer / canary report */
+        if (_canary_err) {
+            fputs(",\"sanitizer\":", rfp);
+            optagent_fprint_json_str(rfp, _canary_err);
+        } else {
+            fputs(",\"sanitizer\":null", rfp);
+        }
+
+        /* SanCov edges */
+        fputs(",\"edges\":[", rfp);
+        if (g_optagent_sancov_start && g_optagent_sancov_stop) {
+            int _fe = 1;
+            for (uint8_t *_p = g_optagent_sancov_start; _p < g_optagent_sancov_stop; _p++) {
+                if (*_p) {
+                    if (!_fe) fputc(',', rfp);
+                    _fe = 0;
+                    fprintf(rfp, "\"sc:%td\"", (ptrdiff_t)(_p - g_optagent_sancov_start));
+                }
+            }
+        }
+        fputs("],\"glob\":{},\"alias\":[],\"prop_failures\":[]}", rfp);
+        fflush(rfp);
+        fclose(rfp);
+        _exit(0);
+    }
+
+    /* Parent process */
+    close(stdout_pipe[1]);
+    close(res_pipe[1]);
+
+    int status = 0;
+    double deadline = optagent_now_s() + timeout_s + 1.0;
+    int timed_out = 0;
+    while (1) {
+        pid_t w = waitpid(pid, &status, WNOHANG);
+        if (w == pid) break;
+        if (optagent_now_s() > deadline) {
+            kill(pid, SIGKILL);
+            waitpid(pid, &status, 0);
+            timed_out = 1;
+            break;
+        }
+        struct timespec slp = {0, 2000000}; /* 2ms */
+        nanosleep(&slp, NULL);
+    }
+
+    char res_buf[65536];
+    ssize_t rn = read(res_pipe[0], res_buf, sizeof(res_buf) - 1);
+    res_buf[rn > 0 ? rn : 0] = '\0';
+    close(res_pipe[0]);
+
+    char out_buf[16384];
+    ssize_t on = read(stdout_pipe[0], out_buf, sizeof(out_buf) - 1);
+    out_buf[on > 0 ? on : 0] = '\0';
+    close(stdout_pipe[0]);
+
+    if (timed_out) {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"timeout\",\"exc_msg\":\"Case timed out\"}\n", idx);
+    } else if (WIFSIGNALED(status)) {
+        int sig = WTERMSIG(status);
+        const char *sname = optagent_signal_name(sig);
+        if (sig == SIGALRM || sig == SIGXCPU) {
+            fprintf(out_fp, "{\"idx\":%d,\"status\":\"timeout\",\"signal\":\"%s\",\"exc_msg\":\"Timer/CPU limit exceeded\"}\n", idx, sname);
+        } else {
+            fprintf(out_fp, "{\"idx\":%d,\"status\":\"crash\",\"signal\":\"%s\",\"exc_msg\":\"Terminated by signal %s\"}\n", idx, sname, sname);
+        }
+    } else if (rn > 2 && res_buf[rn - 1] == '}') {
+        /* Splice captured stdout into the JSON object */
+        res_buf[rn - 1] = '\0';
+        fputs(res_buf, out_fp);
+        fputs(",\"stdout\":", out_fp);
+        optagent_fprint_json_str(out_fp, out_buf);
+        fputs("}\n", out_fp);
+    } else {
+        fprintf(out_fp, "{\"idx\":%d,\"status\":\"crash\",\"exc_msg\":\"Child exited with code %d\"}\n", idx, WEXITSTATUS(status));
+    }
+    fflush(out_fp);
+#else
+    (void)timeout_s; (void)rand_seed;
+    fprintf(out_fp, "{\"idx\":%d,\"status\":\"load_error\",\"exc_msg\":\"Native fork harness requires POSIX/Docker\"}\n", idx);
+    fflush(out_fp);
+#endif
+    return 0;
+}
+
+int main(int argc, char **argv) {
+    if (argc < 4) {
+        fprintf(stderr, "Usage: driver <cases.jsonl> <out.jsonl> <cfg.json>\n");
+        return 1;
+    }
+    const char *cases_path = argv[1];
+    const char *out_path = argv[2];
+    const char *cfg_path = argv[3];
+
+    FILE *cfp = fopen(cfg_path, "rb");
+    if (!cfp) return 2;
+    fseek(cfp, 0, SEEK_END);
+    long csz = ftell(cfp);
+    fseek(cfp, 0, SEEK_SET);
+    char *cbuf = (char *)malloc((size_t)csz + 1);
+    if (fread(cbuf, 1, (size_t)csz, cfp) != (size_t)csz) { /* ignore */ }
+    cbuf[csz] = '\0';
+    fclose(cfp);
+
+    cJSON *cfg = cJSON_Parse(cbuf);
+    free(cbuf);
+    double timeout_s = 2.0;
+    int rand_seed = 20240607;
+    int start = 0;
+    if (cfg) {
+        const cJSON *t = cJSON_GetObjectItemCaseSensitive(cfg, "timeout");
+        const cJSON *rs = cJSON_GetObjectItemCaseSensitive(cfg, "rand_seed");
+        const cJSON *st = cJSON_GetObjectItemCaseSensitive(cfg, "start");
+        if (t && cJSON_IsNumber(t)) timeout_s = t->valuedouble;
+        if (rs && cJSON_IsNumber(rs)) rand_seed = (int)rs->valueint;
+        if (st && cJSON_IsNumber(st)) start = (int)st->valueint;
+    }
+
+    FILE *in_fp = fopen(cases_path, "r");
+    FILE *out_fp = fopen(out_path, "a");
+    if (!in_fp || !out_fp) return 3;
+
+    char line[131072];
+    int idx = 0;
+    while (fgets(line, sizeof(line), in_fp)) {
+        if (idx >= start) {
+            cJSON *cobj = cJSON_Parse(line);
+            if (cobj) {
+                run_single_case(idx, cobj, timeout_s, rand_seed, out_fp);
+                cJSON_Delete(cobj);
+            }
+        }
+        idx++;
+    }
+    fprintf(out_fp, "{\"done\":true}\n");
+    fflush(out_fp);
+    fclose(in_fp);
+    fclose(out_fp);
+    if (cfg) cJSON_Delete(cfg);
+    return 0;
+}

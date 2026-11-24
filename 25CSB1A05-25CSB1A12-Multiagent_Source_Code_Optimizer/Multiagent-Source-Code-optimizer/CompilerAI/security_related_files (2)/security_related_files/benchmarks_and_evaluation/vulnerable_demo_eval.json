@@ -1,0 +1,1340 @@
+{
+  "total_functions": 50,
+  "caught": 50,
+  "accuracy_pct": 100.0,
+  "details": {
+    "v01": {
+      "num": 1,
+      "expected_cwe": "CWE-121",
+      "description": "stack overflow: strcpy with no length check",
+      "lines": "29-30",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-121",
+        "CWE-120"
+      ],
+      "security_findings": [
+        {
+          "type": "taint_flow_risk",
+          "cwe": "CWE-120",
+          "severity": "high",
+          "line": 28,
+          "engine": "heuristic"
+        },
+        {
+          "type": "unsafe_strcpy",
+          "cwe": "CWE-121",
+          "severity": "high",
+          "line": 29,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v02": {
+      "num": 2,
+      "expected_cwe": "CWE-121",
+      "description": "stack overflow: strcat appends beyond buffer",
+      "lines": "32-33",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-121"
+      ],
+      "security_findings": [
+        {
+          "type": "unsafe_strcat",
+          "cwe": "CWE-121",
+          "severity": "high",
+          "line": 32,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v03": {
+      "num": 3,
+      "expected_cwe": "CWE-121",
+      "description": "stack overflow: sprintf with unbounded %s",
+      "lines": "35-36",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-121"
+      ],
+      "security_findings": [
+        {
+          "type": "unsafe_sprintf",
+          "cwe": "CWE-121",
+          "severity": "high",
+          "line": 35,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "cert-err33-c",
+          "severity": "low",
+          "line": 35,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v04": {
+      "num": 4,
+      "expected_cwe": "CWE-120",
+      "description": "unbounded scanf(\"%s\")",
+      "lines": "38-39",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-119",
+        "CWE-120"
+      ],
+      "security_findings": [
+        {
+          "type": "unsafe_scanf_s",
+          "cwe": "CWE-120",
+          "severity": "high",
+          "line": 38,
+          "engine": "rule"
+        },
+        {
+          "type": "invalidscanf",
+          "cwe": "CWE-119",
+          "severity": "medium",
+          "line": 38,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "invalidscanf",
+          "severity": "medium",
+          "line": 38,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v05": {
+      "num": 5,
+      "expected_cwe": "CWE-134",
+      "description": "format string: user input used as the format",
+      "lines": "41-42",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-134"
+      ],
+      "security_findings": [
+        {
+          "type": "format_string_bug",
+          "cwe": "CWE-134",
+          "severity": "critical",
+          "line": 41,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v06": {
+      "num": 6,
+      "expected_cwe": "CWE-122",
+      "description": "heap overflow: 8-byte block, copies strlen+1 bytes",
+      "lines": "44-49",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-122",
+        "CWE-476",
+        "CWE-401"
+      ],
+      "security_findings": [
+        {
+          "type": "heap_buffer_overflow",
+          "cwe": "CWE-122",
+          "severity": "high",
+          "line": 45,
+          "engine": "rule"
+        },
+        {
+          "type": "unchecked_malloc",
+          "cwe": "CWE-476",
+          "severity": "medium",
+          "line": 45,
+          "engine": "heuristic"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "memory_leak",
+          "severity": "high",
+          "line": 45,
+          "engine": "rule"
+        },
+        {
+          "type": "nullPointerOutOfMemory",
+          "severity": "low",
+          "line": 46,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v07": {
+      "num": 7,
+      "expected_cwe": "CWE-193",
+      "description": "off-by-one: <= writes one past the array",
+      "lines": "51-52",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-193",
+        "CWE-787",
+        "CWE-788"
+      ],
+      "security_findings": [
+        {
+          "type": "out_of_bounds_write",
+          "cwe": "CWE-787",
+          "severity": "high",
+          "line": 51,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "off_by_one_error",
+          "severity": "high",
+          "line": 51,
+          "engine": "rule"
+        },
+        {
+          "type": "arrayIndexOutOfBounds",
+          "severity": "high",
+          "line": 51,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v08": {
+      "num": 8,
+      "expected_cwe": "CWE-190",
+      "description": "integer overflow in allocation size (32-bit multiply wraps)",
+      "lines": "54-60",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-119",
+        "CWE-476",
+        "CWE-190"
+      ],
+      "security_findings": [
+        {
+          "type": "allocation_size_integer_overflow",
+          "cwe": "CWE-190",
+          "severity": "high",
+          "line": 55,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "potential_buffer_overflow",
+          "severity": "medium",
+          "line": 57,
+          "engine": "rule"
+        },
+        {
+          "type": "nullPointerOutOfMemory",
+          "severity": "low",
+          "line": 57,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v09": {
+      "num": 9,
+      "expected_cwe": "CWE-190",
+      "description": "signed overflow defeats a bounds check",
+      "lines": "62-63",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-190"
+      ],
+      "security_findings": [
+        {
+          "type": "signed_overflow_bounds_check",
+          "cwe": "CWE-190",
+          "severity": "high",
+          "line": 62,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v10": {
+      "num": 10,
+      "expected_cwe": "CWE-197",
+      "description": "truncation: length cast to unsigned char, full length copied",
+      "lines": "65-69",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-197"
+      ],
+      "security_findings": [
+        {
+          "type": "integer_truncation_alloc",
+          "cwe": "CWE-197",
+          "severity": "high",
+          "line": 66,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v11": {
+      "num": 11,
+      "expected_cwe": "CWE-195",
+      "description": "signed/unsigned: negative len becomes a huge size_t",
+      "lines": "71-75",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-195"
+      ],
+      "security_findings": [
+        {
+          "type": "signed_unsigned_conversion_bug",
+          "cwe": "CWE-195",
+          "severity": "high",
+          "line": 73,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v12": {
+      "num": 12,
+      "expected_cwe": "CWE-416",
+      "description": "use after free",
+      "lines": "77-82",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-416"
+      ],
+      "security_findings": [
+        {
+          "type": "deallocuse",
+          "cwe": "CWE-416",
+          "severity": "high",
+          "line": 80,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "deallocuse",
+          "severity": "high",
+          "line": 80,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v13": {
+      "num": 13,
+      "expected_cwe": "CWE-415",
+      "description": "double free",
+      "lines": "84-85",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-415"
+      ],
+      "security_findings": [
+        {
+          "type": "doubleFree",
+          "cwe": "CWE-415",
+          "severity": "high",
+          "line": 84,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "doubleFree",
+          "severity": "high",
+          "line": 84,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v14": {
+      "num": 14,
+      "expected_cwe": "CWE-401",
+      "description": "memory leak on every call",
+      "lines": "87-88",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-401"
+      ],
+      "security_findings": [
+        {
+          "type": "memleak",
+          "cwe": "CWE-401",
+          "severity": "high",
+          "line": 87,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "memleak",
+          "severity": "high",
+          "line": 87,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v15": {
+      "num": 15,
+      "expected_cwe": "CWE-476",
+      "description": "null dereference: malloc result unchecked",
+      "lines": "90-91",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-476"
+      ],
+      "security_findings": [
+        {
+          "type": "nullPointerOutOfMemory",
+          "cwe": "CWE-476",
+          "severity": "low",
+          "line": 90,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "nullPointerOutOfMemory",
+          "severity": "low",
+          "line": 90,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v16": {
+      "num": 16,
+      "expected_cwe": "CWE-457",
+      "description": "use of uninitialized variable",
+      "lines": "93-94",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-457"
+      ],
+      "security_findings": [
+        {
+          "type": "uninitvar",
+          "cwe": "CWE-457",
+          "severity": "high",
+          "line": 93,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "uninitvar",
+          "severity": "high",
+          "line": 93,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v17": {
+      "num": 17,
+      "expected_cwe": "CWE-562",
+      "description": "returns address of a stack variable",
+      "lines": "96-97",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-562"
+      ],
+      "security_findings": [
+        {
+          "type": "returnDanglingLifetime",
+          "cwe": "CWE-562",
+          "severity": "high",
+          "line": 96,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "returnDanglingLifetime",
+          "severity": "high",
+          "line": 96,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v18": {
+      "num": 18,
+      "expected_cwe": "CWE-762",
+      "description": "mismatched new[] / delete",
+      "lines": "99-100",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-762"
+      ],
+      "security_findings": [
+        {
+          "type": "mismatched_new_delete",
+          "cwe": "CWE-762",
+          "severity": "high",
+          "line": 99,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "mismatchAllocDealloc",
+          "severity": "high",
+          "line": 99,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v19": {
+      "num": 19,
+      "expected_cwe": "CWE-125",
+      "description": "out-of-bounds read: index not validated",
+      "lines": "102-103",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-129",
+        "CWE-119"
+      ],
+      "security_findings": [
+        {
+          "type": "improper_index_validation",
+          "cwe": "CWE-129",
+          "severity": "high",
+          "line": 102,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "potential_buffer_overflow",
+          "severity": "medium",
+          "line": 102,
+          "engine": "rule"
+        }
+      ]
+    },
+    "v20": {
+      "num": 20,
+      "expected_cwe": "CWE-787",
+      "description": "out-of-bounds write: attacker-controlled index",
+      "lines": "105-108",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-787",
+        "CWE-119"
+      ],
+      "security_findings": [
+        {
+          "type": "out_of_bounds_write",
+          "cwe": "CWE-787",
+          "severity": "high",
+          "line": 105,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "potential_buffer_overflow",
+          "severity": "medium",
+          "line": 105,
+          "engine": "rule"
+        }
+      ]
+    },
+    "v21": {
+      "num": 21,
+      "expected_cwe": "CWE-78",
+      "description": "OS command injection via system()",
+      "lines": "110-111",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-78"
+      ],
+      "security_findings": [
+        {
+          "type": "command_injection_system",
+          "cwe": "CWE-78",
+          "severity": "critical",
+          "line": 110,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v22": {
+      "num": 22,
+      "expected_cwe": "CWE-78",
+      "description": "OS command injection via popen()",
+      "lines": "113-114",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-78"
+      ],
+      "security_findings": [
+        {
+          "type": "command_injection_popen",
+          "cwe": "CWE-78",
+          "severity": "critical",
+          "line": 113,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v23": {
+      "num": 23,
+      "expected_cwe": "CWE-22",
+      "description": "path traversal: \"../../etc/passwd\"",
+      "lines": "116-117",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-22"
+      ],
+      "security_findings": [
+        {
+          "type": "path_traversal",
+          "cwe": "CWE-22",
+          "severity": "high",
+          "line": 116,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v24": {
+      "num": 24,
+      "expected_cwe": "CWE-367",
+      "description": "TOCTOU: file can change between access() and fopen()",
+      "lines": "119-125",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-367"
+      ],
+      "security_findings": [
+        {
+          "type": "toctou_access_check",
+          "cwe": "CWE-367",
+          "severity": "high",
+          "line": 120,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "cert-err33-c",
+          "severity": "low",
+          "line": 120,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v25": {
+      "num": 25,
+      "expected_cwe": "CWE-89",
+      "description": "SQL injection by string concatenation",
+      "lines": "127-132",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-89"
+      ],
+      "security_findings": [
+        {
+          "type": "sql_injection",
+          "cwe": "CWE-89",
+          "severity": "critical",
+          "line": 128,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v26": {
+      "num": 26,
+      "expected_cwe": "CWE-798",
+      "description": "hardcoded credentials",
+      "lines": "134-135",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-798"
+      ],
+      "security_findings": [
+        {
+          "type": "hardcoded_password",
+          "cwe": "CWE-798",
+          "severity": "high",
+          "line": 134,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v27": {
+      "num": 27,
+      "expected_cwe": "CWE-321",
+      "description": "hardcoded key + CWE-327 trivial XOR \"encryption\"",
+      "lines": "137-138",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-327"
+      ],
+      "security_findings": [
+        {
+          "type": "custom_xor_encryption",
+          "cwe": "CWE-327",
+          "severity": "high",
+          "line": 137,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v28": {
+      "num": 28,
+      "expected_cwe": "CWE-338",
+      "description": "rand() used for a security token",
+      "lines": "140-141",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-338"
+      ],
+      "security_findings": [
+        {
+          "type": "cert-msc30-c,cert-msc50-cpp",
+          "cwe": null,
+          "severity": "high",
+          "line": 140,
+          "engine": "clang-tidy"
+        },
+        {
+          "type": "insecure_prng_tokens",
+          "cwe": "CWE-338",
+          "severity": "medium",
+          "line": 140,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "cert-msc30-c,cert-msc50-cpp",
+          "severity": "high",
+          "line": 140,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v29": {
+      "num": 29,
+      "expected_cwe": "CWE-337",
+      "description": "predictable seed: guessable from the time",
+      "lines": "143-144",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-338"
+      ],
+      "security_findings": [
+        {
+          "type": "bugprone-random-generator-seed,cert-msc32-c,cert-msc51-cpp",
+          "cwe": "CWE-338",
+          "severity": "high",
+          "line": 143,
+          "engine": "clang-tidy"
+        },
+        {
+          "type": "cert-msc30-c,cert-msc50-cpp",
+          "cwe": null,
+          "severity": "high",
+          "line": 143,
+          "engine": "clang-tidy"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "bugprone-random-generator-seed,cert-msc32-c,cert-msc51-cpp",
+          "severity": "high",
+          "line": 143,
+          "engine": "clang-tidy"
+        },
+        {
+          "type": "cert-msc30-c,cert-msc50-cpp",
+          "severity": "high",
+          "line": 143,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v30": {
+      "num": 30,
+      "expected_cwe": "CWE-328",
+      "description": "weak \"hash\" for passwords (sum of bytes, no salt)",
+      "lines": "146-147",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-328"
+      ],
+      "security_findings": [
+        {
+          "type": "weak_additive_password_hash",
+          "cwe": "CWE-328",
+          "severity": "high",
+          "line": 146,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v31": {
+      "num": 31,
+      "expected_cwe": "CWE-532",
+      "description": "password written to a log",
+      "lines": "149-153",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-532"
+      ],
+      "security_findings": [
+        {
+          "type": "password_in_log_output",
+          "cwe": "CWE-532",
+          "severity": "high",
+          "line": 151,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v32": {
+      "num": 32,
+      "expected_cwe": "CWE-377",
+      "description": "insecure temp file: fixed, predictable name in /tmp",
+      "lines": "155-156",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-377"
+      ],
+      "security_findings": [
+        {
+          "type": "predictable_temp_filename",
+          "cwe": "CWE-377",
+          "severity": "medium",
+          "line": 155,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v33": {
+      "num": 33,
+      "expected_cwe": "CWE-732",
+      "description": "world-writable permissions",
+      "lines": "158-159",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-732"
+      ],
+      "security_findings": [
+        {
+          "type": "world_writable_permissions",
+          "cwe": "CWE-732",
+          "severity": "high",
+          "line": 158,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v34": {
+      "num": 34,
+      "expected_cwe": "CWE-208",
+      "description": "timing leak: strcmp returns at first mismatch",
+      "lines": "161-164",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-208"
+      ],
+      "security_findings": [
+        {
+          "type": "timing_side_channel_strcmp",
+          "cwe": "CWE-208",
+          "severity": "medium",
+          "line": 161,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v35": {
+      "num": 35,
+      "expected_cwe": "CWE-362",
+      "description": "data race on a shared counter",
+      "lines": "167-172",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-362"
+      ],
+      "security_findings": [
+        {
+          "type": "data_race_counter",
+          "cwe": "CWE-362",
+          "severity": "high",
+          "line": 168,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v36": {
+      "num": 36,
+      "expected_cwe": "CWE-170",
+      "description": "strncpy does not null-terminate when src >= n",
+      "lines": "174-179",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-170"
+      ],
+      "security_findings": [
+        {
+          "type": "terminateStrncpy",
+          "cwe": "CWE-170",
+          "severity": "medium",
+          "line": 176,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "terminateStrncpy",
+          "severity": "medium",
+          "line": 176,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v37": {
+      "num": 37,
+      "expected_cwe": "CWE-209",
+      "description": "error message leaks internal details to the client",
+      "lines": "181-186",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-209"
+      ],
+      "security_findings": [
+        {
+          "type": "error_message_information_leak",
+          "cwe": "CWE-209",
+          "severity": "medium",
+          "line": 183,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "cert-err33-c",
+          "severity": "low",
+          "line": 184,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v38": {
+      "num": 38,
+      "expected_cwe": "CWE-200",
+      "description": "uninitialized padding bytes written to a file",
+      "lines": "189-195",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-200"
+      ],
+      "security_findings": [
+        {
+          "type": "uninitialized_padding_leak",
+          "cwe": "CWE-200",
+          "severity": "medium",
+          "line": 193,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "cert-err33-c",
+          "severity": "low",
+          "line": 193,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v39": {
+      "num": 39,
+      "expected_cwe": "CWE-252",
+      "description": "unchecked return value of fread",
+      "lines": "197-203",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-775"
+      ],
+      "security_findings": [
+        {
+          "type": "cert-err33-c",
+          "cwe": null,
+          "severity": "low",
+          "line": 200,
+          "engine": "clang-tidy"
+        },
+        {
+          "type": "resourceLeak",
+          "cwe": "CWE-775",
+          "severity": "high",
+          "line": 202,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "cert-err33-c",
+          "severity": "low",
+          "line": 200,
+          "engine": "clang-tidy"
+        },
+        {
+          "type": "resourceLeak",
+          "severity": "high",
+          "line": 202,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v40": {
+      "num": 40,
+      "expected_cwe": "CWE-126",
+      "description": "Heartbleed style: attacker-supplied length, no check",
+      "lines": "205-208",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-126"
+      ],
+      "security_findings": [
+        {
+          "type": "unbounded_length_buffer_copy",
+          "cwe": "CWE-126",
+          "severity": "high",
+          "line": 206,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v41": {
+      "num": 41,
+      "expected_cwe": "CWE-770",
+      "description": "alloca with attacker-chosen size",
+      "lines": "210-211",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-770"
+      ],
+      "security_findings": [
+        {
+          "type": "attacker_controlled_alloca",
+          "cwe": "CWE-770",
+          "severity": "high",
+          "line": 210,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "allocaCalled",
+          "severity": "medium",
+          "line": 210,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v42": {
+      "num": 42,
+      "expected_cwe": "CWE-674",
+      "description": "unbounded recursion -> stack exhaustion",
+      "lines": "213-214",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-674"
+      ],
+      "security_findings": [
+        {
+          "type": "unbounded_recursion",
+          "cwe": "CWE-674",
+          "severity": "high",
+          "line": 213,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v43": {
+      "num": 43,
+      "expected_cwe": "CWE-789",
+      "description": "unbounded allocation from user-controlled size",
+      "lines": "216-217",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-770"
+      ],
+      "security_findings": [
+        {
+          "type": "unbounded_client_vector_alloc",
+          "cwe": "CWE-770",
+          "severity": "high",
+          "line": 216,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": []
+    },
+    "v44": {
+      "num": 44,
+      "expected_cwe": "CWE-807",
+      "description": "trusting an environment variable + overflow",
+      "lines": "219-220",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-121"
+      ],
+      "security_findings": [
+        {
+          "type": "unsafe_strcpy",
+          "cwe": "CWE-121",
+          "severity": "high",
+          "line": 219,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "concurrency-mt-unsafe",
+          "severity": "low",
+          "line": 219,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v45": {
+      "num": 45,
+      "expected_cwe": "CWE-416",
+      "description": "iterator invalidation after push_back",
+      "lines": "222-226",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-664"
+      ],
+      "security_findings": [
+        {
+          "type": "invalidContainer",
+          "cwe": "CWE-664",
+          "severity": "high",
+          "line": 224,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "invalidContainer",
+          "severity": "high",
+          "line": 224,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v46": {
+      "num": 46,
+      "expected_cwe": "CWE-416",
+      "description": "string_view outlives the temporary string",
+      "lines": "228-229",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-562"
+      ],
+      "security_findings": [
+        {
+          "type": "returnDanglingLifetime",
+          "cwe": "CWE-562",
+          "severity": "high",
+          "line": 228,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "returnDanglingLifetime",
+          "severity": "high",
+          "line": 228,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v47": {
+      "num": 47,
+      "expected_cwe": "CWE-1325",
+      "description": "/ UB: base class without virtual destructor",
+      "lines": "233-234",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [
+        "CWE-404"
+      ],
+      "security_findings": [
+        {
+          "type": "virtualDestructor",
+          "cwe": "CWE-404",
+          "severity": "high",
+          "line": 231,
+          "engine": "cppcheck"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "virtualDestructor",
+          "severity": "high",
+          "line": 231,
+          "engine": "cppcheck"
+        }
+      ]
+    },
+    "v48": {
+      "num": 48,
+      "expected_cwe": "CWE-20",
+      "description": "atoi without validation, then used as a size",
+      "lines": "236-241",
+      "caught": true,
+      "cwe_matched": false,
+      "found_cwes": [],
+      "security_findings": [
+        {
+          "type": "bugprone-unchecked-string-to-number-conversion,cert-err34-c",
+          "cwe": null,
+          "severity": "high",
+          "line": 237,
+          "engine": "clang-tidy"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "bugprone-unchecked-string-to-number-conversion,cert-err34-c",
+          "severity": "high",
+          "line": 237,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v49": {
+      "num": 49,
+      "expected_cwe": "CWE-502",
+      "description": "trusting a raw struct (with a function pointer) from a file",
+      "lines": "244-249",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-502"
+      ],
+      "security_findings": [
+        {
+          "type": "unsafe_deserialization_callable",
+          "cwe": "CWE-502",
+          "severity": "critical",
+          "line": 247,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "cert-err33-c",
+          "severity": "low",
+          "line": 247,
+          "engine": "clang-tidy"
+        }
+      ]
+    },
+    "v50": {
+      "num": 50,
+      "expected_cwe": "CWE-562",
+      "description": "lambda captures a local by reference and outlives it",
+      "lines": "251-259",
+      "caught": true,
+      "cwe_matched": true,
+      "found_cwes": [
+        "CWE-562"
+      ],
+      "security_findings": [
+        {
+          "type": "return_stack_pointer",
+          "cwe": "CWE-562",
+          "severity": "critical",
+          "line": 253,
+          "engine": "rule"
+        }
+      ],
+      "analysis_findings": [
+        {
+          "type": "returnDanglingLifetime",
+          "severity": "high",
+          "line": 253,
+          "engine": "cppcheck"
+        }
+      ]
+    }
+  }
+}

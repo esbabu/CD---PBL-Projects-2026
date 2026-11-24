@@ -1,0 +1,49 @@
+{
+  "behaviors": [
+    {
+      "name": "add",
+      "args": [3, 4],
+      "expected_status": "ok",
+      "expected_ret": 7
+    },
+    {
+      "name": "reverse_list",
+      "args": [[1, 2, 3]],
+      "expected_status": "ok",
+      "expected_ret": [3, 2, 1]
+    },
+    {
+      "name": "raise_on_negative",
+      "args": [-1],
+      "expected_status": "exception"
+    },
+    {
+      "name": "mutates_argument",
+      "args": [[1, 2]],
+      "expected_status": "ok",
+      "expect_mutation": true
+    },
+    {
+      "name": "prints_text",
+      "args": ["hello"],
+      "expected_status": "ok",
+      "expected_stdout_contains": "hello"
+    },
+    {
+      "name": "infinite_loop",
+      "args": [1],
+      "expected_status": "timeout"
+    },
+    {
+      "name": "crashes_hard",
+      "args": [1],
+      "expected_status": "crash"
+    },
+    {
+      "name": "returns_special_values",
+      "args": [0],
+      "expected_status": "ok",
+      "special_check": true
+    }
+  ]
+}

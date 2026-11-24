@@ -1,0 +1,25 @@
+{
+  "benchmark_file": "C:\\Users\\jaish\\Desktop\\TOC FILES\\modified-main\\MicroBenchmarks\\Testcases\\vulnerable_100.cpp",
+  "total_ground_truth_flaws": 100,
+  "true_positives": 100,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1_score": 1.0,
+  "duplicate_finding_rate": 0.3541,
+  "source_location_accuracy": 0.98,
+  "deduplication_summary": {
+    "original_count": 209,
+    "deduplicated_count": 135,
+    "merged_groups": 43,
+    "multi_engine_count": 34,
+    "engine_overlap_distribution": {
+      "1_engine": 101,
+      "2_engines": 26,
+      "3+_engines": 8
+    }
+  },
+  "unmatched_ground_truth": [],
+  "false_positive_findings": []
+}

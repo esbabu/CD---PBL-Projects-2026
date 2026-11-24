@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Monaco Editor Highlight Line Decoration */
+.monaco-highlight-line {
+  background-color: rgba(59, 130, 246, 0.22) !important;
+  border-left: 4px solid #3b82f6 !important;
+  animation: pulse-line 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-line {
+  0% {
+    background-color: rgba(59, 130, 246, 0.18);
+  }
+  100% {
+    background-color: rgba(59, 130, 246, 0.38);
+  }
+}

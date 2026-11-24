@@ -1,0 +1,12 @@
+[
+  {
+    "task_id": "effibench_001",
+    "prompt": "Write a function count_occurrences(nums, target) that returns the number of occurrences of target in nums.",
+    "unoptimized_code": "def count_occurrences(nums, target):\n    count = 0\n    for idx in range(len(nums)):\n        if nums[idx] == target:\n            count = count + 1\n    return count\n",
+    "entry_point": "count_occurrences",
+    "inputs": [
+      {"args": [[1, 2, 2, 3, 2, 4], 2]},
+      {"args": [[1, 2, 3], 5]}
+    ]
+  }
+]

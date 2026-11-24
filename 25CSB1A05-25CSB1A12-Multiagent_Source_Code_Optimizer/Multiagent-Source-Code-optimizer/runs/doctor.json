@@ -1,0 +1,153 @@
+{
+  "python": {
+    "version": "3.14.6",
+    "minor": "3.14",
+    "executable": "C:\\Users\\jaish\\anaconda3\\python.exe",
+    "docker_image": "python:3.12-slim"
+  },
+  "docker": {
+    "available": false,
+    "path": null,
+    "version": null,
+    "remediation": "Install Docker Desktop/Engine if containerized sandboxing is desired, or set OPT_SANDBOX=local for Python."
+  },
+  "images": {
+    "python": {
+      "present": false,
+      "tools": {
+        "python3": false
+      },
+      "reason": "docker_unavailable"
+    },
+    "js": {
+      "present": false,
+      "tools": {
+        "node": false
+      },
+      "reason": "docker_unavailable"
+    },
+    "native": {
+      "present": false,
+      "tools": {
+        "clang": false,
+        "clang++": false,
+        "gcc": false,
+        "llvm-cov": false,
+        "cbmc": false
+      },
+      "reason": "docker_unavailable"
+    }
+  },
+  "host_tools": {
+    "node": {
+      "available": true,
+      "path": "C:\\Program Files\\nodejs\\node.EXE",
+      "version": "v24.19.0"
+    },
+    "npm": {
+      "available": true,
+      "path": "C:\\Program Files\\nodejs\\npm.CMD",
+      "version": "11.17.0"
+    },
+    "clang": {
+      "available": true,
+      "path": "C:\\Program Files\\LLVM\\bin\\clang.EXE",
+      "version": "clang version 23.1.4 (https://github.com/llvm/llvm-project 7a941dfb2877a0b8cf30323fefa85ad019e0b0f5)"
+    },
+    "clang++": {
+      "available": true,
+      "path": "C:\\Program Files\\LLVM\\bin\\clang++.EXE",
+      "version": "clang version 23.1.4 (https://github.com/llvm/llvm-project 7a941dfb2877a0b8cf30323fefa85ad019e0b0f5)"
+    },
+    "gcc": {
+      "available": true,
+      "path": "C:\\MinGW\\bin\\gcc.EXE",
+      "version": "gcc.exe (MinGW.org GCC-6.3.0-1) 6.3.0"
+    },
+    "g++": {
+      "available": true,
+      "path": "C:\\MinGW\\bin\\g++.EXE",
+      "version": "g++.exe (MinGW.org GCC-6.3.0-1) 6.3.0"
+    },
+    "llvm-cov": {
+      "available": true,
+      "path": "C:\\Program Files\\LLVM\\bin\\llvm-cov.EXE",
+      "version": "LLVM (http://llvm.org/):"
+    },
+    "valgrind": {
+      "available": false,
+      "path": null,
+      "version": null
+    },
+    "cbmc": {
+      "available": false,
+      "path": null,
+      "version": null
+    }
+  },
+  "tree_sitter": {
+    "installed": true,
+    "version": "0.26.1",
+    "api_style": "modern_0.22+",
+    "grammars": {
+      "c": true,
+      "cpp": true,
+      "javascript": true
+    }
+  },
+  "ollama": {
+    "base_url": "http://localhost:11434",
+    "reachable": true,
+    "version": "0.40.1",
+    "models": [
+      "llama3.2:latest",
+      "qwen2.5-coder:7b"
+    ],
+    "roles": {
+      "resolved": {
+        "spec": "qwen2.5-coder:7b",
+        "proposer": "qwen2.5-coder:7b",
+        "oracle": "qwen2.5-coder:7b",
+        "judge": "llama3.2:latest",
+        "predictor": "llama3.2:latest"
+      },
+      "warnings": [
+        "Role 'judge': requested 'llama3.1:8b' not installed; resolved to 'llama3.2:latest'.",
+        "Role 'predictor': requested 'llama3.1:8b' not installed; resolved to 'llama3.2:latest'."
+      ]
+    },
+    "remediation": null
+  },
+  "disk": {
+    "runs_dir": "C:\\Users\\jaish\\Downloads\\CompilerAI (2)\\runs",
+    "free_gb": 444.94,
+    "ok": true,
+    "remediation": null
+  },
+  "languages": {
+    "python": {
+      "ready": true,
+      "backend": "local",
+      "remediation": null
+    },
+    "javascript": {
+      "ready": true,
+      "backend": "local",
+      "remediation": null
+    },
+    "c": {
+      "ready": false,
+      "backend": "local",
+      "remediation": "Set OPT_ALLOW_LOCAL_NATIVE=1 or build docker/sandbox-native.Dockerfile."
+    },
+    "cpp": {
+      "ready": false,
+      "backend": "local",
+      "remediation": "Set OPT_ALLOW_LOCAL_NATIVE=1 or build docker/sandbox-native.Dockerfile."
+    }
+  },
+  "requested_languages": [
+    "python"
+  ],
+  "ok": true
+}

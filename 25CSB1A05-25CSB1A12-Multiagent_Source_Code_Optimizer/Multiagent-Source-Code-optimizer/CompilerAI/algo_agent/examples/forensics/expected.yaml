@@ -1,0 +1,143 @@
+units:
+  register:
+    class: security_sensitive
+    expected_status: no_improvement_found
+    security_findings:
+      - weak_hash_md5
+      - unvalidated_input
+    must_preserve:
+      - global_write_passwords
+      - stdout
+  login:
+    class: security_sensitive
+    expected_status: no_improvement_found
+    security_findings:
+      - weak_hash_md5
+      - non_constant_time_compare
+    must_preserve:
+      - stdout
+      - return_value
+  search_student:
+    class: state_coupled
+    expected_status: no_improvement_found
+    cross_function_advice: "maintain a roll -> first student index updated by add_student/delete_student/rebuilt after sort_students"
+    must_preserve:
+      - first_match_semantics
+  sort_students:
+    class: state_coupled
+    expected_status: optimized_verified
+    speedup_min: 20.0
+    complexity_before: "O(n^2)"
+    complexity_after: "O(n log n)"
+    must_preserve:
+      - in_place_list_mutation
+      - stability
+  get_student:
+    class: io_bound
+    expected_status: no_improvement_found
+    security_findings:
+      - sql_injection
+    fixture_required: db
+  load_students:
+    class: io_bound
+    expected_status: no_improvement_found
+    security_findings:
+      - unsafe_deserialization
+    fixture_required: pickle_file
+  backup_database:
+    class: io_bound
+    expected_status: no_improvement_found
+    security_findings:
+      - command_injection
+    change_proposal: security_fix
+    effect_sink: os_system
+  generate_password:
+    class: local
+    expected_status: no_improvement_found
+    security_findings:
+      - predictable_rng
+    must_preserve:
+      - rng_stream_determinism
+  calculate_average:
+    class: state_coupled
+    expected_status: optimized_verified
+    speedup_min: 1.5
+    relaxation_offer:
+      aspect: float_rel_tol
+      speedup_est: 1000.0
+    must_preserve:
+      - exact_float_result
+      - zero_division_error
+  find_duplicates:
+    class: state_coupled
+    expected_status: optimized_verified
+    speedup_min: 50.0
+    complexity_before: "O(n^2)"
+    complexity_after: "O(n)"
+    must_preserve:
+      - return_order
+      - exact_dict_objects
+      - value_equality_dedupe_quirk
+  get_config:
+    class: io_bound
+    expected_status: no_improvement_found
+    fixture_required: config_file
+  process_students:
+    class: io_bound
+    expected_status: blocked_by_contract
+    blocked_aspect: external_io
+    relaxation_offer:
+      aspect: external_io
+      rewrite: lazy_read_once
+    must_preserve:
+      - prints_identical
+      - error_timing
+  delete_student:
+    class: state_coupled
+    expected_status: no_improvement_found
+    change_proposal: bugfix
+    must_preserve:
+      - skip_adjacent_elements_on_iterate_remove
+  generate_report:
+    class: state_coupled
+    expected_status: optimized_verified
+    speedup_min: 1.05
+    label: constant_factor_only
+    must_preserve:
+      - shallow_dict_copies
+  add_student:
+    class: local
+    expected_status: no_improvement_found
+    security_findings:
+      - unvalidated_input
+    must_preserve:
+      - global_append
+  factorial:
+    class: local
+    expected_status: optimized_verified
+    speedup_min: 10.0
+    complexity_before: "O(n)"
+    complexity_after: "O(1)"
+    must_preserve:
+      - non_positive_and_float_handling
+  debug_user:
+    class: security_sensitive
+    expected_status: no_improvement_found
+    security_findings:
+      - password_hashes_leakage
+    must_preserve:
+      - stdout
+  delete_file:
+    class: io_bound
+    expected_status: no_improvement_found
+    security_findings:
+      - arbitrary_file_deletion
+    effect_sink: os_remove
+module:
+  script: true
+  verified_units_count: 5
+  relaxation_offers_count: 2
+  cross_function_advice_count: 1
+  change_proposals_count: 2
+  import_side_effects:
+    - sqlite3_connect

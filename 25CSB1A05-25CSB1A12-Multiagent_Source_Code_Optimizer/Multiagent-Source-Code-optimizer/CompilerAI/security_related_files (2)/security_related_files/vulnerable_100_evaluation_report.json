@@ -1,0 +1,25 @@
+{
+  "benchmark_file": "C:\\Users\\jaish\\Desktop\\TOC FINAL FOLDER\\END FOLDER\\Multiagent-Source-Code-Optimizer\\CompilerAI\\security_related_files (2)\\security_related_files\\benchmarks_and_evaluation\\vulnerable_100.cpp",
+  "total_ground_truth_flaws": 100,
+  "true_positives": 100,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1_score": 1.0,
+  "duplicate_finding_rate": 0.3099,
+  "source_location_accuracy": 0.98,
+  "deduplication_summary": {
+    "original_count": 171,
+    "deduplicated_count": 118,
+    "merged_groups": 36,
+    "multi_engine_count": 27,
+    "engine_overlap_distribution": {
+      "1_engine": 91,
+      "2_engines": 26,
+      "3+_engines": 1
+    }
+  },
+  "unmatched_ground_truth": [],
+  "false_positive_findings": []
+}

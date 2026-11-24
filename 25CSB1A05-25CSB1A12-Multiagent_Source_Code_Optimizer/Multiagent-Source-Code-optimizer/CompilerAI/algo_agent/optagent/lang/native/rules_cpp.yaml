@@ -1,0 +1,81 @@
+rules:
+  - id: cpp_linear_find_to_unordered_set
+    name: Replace std::find in loop with std::unordered_set + reserve
+    pattern: linear_membership
+    category: data_structure
+    preconditions: ["hashable_element_type"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: Track seen elements in a pre-reserved std::unordered_set instead of calling std::find inside a loop.
+
+  - id: cpp_vector_reserve
+    name: Pre-allocate std::vector capacity with reserve()
+    pattern: vector_growth
+    category: allocation
+    preconditions: ["known_or_bounded_size"]
+    breaks: []
+    expected_gain: "1.3x-3x fewer reallocations"
+    description: Call vec.reserve(n) before pushing elements in a loop.
+
+  - id: cpp_emplace_back
+    name: Use emplace_back instead of push_back with temporaries
+    pattern: temp_copy
+    category: allocation
+    preconditions: ["non_trivial_value_type"]
+    breaks: []
+    expected_gain: "1.1x-1.5x"
+    description: Construct elements in-place via emplace_back / std::move.
+
+  - id: cpp_pass_by_const_ref
+    name: Pass heavy local helper containers by const& or move
+    pattern: copy_overhead
+    category: allocation
+    preconditions: ["internal_helper_only"]
+    breaks: ["abi_signature"]
+    expected_gain: "Eliminates O(n) deep copies"
+    description: Avoid copying containers by value in helper functions (not changing public ABI signature).
+
+  - id: cpp_unordered_map_reserve
+    name: Replace std::map with std::unordered_map + reserve()
+    pattern: tree_map_lookup
+    category: data_structure
+    preconditions: ["order_not_needed"]
+    breaks: ["return_order"]
+    expected_gain: "O(n log n) -> O(n)"
+    description: Replace RB-tree std::map with hash-based std::unordered_map when key order is not relied upon.
+
+  - id: cpp_nth_element_partial_sort
+    name: Use std::partial_sort or std::nth_element for top-k queries
+    pattern: unstable_sort
+    category: algorithmic
+    preconditions: ["top_k_prefix_only"]
+    breaks: ["sort_stability"]
+    expected_gain: "O(n log n) -> O(n + k log k)"
+    description: Replace full sort when only top-k elements are returned and sort_stability is MAY.
+
+  - id: cpp_stable_to_unstable_sort
+    name: Replace std::stable_sort with std::sort
+    pattern: stable_sort
+    category: algorithmic
+    preconditions: ["ties_not_observable"]
+    breaks: ["sort_stability"]
+    expected_gain: "1.3x-2x and O(1) extra memory"
+    description: Swap std::stable_sort to std::sort; carries breaks=[sort_stability] so it is blocked when stability is MUST.
+
+  - id: cpp_avoid_temp_strings
+    name: Replace string + concatenation in loop with reserve + append (+=)
+    pattern: string_concat
+    category: allocation
+    preconditions: ["string_accumulation"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n)"
+    description: Avoid quadratic temporary string allocations by reserving capacity and using += / append.
+
+  - id: cpp_nested_loop_to_hash_index
+    name: Replace nested pair loop with unordered_map inverted index
+    pattern: nested_loop
+    category: algorithmic
+    preconditions: ["pair_sum_or_match"]
+    breaks: []
+    expected_gain: "O(n^2) -> O(n log n)"
+    description: Index value -> sorted positions in std::unordered_map and upper_bound for earliest j > i.
