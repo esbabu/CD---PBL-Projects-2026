@@ -1,0 +1,730 @@
+{
+ "measured_on": "2026-11-16",
+ "model": "gemini (gemini-flash-latest) then gemini (gemini-flash-lite-latest)",
+ "answered_as": "gemini-3.5-flash-lite",
+ "rows": [
+  {
+   "example": "02_cwe190_overflow.parc",
+   "finding": "F1",
+   "kind": "overflow",
+   "comments": "overflows when input is near 2147483647",
+   "shown": {
+    "text": "Your code on line 3 has an overflow problem [F1]. Adding 1000 to the input can make a number as large as 2147484647 [F1]. Since the largest possible integer is 2147483647, this addition goes past the limit [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "On line 3, adding 1000 to the input can make the number too big to fit in an integer [F1]. The result can reach 2147484647, but the largest allowed integer is only 2147483647 [F1]. Since the input can be any integer, this addition causes an overflow [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "near",
+    "overflows"
+   ],
+   "preferred": "shown"
+  },
+  {
+   "example": "03_cwe191_underflow.parc",
+   "finding": "F1",
+   "kind": "underflow",
+   "comments": "underflows when input is near -2147483648",
+   "shown": {
+    "text": "Your code on line 3 has an underflow problem [F1]. This happens because the math operation can make a number that is too small for the int type [F1]. Since the input can be any int, subtracting 1000 can push the result past the smallest allowed value [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "Your function subtracts one thousand from an input parameter on line three [F1]. Because the input can be any integer, the result might become too small to store [F1]. The smallest possible integer is -2147483648, but this math can reach -2147484648 [F1]. This causes an underflow error because the value goes past the lower limit [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "near",
+    "underflows"
+   ],
+   "preferred": "shown"
+  },
+  {
+   "example": "04_cwe369_divzero.parc",
+   "finding": "F1",
+   "kind": "divide-by-zero",
+   "comments": "no check that b is 0",
+   "shown": {
+    "text": "You are dividing the number a by the number b on line 3 [F1]. Because b is a function parameter, it can be any integer, including zero [F1]. The program does not check if b is zero before doing the division [F1]. This causes a divide-by-zero error [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 1.0
+   },
+   "blind": {
+    "text": "The division on line 3 might divide by zero [F1]. Because b is a parameter, it can be any integer, including zero [F1]. There is also no check before this line to rule out zero [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 1.0
+   },
+   "comment_only_words": [
+    "check"
+   ],
+   "preferred": "shown"
+  },
+  {
+   "example": "05_cwe476_null.parc",
+   "finding": "F1",
+   "kind": "null-access",
+   "comments": "no check that record is null",
+   "shown": {
+    "text": "The program tries to use the record array on line 4 [F1]. A caller passes a null value for this record [F1]. Because there is no check for null, trying to read the array stops the program [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 1.0
+   },
+   "blind": {
+    "text": "The variable named record is null at this point [F1]. Trying to use record to access an item makes the program stop [F1]. This happens because a caller passes a null value for record on line 10 [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "check"
+   ],
+   "preferred": "blind"
+  },
+  {
+   "example": "06_dot_parallel.parc",
+   "finding": "F3",
+   "kind": "divide-by-zero",
+   "comments": "a[i] * b[i] can overflow  divides by zero when n is 0",
+   "shown": {
+    "text": "The code divides the sum by n on line seven [F3]. Because n is a parameter, it can be zero [F3]. There is no check on the way here to rule zero out [F3].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.67
+   },
+   "blind": {
+    "text": "Your program divides the sum by n on line 7 [F3]. Because n is a parameter, it can be any integer, including zero [F3]. The compiler sees no checks along the way to rule out zero [F3]. This causes a divide-by-zero problem [F3].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.67
+   },
+   "comment_only_words": [
+    "divides",
+    "overflow",
+    "zero"
+   ],
+   "preferred": "blind"
+  },
+  {
+   "example": "11_float_average.parc",
+   "finding": "F2",
+   "kind": "float-reduction",
+   "comments": "n is promoted to float",
+   "shown": {
+    "text": "Your parallel loop on line 8 combines the results in a different order than a normal loop would [F2]. Because your variable named sum is a float, this different order makes the parallel result differ slightly from a serial loop [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "Your parallel loop on line 8 combines the float variable sum in a different order than a normal loop would [F2]. Because float numbers add up in this varied order, the final result can differ slightly from a serial loop [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "promoted"
+   ],
+   "preferred": "shown"
+  },
+  {
+   "example": "12_lints.parc",
+   "finding": "F1",
+   "kind": "unused-variable",
+   "comments": "never used  dead store: overwritten before it is read  hides the parameter n  unreachable",
+   "shown": {
+    "text": "You declared a variable named 'unused' on line 4 [F1]. The program never uses this variable anywhere [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "You created a variable named unused on line 4 [F1]. The ParC compiler noticed that this variable is never used in your program [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "before",
+    "dead",
+    "hides",
+    "overwritten",
+    "parameter",
+    "read",
+    "store",
+    "unreachable"
+   ],
+   "preferred": "shown"
+  },
+  {
+   "example": "12_lints.parc",
+   "finding": "F2",
+   "kind": "dead-store",
+   "comments": "never used  dead store: overwritten before it is read  hides the parameter n  unreachable",
+   "shown": {
+    "text": "You stored a value in the variable result on line 5 [F2]. That specific value is never read because you overwrite it with a new value right after [F2]. The ParC compiler calls this a dead store [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.38
+   },
+   "blind": {
+    "text": "The value given to the variable result on line 5 is never used [F2]. This happens because result is given a new value right after on line 6 [F2]. So, the first value is lost before anyone can read it [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.25
+   },
+   "comment_only_words": [
+    "before",
+    "dead",
+    "hides",
+    "overwritten",
+    "parameter",
+    "read",
+    "store",
+    "unreachable"
+   ],
+   "preferred": "equal"
+  },
+  {
+   "example": "12_lints.parc",
+   "finding": "F3",
+   "kind": "shadowing",
+   "comments": "never used  dead store: overwritten before it is read  hides the parameter n  unreachable",
+   "shown": {
+    "text": "You have declared a new variable named n inside the if statement on line 8 [F3]. This inner variable hides the outer parameter n that was given to the function on line 3 [F3]. Because of this, you cannot easily reach the original function parameter inside that block [F3].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.25
+   },
+   "blind": {
+    "text": "Your variable n on line 8 is shadowing another variable [F3]. It hides the parameter n that was declared on line 3 [F3].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.25
+   },
+   "comment_only_words": [
+    "before",
+    "dead",
+    "hides",
+    "overwritten",
+    "parameter",
+    "read",
+    "store",
+    "unreachable"
+   ],
+   "preferred": "shown"
+  },
+  {
+   "example": "12_lints.parc",
+   "finding": "F4",
+   "kind": "unreachable-code",
+   "comments": "never used  dead store: overwritten before it is read  hides the parameter n  unreachable",
+   "shown": {
+    "text": "The print statement on line 12 can never run [F4]. A search starting from the beginning of the function never reaches this statement [F4]. Because it is placed after the return statement, the computer cannot get to it [F4].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "The code on line 12 can never run [F4]. A search starting from the beginning of the function never reaches this statement [F4]. This means the program will stop before it ever gets there [F4].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 0,
+     "cause": 0,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.12
+   },
+   "comment_only_words": [
+    "before",
+    "dead",
+    "hides",
+    "overwritten",
+    "parameter",
+    "read",
+    "store",
+    "unreachable"
+   ],
+   "preferred": "shown"
+  },
+  {
+   "example": "13_uninitialized.parc",
+   "finding": "F1",
+   "kind": "uninitialized",
+   "comments": "no value yet when flag is false",
+   "shown": {
+    "text": "The variable named value is used on line 7 [F1]. There is at least one path where value gets no number [F1]. This means you are trying to use a variable before it has a value [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "The variable value is used at line 7, but it does not have a value on every path [F1]. At least one path from the declaration at line 3 to this use never assigns a value to it [F1]. Because of this, the program tries to read an uninitialized variable [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "yet"
+   ],
+   "preferred": "equal"
+  },
+  {
+   "example": "14_index_bounds.parc",
+   "finding": "F2",
+   "kind": "index-out-of-bounds",
+   "comments": "i reaches 3: outside the array",
+   "shown": {
+    "text": "The index in squares[i] can reach 3 on line 5 [F2]. This value is past the end of the array [F2]. The array only has 3 elements [F2]. Interval analysis shows that i can be 3 [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.33
+   },
+   "blind": {
+    "text": "The index in squares[i] can reach 3 and goes past the end of the array [F2]. This happens because interval analysis shows that i is in the range from 0 to 3 [F2]. Meanwhile, the array only has 3 elements [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.33
+   },
+   "comment_only_words": [
+    "array",
+    "outside",
+    "reaches"
+   ],
+   "preferred": "blind"
+  },
+  {
+   "example": "15_optimizer.parc",
+   "finding": "F1",
+   "kind": "overflow",
+   "comments": "constant folding: 8  the same on every pass: moved out of the loop  i * 3 becomes a running sum  never true: the branch is removed  already computed: reused  + 0 disappears",
+   "shown": {
+    "text": "On line 9, the calculation of *k * width* can overflow an integer [F1]. The result can grow as large as 17179869176, but the largest allowed integer is only 2147483647 [F1]. Because *k* is a parameter and *width* is 8, their product goes beyond the safe range [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 1
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "On line 9, the multiplication of k and width can overflow an integer [F1]. The largest possible integer is 2147483647, but this result can reach up to 17179869176 [F1]. Since k is a parameter that can be any integer and width is 8, their product goes beyond the allowed range [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "already",
+    "becomes",
+    "branch",
+    "computed",
+    "constant",
+    "disappears",
+    "every",
+    "folding",
+    "loop",
+    "moved",
+    "never",
+    "out",
+    "pass",
+    "removed",
+    "reused",
+    "running",
+    "same",
+    "sum",
+    "true"
+   ],
+   "preferred": "equal"
+  },
+  {
+   "example": "15_optimizer.parc",
+   "finding": "F2",
+   "kind": "overflow",
+   "comments": "constant folding: 8  the same on every pass: moved out of the loop  i * 3 becomes a running sum  never true: the branch is removed  already computed: reused  + 0 disappears",
+   "shown": {
+    "text": "On line 10, the math for i * 3 can overflow an integer [F2]. The biggest possible result is 6442450938, but the largest allowed integer is only 2147483647 [F2]. This happens because variable i can reach a value up to 2147483646 [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "blind": {
+    "text": "On line 10, the expression i * 3 can overflow an integer [F2]. The variable i can be as large as 2147483646, making the result go up to 6442450938 [F2]. This is a problem because the largest allowed integer is only 2147483647 [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.0
+   },
+   "comment_only_words": [
+    "already",
+    "becomes",
+    "branch",
+    "computed",
+    "constant",
+    "disappears",
+    "every",
+    "folding",
+    "loop",
+    "moved",
+    "never",
+    "out",
+    "pass",
+    "removed",
+    "reused",
+    "running",
+    "same",
+    "sum",
+    "true"
+   ],
+   "preferred": "blind"
+  },
+  {
+   "example": "17_parallel_race.parc",
+   "finding": "F1",
+   "kind": "parallel-dependence",
+   "comments": "needs the element the previous iteration wrote  shared by all iterations, and not a declared reduction",
+   "shown": {
+    "text": "This parallel loop is not safe, so it runs as a normal loop [F1]. It writes to a[i] and uses a[i - 1] which is one iteration away [F1]. Dependence analysis proves this problem [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.11
+   },
+   "blind": {
+    "text": "Your parallel loop on line 8 is not safe because it writes to a[i] and reads a[i - 1] one iteration away [F1]. Because of this dependency, the loop cannot safely run in parallel and must run as a normal loop [F1].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 0,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.11
+   },
+   "comment_only_words": [
+    "declared",
+    "element",
+    "iteration",
+    "iterations",
+    "needs",
+    "previous",
+    "reduction",
+    "shared",
+    "wrote"
+   ],
+   "preferred": "blind"
+  },
+  {
+   "example": "17_parallel_race.parc",
+   "finding": "F2",
+   "kind": "parallel-dependence",
+   "comments": "needs the element the previous iteration wrote  shared by all iterations, and not a declared reduction",
+   "shown": {
+    "text": "Your parallel loop on line 12 is not safe, so it has to run as a normal loop [F2]. The variable named count is updated by every single iteration on line 13 [F2]. Because of this shared update, the loop needs a reduction declaration like reduce(+: count) [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": true,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 1,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.44
+   },
+   "blind": {
+    "text": "The parallel loop at line 12 is not safe because every iteration updates the variable 'count' at line 13 [F2]. Because of this issue, the compiler runs the loop as a normal loop instead of a parallel one [F2]. The loop needs a reduction operation to work properly with the variable 'count' [F2].",
+    "source": "gemini (gemini-flash-lite-latest)",
+    "model": "gemini (gemini-flash-lite-latest)",
+    "saw_comments": false,
+    "score": {
+     "correct": 1,
+     "cause": 1,
+     "fix": 1,
+     "clear": 1,
+     "context": 0
+    },
+    "comment_words_used": 0.33
+   },
+   "comment_only_words": [
+    "declared",
+    "element",
+    "iteration",
+    "iterations",
+    "needs",
+    "previous",
+    "reduction",
+    "shared",
+    "wrote"
+   ],
+   "preferred": "blind"
+  }
+ ],
+ "summary": {
+  "findings": 16,
+  "scored": 16,
+  "skipped": 0,
+  "shown": {
+   "correct": 16,
+   "cause": 16,
+   "fix": 1,
+   "clear": 16,
+   "context": 6,
+   "total": 55,
+   "comment_words_used": 0.26
+  },
+  "blind": {
+   "correct": 15,
+   "cause": 15,
+   "fix": 1,
+   "clear": 16,
+   "context": 5,
+   "total": 52,
+   "comment_words_used": 0.19
+  },
+  "preferred": {
+   "shown": 7,
+   "blind": 6,
+   "equal": 3,
+   "unclear": 0
+  }
+ }
+}
