@@ -1,54 +1,16 @@
-# Compiler Error Explainer
+# Project Title: Compiler Error Explainer and Rewriting using AST and NLP
+Roll Number: 25CSB1A72
 
-Compiler Error Explainer is an educational C++/Python/Java source analyzer with a Flask dashboard. It combines compiler or interpreter diagnostics, plain-language explanations, static security checks, language-specific syntax healing, and visual views such as DFA traces and AST diagrams.
+## File Descriptions
+- Source Code: A complete Python/Flask web application implementing a dual-compiler architecture (GCC for diagnostics, Clang for AST extraction). The backend features a hybrid TF-IDF/Logistic Regression classifier, an Agentic Auto-Healer with 21 deterministic repair strategies, and a custom Static Application Security Testing (SAST) engine with over 55 CWE-mapped security rules. Includes the entire frontend UI (HTML/CSS/JS) and data benchmarking scripts.
 
-## Install
 
-On Windows, create the project virtual environment and install the dependencies:
+- Documentation: A comprehensive PDF report detailing the system architecture, the mid-to-end project evolution, and the experimental methodology. It includes the system pseudocode (Algorithms 1-6), dataset evaluation graphs (Confusion Matrix, F1-Score, and multi-model benchmarking), and a breakdown of the 55+ security metrics.
 
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
 
-The project also uses local compiler/toolchain executables. `start_app.ps1` checks for them at startup and warns when an optional tool is missing.
+- Screen Recording: A live demonstration video walking through the end-to-end pipeline. The video shows the system parsing a 500+ line C++ file, generating the AST and DFA trace, automatically healing multiple syntax errors via the OBSERVE-PLAN-ACT-REPLAN loop, and successfully detecting and refusing to heal a malicious file containing command injection and buffer overflow vulnerabilities.
 
-## Run
 
-From the project directory, run:
 
-```powershell
-.\start_app.ps1
-```
-
-Open [http://localhost:5000](http://localhost:5000). The server binds to `127.0.0.1` with Flask debug mode disabled.
-
-## Dashboard tabs
-
-| Tab | Purpose |
-|---|---|
-| Overview & Metrics | Health summary and diagnostic counts |
-| Diagnostics & NLP | Compiler/interpreter messages and explanations |
-| Model Evaluation | Evaluation metrics and classifier charts |
-| Agentic Auto-Heal | Rule-based repair attempts and diffs |
-| Security Audit | Static security findings and flagged source lines |
-| DFA Trace | Character-by-character lexer trace |
-| AST Diagram | Source syntax tree visualization |
-| Grammar Check | C++ toy-grammar result |
-| Source Code | Uploaded source with finding highlights |
-
-## Supported languages
-
-| Language | Analysis and healing |
-|---|---|
-| C++ | Compiler diagnostics, rule-based healing, static security analysis, and optional behavioral tests |
-| Python | Syntax/runtime diagnostics, rule-based healing, AST view, and static security analysis |
-| Java | `javac` diagnostics, rule-based healing, tree-sitter AST view, and static security analysis |
-
-## Limitations
-
-- Auto-Heal uses rules; it is not a general-purpose or semantics-aware repair system.
-- The ML classifier is trained on C++ GCC messages only. Python and Java use language-specific rule-based categorization.
-- Runtime checks and behavioral tests are opt-in. High/Critical security findings block execution.
-- Taint tracking is not built yet.
-- The classifier feedback loop is not built yet.
+## Important Links
+- Google Drive Link (for large files/video): https://drive.google.com/file/d/14zaxXuwrlTyeJ4pjoY4I61FmFtYvuVe5/view?usp=sharing
