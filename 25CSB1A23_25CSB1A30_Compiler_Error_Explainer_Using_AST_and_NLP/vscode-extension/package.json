@@ -1,0 +1,200 @@
+{
+  "name": "compiler-error-explainer",
+  "displayName": "Compiler Error Explainer & Auto-Healer",
+  "description": "Explains C/C++ compiler errors and warnings with rich diagnostics, 1-click tiered auto-healing, security auditing, and Big-O optimization.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:cpp",
+    "onLanguage:c"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cee.run",
+        "title": "Compiler Error Explainer: Compile & Run C++ File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cee.compile",
+        "title": "Compiler Error Explainer: Compile & Check Errors",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "cee.autoheal",
+        "title": "Compiler Error Explainer: Auto-Heal All Errors & Security",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "cee.optimize",
+        "title": "Compiler Error Explainer: Optimize C++ Code (Big-O)",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "cee.openDashboard",
+        "title": "Compiler Error Explainer: Open Deep Analytics & AST Dashboard",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "cee.scanSecurity",
+        "title": "Compiler Error Explainer: Scan Security Vulnerabilities",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "cee.format",
+        "title": "Compiler Error Explainer: Format C/C++ Code",
+        "icon": "$(paintcan)"
+      },
+      {
+        "command": "cee.analyze",
+        "title": "Compiler Error Explainer: Analyze Current File",
+        "icon": "$(search)"
+      },
+      {
+        "command": "cee.clear",
+        "title": "Compiler Error Explainer: Clear Diagnostics"
+      },
+      {
+        "command": "cee.showOutput",
+        "title": "Compiler Error Explainer: Show Output Channel"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "cee.run",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cee.compile",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cee.autoheal",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cee.optimize",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cee.openDashboard",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cee.scanSecurity",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cee.format",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "navigation@7"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "cee.run",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification@0"
+        },
+        {
+          "command": "cee.compile",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification@1"
+        },
+        {
+          "command": "cee.autoheal",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification@2"
+        },
+        {
+          "command": "cee.optimize",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification@3"
+        },
+        {
+          "command": "cee.openDashboard",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification@4"
+        },
+        {
+          "command": "cee.scanSecurity",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification@4"
+        },
+        {
+          "command": "cee.format",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification@5"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Compiler Error Explainer",
+      "properties": {
+        "cee.pythonPath": {
+          "type": "string",
+          "default": "python3",
+          "description": "Path or command to python interpreter."
+        },
+        "cee.backendPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to backend project root containing tools/vscode_bridge.py."
+        },
+        "cee.runOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run compiler error analysis when saving a C/C++ file."
+        },
+        "cee.runOnOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run compiler error analysis when opening a C/C++ file."
+        },
+        "cee.debounceMs": {
+          "type": "number",
+          "default": 800,
+          "description": "Debounce delay in ms for live diagnostics while typing."
+        },
+        "cee.enableAi": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable AI LLM fallback explanation for complex or unclassified errors."
+        },
+        "cee.dashboardUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "Localhost URL for external web IDE dashboard server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/mapping.test.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  }
+}
