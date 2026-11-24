@@ -1,0 +1,462 @@
+{
+  "benchmark_fixture_count": 66,
+  "cwe_categories_covered": [
+    "CWE-120",
+    "CWE-121",
+    "CWE-122",
+    "CWE-125",
+    "CWE-134",
+    "CWE-190",
+    "CWE-191",
+    "CWE-194",
+    "CWE-195",
+    "CWE-197",
+    "CWE-20",
+    "CWE-252",
+    "CWE-369",
+    "CWE-401",
+    "CWE-415",
+    "CWE-416",
+    "CWE-457",
+    "CWE-467",
+    "CWE-476",
+    "CWE-562",
+    "CWE-78",
+    "CWE-787",
+    "CWE-835"
+  ],
+  "clang_metrics": {
+    "micro_precision": 1.0,
+    "micro_recall": 0.2222,
+    "micro_f1": 0.3636,
+    "macro_f1": 0.1401,
+    "evaluated_classes": 23,
+    "active_classes": 23,
+    "per_cwe": {
+      "CWE-120": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-121": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 3,
+        "true_negative": 63,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-122": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-125": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 2,
+        "true_negative": 64,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-134": {
+        "true_positive": 3,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 63,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "CWE-190": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 8,
+        "true_negative": 58,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-191": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 7,
+        "true_negative": 59,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-194": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-195": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-197": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-20": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-252": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-369": {
+        "true_positive": 9,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 57,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "CWE-401": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-415": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 3,
+        "true_negative": 63,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-416": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 3,
+        "true_negative": 63,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-457": {
+        "true_positive": 1,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 65,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "CWE-467": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-476": {
+        "true_positive": 1,
+        "false_positive": 0,
+        "false_negative": 7,
+        "true_negative": 58,
+        "precision": 1.0,
+        "recall": 0.125,
+        "f1": 0.2222
+      },
+      "CWE-562": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-78": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-787": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 4,
+        "true_negative": 62,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-835": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "gnn_metrics": {
+    "micro_precision": 0.236,
+    "micro_recall": 0.3333,
+    "micro_f1": 0.2763,
+    "macro_f1": 0.0815,
+    "evaluated_classes": 23,
+    "active_classes": 23,
+    "per_cwe": {
+      "CWE-120": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-121": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 3,
+        "true_negative": 63,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-122": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-125": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 2,
+        "true_negative": 64,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-134": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 3,
+        "true_negative": 63,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-190": {
+        "true_positive": 5,
+        "false_positive": 7,
+        "false_negative": 3,
+        "true_negative": 51,
+        "precision": 0.4167,
+        "recall": 0.625,
+        "f1": 0.5
+      },
+      "CWE-191": {
+        "true_positive": 3,
+        "false_positive": 0,
+        "false_negative": 4,
+        "true_negative": 59,
+        "precision": 1.0,
+        "recall": 0.4286,
+        "f1": 0.6
+      },
+      "CWE-194": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-195": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-197": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-20": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-252": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-369": {
+        "true_positive": 5,
+        "false_positive": 4,
+        "false_negative": 4,
+        "true_negative": 53,
+        "precision": 0.5556,
+        "recall": 0.5556,
+        "f1": 0.5556
+      },
+      "CWE-401": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-415": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 3,
+        "true_negative": 63,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-416": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 3,
+        "true_negative": 63,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-457": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-467": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-476": {
+        "true_positive": 8,
+        "false_positive": 57,
+        "false_negative": 0,
+        "true_negative": 1,
+        "precision": 0.1231,
+        "recall": 1.0,
+        "f1": 0.2192
+      },
+      "CWE-562": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-78": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-787": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 4,
+        "true_negative": 62,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "CWE-835": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 1,
+        "true_negative": 65,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  }
+}

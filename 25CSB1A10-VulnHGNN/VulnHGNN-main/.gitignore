@@ -1,0 +1,35 @@
+# Virtual Environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# IDEs
+.vscode/
+.idea/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Data, datasets, databases, and cached stuff
+data/
+dataset/
+
+# Model outputs, checkpoints, and metrics
+results/
+
+# Temporary / Scratch files generated during dev
+*.log
+coverage/
+htmlcov/
+.coverage
+test-results/
+_graph_names.txt
+failed_compilations.txt
+pipeline_out.txt
+pipeline_test_output.txt
+graph_sample.png
+request_overflow.json
+remove_comments_script.py

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnHGNN Audit Studio</title>
+    
+    <!-- Clean Sans + Mono Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="app-layout">
+        
+        <!-- ═══ SIDEBAR (Notion Style) ═══ -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="brand">
+                    <div class="brand-icon"></div>
+                    <span class="brand-name">Vuln<b>HGNN</b></span>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <div class="nav-section">Audit Metrics</div>
+                    <div class="stat-row">
+                        <span class="stat-label">Security estimate / 100</span>
+                        <span class="stat-value" id="score-number">--</span>
+                    </div>
+                    <p class="security-note">Higher is lower detected risk; supported patterns only.</p>
+                    <div class="stat-row">
+                        <span class="stat-label">Analysis Time</span>
+                        <span class="stat-value secondary" id="stat-time">0.00s</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Code Lines</span>
+                        <span class="stat-value secondary" id="stat-loc">0</span>
+                    </div>
+                </nav>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="sidebar-status">
+                    <div class="nav-section">System Status</div>
+                    <div class="status-pill">
+                        <div class="status-dot idle" id="status-dot"></div>
+                        <span id="status-text">Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="carbon-card">
+                    <div class="nav-section">Sustainability</div>
+                    <div class="c-metric">
+                        <i data-feather="zap"></i> <span id="stat-energy">0.000</span> <small>kWh</small>
+                    </div>
+                    <div class="c-metric">
+                        <i data-feather="cloud"></i> <span id="stat-co2">0.000</span> <small>kg CO₂</small>
+                    </div>
+                </div>
+                <div class="engine-ver">Web detection: Gemini + Clang</div>
+            </div>
+        </aside>
+
+        <!-- ═══ MAIN WORKSPACE (Cursor Style) ═══ -->
+        <main class="workspace">
+            
+            <!-- EDITOR COLUMN -->
+            <section class="editor-pane">
+                <header class="pane-header">
+                    <div class="header-tab active">
+                        <i data-feather="file-text"></i> <span id="source-filename">source_audit.c</span>
+                    </div>
+                    <div class="header-actions">
+                        <label class="language-picker" for="code-language">Language
+                            <select id="code-language">
+                                <option value="c">C</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                        </label>
+                        <button id="btn-edit" class="btn-sec hidden" title="Click to edit code" style="background:#2563eb;color:#fff;border:none;padding:4px 10px;font-size:0.75rem;cursor:pointer;border-radius:4px;display:inline-flex;align-items:center;gap:4px;"><i data-feather="edit-3"></i> ✏️ Edit Code</button>
+                        <button id="btn-clear" class="icon-btn" title="Clear Canvas"><i data-feather="trash-2"></i></button>
+                    </div>
+                </header>
+                
+                <div class="editor-content">
+                    <pre id="code-line-numbers" class="line-numbers" aria-hidden="true">1</pre>
+                    <textarea id="code-input" wrap="off" spellcheck="false" placeholder="// Paste C/C++ code here for AI analysis..."></textarea>
+                    <div id="code-render-overlay" class="code-overlay hidden" title="Click anywhere to edit code" style="cursor:text;">
+                        <pre id="code-render"><code></code></pre>
+                    </div>
+                </div>
+
+                <section id="live-check-panel" class="live-check-panel" aria-live="polite">
+                    <div class="live-check-heading">
+                        <strong id="live-check-status">Live checks start when you type</strong>
+                        <span id="live-check-detail">Syntax and supported vulnerability checks run locally after a short pause.</span>
+                    </div>
+                    <div id="live-check-findings" class="live-check-findings"></div>
+                </section>
+
+                <footer class="pane-footer">
+                    <div class="footer-hint">Ctrl + Enter to analyze</div>
+                    <p class="llm-consent">Full analysis sends code (up to 64 KB) to the configured Gemini provider. Live Clang checks stay local.</p>
+                    <button id="analyze-btn" class="btn-primary">
+                        <i data-feather="play"></i> Analyze
+                    </button>
+                </footer>
+            </section>
+
+            <!-- RESULTS COLUMN -->
+            <section class="results-pane">
+                <header class="pane-header border-left">
+                    <nav class="result-tabs">
+                        <button class="res-tab active" data-tab="tab-detection">Detection</button>
+                        <button class="res-tab" data-tab="tab-localization">Map</button>
+                        <button class="res-tab" data-tab="tab-healing">Heal</button>
+                    </nav>
+                </header>
+
+                <div class="results-scroll-area">
+                    
+                    <!-- TAB: DETECTION -->
+                    <div id="tab-detection" class="tab-panel active">
+                        <div id="state-idle" class="empty-view">
+                            <i data-feather="search"></i>
+                            <p>Analysis results will appear here</p>
+                        </div>
+
+                        <div id="state-loading" class="loading-view hidden">
+                            <div class="loader"></div>
+                            <span>Running agent and security checks...</span>
+                        </div>
+
+                        <div id="state-success" class="success-view hidden">
+                            <div id="verdict-banner" class="verdict-card"></div>
+                            <section id="llm-review-result" class="llm-review-card hidden" aria-live="polite"></section>
+                            <div class="section-label">Agent and security-check findings</div>
+                            <div id="prob-list" class="prob-stack"></div>
+                            <button id="btn-export-report" class="btn-sec report-export hidden" type="button">
+                                <i data-feather="download"></i> Export security report (JSON)
+                            </button>
+                            
+                            <div id="action-center" class="action-dock hidden">
+                                <button id="btn-localize" class="btn-sec"><i data-feather="map-pin"></i> Localize</button>
+                                <button id="btn-heal-source" class="btn-primary" style="background:#2563eb;color:#fff;display:inline-flex;align-items:center;gap:6px;"><i data-feather="zap"></i> ✨ Suggest AI Fix / Repair</button>
+                                <button id="btn-pipeline" class="btn-sec full"><i data-feather="refresh-cw"></i> Run Full Pipeline</button>
+                            </div>
+                        </div>
+
+                        <div id="state-error" class="error-view hidden">
+                            <i data-feather="alert-circle"></i>
+                            <p id="error-message">Error processing request</p>
+                            <button id="btn-retry" class="btn-mini">Retry</button>
+                        </div>
+                    </div>
+
+                    <!-- TAB: LOCALIZATION -->
+                    <div id="tab-localization" class="tab-panel">
+                        <div id="loc-idle" class="empty-view">Localize to see instruction mapping</div>
+                        <div id="loc-loading" class="loading-view hidden"><div class="loader-sm"></div></div>
+                        <div id="loc-results" class="loc-view hidden">
+                            <div id="loc-instructions" class="inst-stack"></div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: HEALING -->
+                    <div id="tab-healing" class="tab-panel">
+                        <div id="heal-idle" class="empty-view">
+                            <p>No repair proposal generated yet.</p>
+                            <button id="btn-trigger-ai-fix" class="btn-primary" style="margin-top:12px;background:#2563eb;color:#fff;padding:8px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;">
+                                <i data-feather="zap"></i> ✨ Suggest AI Fix / Generate Patch
+                            </button>
+                        </div>
+                        <div id="heal-results" class="heal-view hidden">
+                            <div class="heal-msg" id="heal-header"></div>
+                            <div class="mini-diff">
+                                <div class="diff-block">
+                                    <div class="diff-tag">Original</div>
+                                    <pre id="diff-before"></pre>
+                                </div>
+                                <div class="diff-block">
+                                    <div class="diff-tag healed">Healed</div>
+                                    <pre id="diff-after"></pre>
+                                </div>
+                            </div>
+                            <div id="repair-review-actions" class="repair-review-actions hidden">
+                                <p id="repair-validation-status"></p>
+                                <button id="btn-apply-repair" class="btn-primary" type="button">Apply reviewed repair</button>
+                                <button id="btn-discard-repair" class="btn-sec" type="button">Discard proposal</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LOGS (Overlay or bottom part of healing) -->
+                    <div id="tab-pipeline" class="tab-panel">
+                        <div class="log-console" id="log-container"></div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='demo_results.js') }}"></script>
+    <script src="{{ url_for('static', filename='localization.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script>feather.replace();</script>
+</body>
+</html>

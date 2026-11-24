@@ -1,0 +1,1 @@
+{"status":"offline-mock-generation","methods":{"GNN":{"status":"simulated","metrics":{"precision":0.0,"recall":0.0,"f1":0.0}},"Gemini":{"status":"simulated","metrics":{"precision":0.0,"recall":0.0,"f1":0.0}},"Clang-Tidy":{"status":"simulated","metrics":{"precision":0.0,"recall":0.0,"f1":0.0}}}}

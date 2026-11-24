@@ -1,0 +1,27 @@
+# Core ML
+torch>=2.0
+torch_geometric
+numpy
+pandas
+scikit-learn
+scipy
+
+# Graph
+networkx
+
+# Web server
+flask
+python-dotenv>=1.0
+
+# Utilities
+tqdm
+matplotlib
+pytest
+
+# Carbon emissions tracking
+codecarbon
+
+# Opcode embeddings
+gensim
+
+# Rate limiting: built-in (see security.py check_rate_limit). To use flask-limiter instead: pip install flask-limiter

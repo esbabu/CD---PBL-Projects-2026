@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "file": "test_files\\test_10_all_vulnerabilities.c",
+  "file_name": "test_10_all_vulnerabilities.c",
+  "elapsed_sec": 0.259,
+  "detected_cwes": [],
+  "vulnerable_instructions": [],
+  "vulnerable_subgraph": {},
+  "has_patched_ir": true,
+  "validation_status": "CLEAN",
+  "remaining_cwes": [],
+  "total_patches": 0,
+  "num_iterations": 1,
+  "carbon_metrics": null,
+  "iterations": [
+    {
+      "iteration": 1,
+      "detected_cwes": [],
+      "localization": null,
+      "repair": null,
+      "validation": null
+    }
+  ],
+  "model": {
+    "path": "results\\pyg_gnn_v9\\best_pyg_model.pt",
+    "device": "cpu",
+    "parameters": 98205,
+    "healthy": true
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "cwe190_add_overflow.c": {
+    "expected_cwes": [
+      "CWE-190"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe190_mult_overflow.c": {
+    "expected_cwes": [
+      "CWE-190"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe190_unsigned_wrap.c": {
+    "expected_cwes": [
+      "CWE-190"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe191_sub_underflow.c": {
+    "expected_cwes": [
+      "CWE-191"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe191_unsigned_underflow.c": {
+    "expected_cwes": [
+      "CWE-191"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe369_div_by_zero_const.c": {
+    "expected_cwes": [
+      "CWE-369"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe369_div_by_zero_var.c": {
+    "expected_cwes": [
+      "CWE-369"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe369_modulo_zero.c": {
+    "expected_cwes": [
+      "CWE-369"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe476_null_deref_malloc.c": {
+    "expected_cwes": [
+      "CWE-476"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe476_null_param_deref.c": {
+    "expected_cwes": [
+      "CWE-476"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe476_strchr_null.c": {
+    "expected_cwes": [
+      "CWE-476"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe787_oob_write_stack.c": {
+    "expected_cwes": [
+      "CWE-787"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe787_oob_write_loop.c": {
+    "expected_cwes": [
+      "CWE-787"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe787_heap_oob_write.c": {
+    "expected_cwes": [
+      "CWE-787"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe125_oob_read_past_end.c": {
+    "expected_cwes": [
+      "CWE-125"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe125_negative_index_read.c": {
+    "expected_cwes": [
+      "CWE-125"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe121_stack_strcpy.c": {
+    "expected_cwes": [
+      "CWE-121"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe121_stack_strcat.c": {
+    "expected_cwes": [
+      "CWE-121"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe122_heap_strcpy.c": {
+    "expected_cwes": [
+      "CWE-122"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe416_use_after_free_read.c": {
+    "expected_cwes": [
+      "CWE-416"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe416_use_after_free_write.c": {
+    "expected_cwes": [
+      "CWE-416"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe415_double_free_simple.c": {
+    "expected_cwes": [
+      "CWE-415"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe415_double_free_branch.c": {
+    "expected_cwes": [
+      "CWE-415"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe401_mem_leak_early_return.c": {
+    "expected_cwes": [
+      "CWE-401"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe134_format_string_printf.c": {
+    "expected_cwes": [
+      "CWE-134"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe134_format_string_snprintf.c": {
+    "expected_cwes": [
+      "CWE-134"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe457_uninit_int.c": {
+    "expected_cwes": [
+      "CWE-457"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe78_command_injection.c": {
+    "expected_cwes": [
+      "CWE-78"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe120_sprintf_buffer.c": {
+    "expected_cwes": [
+      "CWE-120"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe252_unchecked_return.c": {
+    "expected_cwes": [
+      "CWE-252"
+    ],
+    "is_vulnerable": true
+  },
+  "multi_cwe121_cwe476.c": {
+    "expected_cwes": [
+      "CWE-121",
+      "CWE-476"
+    ],
+    "is_vulnerable": true
+  },
+  "multi_cwe190_cwe787.c": {
+    "expected_cwes": [
+      "CWE-190",
+      "CWE-787"
+    ],
+    "is_vulnerable": true
+  },
+  "multi_cwe416_cwe415.c": {
+    "expected_cwes": [
+      "CWE-416",
+      "CWE-415"
+    ],
+    "is_vulnerable": true
+  },
+  "multi_cwe134_cwe369.c": {
+    "expected_cwes": [
+      "CWE-134",
+      "CWE-369"
+    ],
+    "is_vulnerable": true
+  },
+  "clean_01_safe_stack_buffer.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_02_safe_malloc_checked.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_03_safe_integer_addition.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_04_safe_division.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_05_safe_array_indexing.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_06_safe_pointer_params.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_07_safe_string_copy.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_08_safe_dynamic_array.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_09_safe_command_exec.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_10_safe_loop_bounds.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_11_safe_subtraction.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_12_safe_resource_cleanup.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "cwe20_unvalidated_input.c": {
+    "expected_cwes": [
+      "CWE-20"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe194_sign_extension.c": {
+    "expected_cwes": [
+      "CWE-194"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe195_signed_to_unsigned.c": {
+    "expected_cwes": [
+      "CWE-195"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe197_numeric_truncation.c": {
+    "expected_cwes": [
+      "CWE-197"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe467_sizeof_pointer.c": {
+    "expected_cwes": [
+      "CWE-467"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe562_stack_escape.c": {
+    "expected_cwes": [
+      "CWE-562"
+    ],
+    "is_vulnerable": true
+  },
+  "cwe835_infinite_loop.c": {
+    "expected_cwes": [
+      "CWE-835"
+    ],
+    "is_vulnerable": true
+  },
+  "clean_13_safe_cast.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_14_safe_format_string.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "clean_15_safe_input_validation.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false
+  },
+  "test_01_clean.c": {
+    "expected_cwes": [],
+    "is_vulnerable": false,
+    "source": "original_repository_fixtures"
+  },
+  "test_02_cwe190.c": {
+    "expected_cwes": [
+      "CWE-190"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_03_cwe191.c": {
+    "expected_cwes": [
+      "CWE-191"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_04_cwe369.c": {
+    "expected_cwes": [
+      "CWE-369"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_05_cwe476.c": {
+    "expected_cwes": [
+      "CWE-476"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_06_dual_190_191.c": {
+    "expected_cwes": [
+      "CWE-190",
+      "CWE-191"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_07_dual_369_476.c": {
+    "expected_cwes": [
+      "CWE-369",
+      "CWE-476"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_08_triple_190_191_369.c": {
+    "expected_cwes": [
+      "CWE-190",
+      "CWE-191",
+      "CWE-369"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_09_triple_191_369_476.c": {
+    "expected_cwes": [
+      "CWE-191",
+      "CWE-369",
+      "CWE-476"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  },
+  "test_10_all_vulnerabilities.c": {
+    "expected_cwes": [
+      "CWE-190",
+      "CWE-191",
+      "CWE-369",
+      "CWE-476"
+    ],
+    "is_vulnerable": true,
+    "source": "original_repository_fixtures"
+  }
+}

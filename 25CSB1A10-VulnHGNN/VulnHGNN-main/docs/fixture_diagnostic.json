@@ -1,0 +1,235 @@
+{
+  "evaluation_type": "diagnostic fixtures; not an independent held-out benchmark",
+  "warning": "These fixtures may overlap model training or tuning data. Do not interpret these metrics as generalization performance.",
+  "model": "results\\pyg_gnn_v9\\best_pyg_model.pt",
+  "checkpoint_epoch": 78,
+  "checkpoint_validation_f1": 0.0,
+  "device": "cpu",
+  "thresholds": {
+    "non-vulnerable": 0.5,
+    "CWE-476": 0.1,
+    "CWE-191": 0.5,
+    "CWE-190": 0.4,
+    "CWE-369": 0.7
+  },
+  "fixture_count": 10,
+  "metrics": {
+    "micro_precision": 0.5833,
+    "micro_recall": 0.3889,
+    "micro_f1": 0.4667,
+    "per_cwe": {
+      "CWE-190": {
+        "true_positive": 1,
+        "false_positive": 0,
+        "false_negative": 3,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4
+      },
+      "CWE-191": {
+        "true_positive": 1,
+        "false_positive": 0,
+        "false_negative": 4,
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.3333
+      },
+      "CWE-369": {
+        "true_positive": 1,
+        "false_positive": 0,
+        "false_negative": 4,
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.3333
+      },
+      "CWE-476": {
+        "true_positive": 4,
+        "false_positive": 5,
+        "false_negative": 0,
+        "precision": 0.4444,
+        "recall": 1.0,
+        "f1": 0.6154
+      }
+    }
+  },
+  "fixtures": [
+    {
+      "file": "test_01_clean.c",
+      "expected_cwes": [],
+      "detected_cwes": [],
+      "scores": {
+        "non-vulnerable": 0.6666,
+        "CWE-476": 0.0549,
+        "CWE-191": 0.0544,
+        "CWE-190": 0.1088,
+        "CWE-369": 0.2959
+      },
+      "elapsed_sec": 0.1823
+    },
+    {
+      "file": "test_02_cwe190.c",
+      "expected_cwes": [
+        "CWE-190"
+      ],
+      "detected_cwes": [
+        "CWE-190",
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.0327,
+        "CWE-476": 0.4049,
+        "CWE-191": 0.2451,
+        "CWE-190": 0.7249,
+        "CWE-369": 0.3015
+      },
+      "elapsed_sec": 0.1851
+    },
+    {
+      "file": "test_03_cwe191.c",
+      "expected_cwes": [
+        "CWE-191"
+      ],
+      "detected_cwes": [
+        "CWE-191",
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.0062,
+        "CWE-476": 0.4049,
+        "CWE-191": 0.7453,
+        "CWE-190": 0.2226,
+        "CWE-369": 0.1008
+      },
+      "elapsed_sec": 0.1456
+    },
+    {
+      "file": "test_04_cwe369.c",
+      "expected_cwes": [
+        "CWE-369"
+      ],
+      "detected_cwes": [
+        "CWE-369",
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.0153,
+        "CWE-476": 0.2797,
+        "CWE-191": 0.1833,
+        "CWE-190": 0.2566,
+        "CWE-369": 0.9646
+      },
+      "elapsed_sec": 0.1591
+    },
+    {
+      "file": "test_05_cwe476.c",
+      "expected_cwes": [
+        "CWE-476"
+      ],
+      "detected_cwes": [
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.2279,
+        "CWE-476": 0.4821,
+        "CWE-191": 0.3302,
+        "CWE-190": 0.2702,
+        "CWE-369": 0.3406
+      },
+      "elapsed_sec": 0.1838
+    },
+    {
+      "file": "test_06_dual_190_191.c",
+      "expected_cwes": [
+        "CWE-190",
+        "CWE-191"
+      ],
+      "detected_cwes": [
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.0096,
+        "CWE-476": 0.4049,
+        "CWE-191": 0.3939,
+        "CWE-190": 0.2226,
+        "CWE-369": 0.1008
+      },
+      "elapsed_sec": 0.1233
+    },
+    {
+      "file": "test_07_dual_369_476.c",
+      "expected_cwes": [
+        "CWE-369",
+        "CWE-476"
+      ],
+      "detected_cwes": [
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.1389,
+        "CWE-476": 0.4049,
+        "CWE-191": 0.2451,
+        "CWE-190": 0.2226,
+        "CWE-369": 0.6627
+      },
+      "elapsed_sec": 0.147
+    },
+    {
+      "file": "test_08_triple_190_191_369.c",
+      "expected_cwes": [
+        "CWE-190",
+        "CWE-191",
+        "CWE-369"
+      ],
+      "detected_cwes": [
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.0245,
+        "CWE-476": 0.4049,
+        "CWE-191": 0.2451,
+        "CWE-190": 0.2226,
+        "CWE-369": 0.1008
+      },
+      "elapsed_sec": 0.1522
+    },
+    {
+      "file": "test_09_triple_191_369_476.c",
+      "expected_cwes": [
+        "CWE-191",
+        "CWE-369",
+        "CWE-476"
+      ],
+      "detected_cwes": [
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.0375,
+        "CWE-476": 0.4049,
+        "CWE-191": 0.2451,
+        "CWE-190": 0.2226,
+        "CWE-369": 0.1008
+      },
+      "elapsed_sec": 0.1504
+    },
+    {
+      "file": "test_10_all_vulnerabilities.c",
+      "expected_cwes": [
+        "CWE-190",
+        "CWE-191",
+        "CWE-369",
+        "CWE-476"
+      ],
+      "detected_cwes": [
+        "CWE-476"
+      ],
+      "scores": {
+        "non-vulnerable": 0.0511,
+        "CWE-476": 0.4049,
+        "CWE-191": 0.2451,
+        "CWE-190": 0.2226,
+        "CWE-369": 0.1008
+      },
+      "elapsed_sec": 0.153
+    }
+  ]
+}
