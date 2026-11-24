@@ -1,0 +1,114 @@
+[
+    {
+        "id": "py_01",
+        "lang": "python",
+        "type": "error",
+        "expected_error": "ZeroDivisionError",
+        "expected_line": 2,
+        "code": "a=10\nb=0\nprint(a/b)"
+    },
+    {
+        "id": "py_02",
+        "lang": "python",
+        "type": "error",
+        "expected_error": "NameError",
+        "expected_line": 2,
+        "code": "x = 5\nprint(y)"
+    },
+    {
+        "id": "py_03",
+        "lang": "python",
+        "type": "error",
+        "expected_error": "IndexError",
+        "expected_line": 3,
+        "code": "arr=[1,2]\nprint('checking')\nprint(arr[5])"
+    },
+    {
+        "id": "py_04",
+        "lang": "python",
+        "type": "error",
+        "expected_error": "TypeError",
+        "expected_line": 2,
+        "code": "x = 'hello'\ny = x + 5"
+    },
+    {
+        "id": "py_05",
+        "lang": "python",
+        "type": "error",
+        "expected_error": "SyntaxError",
+        "expected_line": 2,
+        "code": "x = 10\nif x = 10:\n    print('yes')"
+    },
+    {
+        "id": "cpp_01",
+        "lang": "cpp",
+        "type": "error",
+        "expected_error": "MissingSemicolon",
+        "expected_line": 4,
+        "code": "#include <iostream>\nint main() {\n    int x = 5\n    return 0;\n}"
+    },
+    {
+        "id": "cpp_02",
+        "lang": "cpp",
+        "type": "error",
+        "expected_error": "StreamOperatorError",
+        "expected_line": 4,
+        "code": "#include <iostream>\nint main() {\n    std::cout >> 'Hello';\n    return 0;\n}"
+    },
+    {
+        "id": "java_01",
+        "lang": "java",
+        "type": "error",
+        "expected_error": "MissingSemicolon",
+        "expected_line": 3,
+        "code": "public class Main {\n    public static void main(String[] a) {\n        int x = 5\n    }\n}"
+    },
+    {
+        "id": "java_02",
+        "lang": "java",
+        "type": "error",
+        "expected_error": "MissingReturnStatement",
+        "expected_line": 3,
+        "code": "class Calc {\n    int add(int a, int b) {\n        int sum = a + b;\n    }\n}"
+    },
+    {
+        "id": "sec_01",
+        "lang": "python",
+        "type": "security",
+        "expected_block": true,
+        "code": "import os\nos.system('ls')"
+    },
+    {
+        "id": "sec_02",
+        "lang": "python",
+        "type": "security",
+        "expected_block": true,
+        "code": "eval('print(1)')"
+    },
+    {
+        "id": "sec_03",
+        "lang": "cpp",
+        "type": "security",
+        "expected_block": true,
+        "code": "#include <sys/socket.h>\nint main() { return 0; }"
+    },
+    {
+        "id": "sec_04",
+        "lang": "java",
+        "type": "security",
+        "expected_block": true,
+        "code": "import java.net.Socket;\npublic class X {}"
+    },
+    {
+        "id": "safe_01",
+        "lang": "python",
+        "type": "benign",
+        "code": "print('Hello World')"
+    },
+    {
+        "id": "safe_02",
+        "lang": "cpp",
+        "type": "benign",
+        "code": "#include <iostream>\nint main() { std::cout << 'Hi'; return 0; }"
+    }
+]

@@ -1,0 +1,881 @@
+[
+  {
+    "run_id": "eval_1792583065_1b3f7a",
+    "timestamp": "2026-10-21 11:44:25 UTC",
+    "test_set_version": "2.0.0",
+    "total_cases_tested": 31,
+    "security": {
+      "total_tested": 22,
+      "tp": 12,
+      "fp": 0,
+      "tn": 10,
+      "fn": 0,
+      "warnings_count": 2,
+      "detection_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "missed_cases": [],
+      "false_positive_cases": [],
+      "latencies_ms": [
+        0.026199999410891905,
+        0.02640000093379058,
+        0.03909999941242859,
+        0.04199999966658652,
+        0.043799998820759356,
+        0.04409999746712856,
+        0.045099997805664316,
+        0.04959999932907522,
+        0.05079999755253084,
+        0.05700000110664405,
+        0.05819999933009967,
+        0.06919999941601418,
+        0.07259999983943999,
+        0.07760000153211877,
+        0.08420000085607171,
+        0.08819999857223593,
+        0.09110000246437266,
+        0.09110000246437266,
+        0.1646999990043696,
+        0.2105999992636498,
+        0.39680000190855935,
+        2.519500001653796
+      ],
+      "median_latency_ms": 0.07
+    },
+    "correction": {
+      "total_tested": 9,
+      "expected_repairs": 6,
+      "validated_repairs": 5,
+      "correction_success_rate": 0.8333333333333334,
+      "ambiguous_correctly_refused": 1,
+      "syntax_valid_count": 8,
+      "behavior_preservation": {
+        "tested": 7,
+        "passed": 6,
+        "failed": 1,
+        "unverified": 2,
+        "pass_rate": 0.8571428571428571
+      },
+      "category_outcomes": {
+        "NameError": {
+          "total": 3,
+          "success": 3,
+          "failed": 0
+        },
+        "SyntaxError": {
+          "total": 3,
+          "success": 2,
+          "failed": 1
+        },
+        "TypeError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "IndexError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "CorrectCode": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        }
+      },
+      "failed_cases": [
+        {
+          "id": "CORR-06",
+          "name": "Unclosed closing parenthesis",
+          "error_type": "SyntaxError",
+          "reason": "Candidate code contains syntax error: '(' was never closed at line 1",
+          "status": "SYNTAX_ERROR"
+        }
+      ],
+      "analysis_latencies_ms": [
+        0.1787999972293619,
+        0.6162999998196028,
+        0.8336999999301042,
+        1.0320000001229346,
+        1.2275999979465269,
+        1.3834999990649521,
+        1.4640000008512288,
+        2.0925000026181806,
+        2.625899996928638
+      ],
+      "correction_latencies_ms": [
+        0.004900000931229442,
+        0.006400001439033076,
+        0.008499999239575118,
+        0.0732000007701572,
+        68.28909999967436,
+        75.39729999916744,
+        76.29229999656673,
+        81.6131999999925,
+        87.4136999991606
+      ],
+      "median_analysis_latency_ms": 1.23,
+      "median_correction_latency_ms": 68.29
+    },
+    "resources": {
+      "emissions_kg": 1.042885919685733e-06,
+      "energy_kwh": null,
+      "measurement_status": "RECORDED"
+    }
+  },
+  {
+    "run_id": "eval_1792844462_de81e7",
+    "timestamp": "2026-10-24 12:21:02 UTC",
+    "test_set_version": "2.0.0",
+    "total_cases_tested": 63,
+    "security": {
+      "total_tested": 22,
+      "tp": 12,
+      "fp": 0,
+      "tn": 10,
+      "fn": 0,
+      "warnings_count": 2,
+      "detection_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "missed_cases": [],
+      "false_positive_cases": [],
+      "latencies_ms": [
+        0.04150002496317029,
+        0.04449998959898949,
+        0.059999991208314896,
+        0.06360001862049103,
+        0.06520003080368042,
+        0.06660004146397114,
+        0.0675999908708036,
+        0.07129996083676815,
+        0.07400003960356116,
+        0.07719994755461812,
+        0.0838999985717237,
+        0.0923000043258071,
+        0.11279998579993844,
+        0.11760002234950662,
+        0.12939999578520656,
+        0.14509999891743064,
+        0.14949997421354055,
+        0.16080000204965472,
+        0.7038000039756298,
+        0.9706999990157783,
+        1.2798000243492424,
+        4.177500028163195
+      ],
+      "median_latency_ms": 0.09
+    },
+    "agent_security": {
+      "total_tested": 14,
+      "tp": 11,
+      "fp": 0,
+      "tn": 3,
+      "fn": 0,
+      "detection_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "precision": 1.0,
+      "blocking_rate": 1.0,
+      "logging_rate": 1.0,
+      "category_breakdown": {
+        "DIRECT_PROMPT_INJECTION": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "INDIRECT_PROMPT_INJECTION": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "MALICIOUS_CANDIDATE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "VALIDATION_BYPASS": {
+          "tested": 1,
+          "detected": 1,
+          "blocked": 1
+        },
+        "UNAUTHORIZED_TOOL_USE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "SENSITIVE_INFO_EXPOSURE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "BENIGN_LOOKALIKE": {
+          "tested": 3,
+          "detected": 0,
+          "blocked": 0
+        }
+      },
+      "latencies_ms": [
+        0.01309998333454132,
+        0.017200014553964138,
+        0.020299979951232672,
+        0.042000028770416975,
+        0.05789997521787882,
+        0.1490999711677432,
+        0.16540003707632422,
+        0.17740001203492284,
+        0.19839999731630087,
+        0.40600000647827983,
+        0.512500002514571,
+        0.512500002514571,
+        0.6735000060871243,
+        1.4207000494934618
+      ],
+      "median_latency_ms": 0.18
+    },
+    "correction": {
+      "total_tested": 9,
+      "expected_repairs": 6,
+      "validated_repairs": 5,
+      "correction_success_rate": 0.8333333333333334,
+      "ambiguous_correctly_refused": 1,
+      "syntax_valid_count": 8,
+      "behavior_preservation": {
+        "tested": 7,
+        "passed": 6,
+        "failed": 1,
+        "unverified": 2,
+        "pass_rate": 0.8571428571428571
+      },
+      "category_outcomes": {
+        "NameError": {
+          "total": 3,
+          "success": 3,
+          "failed": 0
+        },
+        "SyntaxError": {
+          "total": 3,
+          "success": 2,
+          "failed": 1
+        },
+        "TypeError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "IndexError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "CorrectCode": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        }
+      },
+      "failed_cases": [
+        {
+          "id": "CORR-06",
+          "name": "Unclosed closing parenthesis",
+          "error_type": "SyntaxError",
+          "reason": "Candidate code contains syntax error: '(' was never closed at line 1",
+          "status": "SYNTAX_ERROR"
+        }
+      ],
+      "analysis_latencies_ms": [
+        0.20710000535473228,
+        0.7575000054202974,
+        1.1184000177308917,
+        1.1907000443898141,
+        1.2165000080130994,
+        1.2390000047162175,
+        1.4878000365570188,
+        2.5138999917544425,
+        7.644700002856553
+      ],
+      "correction_latencies_ms": [
+        0.003300025127828121,
+        0.004799978341907263,
+        0.005500041879713535,
+        0.05040003452450037,
+        51.470000005792826,
+        51.51879996992648,
+        53.42070001643151,
+        67.27580004371703,
+        73.82940000388771
+      ],
+      "median_analysis_latency_ms": 1.22,
+      "median_correction_latency_ms": 51.47
+    },
+    "multilingual": {
+      "total_tested": 18,
+      "language_detection_accuracy": 1.0,
+      "diagnostic_accuracy": 1.0,
+      "by_language": {
+        "python": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            1.2242000084370375,
+            2.265300019644201,
+            3.267900028731674,
+            3.3515000250190496,
+            4.532699997071177,
+            5.070200015325099
+          ],
+          "median_latency_ms": 3.35
+        },
+        "cpp": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            401.2953999917954,
+            422.6514999754727,
+            441.5686000138521,
+            455.23409999441355,
+            481.8614000105299,
+            1408.825499995146
+          ],
+          "median_latency_ms": 455.23
+        },
+        "java": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            0.020300038158893585,
+            0.09590003173798323,
+            0.1306000049225986,
+            0.29419997008517385,
+            0.5298000178299844,
+            0.5814000032842159
+          ],
+          "median_latency_ms": 0.29
+        }
+      },
+      "by_complexity": {
+        "1": {
+          "tested": 6,
+          "passed": 6
+        },
+        "2": {
+          "tested": 6,
+          "passed": 6
+        },
+        "3": {
+          "tested": 6,
+          "passed": 6
+        }
+      }
+    },
+    "resources": {
+      "emissions_kg": 1.1760875850007149e-05,
+      "energy_kwh": null,
+      "measurement_status": "RECORDED"
+    }
+  },
+  {
+    "run_id": "eval_1795028654_a277dd",
+    "timestamp": "2026-11-18 19:04:14 UTC",
+    "test_set_version": "2.0.0",
+    "total_cases_tested": 63,
+    "security": {
+      "total_tested": 22,
+      "tp": 12,
+      "fp": 0,
+      "tn": 10,
+      "fn": 0,
+      "warnings_count": 2,
+      "detection_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "missed_cases": [],
+      "false_positive_cases": [],
+      "latencies_ms": [
+        0.0869999994392856,
+        0.09159999990515644,
+        0.11610000001383014,
+        0.12969999988854397,
+        0.1305999994656304,
+        0.14239999927667668,
+        0.1480999999330379,
+        0.15799999982846202,
+        0.1762000001690467,
+        0.1795999996829778,
+        0.1823999991756864,
+        0.22650000028079376,
+        0.23220000002766028,
+        0.28819999988627387,
+        0.35970000044471817,
+        0.3710000000864966,
+        0.3744000005099224,
+        1.989800000046671,
+        4.54249999984313,
+        6.281699999817647,
+        20.23079999980837,
+        66.27819999994244
+      ],
+      "median_latency_ms": 0.23
+    },
+    "agent_security": {
+      "total_tested": 14,
+      "tp": 11,
+      "fp": 0,
+      "tn": 3,
+      "fn": 0,
+      "detection_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "precision": 1.0,
+      "blocking_rate": 1.0,
+      "logging_rate": 1.0,
+      "category_breakdown": {
+        "DIRECT_PROMPT_INJECTION": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "INDIRECT_PROMPT_INJECTION": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "MALICIOUS_CANDIDATE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "VALIDATION_BYPASS": {
+          "tested": 1,
+          "detected": 1,
+          "blocked": 1
+        },
+        "UNAUTHORIZED_TOOL_USE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "SENSITIVE_INFO_EXPOSURE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "BENIGN_LOOKALIKE": {
+          "tested": 3,
+          "detected": 0,
+          "blocked": 0
+        }
+      },
+      "latencies_ms": [
+        0.028500000553322025,
+        0.033599999369471334,
+        0.049000000217347406,
+        0.07689999983995222,
+        0.1081000000340282,
+        0.49339999986841576,
+        0.5117999999129097,
+        0.6305000006250339,
+        0.6366999996316736,
+        0.8532000001650886,
+        1.4936999996280065,
+        5.33980000000156,
+        19.89789999970526,
+        1166.2684000002628
+      ],
+      "median_latency_ms": 0.63
+    },
+    "correction": {
+      "total_tested": 9,
+      "expected_repairs": 6,
+      "validated_repairs": 5,
+      "correction_success_rate": 0.8333333333333334,
+      "ambiguous_correctly_refused": 1,
+      "syntax_valid_count": 8,
+      "behavior_preservation": {
+        "tested": 7,
+        "passed": 6,
+        "failed": 1,
+        "unverified": 2,
+        "pass_rate": 0.8571428571428571
+      },
+      "category_outcomes": {
+        "NameError": {
+          "total": 3,
+          "success": 3,
+          "failed": 0
+        },
+        "SyntaxError": {
+          "total": 3,
+          "success": 2,
+          "failed": 1
+        },
+        "TypeError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "IndexError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "CorrectCode": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        }
+      },
+      "failed_cases": [
+        {
+          "id": "CORR-06",
+          "name": "Unclosed closing parenthesis",
+          "error_type": "SyntaxError",
+          "reason": "Candidate code contains syntax error: '(' was never closed at line 1",
+          "status": "SYNTAX_ERROR"
+        }
+      ],
+      "analysis_latencies_ms": [
+        311.1324000001332,
+        623.5712999996395,
+        782.3035000001255,
+        867.5718000004053,
+        902.7822999996715,
+        1033.6086999996041,
+        1184.7255000002406,
+        1904.0500000000975,
+        2456.487599999491
+      ],
+      "correction_latencies_ms": [
+        0.022700000045006163,
+        0.023499999770137947,
+        0.02550000044720946,
+        0.392699999792967,
+        254.20069999927364,
+        320.8125999999538,
+        412.63789999993605,
+        600.2669999998034,
+        685.5435999996189
+      ],
+      "median_analysis_latency_ms": 902.78,
+      "median_correction_latency_ms": 254.2
+    },
+    "multilingual": {
+      "total_tested": 18,
+      "language_detection_accuracy": 1.0,
+      "diagnostic_accuracy": 1.0,
+      "by_language": {
+        "python": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            567.1940000001996,
+            573.0519999997341,
+            577.3729000002277,
+            608.6610000002111,
+            632.458800000677,
+            642.0210000005682
+          ],
+          "median_latency_ms": 608.66
+        },
+        "cpp": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            427.1638999998686,
+            427.2469999996247,
+            431.6936999994141,
+            497.8991000007227,
+            666.3802000002761,
+            8211.026500000116
+          ],
+          "median_latency_ms": 497.9
+        },
+        "java": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            0.08209999941755086,
+            0.34779999987222254,
+            0.4116000000067288,
+            0.9595000001354492,
+            3.40909999977157,
+            9.523700000499957
+          ],
+          "median_latency_ms": 0.96
+        }
+      },
+      "by_complexity": {
+        "1": {
+          "tested": 6,
+          "passed": 6
+        },
+        "2": {
+          "tested": 6,
+          "passed": 6
+        },
+        "3": {
+          "tested": 6,
+          "passed": 6
+        }
+      }
+    },
+    "resources": {
+      "emissions_kg": 8.131602399358181e-05,
+      "energy_kwh": null,
+      "measurement_status": "RECORDED"
+    }
+  },
+  {
+    "run_id": "eval_1795046885_b8e04b",
+    "timestamp": "2026-11-19 00:08:05 UTC",
+    "test_set_version": "2.0.0",
+    "total_cases_tested": 63,
+    "security": {
+      "total_tested": 22,
+      "tp": 12,
+      "fp": 0,
+      "tn": 10,
+      "fn": 0,
+      "warnings_count": 2,
+      "detection_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "missed_cases": [],
+      "false_positive_cases": [],
+      "latencies_ms": [
+        0.09399999908055179,
+        0.1157000006060116,
+        0.1190999973914586,
+        0.12029999925289303,
+        0.12480000077630393,
+        0.1263999984075781,
+        0.12680000145337544,
+        0.13100000069243833,
+        0.1540000012028031,
+        0.15999999959603883,
+        0.19550000070012175,
+        0.22109999918029644,
+        0.261799999861978,
+        0.2870999996957835,
+        0.338400001055561,
+        0.3440000000409782,
+        0.36719999843626283,
+        0.3676000014820602,
+        0.4473999979381915,
+        0.7394000022031832,
+        2.160899999580579,
+        11.476799998490606
+      ],
+      "median_latency_ms": 0.22
+    },
+    "agent_security": {
+      "total_tested": 14,
+      "tp": 11,
+      "fp": 0,
+      "tn": 3,
+      "fn": 0,
+      "detection_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "precision": 1.0,
+      "blocking_rate": 1.0,
+      "logging_rate": 1.0,
+      "category_breakdown": {
+        "DIRECT_PROMPT_INJECTION": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "INDIRECT_PROMPT_INJECTION": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "MALICIOUS_CANDIDATE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "VALIDATION_BYPASS": {
+          "tested": 1,
+          "detected": 1,
+          "blocked": 1
+        },
+        "UNAUTHORIZED_TOOL_USE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "SENSITIVE_INFO_EXPOSURE": {
+          "tested": 2,
+          "detected": 2,
+          "blocked": 2
+        },
+        "BENIGN_LOOKALIKE": {
+          "tested": 3,
+          "detected": 0,
+          "blocked": 0
+        }
+      },
+      "latencies_ms": [
+        0.03109999670414254,
+        0.043700001697288826,
+        0.05570000212173909,
+        0.12649999916902743,
+        0.4915999998047482,
+        0.509299999976065,
+        0.6866000003356021,
+        0.7225000008475035,
+        0.9348999992653262,
+        1.3199999993958045,
+        1.3230000004114117,
+        1.7269999989366625,
+        3.3379000014974736,
+        3.7284999998519197
+      ],
+      "median_latency_ms": 0.72
+    },
+    "correction": {
+      "total_tested": 9,
+      "expected_repairs": 6,
+      "validated_repairs": 5,
+      "correction_success_rate": 0.8333333333333334,
+      "ambiguous_correctly_refused": 1,
+      "syntax_valid_count": 8,
+      "behavior_preservation": {
+        "tested": 7,
+        "passed": 6,
+        "failed": 1,
+        "unverified": 2,
+        "pass_rate": 0.8571428571428571
+      },
+      "category_outcomes": {
+        "NameError": {
+          "total": 3,
+          "success": 3,
+          "failed": 0
+        },
+        "SyntaxError": {
+          "total": 3,
+          "success": 2,
+          "failed": 1
+        },
+        "TypeError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "IndexError": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        },
+        "CorrectCode": {
+          "total": 1,
+          "success": 1,
+          "failed": 0
+        }
+      },
+      "failed_cases": [
+        {
+          "id": "CORR-06",
+          "name": "Unclosed closing parenthesis",
+          "error_type": "SyntaxError",
+          "reason": "Candidate code contains syntax error: '(' was never closed at line 1",
+          "status": "SYNTAX_ERROR"
+        }
+      ],
+      "analysis_latencies_ms": [
+        250.6790000006731,
+        372.7225000002363,
+        387.1447999990778,
+        401.02789999946253,
+        415.5008999987331,
+        419.9653999967268,
+        433.1127000004926,
+        433.5773999991943,
+        472.905599999649
+      ],
+      "correction_latencies_ms": [
+        0.0180000024556648,
+        0.01920000067912042,
+        0.01930000144056976,
+        0.33090000215452164,
+        145.87100000062492,
+        150.03599999909056,
+        154.27659999841126,
+        181.41100000138977,
+        221.1777999982587
+      ],
+      "median_analysis_latency_ms": 415.5,
+      "median_correction_latency_ms": 145.87
+    },
+    "multilingual": {
+      "total_tested": 18,
+      "language_detection_accuracy": 1.0,
+      "diagnostic_accuracy": 1.0,
+      "by_language": {
+        "python": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            379.22620000244933,
+            437.8197000005457,
+            452.8963000011572,
+            501.2992000010854,
+            536.6644999994605,
+            713.7886000018625
+          ],
+          "median_latency_ms": 501.3
+        },
+        "cpp": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            490.33069999859435,
+            493.0583999994269,
+            505.15810000069905,
+            521.7260999997961,
+            522.6404999993974,
+            538.6844999993627
+          ],
+          "median_latency_ms": 521.73
+        },
+        "java": {
+          "tested": 6,
+          "lang_detected": 6,
+          "diag_detected": 6,
+          "latencies": [
+            0.6184999983815942,
+            0.6571000012627337,
+            0.6657000012637582,
+            0.6723000005877111,
+            0.9801999985938892,
+            2.3814999985916074
+          ],
+          "median_latency_ms": 0.67
+        }
+      },
+      "by_complexity": {
+        "1": {
+          "tested": 6,
+          "passed": 6
+        },
+        "2": {
+          "tested": 6,
+          "passed": 6
+        },
+        "3": {
+          "tested": 6,
+          "passed": 6
+        }
+      }
+    },
+    "resources": {
+      "emissions_kg": 4.0340828316656994e-05,
+      "energy_kwh": null,
+      "measurement_status": "RECORDED"
+    }
+  }
+]

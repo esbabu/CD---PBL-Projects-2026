@@ -1,0 +1,1775 @@
+========================================================================
+Python / 01_student_records.py
+========================================================================
+
+from dataclasses import dataclass
+from typing import List
+
+@dataclass
+class Student:
+    name: str
+    marks: List[int]
+    email: str
+
+def average(marks):
+    total = 0
+    for mark in marks:
+        total += mark
+    return total / len(mark)
+
+def grade(score):
+    if score >= 90:
+        return "A"
+    elif score >= 75:
+        return "B"
+    else
+        return "C"
+
+def find_student(students, target):
+    for student in students:
+        if student.name = target:
+            return student
+    return None
+
+def report(student):
+    score = average(student.marks)
+    print("Average: " + score)
+    print("Grade:", grade(score))
+    print("Email:", student.emial)
+
+def main():
+    students = [
+        Student("Asha", [88, 92, 79], "asha@example.com"),
+        Student("Ravi", [67, 71, 73], "ravi@example.com"),
+        Student("Mina", [], "mina@example.com")
+    ]
+    for student in students:
+        report(student)
+    selected = find_student(students, "Noor")
+    print(selected.name)
+
+if __name__ == "__main__":
+    main()
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+
+========================================================================
+Python / 02_inventory.py
+========================================================================
+
+class Item:
+    def __init__(self, code, name, quantity, price):
+        self.code = code
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+
+class Inventory:
+    def __init__(self):
+        self.items = {}
+
+    def add(self, item):
+        self.items[item.code] = item
+
+    def get(self, code):
+        return self.items.get(code)
+
+    def sell(self, code, amount):
+        item = self.get(code)
+        if item is None:
+            return False
+        if amount > item.quantity:
+            return False
+        item.quantity -= amount
+        return True
+
+    def restock(self, code, amount):
+        item = self.get(code)
+        item.quantity = item.quantity + amount
+
+    def total_value(self):
+        total = 0
+        for item in self.items.values():
+            total += item.quantity * item.prize
+        return total
+
+    def low_stock(self, limit):
+        result = []
+        for item in self.items.values():
+            if item.quantity < limit
+                result.append(item)
+        return result
+
+def main():
+    stock = Inventory()
+    stock.add(Item("P1", "Notebook", 40, 55.0))
+    stock.add(Item("P2", "Pen", 100, 10.0))
+    stock.sell("P1", 3)
+    stock.restock("MISSING", 4)
+    print(stock.total_value())
+    for item in stock.low_stock(30):
+        print(item.name)
+
+if __name__ == "__main__":
+    main()
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+========================================================================
+Python / 03_library.py
+========================================================================
+
+class Book:
+    def __init__(self, isbn, title):
+        self.isbn = isbn
+        self.title = title
+        self.available = True
+
+class Member:
+    def __init__(self, member_id, name):
+        self.member_id = member_id
+        self.name = name
+        self.borrowed = []
+
+class Library:
+    def __init__(self):
+        self.books = {}
+        self.members = {}
+
+    def add_book(self, book):
+        self.books[book.isbn] = book
+
+    def add_member(self, member):
+        self.members[member.member_id] = member
+
+    def issue(self, isbn, member_id):
+        book = self.books[isbn]
+        member = self.members[member_id]
+        if not book.available:
+            return False
+        if len(member.borrowed) > 3:
+            return False
+        book.available = False
+        member.borrowed.append(isbn)
+        return True
+
+    def return_book(self, isbn, member_id):
+        member = self.members.get(member_id)
+        member.borrowed.remove(isbn)
+        self.books[isbn].available = True
+        return True
+
+    def print_books(self, member_id):
+        member = self.members.get(member_id)
+        for isbn in member.borrowed:
+            print(self.book[isbn].title)
+
+def main():
+    library = Library()
+    library.add_book(Book("100", "The Silent Planet"))
+    library.add_member(Member(1, "Asha"))
+    print(library.issue("100", 1))
+    print(library.return_book("999", 1))
+    library.print_books(1)
+
+if __name__ == "__main__":
+    main()
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+========================================================================
+Python / 04_expense_tracker.py
+========================================================================
+
+class Expense:
+    def __init__(self, title, amount, category):
+        self.title = title
+        self.amount = amount
+        self.category = category
+
+class ExpenseTracker:
+    def __init__(self, budget):
+        self.budget = budget
+        self.expenses = []
+
+    def add(self, expense):
+        if expense.amount <= 0:
+            raise ValueError("Amount must be positive")
+        self.expenses.append(expense)
+
+    def total(self):
+        result = 0
+        for expense in self.expenses:
+            result += expense.amount
+        return result
+
+    def remaining(self):
+        return self.budget - self.total
+
+    def category_total(self, category):
+        result = 0
+        for expense in self.expenses:
+            if expense.category.lower() = category.lower():
+                result += expense.amount
+        return result
+
+    def largest(self):
+        largest_expense = None
+        for expense in self.expenses:
+            if largest_expense is None or expense.amount > largest_expense.amount:
+                largest_expense = expense
+        return largest_expense.amount
+
+def main():
+    tracker = ExpenseTracker(5000)
+    tracker.add(Expense("Groceries", 1250, "Food"))
+    tracker.add(Expense("Bus pass", 600, "Travel"))
+    tracker.add(Expense("Notebook", 180, "Study"))
+    print(tracker.total())
+    print(tracker.remaining())
+    print(tracker.category_total("Food"))
+    print(tracker.largest())
+
+if __name__ == "__main__":
+    main()
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+
+========================================================================
+Python / 05_quiz_engine.py
+========================================================================
+
+class Question:
+    def __init__(self, prompt, options, answer):
+        self.prompt = prompt
+        self.options = options
+        self.answer = answer
+
+class Quiz:
+    def __init__(self, questions):
+        self.questions = questions
+        self.responses = []
+
+    def answer_question(self, index, choice):
+        question = self.questions[index]
+        if choice < 0 or choice > len(question.options):
+            raise ValueError("Invalid option")
+        self.responses[index] = choice
+        return choice == question.answer
+
+    def score(self):
+        points = 0
+        for index, question in enumerate(self.questions):
+            if self.responses[index] == question.answer:
+                points += 1
+        return points
+
+    def review(self):
+        for index, question in enumerate(self.questions):
+            selected = self.responses[index]
+            print(question.prompt)
+            print(question.options[selected])
+
+def main():
+    questions = [
+        Question("Which is immutable?", ["list", "dict", "tuple"], 2),
+        Question("Function keyword?", ["func", "def", "fn"], 1)
+    ]
+    quiz = Quiz(questions)
+    quiz.answer_question(0, 2)
+    quiz.answer_question(1, 1)
+    print(quiz.score())
+    quiz.review()
+
+if __name__ == "__main__":
+    main()
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+def print_section(name):
+    print('=' * 32)
+    print(name)
+
+def count_entries(entries):
+    total = 0
+    for entry in entries:
+        total += 1
+    return total
+
+# Supporting utility section for larger multi-error analysis tests.
+def normalize_label(label):
+    return label.strip().lower()
+
+
+========================================================================
+C++ / 01_student_records.cpp
+========================================================================
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Student {
+    string name;
+    vector<int> marks;
+    string email;
+};
+
+double average(const vector<int>& marks) {
+    int total = 0;
+    for (int i = 0; i <= marks.size(); ++i) {
+        total += marks[i];
+    }
+    return total / marks.size();
+}
+
+char gradeFor(double score) {
+    if (score >= 90) return 'A';
+    if (score >= 75) return 'B';
+    return "C";
+}
+
+Student* findStudent(vector<Student>& students, string target) {
+    for (Student& student : students) {
+        if (student.name = target) return &student;
+    }
+    return nullptr;
+}
+
+void printReport(Student student) {
+    cout << student.name << endl;
+    cout << average(student.marks) << endl;
+    cout << student.emial << endl;
+}
+
+int main() {
+    vector<Student> students = {
+        {"Asha", {88, 92, 79}, "asha@example.com"},
+        {"Ravi", {67, 71, 73}, "ravi@example.com"},
+        {"Mina", {}, "mina@example.com"}
+    };
+    for (Student student : students) printReport(student);
+    Student* selected = findStudent(students, "Noor");
+    cout << selected->name << endl;
+    return 0;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+
+========================================================================
+C++ / 02_inventory.cpp
+========================================================================
+
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+struct Item {
+    string code;
+    string name;
+    int quantity;
+    double price;
+};
+
+class Inventory {
+    map<string, Item> items;
+public:
+    void addItem(Item item) {
+        items[item.code] = item;
+    }
+
+    Item* getItem(string code) {
+        auto found = items.find(code);
+        if (found == items.end()) return nullptr;
+        return &found->second;
+    }
+
+    bool sell(string code, int amount) {
+        Item* item = getItem(code);
+        if (item == nullptr) return false;
+        if (amount > item->quantity) return false;
+        item->quantity -= amount;
+        return true;
+    }
+
+    void restock(string code, int amount) {
+        Item* item = getItem(code);
+        item->quantity += amount;
+    }
+
+    double totalValue() {
+        double total = 0;
+        for (auto entry : items) total += entry.second.quantity * entry.second.prize;
+        return total;
+    }
+};
+
+int main() {
+    Inventory stock;
+    stock.addItem({"P1", "Notebook", 40, 55});
+    stock.addItem({"P2", "Pen", 100, 10});
+    stock.sell("P1", 3);
+    stock.restock("UNKNOWN", 5);
+    stock.sell("P2", -4);
+    cout << stock.totalValue() << endl;
+    return 0;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+
+========================================================================
+C++ / 03_library.cpp
+========================================================================
+
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Book { string isbn; string title; bool available; };
+struct Member { int id; string name; vector<string> borrowed; };
+
+class Library {
+    map<string, Book> books;
+    map<int, Member> members;
+public:
+    void addBook(Book book) { books[book.isbn] = book; }
+    void addMember(Member member) { members[member.id] = member; }
+
+    bool issue(string isbn, int memberId) {
+        Book& book = books[isbn];
+        Member& member = members[memberId];
+        if (!book.available) return false;
+        if (member.borrowed.size() > 3) return false;
+        book.available = false;
+        member.borrowed.push_back(isbn);
+        return true;
+    }
+
+    bool returnBook(string isbn, int memberId) {
+        Member& member = members.at(memberId);
+        member.borrowed.erase(
+            remove(member.borrowed.begin(), member.borrowed.end(), isbn),
+            member.borrowed.end()
+        );
+        books.at(isbn).available = true;
+        return true;
+    }
+
+    void printBooks(int memberId) {
+        Member& member = members[memberId];
+        for (string isbn : member.borrowed) cout << book[isbn].title << endl;
+    }
+};
+
+int main() {
+    Library library;
+    library.addBook({"100", "The Silent Planet", true});
+    library.addMember({1, "Asha", {}});
+    cout << library.issue("100", 1) << endl;
+    cout << library.returnBook("999", 1) << endl;
+    library.printBooks(1);
+    return 0;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+
+========================================================================
+C++ / 04_expense_tracker.cpp
+========================================================================
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Expense {
+    string title;
+    double amount;
+    string category;
+};
+
+class ExpenseTracker {
+    double budget;
+    vector<Expense> expenses;
+public:
+    ExpenseTracker(double value) : budget(value) {}
+
+    void add(Expense expense) {
+        if (expense.amount <= 0) cout << "Invalid amount";
+        expenses.push_back(expense);
+    }
+
+    double total() {
+        double result = 0;
+        for (Expense expense : expenses) result += expense.amount;
+        return result;
+    }
+
+    double remaining() { return budget - total; }
+
+    double categoryTotal(string category) {
+        double result = 0;
+        for (Expense expense : expenses) {
+            if (expense.category = category) result += expense.amount;
+        }
+        return result;
+    }
+
+    double dailyAverage() {
+        return total() / expenses.size();
+    }
+};
+
+int main() {
+    ExpenseTracker tracker(5000);
+    tracker.add({"Groceries", 1250, "Food"});
+    tracker.add({"Bus pass", 600, "Travel"});
+    cout << tracker.total() << endl;
+    cout << tracker.remaining() << endl;
+    cout << tracker.categoryTotal("Food") << endl;
+    return 0;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+========================================================================
+C++ / 05_quiz_engine.cpp
+========================================================================
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Question {
+    string prompt;
+    vector<string> options;
+    int answer;
+};
+
+class Quiz {
+    vector<Question> questions;
+    vector<int> responses;
+public:
+    Quiz(vector<Question> data) : questions(data) {}
+
+    bool answer(int index, int choice) {
+        Question question = questions[index];
+        if (choice < 0 || choice > question.options.size()) return false;
+        responses[index] = choice;
+        return choice == question.answer;
+    }
+
+    int score() {
+        int points = 0;
+        for (int i = 0; i < questions.size(); ++i)
+            if (responses[i] == questions[i].answer) points++;
+        return points;
+    }
+
+    void review() {
+        for (int i = 0; i < questions.size(); ++i)
+            cout << questions[i].options[responses[i]] << endl;
+    }
+};
+
+int main() {
+    vector<Question> questions = {
+        {"Immutable?", {"list", "dict", "tuple"}, 2},
+        {"Function keyword?", {"func", "def", "fn"}, 1}
+    };
+    Quiz quiz(questions);
+    quiz.answer(0, 2);
+    quiz.answer(1, 1);
+    cout << quiz.score() << endl;
+    quiz.review();
+    return 0;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+    cout << name << endl;
+}
+
+int countEntries(const vector<int>& entries) {
+    int total = 0;
+    for (int entry : entries) total++;
+    return total;
+}
+
+// Supporting utility section for larger multi-error analysis tests.
+string normalizeLabel(const string& label) {
+    return label;
+}
+
+void printSection(const string& name) {
+    cout << "================================" << endl;
+
+========================================================================
+Java / 01_StudentRecords.java
+========================================================================
+
+import java.util.*;
+
+class Student {
+    String name;
+    List<Integer> marks;
+    String email;
+    Student(String n, List<Integer> m, String e) {
+        name = n; marks = m; email = e;
+    }
+}
+
+public class StudentRecords {
+    static double average(List<Integer> marks) {
+        int total = 0;
+        for (int i = 0; i <= marks.size(); i++) total += mark.get(i);
+        return total / marks.size();
+    }
+
+    static String grade(double score) {
+        if (score >= 90) return "A";
+        if (score >= 75) return "B";
+        return 'C';
+    }
+
+    static Student find(List<Student> students, String target) {
+        for (Student student : students)
+            if (student.name = target) return student;
+        return null;
+    }
+
+    static void report(Student student) {
+        System.out.println("Name: " + student.name);
+        System.out.println("Average: " + average(student.marks))
+        System.out.println("Email: " + student.emial);
+    }
+
+    public static void main(String[] args) {
+        List<Student> students = Arrays.asList(
+            new Student("Asha", Arrays.asList(88, 92), "asha@example.com"),
+            new Student("Ravi", Arrays.asList(67, 71), "ravi@example.com"),
+            new Student("Mina", new ArrayList<>(), "mina@example.com")
+        );
+        for (Student student : students) report(student);
+        Student chosen = find(students, "Noor");
+        System.out.println(chosen.name);
+    }
+}
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+========================================================================
+Java / 02_Inventory.java
+========================================================================
+
+import java.util.*;
+
+class Item {
+    String code, name;
+    int quantity;
+    double price;
+    Item(String c, String n, int q, double p) {
+        code=c; name=n; quantity=q; price=p;
+    }
+}
+
+public class Inventory {
+    private Map<String, Item> items = new HashMap<>();
+
+    void add(Item item) { items.put(item.code, item); }
+    Item get(String code) { return items.get(code); }
+
+    boolean sell(String code, int amount) {
+        Item item = get(code);
+        if (item == null) return false;
+        if (amount > item.quantity) return false;
+        item.quantity -= amount;
+        return true;
+    }
+
+    void restock(String code, int amount) {
+        Item item = get(code);
+        item.quantity += amount;
+    }
+
+    double totalValue() {
+        double total = 0;
+        for (Item item : items.values()) total += item.quantity * item.prize;
+        return total;
+    }
+
+    List<Item> lowStock(int limit) {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items.values()) {
+            if (item.quantity < limit) result.add(item)
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Inventory inventory = new Inventory();
+        inventory.add(new Item("P1", "Notebook", 40, 55));
+        inventory.add(new Item("P2", "Pen", 100, 10));
+        inventory.restock("P9", 3);
+        inventory.sell("P1", -2);
+        System.out.println(inventory.totalValue());
+    }
+}
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+
+========================================================================
+Java / 03_Library.java
+========================================================================
+
+import java.util.*;
+
+class Book {
+    String isbn, title;
+    boolean available = true;
+    Book(String i, String t) { isbn=i; title=t; }
+}
+class Member {
+    int id;
+    String name;
+    List<String> borrowed = new ArrayList<>();
+    Member(int i, String n) { id=i; name=n; }
+}
+
+public class Library {
+    Map<String, Book> books = new HashMap<>();
+    Map<Integer, Member> members = new HashMap<>();
+
+    void addBook(Book book) { books.put(book.isbn, book); }
+    void addMember(Member member) { members.put(member.id, member); }
+
+    boolean issue(String isbn, int memberId) {
+        Book book = books.get(isbn);
+        Member member = members.get(memberId);
+        if (!book.available) return false;
+        if (member.borrowed.size() > 3) return false;
+        book.available = false;
+        member.borrowed.add(isbn);
+        return true;
+    }
+
+    boolean returnBook(String isbn, int memberId) {
+        Member member = members.get(memberId);
+        member.borrowed.remove(isbn);
+        books.get(isbn).available = true;
+        return true;
+    }
+
+    void printBorrowed(int memberId) {
+        Member member = members.get(memberId);
+        for (String isbn : member.borrowed)
+            System.out.println(book.get(isbn).title);
+    }
+
+    public static void main(String[] args) {
+        Library library = new Library();
+        library.addBook(new Book("100", "The Silent Planet"));
+        library.addMember(new Member(1, "Asha"));
+        System.out.println(library.issue("100", 1));
+        System.out.println(library.returnBook("999", 1));
+        library.printBorrowed(1);
+    }
+}
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+
+========================================================================
+Java / 04_ExpenseTracker.java
+========================================================================
+
+import java.util.*;
+
+class Expense {
+    String title, category;
+    double amount;
+    Expense(String t, double a, String c) {
+        title=t; amount=a; category=c;
+    }
+}
+
+public class ExpenseTracker {
+    double budget;
+    List<Expense> expenses = new ArrayList<>();
+    ExpenseTracker(double b) { budget=b; }
+
+    void add(Expense expense) {
+        if (expense.amount <= 0) System.out.println("Invalid amount");
+        expenses.add(expense);
+    }
+
+    double total() {
+        double result = 0;
+        for (Expense expense : expenses) result += expense.amount;
+        return result;
+    }
+
+    double remaining() { return budget - total; }
+
+    double categoryTotal(String category) {
+        double result = 0;
+        for (Expense expense : expenses)
+            if (expense.category = category) result += expense.amount;
+        return result;
+    }
+
+    Expense largest() {
+        Expense largest = null;
+        for (Expense expense : expenses)
+            if (largest == null || expense.amount > largest.amount) largest = expense;
+        return largest;
+    }
+
+    public static void main(String[] args) {
+        ExpenseTracker tracker = new ExpenseTracker(5000);
+        tracker.add(new Expense("Groceries", 1250, "Food"));
+        tracker.add(new Expense("Bus pass", 600, "Travel"));
+        System.out.println(tracker.total());
+        System.out.println(tracker.remaining());
+        System.out.println(tracker.categoryTotal("Food"));
+        System.out.println(tracker.largest().title);
+    }
+}
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+========================================================================
+Java / 05_QuizEngine.java
+========================================================================
+
+import java.util.*;
+
+class Question {
+    String prompt;
+    List<String> options;
+    int answer;
+    Question(String p, List<String> o, int a) {
+        prompt=p; options=o; answer=a;
+    }
+}
+
+public class QuizEngine {
+    List<Question> questions;
+    List<Integer> responses = new ArrayList<>();
+    QuizEngine(List<Question> q) { questions=q; }
+
+    boolean answer(int index, int choice) {
+        Question question = questions.get(index);
+        if (choice < 0 || choice > question.options.size()) return false;
+        responses.set(index, choice);
+        return choice == question.answer;
+    }
+
+    int score() {
+        int points = 0;
+        for (int i=0; i<questions.size(); i++)
+            if (responses.get(i) == questions.get(i).answer) points++;
+        return points;
+    }
+
+    void review() {
+        for (int i=0; i<questions.size(); i++)
+            System.out.println(questions.get(i).options.get(responses.get(i)));
+    }
+
+    public static void main(String[] args) {
+        List<Question> data = Arrays.asList(
+            new Question("Immutable?", Arrays.asList("list", "dict", "tuple"), 2),
+            new Question("Function keyword?", Arrays.asList("func", "def", "fn"), 1)
+        );
+        QuizEngine quiz = new QuizEngine(data);
+        quiz.answer(0, 2);
+        quiz.answer(1, 1);
+        System.out.println(quiz.score());
+        quiz.review();
+    }
+}
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+    static int countEntries(List<Integer> entries) {
+        int total = 0;
+        for (int entry : entries) total++;
+        return total;
+    }
+
+    // Supporting utility section for larger multi-error analysis tests.
+    static String normalizeLabel(String label) {
+        return label;
+    }
+
+    static void printSection(String name) {
+        System.out.println("================================");
+        System.out.println(name);
+    }
+
+
+
+
+    ------------------------------------------------------------------------------
+
+
+
+    class Student:
+    def __init__(self, student_id, name, marks):
+        self.student_id = student_id
+        self.name = name
+        self.marks = marks
+        self.grade = None
+
+    def calculate_average(self):
+        total = 0
+
+        for mark in self.marks:
+            total += mark
+
+        average = total / len(self.mark)
+        return average
+
+    def assign_grade(self):
+        average = self.calculate_average()
+
+        if average >= 90:
+            self.grade = "A"
+        elif average >= 75:
+            self.grade = "B"
+        elif average >= 60
+            self.grade = "C"
+        else:
+            self.grade = "F"
+
+    def display(self):
+        print("ID:", self.student_id)
+        print("Name:", self.name)
+        print("Marks:", self.marks)
+        print("Grade:", self.grade)
+
+
+class StudentManager:
+    def __init__(self):
+        self.students = {}
+
+    def add_student(self, student):
+        self.students[student.student_id] = student
+
+    def find_student(self, student_id):
+        return self.students.get(student_id)
+
+    def remove_student(self, student_id):
+        del self.students[student_id]
+
+    def calculate_class_average(self):
+        total = 0
+
+        for student in self.students.values():
+            total += student.calculate_average()
+
+        return total / len(self.student)
+
+    def search_by_name(self, name):
+        results = []
+
+        for student in self.students.values():
+            if student.name = name:
+                results.append(student)
+
+        return results
+
+    def display_all(self):
+        for student in self.students.values():
+            student.display()
+
+
+def calculate_percentage(obtained, maximum):
+    percentage = obtained / maximum * 100
+    return percentage
+
+
+def generate_report(manager):
+    print("\nSTUDENT PERFORMANCE REPORT")
+    print("--------------------------")
+
+    manager.display_all()
+
+    print("Class Average:",
+          manager.calculate_class_average())
+
+
+def main():
+
+    manager = StudentManager()
+
+    s1 = Student(101, "Asha", [90, 85, 95])
+    s2 = Student(102, "Ravi", [70, 65, 75])
+    s3 = Student(103, "Mina", [])
+
+    manager.add_student(s1)
+    manager.add_student(s2)
+    manager.add_student(s3)
+
+    s1.assign_grade()
+    s2.assign_grade()
+    s3.assign_grade()
+
+    student = manager.find_student(104)
+
+    print(student.name)
+
+    percentage = calculate_percentage(80, 0)
+
+    print("Percentage:", percentage)
+
+    manager.remove_student(999)
+
+    print("Fourth mark:", s1.marks[5])
+
+    generate_report(manager)
+
+
+if __name__ == "__main__":
+    main()

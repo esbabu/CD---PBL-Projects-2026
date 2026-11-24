@@ -1,0 +1,24 @@
+[
+  {
+    "id": "snip_1792605827",
+    "name": "demo.py",
+    "code": "numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\r\n\r\ndef process_numbers(numbers):\r\n    result = []\r\n\r\n    for i in range(len(numbers)):\r\n        if numbers[i] % 2 == 0:\r\n            result.append(numbers[i] * 2)\r\n\r\n        for i in range(len(result)):\r\n            print(\"Number: \" + result[i])\r\n\r\n    total = 0\r\n    for i in range(len(numbers)):\r\n        total = total + numbers[i]\r\n\r\n    print(\"Total: \" + str(total))\r\n\r\n    if len(numbers) > 0:\r\n        average = total / len(numbers)\r\n    else:\r\n        average = 0\r\n\r\n    print(\"Average: \" + str(average))\r\n\r\n    return result\r\n\r\noutput = process_numbers(numbers)\r\nprint(\"Final output: \" + output)",
+    "complexity": "O(N^2) Polynomial",
+    "timestamp": "2026-10-21 22:03"
+  },
+  {
+    "id": "snip_1792605948",
+    "name": "hello.py",
+    "code": "\nfor _ in range(21):\n    print(\"hello world\")",
+    "complexity": "O(N) Linear",
+    "timestamp": "2026-10-21 22:05"
+  },
+  {
+    "id": "snip_1795046324",
+    "name": "saved_code_3.py",
+    "code": "\ndef calculate_average(numbers):\n    total = 0\n\n    for i in range(len(numbers)):\n        total += numbers[i]\n\n    average = total / len(number)\n    return average\n\n\ndef find_student(students, name):\n    for student in students:\n        if student[\"name\"] == name:\n            return student\n\n    return None\n\n\ndef main():\n    students = [\n        {\"name\": \"Alice\", \"marks\": [80, 90, 85]},\n        {\"name\": \"Bob\", \"marks\": [70, 75, 80]},\n        {\"name\": \"Charlie\", \"marks\": [90, 95, 100]}\n    ]\n\n    for student in students:\n        avg = calculate_average(student[\"marks\"])\n        print(student[\"name\"] + \" average: \" + str(avg))\n\n    result = find_student(students, \"David\")\n    print(result[\"name\"])\n\n\nmain()\n\n",
+    "complexity": "O(N) Linear",
+    "language": "python",
+    "timestamp": "2026-11-19 05:28"
+  }
+]

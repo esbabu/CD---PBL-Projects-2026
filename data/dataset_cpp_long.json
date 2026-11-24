@@ -1,0 +1,8 @@
+[
+    {
+        "id": "cpp_long_01",
+        "expected_error_type": "MissingSemicolon",
+        "expected_line": 20,
+        "code": "#include <iostream>\n#include <vector>\n#include <string>\n\nclass Student {\nprivate:\n    std::string name;\n    int id;\n    std::vector<int> grades;\n\npublic:\n    Student(std::string n, int i) : name(n), id(i) {}\n\n    void addGrade(int grade) {\n        grades.push_back(grade)\n    }\n\n    double getAverage() {\n        if (grades.empty()) return 0.0;\n        int sum = 0;\n        for (int i = 0; i < grades.size(); i++) {\n            sum += grades[i];\n        }\n        return (double)sum / grades.size();\n    }\n\n    void printInfo() {\n        std::cout << \"Student: \" << name << \" (ID: \" << id << \")\\n\";\n        std::cout << \"Average: \" << getAverage() << \"\\n\";\n    }\n};\n\nint main() {\n    Student s1(\"Alice\", 101);\n    s1.addGrade(90);\n    s1.addGrade(85);\n    s1.addGrade(95);\n    \n    s1.printInfo();\n    \n    return 0;\n}\n"
+    }
+]

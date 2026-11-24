@@ -1,0 +1,8 @@
+[
+    {
+        "id": "java_long_01",
+        "expected_error_type": "MissingReturnStatement",
+        "expected_line": 35,
+        "code": "import java.util.ArrayList;\nimport java.util.List;\n\nclass Employee {\n    private String name;\n    private double salary;\n\n    public Employee(String name, double salary) {\n        this.name = name;\n        this.salary = salary;\n    }\n\n    public String getName() { return name; }\n    public double getSalary() { return salary; }\n}\n\nclass Company {\n    private String companyName;\n    private List<Employee> employees;\n\n    public Company(String name) {\n        this.companyName = name;\n        this.employees = new ArrayList<>();\n    }\n\n    public void addEmployee(Employee e) {\n        employees.add(e);\n    }\n\n    public double calculateTotalPayroll() {\n        double total = 0;\n        for (Employee e : employees) {\n            total += e.getSalary();\n        }\n        // Missing return statement here!\n    }\n\n    public void printCompanyInfo() {\n        System.out.println(\"Company: \" + companyName);\n        System.out.println(\"Total Employees: \" + employees.size());\n        System.out.println(\"Total Payroll: $\" + calculateTotalPayroll());\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Company c = new Company(\"TechCorp\");\n        c.addEmployee(new Employee(\"Alice\", 50000));\n        c.addEmployee(new Employee(\"Bob\", 60000));\n        c.printCompanyInfo();\n    }\n}\n"
+    }
+]

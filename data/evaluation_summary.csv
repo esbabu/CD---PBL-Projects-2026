@@ -1,0 +1,5 @@
+run_id,timestamp,test_set_version,total_cases,security_tp,security_fp,security_tn,security_fn,security_detection_rate,security_false_positive_rate,agent_sec_detection_rate,agent_sec_blocking_rate,agent_sec_logging_rate,expected_repairs,validated_repairs,correction_success_rate,multilingual_detection_accuracy,multilingual_diagnostic_accuracy,behavior_passed,behavior_failed,behavior_unverified,median_analysis_latency_ms,median_correction_latency_ms,measurement_status,emissions_kg
+eval_1792583065_1b3f7a,2026-10-21 11:44:25 UTC,2.0.0,31,12,0,10,0,100.0%,0.0%,N/A,N/A,N/A,6,5,83.3%,N/A,N/A,6,1,2,1.23,68.29,RECORDED,1.042885919685733e-06
+eval_1792844462_de81e7,2026-10-24 12:21:02 UTC,2.0.0,63,12,0,10,0,100.0%,0.0%,100.0%,100.0%,100.0%,6,5,83.3%,100.0%,100.0%,6,1,2,1.22,51.47,RECORDED,1.1760875850007149e-05
+eval_1795028654_a277dd,2026-11-18 19:04:14 UTC,2.0.0,63,12,0,10,0,100.0%,0.0%,100.0%,100.0%,100.0%,6,5,83.3%,100.0%,100.0%,6,1,2,902.78,254.2,RECORDED,8.131602399358181e-05
+eval_1795046885_b8e04b,2026-11-19 00:08:05 UTC,2.0.0,63,12,0,10,0,100.0%,0.0%,100.0%,100.0%,100.0%,6,5,83.3%,100.0%,100.0%,6,1,2,415.5,145.87,RECORDED,4.0340828316656994e-05

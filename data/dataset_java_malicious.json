@@ -1,0 +1,14 @@
+[
+    {
+        "id": "sec_java_01",
+        "code": "import java.net.Socket;\npublic class X { public static void main(String[] a) {} }\n",
+        "expected_block": true,
+        "reason": "Network package"
+    },
+    {
+        "id": "sec_java_02",
+        "code": "public class X { public static void main(String[] a) throws Exception { Runtime.getRuntime().exec(\"calc\"); } }\n",
+        "expected_block": true,
+        "reason": "Process execution"
+    }
+]

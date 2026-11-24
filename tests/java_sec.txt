@@ -1,0 +1,37 @@
+import java.io.*;
+import java.sql.*;
+
+public class UnsafeJava {
+
+    public static void main(String[] args) throws Exception {
+
+        // BLOCK: Runtime command execution
+        Runtime.getRuntime().exec("some_command");
+
+        // BLOCK: Process creation
+        ProcessBuilder pb =
+            new ProcessBuilder("some_command");
+        pb.start();
+
+        // BLOCK: Unsafe deserialization
+        ObjectInputStream in =
+            new ObjectInputStream(
+                new FileInputStream("untrusted.ser")
+            );
+        Object obj = in.readObject();
+
+        // BLOCK: SQL injection
+        String userInput = "user_input";
+        String query =
+            "SELECT * FROM users WHERE name = '" + userInput + "'";
+
+        Statement stmt = null;
+        stmt.executeQuery(query);
+
+        // BLOCK: Dynamic class loading
+        Class.forName(userInput);
+
+        // BLOCK: File deletion
+        new File("important_data.txt").delete();
+    }
+}

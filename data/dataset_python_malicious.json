@@ -1,0 +1,14 @@
+[
+    {
+        "id": "sec_py_01",
+        "code": "import os\nos.system('rm -rf /')\n",
+        "expected_block": true,
+        "reason": "System command"
+    },
+    {
+        "id": "sec_py_02",
+        "code": "import socket\ns = socket.socket()\n",
+        "expected_block": true,
+        "reason": "Network socket"
+    }
+]

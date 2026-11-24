@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+using namespace std;
+
+int main() {
+
+    // 1. Hardcoded credentials
+    string username = "admin";
+    string password = "SuperSecret123";
+
+    // 2. Buffer overflow risk
+    char name[10];
+    cout << "Enter name: ";
+    cin >> name;
+
+    // 3. Unsafe string copy
+    char buffer[5];
+    strcpy(buffer, "This is a very long string");
+
+    // 4. Command execution
+    string command;
+    cout << "Enter command: ";
+    cin >> command;
+    system(command.c_str());
+
+    // 5. Out-of-bounds array access
+    int numbers[5] = {1, 2, 3, 4, 5};
+    cout << numbers[10] << endl;
+
+    // 6. Null pointer dereference
+    int* ptr = nullptr;
+    cout << *ptr << endl;
+
+    // 7. Sensitive file access
+    ifstream file("secrets.txt");
+    string secret;
+    file >> secret;
+
+    // 8. Destructive file operation
+    remove("important_data.txt");
+
+    return 0;
+}

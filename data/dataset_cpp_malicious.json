@@ -1,0 +1,14 @@
+[
+    {
+        "id": "sec_cpp_01",
+        "code": "#include <sys/socket.h>\nint main() { return 0; }\n",
+        "expected_block": true,
+        "reason": "Network header"
+    },
+    {
+        "id": "sec_cpp_02",
+        "code": "#include <cstdlib>\nint main() { system(\"ls\"); return 0; }\n",
+        "expected_block": true,
+        "reason": "System command"
+    }
+]
