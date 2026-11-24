@@ -1,8 +1,8 @@
 # ParC: Securing an AI Code Explanation Agent with Compiler Proven Facts
 
-**Name:** Pranav Napolean
-**Roll Number:** 25CSB1A69
-**Course:** CS2201 Theory of Automata and Compiler Design, NIT Warangal
+- **Name:** Pranav Napolean
+- **Roll Number:** 25CSB1A69
+- **Course:** CS2201 Theory of Automata and Compiler Design, NIT Warangal
 
 ## Project Summary
 
