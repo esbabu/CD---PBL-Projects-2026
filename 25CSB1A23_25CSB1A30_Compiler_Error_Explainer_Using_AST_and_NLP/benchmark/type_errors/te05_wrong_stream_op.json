@@ -1,0 +1,10 @@
+{
+  "expected_status": "error",
+  "expected_category": "type_error",
+  "expected_line": 11,
+  "cwe": null,
+  "expected_security_verdict": "clean",
+  "notes": "cin << instead of cin >>",
+  "expected_output": "Enter your age: You are 25 years old.\n",
+  "stdin": "25\n"
+}
