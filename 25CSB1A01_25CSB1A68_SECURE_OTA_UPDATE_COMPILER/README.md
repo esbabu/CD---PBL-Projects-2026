@@ -40,7 +40,7 @@ Below is the complete list of files and components submitted within this directo
 * `Documentation/End_Semester_Evaluation_Report.md`: Full comprehensive end-semester report covering system architecture, compiler theory, cryptographic specifications, evaluation benchmarks, and result discussions.
 * `Documentation/Mid_Semester_Evaluation_Report.md`: Mid-semester evaluation report documenting compiler-side static enforcement and initial pass design.
 * `Documentation/Secure_OTA_Compiler_Demo.mp4`: Local copy of the complete recorded video walkthrough demonstrating live compilation, security policy blocking, diagnostics, and AI advisory remediation.
-* **Google Drive Video Link**: [NITW Drive Access Link](https://drive.google.com/file/d/your-drive-link-here/view?usp=sharing) *(Accessible via `@nitw.ac.in` domain).*
+* **Google Drive Link**: [Here](https://drive.google.com/drive/folders/1QwkqYus5k1MuxUX4aU218iI7x3CSAxHB?usp=sharing)
 
 ### 2. Compiler Passes & Toolchain Drivers
 * `llvm-pass/TraversalPass.cpp`: Custom LLVM C++ pass analyzing LLVM IR basic-block dominator trees for CFG dominance, banned functions, and monotonic version checks.
