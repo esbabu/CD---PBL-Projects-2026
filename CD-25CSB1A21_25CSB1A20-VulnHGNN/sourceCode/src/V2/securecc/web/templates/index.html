@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VulnHGNN 2.0 — SecureCC Workbench</title>
+  <script>
+    (function () {
+      var t = localStorage.getItem("securecc-theme");
+      document.documentElement.setAttribute("data-theme", t === "dark" ? "dark" : "light");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
+  <link rel="stylesheet" href="/static/app.css?v={{ version.version }}-livebar6" />
+  <link rel="stylesheet" href="/static/workbench.css?v={{ version.version }}-livebar6" />
+</head>
+<body>
+  <div class="app-shell app-shell-workbench" id="app-shell">
+    <aside class="sidebar explorer-sidebar">
+      <header class="brand">
+        <div class="brand-mark">VH</div>
+        <div>
+          <h1>SecureCC</h1>
+          <p class="brand-sub">VulnHGNN 2.0</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Project explorer</h2>
+        <div id="sample-groups" class="sample-groups"></div>
+        <ul id="sample-list" class="sample-list hidden" aria-hidden="true"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>Upload source</h2>
+        <label class="upload-zone" id="upload-zone">
+          <input type="file" id="file-input" accept=".c,.cc,.cpp,.cxx,.java" hidden />
+          <span id="upload-hint">Drop <code>.c</code>, C++, or <code>.java</code> — or use the editor</span>
+        </label>
+      </section>
+
+      <footer class="sidebar-footer">
+        <button type="button" class="btn btn-ghost theme-toggle-btn" id="theme-toggle" aria-pressed="true">
+          <span class="theme-toggle-icon" aria-hidden="true">☀</span> Light
+        </button>
+        <div id="health-strip" class="health-dots visually-hidden" aria-hidden="true"></div>
+        <div id="env-status" class="env-status visually-hidden" aria-hidden="true"></div>
+      </footer>
+    </aside>
+
+    <main class="main workbench-main">
+      <div class="workbench">
+        <section class="workbench-left" aria-label="Source editor">
+          <header class="workbench-editor-header workbench-editor-toolbar toolbar-single-row">
+            <div class="toolbar-cluster toolbar-cluster-file">
+              <span id="editor-title" class="visually-hidden">Source editor</span>
+              <span id="editor-analysis-chip" class="editor-analysis-chip hidden" aria-hidden="true">Ready</span>
+              <span id="editor-path" class="editor-filename mono small" title="Load a fixture or paste source">Load a fixture or paste source</span>
+              <span id="editor-unsaved-badge" class="editor-unsaved-badge hidden">unsaved</span>
+            </div>
+            <div class="toolbar-cluster toolbar-cluster-mid" id="toolbar-actions-row">
+              <label class="workbench-lang-label workbench-lang-inline">
+                <span class="visually-hidden">Language</span>
+                <select id="editor-language" class="editor-language-select" aria-label="Source language">
+                  <option value="c">C (.c)</option>
+                  <option value="cpp">C++ (.cpp)</option>
+                  <option value="java">Java (.java)</option>
+                </select>
+              </label>
+              <button type="button" class="btn btn-ghost btn-sm" id="editor-new-btn">New file</button>
+              <label class="toggle-switch toggle-compact" id="include-fix-wrap" title="Include catalog heal on Analyze">
+                <input type="checkbox" id="include-fix" />
+                <span class="toggle-switch-ui" aria-hidden="true"></span>
+                <span class="toggle-switch-label">Heal</span>
+              </label>
+              <label class="toggle-switch toggle-compact" id="live-preview-toggle-wrap" title="Debounced engine scan while typing">
+                <input type="checkbox" id="live-preview-toggle" />
+                <span class="toggle-switch-ui" aria-hidden="true"></span>
+                <span class="toggle-switch-label">Engine preview</span>
+              </label>
+            </div>
+            <div class="toolbar-cluster toolbar-cluster-analyze">
+              <button type="button" class="btn btn-primary btn-sm" id="analyze-btn">Analyze</button>
+            </div>
+          </header>
+          <div id="live-kpi-strip" class="live-kpi-strip live-status-strip-compact" aria-live="polite">
+            <span class="live-kpi live-kpi-errors tabular-nums"><em id="live-kpi-errors">0</em> err</span>
+            <span class="live-kpi live-kpi-warnings tabular-nums"><em id="live-kpi-warnings">0</em> warn</span>
+            <span class="live-kpi live-kpi-hints tabular-nums"><em id="live-kpi-hints">0</em> hint</span>
+            <span class="live-kpi-ms tabular-nums muted small" id="live-kpi-ms">—</span>
+            <span id="live-viz-meta" class="live-kpi-meta visually-hidden" aria-hidden="true"></span>
+            <span id="live-preview-findings" class="live-kpi-preview muted small"></span>
+            <span id="live-preview-graph" class="visually-hidden" aria-hidden="true"></span>
+          </div>
+          <div id="live-preview-strip" class="live-preview-strip hidden" aria-hidden="true"></div>
+          <div class="editor-code-wrap" id="editor-mount">
+            <div id="monaco-host"><div class="monaco-skeleton"></div></div>
+            <textarea id="source-editor" class="source-editor source-editor-fallback" spellcheck="false" wrap="off"></textarea>
+          </div>
+        </section>
+
+        <section class="workbench-right" aria-label="Intelligence workspace">
+          <div id="security-alert-slot" class="hidden" aria-hidden="true"></div>
+
+          <div id="workbench-loading" class="workbench-loading hidden">
+            <div class="spinner"></div>
+            <p>Running SecureCC analysis…</p>
+          </div>
+
+          <div id="workbench-empty" class="workbench-empty hidden"></div>
+
+          <div id="dashboard" class="dashboard workbench-dashboard dashboard-live-only">
+            <header class="dash-header dash-header-results hidden" id="dash-header-results" aria-hidden="true">
+              <span id="source-title" class="visually-hidden"></span>
+              <span id="source-path" class="visually-hidden"></span>
+              <span class="status-pill visually-hidden" id="overall-status">—</span>
+            </header>
+
+            <div class="metrics metrics-results hidden" id="metrics" aria-hidden="true"></div>
+
+            <nav class="intel-groups" id="intel-groups" role="tablist" aria-label="Workspace groups"></nav>
+            <nav class="intel-tabs" id="intel-tabs" role="tablist" aria-label="Workspace tabs"></nav>
+            <nav class="tabs legacy-tabs hidden" role="tablist" aria-hidden="true"></nav>
+
+            <div class="tab-panels workbench-tab-panels">
+              <section class="tab-panel active" id="panel-live">
+                <nav class="live-segmented" id="live-section-nav" role="tablist" aria-label="Live sections">
+                  <button type="button" class="live-segment-btn active" data-section="health" role="tab" aria-selected="true">Health</button>
+                  <button type="button" class="live-segment-btn" data-section="code" role="tab" aria-selected="false">Code</button>
+                  <button type="button" class="live-segment-btn" data-section="engine" role="tab" aria-selected="false">Engine</button>
+                </nav>
+
+                <div id="live-section-health" class="live-section active">
+                  <div class="live-health-stack" id="live-health-stack">
+                    <div class="live-health-card live-health-compact" id="live-health-card">
+                      <div
+                        class="live-issue-sign"
+                        id="live-issue-sign"
+                        aria-label="Current live lint severities"
+                        role="group"
+                      >
+                        <span class="live-sign-pill live-sign-errors tabular-nums">
+                          <span class="live-sign-label">Errors</span>
+                          <strong id="live-panel-kpi-errors">0</strong>
+                        </span>
+                        <span class="live-sign-pill live-sign-warnings tabular-nums">
+                          <span class="live-sign-label">Warnings</span>
+                          <strong id="live-panel-kpi-warnings">0</strong>
+                        </span>
+                        <span class="live-sign-pill live-sign-hints tabular-nums">
+                          <span class="live-sign-label">Hints</span>
+                          <strong id="live-panel-kpi-hints">0</strong>
+                        </span>
+                      </div>
+                      <div class="live-health-summary">
+                        <div class="live-health-topline">
+                          <span class="live-health-number tabular-nums" id="live-health-total">0</span>
+                          <span class="live-health-label muted small">total issues</span>
+                        </div>
+                        <p id="live-health-status" class="live-health-status muted small"></p>
+                        <div id="live-health-deltas" class="live-health-deltas" aria-live="polite"></div>
+                      </div>
+                    </div>
+                    <div id="live-viz-panel" class="live-viz-panel live-viz-panel-right">
+                      <div class="live-viz-charts live-charts-stack" id="live-viz-charts">
+                        <div
+                          class="chart-card live-chart-card live-issues-bar-card"
+                          aria-label="Current error and warning counts"
+                        >
+                          <canvas id="live-issues-bar-chart"></canvas>
+                        </div>
+                        <div
+                          class="chart-card live-chart-card live-trend-card"
+                          aria-label="Errors and warnings over recent live lint runs"
+                        >
+                          <canvas id="live-trend-chart"></canvas>
+                        </div>
+                      </div>
+                      <canvas id="live-severity-chart" class="visually-hidden" width="1" height="1" aria-hidden="true"></canvas>
+                    </div>
+                  </div>
+                  <div class="live-problems-card" id="live-problems-card">
+                    <div class="live-problems-head">
+                      <h3 class="live-problems-heading muted small">Problems</h3>
+                      <span id="semantic-lint-meta" class="live-problems-meta muted small"></span>
+                      <button type="button" class="btn btn-ghost btn-sm" id="semantic-lint-apply">Fix safe issues</button>
+                    </div>
+                    <ul id="live-problems-list" class="live-problems-list" role="list"></ul>
+                  </div>
+                  <div id="live-status-strip" class="live-status-strip visually-hidden" aria-hidden="true"></div>
+                  <details class="live-howto-block visually-hidden" id="live-howto-block" aria-hidden="true">
+                    <summary>How it works</summary>
+                    <ol id="live-howto-list" class="muted small"></ol>
+                  </details>
+                </div>
+
+                <div id="live-section-code" class="live-section live-viz-section hidden">
+                  <div class="live-call-graph-stage chart-card live-viz-card">
+                    <div class="live-call-graph-head">
+                      <h4 class="live-ir-graph-title">Call graph</h4>
+                      <span id="live-call-graph-meta" class="live-call-graph-meta muted small tabular-nums"></span>
+                    </div>
+                    <p class="live-call-legend muted small" aria-hidden="true">
+                      <span class="live-legend-swatch live-legend-inst"></span> function
+                      <span class="live-legend-swatch live-call-legend-ext"></span> external
+                      <span class="live-call-legend-loop">↻</span> recursion
+                    </p>
+                    <div id="live-call-graph-host" class="live-call-graph-host" role="img" aria-label="Function call graph"></div>
+                  </div>
+                  <canvas id="live-risk-lane" class="visually-hidden" width="1" height="1" aria-hidden="true"></canvas>
+                  <canvas id="live-code-source-chart" class="visually-hidden" width="1" height="1" aria-hidden="true"></canvas>
+                  <canvas id="live-unsafe-bar-chart" class="visually-hidden" width="1" height="1" aria-hidden="true"></canvas>
+                  <ul id="live-unsafe-list" class="visually-hidden" aria-hidden="true"></ul>
+                </div>
+
+                <div id="live-section-engine" class="live-section live-viz-section live-engine-section hidden">
+                  <div class="live-engine-placeholder" id="live-engine-placeholder">
+                    <button type="button" class="btn btn-primary btn-sm" id="live-engine-enable-btn">Engine preview</button>
+                  </div>
+                  <div id="live-engine-live" class="live-engine-live hidden">
+                    <div class="live-engine-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                      <div id="live-engine-progress-fill" class="live-engine-progress-fill"></div>
+                    </div>
+                    <div class="live-ir-stage">
+                      <div class="live-ir-stage-head">
+                        <div class="live-ir-stage-head-text">
+                          <h4 class="live-ir-graph-title">IR graph</h4>
+                        </div>
+                        <p class="live-ir-legend" aria-label="Node colors">
+                          <span><i class="live-legend-swatch live-legend-block"></i> block</span>
+                          <span><i class="live-legend-swatch live-legend-inst"></i> inst</span>
+                          <span><i class="live-legend-swatch live-legend-vuln"></i> flagged</span>
+                        </p>
+                        <span id="live-engine-graph-meta" class="live-engine-graph-meta tabular-nums muted small"></span>
+                        <div id="live-engine-cwe-legend" class="live-engine-cwe-legend hidden" aria-label="CWE markers in this preview"></div>
+                      </div>
+                      <div id="live-preview-graph-host" class="live-ir-graph-host" role="img" aria-label="Interactive LLVM IR force graph"></div>
+                    </div>
+                    <aside id="live-graph-node-detail" class="live-graph-node-detail visually-hidden" aria-hidden="true"></aside>
+                    <ul id="live-preview-findings-list" class="visually-hidden" aria-hidden="true"></ul>
+                    <p id="live-ir-truncation" class="visually-hidden"></p>
+                    <p id="live-engine-diff" class="visually-hidden"></p>
+                    <canvas id="live-spark-latency-canvas" class="visually-hidden" width="1" height="1" aria-hidden="true"></canvas>
+                    <figure class="live-engine-spark-wrap chart-card live-viz-figure">
+                      <canvas id="live-spark-graph-canvas" aria-label="Preview history"></canvas>
+                      <p id="live-spark-latency-label" class="live-spark-latency-label tabular-nums muted small visually-hidden" aria-hidden="true">—</p>
+                    </figure>
+                  </div>
+                </div>
+
+                <div class="visually-hidden" aria-hidden="true">
+                  <ul id="activity-feed"></ul>
+                  <div id="semantic-lint-list" class="semantic-lint-list"></div>
+                </div>
+              </section>
+              <section class="tab-panel" id="panel-output">
+                <div id="analyze-outcome-slot" class="analyze-outcome-slot" aria-live="polite">
+                  <p class="muted output-placeholder">Run <strong>Analyze</strong> to see the final verdict.</p>
+                </div>
+                <div id="analyze-quality-ratings" class="analyze-quality-ratings hidden" aria-live="polite"></div>
+              </section>
+              <section class="tab-panel" id="panel-chat" aria-label="Code assistant chat">
+                <div class="code-chat-shell" id="code-chat-shell">
+                  <div class="code-chat-toolbar">
+                    <header class="code-chat-header">
+                      <h2 class="code-chat-title">Code assistant</h2>
+                      <button type="button" class="code-chat-clear-btn" id="code-chat-clear" title="Clear conversation">Clear</button>
+                    </header>
+                    <div class="code-chat-presets" role="group" aria-label="Suggested questions">
+                      <button type="button" class="code-chat-preset" data-preset="explain">Explain this code</button>
+                      <button type="button" class="code-chat-preset" data-preset="risks">Security risks?</button>
+                      <button type="button" class="code-chat-preset" data-preset="analysis">Summarize last analysis</button>
+                      <button type="button" class="code-chat-preset" data-preset="fix">How to fix issues?</button>
+                    </div>
+                  </div>
+                  <div id="code-chat-groq-banner" class="code-chat-banner hidden" role="status"></div>
+                  <div id="code-chat-messages" class="code-chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+                  <form id="code-chat-form" class="code-chat-compose">
+                    <label class="code-chat-compose-label" for="code-chat-input">Your message</label>
+                    <div class="code-chat-compose-box">
+                      <textarea id="code-chat-input" class="code-chat-input" rows="2" placeholder="Type a question about the code in the editor…" spellcheck="true"></textarea>
+                      <div class="code-chat-compose-actions">
+                        <span id="code-chat-status" class="code-chat-status" aria-live="polite"></span>
+                        <button type="submit" class="btn btn-primary btn-sm code-chat-send" id="code-chat-send">Send</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </section>
+              <section class="tab-panel" id="panel-overview">
+                <div id="pipeline-viz-host"></div>
+                <div id="overview-summary-slot"></div>
+                <div id="overview-analytics-slot"></div>
+              </section>
+              <section class="tab-panel" id="panel-findings"></section>
+              <section class="tab-panel" id="panel-localization"></section>
+              <section class="tab-panel" id="panel-explain"></section>
+              <section class="tab-panel" id="panel-diagnostics"></section>
+              <section class="tab-panel" id="panel-learn"></section>
+              <section class="tab-panel" id="panel-repair">
+                <div id="repair-diff-host" class="repair-diff-host"></div>
+                <div id="repair-stepper" class="repair-stepper visually-hidden" aria-hidden="true"></div>
+                <div id="repair-content" class="repair-content-minimal"></div>
+              </section>
+              <section class="tab-panel" id="panel-verification"></section>
+              <section class="tab-panel" id="panel-evidence"></section>
+              <section class="tab-panel" id="panel-graph">
+                <div class="graph-panel-minimal">
+                  <p id="graph-stats" class="graph-stats-line muted"></p>
+                  <div id="graph-container" class="graph-container graph-container-solo"></div>
+                </div>
+                <aside id="graph-node-detail" class="visually-hidden" aria-hidden="true"></aside>
+                <input type="search" id="graph-search" class="visually-hidden" aria-hidden="true" />
+                <button type="button" id="graph-reset" class="visually-hidden" aria-hidden="true"></button>
+              </section>
+              <section class="tab-panel" id="panel-source">
+                <pre id="source-view" class="code-block"></pre>
+              </section>
+              <section class="tab-panel" id="panel-agent">
+                <div class="visually-hidden" id="agent-swimlane" aria-hidden="true"></div>
+                <pre class="visually-hidden" id="agent-output" aria-hidden="true"></pre>
+                <div class="card agent-console-card">
+                  <h3 class="summary-card-title">Agentic AI</h3>
+                  <div class="agent-preset-group" role="group" aria-label="Prompt presets">
+                    <button type="button" class="agent-preset-chip preset-btn" data-preset="benign">Benign scan</button>
+                    <button type="button" class="agent-preset-chip agent-preset-chip-danger preset-btn attack-preset" data-preset="attack">Prof. injection (A1)</button>
+                  </div>
+                  <textarea id="agent-message" class="agent-input agent-input-refined" rows="4" placeholder="Scan, explain findings, suggest heal…"></textarea>
+                  <button type="button" class="btn btn-primary btn-sm agent-run-btn" id="agent-run">Run agent</button>
+                </div>
+                <div id="agent-timeline" class="agent-timeline agent-timeline-panel"></div>
+                <div id="agent-summary" class="agent-summary hidden"></div>
+                <div id="agent-artifacts" class="agent-artifacts-panel"></div>
+              </section>
+              <section class="tab-panel" id="panel-aai">
+                <div class="card">
+                  <h3>AAI Security suite</h3>
+                  <p class="muted">Input guard, tool gate, output guard — attack metrics and audit log.</p>
+                  <button type="button" class="btn btn-primary" id="aai-run" style="width:auto">Run attack simulation</button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="aai-refresh" style="margin-left:0.5rem">Refresh report</button>
+                </div>
+                <div id="aai-metrics" class="metrics aai-metrics-grid"></div>
+                <div class="card aai-results-card">
+                  <h3 class="summary-card-title">Scenario results</h3>
+                  <p class="muted small aai-results-hint">ID, family, block/allow action, and tool gate outcome per attack scenario.</p>
+                  <div id="aai-results" class="table-wrap aai-results-table" role="region" aria-label="AAI scenario results"></div>
+                </div>
+                <div class="card aai-audit-card">
+                  <h3>Audit log (recent)</h3>
+                  <pre id="aai-log" class="code-block aai-log"></pre>
+                </div>
+              </section>
+              <section class="tab-panel" id="panel-raw">
+                <pre id="raw-json" class="code-block"></pre>
+              </section>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <pre id="pipeline-detail" class="pipeline-detail code-block hidden" aria-hidden="true"></pre>
+      <nav id="pipeline-rail" class="pipeline-rail hidden" aria-hidden="true"></nav>
+      <div id="attack-sim-panel" class="attack-sim-panel hidden">
+        <p id="attack-sim-text" class="attack-sim-text"></p>
+        <button type="button" class="btn btn-ghost btn-sm" id="attack-sim-dismiss">Dismiss</button>
+      </div>
+
+      <div id="toast" class="toast hidden" role="alert"></div>
+    </main>
+  </div>
+
+  <script src="/static/graph.js"></script>
+  <script type="module" src="/static/workbench-main.js?v={{ version.version }}-aai-table1"></script>
+</body>
+</html>
