@@ -36,10 +36,12 @@ This project introduces a **dual-language static analysis compiler pipeline** (C
 
 Below is the complete list of files and components submitted within this directory:
 
-### 1. Documentation & Evaluation Reports (`/Documentation`)
-* `Documentation/End_Semester_Evaluation_Report.md`: Full comprehensive end-semester report covering system architecture, compiler theory, cryptographic specifications, evaluation benchmarks, and result discussions.
-* `Documentation/Mid_Semester_Evaluation_Report.md`: Mid-semester evaluation report documenting compiler-side static enforcement and initial pass design.
-* `Documentation/Secure_OTA_Compiler_Demo.mp4`: Local copy of the complete recorded video walkthrough demonstrating live compilation, security policy blocking, diagnostics, and AI advisory remediation.
+### 1. Documentation & Evaluation Reports (`/Documentation` at Repository Root)
+* `../Documentation/End_Semester_Evaluation_Report.md`: Full comprehensive end-semester report covering system architecture, compiler theory, cryptographic specifications, evaluation benchmarks, and result discussions.
+* `../Documentation/Mid_Semester_Evaluation_Report.md`: Mid-semester evaluation report documenting compiler-side static enforcement and initial pass design.
+* `../Documentation/Secure_OTA_Compiler_Demo.mp4`: Local copy of the complete recorded video walkthrough demonstrating live compilation, security policy blocking, diagnostics, and AI advisory remediation.
+* `../Documentation/TOACD_End_Semester_Report(25CSB1A01,25CSB1A68).docx`: End-semester report (Word document format).
+* `../Documentation/TOACD_Mid_Semester_Report(25CSB1A01, 25CSB1A68).docx`: Mid-semester report (Word document format).
 * **Google Drive Link**: [Here](https://drive.google.com/drive/folders/1QwkqYus5k1MuxUX4aU218iI7x3CSAxHB?usp=sharing)
 
 ### 2. Compiler Passes & Toolchain Drivers
