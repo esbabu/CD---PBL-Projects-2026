@@ -1,0 +1,25 @@
+use actix_web::{get, post, web, HttpResponse};
+use rusqlite::Connection;
+use serde::Deserialize;
+use std::fs;
+use std::process::Command;
+
+static mut REQUEST_COUNT: u64 = 0;
+
+#[derive(Deserialize)]
+pub struct Params {
+    pub name: String,
+    pub host: String,
+    pub next: String,
+    pub page: String,
+    pub pattern: String,
+}
+
+#[post("/countV1")]
+pub async fn countV1() -> HttpResponse {
+    unsafe {
+        REQUEST_COUNT += 1;
+    }
+    HttpResponse::Ok().finish()
+}
+

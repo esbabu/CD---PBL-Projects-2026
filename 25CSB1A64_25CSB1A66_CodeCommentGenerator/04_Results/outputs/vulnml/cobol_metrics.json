@@ -1,0 +1,123 @@
+{
+ "language": "cobol",
+ "test_binary": {
+  "n": 12,
+  "positives": 6,
+  "negatives": 6,
+  "accuracy": 0.5,
+  "precision": null,
+  "recall": 0.0,
+  "f1": null,
+  "fpr": 0.0,
+  "fnr": 1.0,
+  "confusion": {
+   "tn": 6,
+   "fp": 0,
+   "fn": 6,
+   "tp": 0
+  }
+ },
+ "test_family": {
+  "accuracy": 0.5,
+  "macro_f1": 0.2222,
+  "labels": [
+   "index-validation",
+   "safe",
+   "trust-boundary"
+  ],
+  "confusion": [
+   [
+    0,
+    3,
+    0
+   ],
+   [
+    0,
+    6,
+    0
+   ],
+   [
+    0,
+    3,
+    0
+   ]
+  ]
+ },
+ "test_by_source": {
+  "custom": {
+   "n": 12,
+   "positives": 6,
+   "negatives": 6,
+   "accuracy": 0.5,
+   "precision": null,
+   "recall": 0.0,
+   "f1": null,
+   "fpr": 0.0,
+   "fnr": 1.0,
+   "confusion": {
+    "tn": 6,
+    "fp": 0,
+    "fn": 6,
+    "tp": 0
+   }
+  }
+ },
+ "tuning": [
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    1
+   ],
+   "val_f1": null,
+   "val_accuracy": 0.4615
+  },
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    2
+   ],
+   "val_f1": null,
+   "val_accuracy": 0.4615
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    1
+   ],
+   "val_f1": null,
+   "val_accuracy": 0.4615
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    2
+   ],
+   "val_f1": 0.25,
+   "val_accuracy": 0.5385
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    1
+   ],
+   "val_f1": 0.25,
+   "val_accuracy": 0.5385
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    2
+   ],
+   "val_f1": 0.25,
+   "val_accuracy": 0.5385
+  }
+ ],
+ "train_seconds": 0.2,
+ "inference_ms_per_function": 0.131
+}

@@ -1,0 +1,1 @@
+class A { void f() throws Exception { KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA"); kpg.initialize(1024); } }

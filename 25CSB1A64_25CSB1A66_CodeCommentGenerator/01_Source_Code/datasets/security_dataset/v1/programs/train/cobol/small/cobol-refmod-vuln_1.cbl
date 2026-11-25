@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S23671.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-POS1            PIC 99.
+       01  WS-RECORD1         PIC X(80).
+       01  WS-PART1           PIC X(5).
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       EXTRACT-FIELD1.
+           ACCEPT WS-POS1.
+           MOVE WS-RECORD1(WS-POS1:5) TO WS-PART1.
+

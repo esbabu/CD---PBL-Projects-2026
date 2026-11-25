@@ -1,0 +1,80 @@
+{
+ "language": "rust",
+ "dataset": "datasets/security_dataset/v1",
+ "seed": 7,
+ "features": "TF-IDF over normalised tokens (comments removed, strings STR, numbers NUM, label-leaking identifiers and access modifiers masked), max 40,000 features",
+ "model": "LogisticRegression (lbfgs, max_iter 3000)",
+ "grid": [
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    2
+   ]
+  }
+ ],
+ "selection": "best vulnerable-vs-safe F1 on the validation split",
+ "chosen": {
+  "C": 16.0,
+  "ngram": [
+   1,
+   2
+  ],
+  "val_f1": 1.0,
+  "val_accuracy": 1.0
+ },
+ "refit_on": "train + validation",
+ "counts": {
+  "train": 25,
+  "val": 9,
+  "test": 11
+ },
+ "train_labels": {
+  "command-injection": 3,
+  "safe": 6,
+  "sql-injection": 3,
+  "input-validation": 3,
+  "race-condition": 3,
+  "weak-crypto": 4,
+  "xss": 1,
+  "open-redirect": 1,
+  "information-exposure": 1
+ },
+ "small_n": true,
+ "used_by_neurosymbolic_engine": false
+}

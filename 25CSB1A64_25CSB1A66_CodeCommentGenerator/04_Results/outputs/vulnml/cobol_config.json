@@ -1,0 +1,79 @@
+{
+ "language": "cobol",
+ "dataset": "datasets/security_dataset/v1",
+ "seed": 7,
+ "features": "TF-IDF over normalised tokens (comments removed, strings STR, numbers NUM, label-leaking identifiers and access modifiers masked), max 40,000 features",
+ "model": "LogisticRegression (lbfgs, max_iter 3000)",
+ "grid": [
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    2
+   ]
+  }
+ ],
+ "selection": "best vulnerable-vs-safe F1 on the validation split",
+ "chosen": {
+  "C": 4.0,
+  "ngram": [
+   1,
+   2
+  ],
+  "val_f1": 0.25,
+  "val_accuracy": 0.5385
+ },
+ "refit_on": "train + validation",
+ "counts": {
+  "train": 42,
+  "val": 13,
+  "test": 12
+ },
+ "train_labels": {
+  "sql-injection": 3,
+  "safe": 21,
+  "command-injection": 3,
+  "index-validation": 3,
+  "hardcoded-credentials": 3,
+  "information-exposure": 3,
+  "xss": 3,
+  "path-traversal": 3
+ },
+ "small_n": true,
+ "used_by_neurosymbolic_engine": false
+}

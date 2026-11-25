@@ -1,0 +1,938 @@
+{
+ "cases": [
+  {
+   "category": "sqli",
+   "id": "GHSA-339r-cjv9-x78g",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 4,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 4
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-6497-prx7-gpmq",
+   "patched_detected": [],
+   "patched_unscored": 9,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 9
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-f2mf-q878-gh58",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "confirmed"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-pwh4-6r3m-j2rf",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-rh5m-2482-966c",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-vghm-8cjp-hjw6",
+   "patched_detected": [],
+   "patched_unscored": 2,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 2
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-x46r-mf5g-xpr6",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-x783-xp3g-mqhp",
+   "patched_detected": [],
+   "patched_unscored": 1,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 4
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-xq59-7jf3-rjc6",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 9,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 9
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-h6m6-jj8v-94jj",
+   "patched_detected": [],
+   "patched_unscored": 2,
+   "scope": "api_not_modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 2
+  },
+  {
+   "category": "sqli",
+   "id": "GHSA-hp84-p2gq-6fvr",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "cmdi",
+   "id": "GHSA-7pc3-pr3q-58vg",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "cmdi",
+   "id": "GHSA-9277-mp7x-85jf",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "cmdi",
+   "id": "GHSA-g99h-56mw-8263",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "cmdi",
+   "id": "GHSA-j5h9-9r39-43q5",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "cmdi",
+   "id": "GHSA-rf7p-79xq-8xwm",
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "cmdi",
+   "id": "GHSA-rm79-x4g6-hvg5",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 1,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 1
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-3cr5-2446-8pg3",
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 2
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-29h4-r29x-hchv",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-77rh-m34w-rv36",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-89g2-xw5c-v95p",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-8xwf-cr4r-856r",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-ghq9-vc6f-8qjf",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-r3hx-x5rh-p9vv",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-v798-mcc6-2m3m",
+   "patched_detected": [],
+   "patched_unscored": 5,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 5
+  },
+  {
+   "category": "codeinj",
+   "id": "GHSA-x2rj-828p-hx9m",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "deserialization",
+   "id": "GHSA-2689-cw26-6cpj",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "deserialization",
+   "id": "GHSA-34wm-4hw7-qfjv",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "deserialization",
+   "id": "GHSA-hhrp-gw25-jr43",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "deserialization",
+   "id": "GHSA-2vh9-42vm-xmv2",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "dev",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "deserialization",
+   "id": "GHSA-69w3-r845-3855",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "dev",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-442q-2j6p-642g",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-4h8q-hh2j-755w",
+   "patched_detected": [
+    "confirmed"
+   ],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "confirmed"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-5jmr-gcrj-2c9q",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-9xwg-3r6f-jcx2",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-c5px-58j2-7fqp",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-cj54-hpcc-gj6h",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-g28h-2cmm-rj9x",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-h7ww-273w-6cm8",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "pathtraver",
+   "id": "GHSA-9jj8-v89v-xjvw",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "ssti",
+   "id": "GHSA-793v-gxfp-9q9h",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "ssti",
+   "id": "GHSA-cxfr-5q3r-2rc2",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "heldout",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "ssti",
+   "id": "GHSA-h92g-3xc3-ww2r",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "potential"
+   ],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "ssti",
+   "id": "GHSA-9mq4-9556-6qxq",
+   "patched_detected": [
+    "potential"
+   ],
+   "patched_unscored": 1,
+   "scope": "modelled",
+   "split": "dev",
+   "vulnerable_detected": [
+    "confirmed",
+    "potential"
+   ],
+   "vulnerable_unscored": 1
+  },
+  {
+   "category": "xss",
+   "id": "GHSA-58cw-g322-p94v",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "xss",
+   "id": "GHSA-6269-cqxg-mhhv",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "xss",
+   "id": "GHSA-75mw-h36v-2jv7",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "xss",
+   "id": "GHSA-gx2m-mcc2-r4p3",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "dev",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "xss",
+   "id": "GHSA-hvq6-2r72-p2x7",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "heldout",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  },
+  {
+   "category": "xss",
+   "id": "GHSA-w7rv-gfp4-j9j3",
+   "patched_detected": [],
+   "patched_unscored": 0,
+   "scope": "api_not_modelled",
+   "split": "dev",
+   "vulnerable_detected": [],
+   "vulnerable_unscored": 0
+  }
+ ],
+ "meta": {
+  "analyzer": {
+   "git_head": "53a0611e002edf79ea4b2dd6382cc6da39e1e4fa",
+   "security_source_sha256": "4385f8ed99f74261",
+   "src_dirty": true
+  },
+  "config": {
+   "split": "all"
+  },
+  "dataset": "GHSA real-world fix pairs",
+  "dataset_version": "2026-10-26",
+  "python": "3.12.6",
+  "timestamp_utc": "2026-10-27T14:15:03+00:00"
+ },
+ "metrics": {
+  "all_in_category": {
+   "confirmed": {
+    "excluded": [],
+    "overall": {
+     "f1": 0.1111111111111111,
+     "false_positive_rate": 0.020833333333333332,
+     "fn": 47,
+     "fp": 1,
+     "precision": 0.75,
+     "recall": 0.06,
+     "tn": 47,
+     "tp": 3
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 6,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 5,
+      "tp": 0
+     },
+     "codeinj": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 9,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 8,
+      "tp": 0
+     },
+     "deserialization": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 5,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 5,
+      "tp": 0
+     },
+     "pathtraver": {
+      "f1": 0.1818181818181818,
+      "false_positive_rate": 0.1111111111111111,
+      "fn": 8,
+      "fp": 1,
+      "precision": 0.5,
+      "recall": 0.1111111111111111,
+      "tn": 8,
+      "tp": 1
+     },
+     "sqli": {
+      "f1": 0.16666666666666669,
+      "false_positive_rate": 0.0,
+      "fn": 10,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.09090909090909091,
+      "tn": 11,
+      "tp": 1
+     },
+     "ssti": {
+      "f1": 0.4,
+      "false_positive_rate": 0.0,
+      "fn": 3,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.25,
+      "tn": 4,
+      "tp": 1
+     },
+     "xss": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 6,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 6,
+      "tp": 0
+     }
+    }
+   },
+   "confirmed+potential": {
+    "excluded": [],
+    "overall": {
+     "f1": 0.7083333333333334,
+     "false_positive_rate": 0.25,
+     "fn": 16,
+     "fp": 12,
+     "precision": 0.7391304347826086,
+     "recall": 0.68,
+     "tn": 36,
+     "tp": 34
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": 0.7499999999999999,
+      "false_positive_rate": 0.8,
+      "fn": 0,
+      "fp": 4,
+      "precision": 0.6,
+      "recall": 1.0,
+      "tn": 1,
+      "tp": 6
+     },
+     "codeinj": {
+      "f1": 0.9473684210526316,
+      "false_positive_rate": 0.125,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.9,
+      "recall": 1.0,
+      "tn": 7,
+      "tp": 9
+     },
+     "deserialization": {
+      "f1": 0.6666666666666665,
+      "false_positive_rate": 0.2,
+      "fn": 2,
+      "fp": 1,
+      "precision": 0.75,
+      "recall": 0.6,
+      "tn": 4,
+      "tp": 3
+     },
+     "pathtraver": {
+      "f1": 0.30769230769230765,
+      "false_positive_rate": 0.2222222222222222,
+      "fn": 7,
+      "fp": 2,
+      "precision": 0.5,
+      "recall": 0.2222222222222222,
+      "tn": 7,
+      "tp": 2
+     },
+     "sqli": {
+      "f1": 0.8333333333333333,
+      "false_positive_rate": 0.2727272727272727,
+      "fn": 1,
+      "fp": 3,
+      "precision": 0.7692307692307693,
+      "recall": 0.9090909090909091,
+      "tn": 8,
+      "tp": 10
+     },
+     "ssti": {
+      "f1": 0.888888888888889,
+      "false_positive_rate": 0.25,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.8,
+      "recall": 1.0,
+      "tn": 3,
+      "tp": 4
+     },
+     "xss": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 6,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 6,
+      "tp": 0
+     }
+    }
+   }
+  },
+  "modelled_scope": {
+   "confirmed": {
+    "excluded": [],
+    "overall": {
+     "f1": 0.13953488372093026,
+     "false_positive_rate": 0.02702702702702703,
+     "fn": 36,
+     "fp": 1,
+     "precision": 0.75,
+     "recall": 0.07692307692307693,
+     "tn": 36,
+     "tp": 3
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 6,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 5,
+      "tp": 0
+     },
+     "codeinj": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 9,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 8,
+      "tp": 0
+     },
+     "deserialization": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 3,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 3,
+      "tp": 0
+     },
+     "pathtraver": {
+      "f1": 0.2,
+      "false_positive_rate": 0.125,
+      "fn": 7,
+      "fp": 1,
+      "precision": 0.5,
+      "recall": 0.125,
+      "tn": 7,
+      "tp": 1
+     },
+     "sqli": {
+      "f1": 0.19999999999999998,
+      "false_positive_rate": 0.0,
+      "fn": 8,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.1111111111111111,
+      "tn": 9,
+      "tp": 1
+     },
+     "ssti": {
+      "f1": 0.4,
+      "false_positive_rate": 0.0,
+      "fn": 3,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.25,
+      "tn": 4,
+      "tp": 1
+     }
+    }
+   },
+   "confirmed+potential": {
+    "excluded": [],
+    "overall": {
+     "f1": 0.7804878048780488,
+     "false_positive_rate": 0.2972972972972973,
+     "fn": 7,
+     "fp": 11,
+     "precision": 0.7441860465116279,
+     "recall": 0.8205128205128205,
+     "tn": 26,
+     "tp": 32
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": 0.7499999999999999,
+      "false_positive_rate": 0.8,
+      "fn": 0,
+      "fp": 4,
+      "precision": 0.6,
+      "recall": 1.0,
+      "tn": 1,
+      "tp": 6
+     },
+     "codeinj": {
+      "f1": 0.9473684210526316,
+      "false_positive_rate": 0.125,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.9,
+      "recall": 1.0,
+      "tn": 7,
+      "tp": 9
+     },
+     "deserialization": {
+      "f1": 0.8571428571428571,
+      "false_positive_rate": 0.3333333333333333,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.75,
+      "recall": 1.0,
+      "tn": 2,
+      "tp": 3
+     },
+     "pathtraver": {
+      "f1": 0.2,
+      "false_positive_rate": 0.125,
+      "fn": 7,
+      "fp": 1,
+      "precision": 0.5,
+      "recall": 0.125,
+      "tn": 7,
+      "tp": 1
+     },
+     "sqli": {
+      "f1": 0.8571428571428571,
+      "false_positive_rate": 0.3333333333333333,
+      "fn": 0,
+      "fp": 3,
+      "precision": 0.75,
+      "recall": 1.0,
+      "tn": 6,
+      "tp": 9
+     },
+     "ssti": {
+      "f1": 0.888888888888889,
+      "false_positive_rate": 0.25,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.8,
+      "recall": 1.0,
+      "tn": 3,
+      "tp": 4
+     }
+    }
+   }
+  }
+ },
+ "missing_files": [],
+ "performance": {
+  "total_ms": 167449.6
+ },
+ "unit": "advisory case x revision, scored over labelled (file, function) sites"
+}

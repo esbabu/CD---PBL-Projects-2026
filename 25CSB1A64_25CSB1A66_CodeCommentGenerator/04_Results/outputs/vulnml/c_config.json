@@ -1,0 +1,94 @@
+{
+ "language": "c",
+ "dataset": "datasets/security_dataset/v1",
+ "seed": 7,
+ "features": "TF-IDF over normalised tokens (comments removed, strings STR, numbers NUM, label-leaking identifiers and access modifiers masked), max 40,000 features",
+ "model": "LogisticRegression (lbfgs, max_iter 3000)",
+ "grid": [
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    2
+   ]
+  }
+ ],
+ "selection": "best vulnerable-vs-safe F1 on the validation split",
+ "chosen": {
+  "C": 16.0,
+  "ngram": [
+   1,
+   2
+  ],
+  "val_f1": 0.8045,
+  "val_accuracy": 0.9069
+ },
+ "refit_on": "train + validation",
+ "counts": {
+  "train": 6011,
+  "val": 1321,
+  "test": 1138
+ },
+ "train_labels": {
+  "buffer-overflow": 391,
+  "safe": 4491,
+  "format-string": 133,
+  "index-validation": 4,
+  "memory-management": 118,
+  "null-dereference": 42,
+  "command-injection": 138,
+  "race-condition": 14,
+  "weak-randomness": 5,
+  "hardcoded-credentials": 5,
+  "weak-crypto": 20,
+  "sql-injection": 1,
+  "path-traversal": 1,
+  "xxe": 1,
+  "ldap-injection": 15,
+  "trust-boundary": 1,
+  "information-exposure": 17,
+  "integer-overflow": 369,
+  "input-validation": 50,
+  "error-handling": 122,
+  "authorization": 20,
+  "cleartext": 6,
+  "resource-exhaustion": 47
+ },
+ "small_n": false,
+ "used_by_neurosymbolic_engine": true
+}

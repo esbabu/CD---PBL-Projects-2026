@@ -1,0 +1,255 @@
+{
+ "description": "Bundled knowledge for the RAG guidance: why each rule matters and a hand-written vulnerable/fixed example pair per rule.",
+ "rules": {
+  "SEC001": {
+   "why": "eval/exec run text as Python code, so attacker-controlled text becomes attacker-controlled code with the server's privileges.",
+   "vulnerable": "@app.route(\"/calc\")\ndef calculate():\n    expression = request.args.get(\"expr\", \"\")\n    result = eval(expression)\n    return jsonify(result=result)\n",
+   "fixed": "@app.route(\"/calc_safe\")\ndef calculate_safe():\n    expression = request.args.get(\"expr\", \"0\")\n    return jsonify(result=ast.literal_eval(expression))\n"
+  },
+  "SEC002": {
+   "why": "A shell interprets ; | & $() and backticks, so text spliced into a command line can append arbitrary commands.",
+   "vulnerable": "@app.route(\"/ping\")\ndef ping_host():\n    host = request.args.get(\"host\", \"\")\n    os.system(\"ping -c 1 \" + host)\n    return jsonify(status=\"sent\")\n",
+   "fixed": "@app.route(\"/ping_safe\")\ndef ping_host_safe():\n    host = request.args.get(\"host\", \"\")\n    subprocess.run([\"ping\", \"-c\", \"1\", host], check=False)\n    return jsonify(status=\"sent\")\n"
+  },
+  "SEC003": {
+   "why": "Credentials in source code are copied to every clone, backup and log of the repository and cannot be rotated without a code change.",
+   "vulnerable": "def billing_client():\n    api_key = \"q9X2vLm4Rt8Zp1Kw\"\n    return {\"service\": \"billing\", \"auth\": api_key}\n",
+   "fixed": "def billing_client_safe():\n    api_key = os.environ.get(\"BILLING_API_KEY\", \"\")\n    return {\"service\": \"billing\", \"auth\": api_key}\n"
+  },
+  "SEC004": {
+   "why": "MD5 and SHA-1 have practical collisions and are fast to brute-force, so they do not protect integrity or stored passwords.",
+   "vulnerable": "def hash_password(password):\n    return hashlib.md5(password.encode()).hexdigest()\n",
+   "fixed": "def fingerprint(data):\n    return hashlib.sha256(data.encode()).hexdigest()\n"
+  },
+  "SEC005": {
+   "why": "Quotes in user input change the structure of an SQL statement built by concatenation; parameters keep data separate from the query.",
+   "vulnerable": "@app.route(\"/orders\")\ndef find_orders():\n    customer = request.args.get(\"customer\", \"\")\n    conn = sqlite3.connect(\"shop.db\")\n    rows = conn.execute(\"SELECT * FROM orders WHERE customer = '\" + customer + \"'\").fetchall()\n    return jsonify(rows=rows)\n",
+   "fixed": "@app.route(\"/orders_safe\")\ndef find_orders_safe():\n    customer = request.args.get(\"customer\", \"\")\n    conn = sqlite3.connect(\"shop.db\")\n    rows = conn.execute(\"SELECT * FROM orders WHERE customer = ?\", (customer,)).fetchall()\n    return jsonify(rows=rows)\n"
+  },
+  "SEC006": {
+   "why": "A bare except also catches SystemExit and KeyboardInterrupt and hides real failures, including failed security checks.",
+   "vulnerable": "def read_settings(path):\n    try:\n        with open(path, encoding=\"utf-8\") as fh:\n            return json.load(fh)\n    except:\n        return {}\n",
+   "fixed": "def read_settings_safe(path):\n    try:\n        with open(path, encoding=\"utf-8\") as fh:\n            return json.load(fh)\n    except (OSError, ValueError):\n        return {}\n"
+  },
+  "SEC007": {
+   "why": "A mutable default is created once and shared by every call, so data leaks between unrelated callers.",
+   "vulnerable": "def collect_tags(item, tags=[]):\n    tags.append(item)\n    return tags\n",
+   "fixed": "def collect_tags_safe(item, tags=None):\n    tags = list(tags or [])\n    tags.append(item)\n    return tags\n"
+  },
+  "SEC008": {
+   "why": "assert statements are removed when Python runs with -O, so a security check written as an assert disappears in production.",
+   "vulnerable": "def withdraw(balance, amount):\n    assert amount <= balance, \"insufficient funds\"\n    return balance - amount\n",
+   "fixed": "def withdraw_safe(balance, amount):\n    if amount > balance:\n        raise ValueError(\"insufficient funds\")\n    return balance - amount\n"
+  },
+  "SEC009": {
+   "why": "Unpickling runs constructors chosen by the data (__reduce__), so loading untrusted pickle data executes attacker code.",
+   "vulnerable": "@app.route(\"/restore\", methods=[\"POST\"])\ndef restore_state():\n    state = pickle.loads(request.data)\n    return jsonify(keys=len(state))\n",
+   "fixed": "@app.route(\"/restore_safe\", methods=[\"POST\"])\ndef restore_state_safe():\n    state = json.loads(request.data)\n    return jsonify(keys=len(state))\n"
+  },
+  "SEC010": {
+   "why": "yaml.load with the full loader can construct arbitrary Python objects from tags in the document.",
+   "vulnerable": "@app.route(\"/config\", methods=[\"POST\"])\ndef upload_config():\n    config = yaml.load(request.data, Loader=yaml.Loader)\n    return jsonify(sections=len(config))\n",
+   "fixed": "@app.route(\"/config_safe\", methods=[\"POST\"])\ndef upload_config_safe():\n    config = yaml.safe_load(request.data)\n    return jsonify(sections=len(config))\n"
+  },
+  "SEC011": {
+   "why": "The random module is a predictable Mersenne Twister; tokens, passwords and session ids made with it can be predicted.",
+   "vulnerable": "def generate_reset_token():\n    return str(random.randint(100000, 999999))\n",
+   "fixed": "def generate_reset_token_safe():\n    return str(secrets.randbelow(900000) + 100000)\n"
+  },
+  "SEC012": {
+   "why": "Hard-coded addresses tie code to one environment and expose internal network layout.",
+   "vulnerable": "def backup_target():\n    return {\"host\": \"10.42.7.1\", \"port\": 873}\n",
+   "fixed": "def backup_target_safe():\n    return {\"host\": os.environ.get(\"BACKUP_HOST\", \"localhost\"), \"port\": 873}\n"
+  },
+  "SEC013": {
+   "why": "'../' sequences or absolute paths in user input escape the intended directory and read or overwrite other files.",
+   "vulnerable": "@app.route(\"/download\")\ndef download():\n    name = request.args.get(\"file\", \"\")\n    with open(os.path.join(BASE_DIR, name), \"rb\") as fh:\n        return jsonify(size=len(fh.read()))\n",
+   "fixed": "@app.route(\"/download_safe\")\ndef download_safe():\n    name = os.path.basename(request.args.get(\"file\", \"\"))\n    with open(os.path.join(BASE_DIR, name), \"rb\") as fh:\n        return jsonify(size=len(fh.read()))\n"
+  },
+  "SEC014": {
+   "why": "Unescaped user input in HTML runs as script in other users' browsers (cross-site scripting).",
+   "vulnerable": "@app.route(\"/hello\")\ndef hello():\n    name = request.args.get(\"name\", \"\")\n    return \"<h1>Hello \" + name + \"</h1>\"\n",
+   "fixed": "@app.route(\"/hello_safe\")\ndef hello_safe():\n    name = request.args.get(\"name\", \"\")\n    return \"<h1>Hello \" + html.escape(name) + \"</h1>\"\n"
+  },
+  "SEC015": {
+   "why": "Compiling user input as a Jinja template gives access to Python objects through template expressions ({{ ''.__class__ }}).",
+   "vulnerable": "@app.route(\"/preview\")\ndef preview():\n    template = request.args.get(\"tpl\", \"\")\n    return render_template_string(template)\n",
+   "fixed": "@app.route(\"/preview_safe\")\ndef preview_safe():\n    text = request.args.get(\"tpl\", \"\")\n    return render_template(\"preview.html\", text=text)\n"
+  },
+  "SEC016": {
+   "why": "When request data chooses the host of an outbound request, the server can be made to call internal services or cloud metadata endpoints.",
+   "vulnerable": "@app.route(\"/fetch\")\ndef fetch_url():\n    target = request.args.get(\"url\", \"\")\n    resp = requests.get(target, timeout=5)\n    return jsonify(status=resp.status_code)\n",
+   "fixed": "@app.route(\"/fetch_safe\")\ndef fetch_item_safe():\n    item = request.args.get(\"item\", \"\")\n    resp = requests.get(\"https://api.acme-corp.com/items/\" + item, timeout=5)\n    return jsonify(status=resp.status_code)\n"
+  },
+  "SEC017": {
+   "why": "Redirecting to a user-supplied URL lets attackers send victims from a trusted domain to a phishing site.",
+   "vulnerable": "@app.route(\"/continue\")\ndef continue_to():\n    target = request.args.get(\"next\", \"/\")\n    return redirect(target)\n",
+   "fixed": "@app.route(\"/continue_safe\")\ndef continue_safe():\n    return redirect(url_for(\"index\"))\n"
+  },
+  "SEC018": {
+   "why": "External entities in XML can read local files or call internal URLs when the parser resolves them.",
+   "vulnerable": "@app.route(\"/import\", methods=[\"POST\"])\ndef import_xml():\n    parser = lxml.etree.XMLParser(resolve_entities=True)\n    doc = lxml.etree.fromstring(request.data, parser)\n    return jsonify(tag=doc.tag)\n",
+   "fixed": "@app.route(\"/import_safe\", methods=[\"POST\"])\ndef import_xml_safe():\n    doc = lxml.etree.fromstring(request.data)\n    return jsonify(tag=doc.tag)\n"
+  },
+  "SEC019": {
+   "why": "Characters such as * ( ) | & change the meaning of an LDAP filter, so input can widen a search or bypass a login check.",
+   "vulnerable": "@app.route(\"/directory\")\ndef directory_lookup():\n    uid = request.args.get(\"uid\", \"\")\n    conn = ldap3.Connection(\"ldap://directory\")\n    conn.search(\"ou=people,dc=corp\", \"(uid=\" + uid + \")\")\n    return jsonify(found=len(conn.entries))\n",
+   "fixed": "@app.route(\"/directory_safe\")\ndef directory_lookup_safe():\n    uid = escape_filter_chars(request.args.get(\"uid\", \"\"))\n    conn = ldap3.Connection(\"ldap://directory\")\n    conn.search(\"ou=people,dc=corp\", \"(uid=\" + uid + \")\")\n    return jsonify(found=len(conn.entries))\n"
+  },
+  "SEC020": {
+   "why": "Quotes and brackets in user input change an XPath expression the same way SQL injection changes a query.",
+   "vulnerable": "@app.route(\"/staff\")\ndef staff_record():\n    eid = request.args.get(\"id\", \"\")\n    tree = lxml.etree.parse(os.path.join(BASE_DIR, \"staff.xml\"))\n    nodes = tree.xpath(\"//employee[@id='\" + eid + \"']\")\n    return jsonify(count=len(nodes))\n",
+   "fixed": "@app.route(\"/staff_safe\")\ndef staff_record_safe():\n    eid = request.args.get(\"id\", \"\")\n    tree = lxml.etree.parse(os.path.join(BASE_DIR, \"staff.xml\"))\n    nodes = tree.xpath(\"//employee[@id=$eid]\", eid=eid)\n    return jsonify(count=len(nodes))\n"
+  },
+  "SEC021": {
+   "why": "A JSON body can carry MongoDB operators ($ne, $gt, $where) instead of plain values and turn an equality check into 'match anything'.",
+   "vulnerable": "@app.route(\"/account\", methods=[\"POST\"])\ndef account_lookup():\n    query = request.get_json()\n    account = mongo.bank.accounts.find_one(query)\n    return jsonify(found=account is not None)\n",
+   "fixed": "@app.route(\"/account_safe\", methods=[\"POST\"])\ndef account_lookup_safe():\n    number = int(request.get_json()[\"number\"])\n    account = mongo.bank.accounts.find_one({\"number\": number})\n    return jsonify(found=account is not None)\n"
+  },
+  "SEC022": {
+   "why": "CR/LF in logged input forges extra log lines, hiding attacks or misleading the people who read the logs.",
+   "vulnerable": "@app.route(\"/track\")\ndef track_visit():\n    page = request.args.get(\"page\", \"\")\n    logger.info(\"visited \" + page)\n    return jsonify(ok=True)\n",
+   "fixed": "@app.route(\"/track_safe\")\ndef track_visit_safe():\n    page = request.args.get(\"page\", \"\")\n    if not page.isalnum():\n        return jsonify(ok=False)\n    logger.info(\"visited \" + page)\n    return jsonify(ok=True)\n"
+  },
+  "SEC023": {
+   "why": "CR/LF in a header value ends the header and lets the attacker add headers or a body (response splitting).",
+   "vulnerable": "@app.route(\"/lang\")\ndef content_language():\n    headers = Headers()\n    headers.add_header(\"Content-Language\", request.args.get(\"lang\", \"en\"))\n    return jsonify(headers=str(headers))\n",
+   "fixed": "@app.route(\"/lang_safe\")\ndef content_language_safe():\n    lang = request.args.get(\"lang\", \"en\")\n    headers = Headers()\n    headers.add_header(\"Content-Language\", lang if lang.isalpha() else \"en\")\n    return jsonify(headers=str(headers))\n"
+  },
+  "SEC024": {
+   "why": "A user-supplied regular expression can take exponential time on crafted input (ReDoS) and match far more than intended.",
+   "vulnerable": "@app.route(\"/grep\")\ndef grep_notes():\n    pattern = request.args.get(\"q\", \"\")\n    matches = re.findall(pattern, \"release notes for the current sprint\")\n    return jsonify(matches=len(matches))\n",
+   "fixed": "@app.route(\"/grep_safe\")\ndef grep_notes_safe():\n    pattern = re.escape(request.args.get(\"q\", \"\"))\n    matches = re.findall(pattern, \"release notes for the current sprint\")\n    return jsonify(matches=len(matches))\n"
+  },
+  "SEC025": {
+   "why": "Importing a module named by the user runs that module's top-level code, which can be any installed module.",
+   "vulnerable": "@app.route(\"/plugin\")\ndef load_plugin():\n    module = importlib.import_module(request.args.get(\"name\", \"json\"))\n    return jsonify(module=module.__name__)\n",
+   "fixed": "EXPORTERS = {\"json\": \"json\", \"csv\": \"csv\"}\n\n@app.route(\"/plugin_safe\")\ndef load_plugin_safe():\n    module = importlib.import_module(EXPORTERS[\"json\"])\n    return jsonify(module=module.__name__)\n"
+  },
+  "SEC026": {
+   "why": "A user-controlled format template can read attributes of the arguments ({0.__class__.__init__.__globals__}) and leak secrets.",
+   "vulnerable": "@app.route(\"/greet\")\ndef greet():\n    template = request.args.get(\"t\", \"\")\n    text = template.format(user=app)\n    return jsonify(length=len(text))\n",
+   "fixed": "@app.route(\"/greet_safe\")\ndef greet_safe():\n    name = request.args.get(\"t\", \"\")\n    text = \"Hello {}\".format(name)\n    return jsonify(length=len(text))\n"
+  },
+  "SEC027": {
+   "why": "setattr with user-chosen names lets a request overwrite fields it should not (is_admin, owner, price).",
+   "vulnerable": "class Profile:\n    name = \"\"\n\n@app.route(\"/profile\", methods=[\"POST\"])\ndef update_profile():\n    profile = Profile()\n    for key in request.form:\n        setattr(profile, key, request.form[key])\n    return jsonify(ok=True)\n",
+   "fixed": "class ProfileSafe:\n    name = \"\"\n\n@app.route(\"/profile_safe\", methods=[\"POST\"])\ndef update_profile_safe():\n    profile = ProfileSafe()\n    for key in (\"name\", \"email\"):\n        setattr(profile, key, request.form.get(key, \"\"))\n    return jsonify(ok=True)\n"
+  },
+  "SEC028": {
+   "why": "Unvalidated request data in the session is later trusted as if the server had produced it.",
+   "vulnerable": "@app.route(\"/remember\")\ndef remember_user():\n    session[\"user\"] = request.args.get(\"user\", \"\")\n    return jsonify(ok=True)\n",
+   "fixed": "@app.route(\"/remember_safe\")\ndef remember_user_safe():\n    session[\"visits\"] = int(request.args.get(\"n\", \"0\"))\n    return jsonify(ok=True)\n"
+  },
+  "SEC029": {
+   "why": "The Werkzeug debugger shows source and lets anyone who reaches it run Python code on the server.",
+   "vulnerable": "def run_dev_server():\n    app.run(debug=True)\n",
+   "fixed": "def run_server_safe():\n    app.run(debug=os.environ.get(\"FLASK_DEBUG\") == \"1\")\n"
+  },
+  "SEC030": {
+   "why": "Without certificate verification any machine on the network path can impersonate the server (man in the middle).",
+   "vulnerable": "def fetch_daily_report():\n    return requests.get(\"https://reports.acme-corp.com/daily\", verify=False, timeout=10)\n",
+   "fixed": "def fetch_daily_report_safe():\n    return requests.get(\"https://reports.acme-corp.com/daily\", verify=\"/etc/ssl/corp-ca.pem\", timeout=10)\n"
+  },
+  "SEC031": {
+   "why": "An unverified SSL context accepts any certificate, so TLS no longer authenticates the server.",
+   "vulnerable": "def legacy_tls_context():\n    return ssl._create_unverified_context()\n",
+   "fixed": "def tls_context_safe():\n    return ssl.create_default_context()\n"
+  },
+  "SEC032": {
+   "why": "SSLv3, TLS 1.0 and TLS 1.1 have known protocol attacks (POODLE, BEAST) and are disabled by modern clients.",
+   "vulnerable": "def old_partner_context():\n    return ssl.SSLContext(ssl.PROTOCOL_TLSv1)\n",
+   "fixed": "def partner_context_safe():\n    return ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)\n"
+  },
+  "SEC033": {
+   "why": "DES, 3DES, RC4, RC2 and Blowfish have small keys or blocks or known biases; ciphertexts can be broken or distinguished.",
+   "vulnerable": "def encrypt_record(key, data):\n    return DES.new(key, DES.MODE_CBC).encrypt(data)\n",
+   "fixed": "def encrypt_record_safe(key, data):\n    return AES.new(key, AES.MODE_GCM).encrypt(data)\n"
+  },
+  "SEC034": {
+   "why": "ECB encrypts equal blocks to equal ciphertext, so patterns in the plaintext stay visible.",
+   "vulnerable": "def encrypt_block(key, data):\n    return AES.new(key, AES.MODE_ECB).encrypt(data)\n",
+   "fixed": "def encrypt_block_safe(key, data):\n    return AES.new(key, AES.MODE_GCM).encrypt(data)\n"
+  },
+  "SEC035": {
+   "why": "RSA/DSA keys below 2048 bits can be factored or broken with available computing power.",
+   "vulnerable": "def make_signing_key():\n    return rsa.generate_private_key(public_exponent=65537, key_size=1024)\n",
+   "fixed": "def make_signing_key_safe():\n    return rsa.generate_private_key(public_exponent=65537, key_size=3072)\n"
+  },
+  "SEC036": {
+   "why": "Reusing an IV or nonce leaks relationships between messages; for CTR/GCM it reveals plaintext and allows forgery.",
+   "vulnerable": "def make_cipher(key):\n    return Cipher(algorithms.AES(key), modes.CBC(b\"0123456789abcdef\"))\n",
+   "fixed": "def make_cipher_safe(key):\n    return Cipher(algorithms.AES(key), modes.CBC(os.urandom(16)))\n"
+  },
+  "SEC037": {
+   "why": "mktemp returns a name without creating the file, so another process can create it first (race / symlink attack).",
+   "vulnerable": "def scratch_export_path():\n    return tempfile.mktemp(suffix=\".csv\")\n",
+   "fixed": "def scratch_export_file_safe():\n    return tempfile.mkstemp(suffix=\".csv\")\n"
+  },
+  "SEC038": {
+   "why": "World-writable files can be changed by any local user, including code and configuration the application trusts.",
+   "vulnerable": "def publish_log(path):\n    os.chmod(path, 0o777)\n",
+   "fixed": "def publish_log_safe(path):\n    os.chmod(path, 0o640)\n"
+  },
+  "SEC039": {
+   "why": "Binding to 0.0.0.0 exposes a service on every network interface, including public ones.",
+   "vulnerable": "def serve_public():\n    app.run(host=\"0.0.0.0\", port=8080)\n",
+   "fixed": "def serve_local_safe():\n    app.run(host=\"127.0.0.1\", port=8080)\n"
+  },
+  "SEC040": {
+   "why": "FTP, Telnet, POP3 and IMAP send credentials and data unencrypted.",
+   "vulnerable": "def upload_invoices(host):\n    return ftplib.FTP(host)\n",
+   "fixed": "def upload_invoices_safe(host):\n    return ftplib.FTP_TLS(host)\n"
+  },
+  "SEC041": {
+   "why": "Plain HTTP can be read and modified by anyone on the network path.",
+   "vulnerable": "def pull_inventory():\n    return requests.get(\"http://inventory.acme-corp.com/api/items\", timeout=5)\n",
+   "fixed": "def pull_inventory_safe():\n    return requests.get(\"https://inventory.acme-corp.com/api/items\", timeout=5)\n"
+  },
+  "SEC042": {
+   "why": "Tar member names with ../ or absolute paths, and links, write files outside the extraction directory.",
+   "vulnerable": "def unpack_bundle(path, dest):\n    with tarfile.open(path) as tar:\n        tar.extractall(dest)\n",
+   "fixed": "def unpack_bundle_safe(path, dest):\n    with tarfile.open(path) as archive:\n        archive.extractall(dest, filter=\"data\")\n"
+  },
+  "SEC043": {
+   "why": "With auto-escaping off, every variable rendered into HTML must be escaped by hand; one miss is XSS.",
+   "vulnerable": "def report_environment():\n    return jinja2.Environment(loader=jinja2.FileSystemLoader(\"templates\"))\n",
+   "fixed": "def report_environment_safe():\n    return jinja2.Environment(loader=jinja2.FileSystemLoader(\"templates\"),\n                              autoescape=jinja2.select_autoescape())\n"
+  },
+  "SEC044": {
+   "why": "Cookies without Secure travel over plain HTTP; without HttpOnly they can be read by injected scripts.",
+   "vulnerable": "@app.route(\"/prefs\")\ndef save_prefs():\n    resp = make_response(\"saved\")\n    resp.set_cookie(\"theme\", \"dark\", secure=False, httponly=True)\n    return resp\n",
+   "fixed": "@app.route(\"/prefs_safe\")\ndef save_prefs_safe():\n    resp = make_response(\"saved\")\n    resp.set_cookie(\"theme\", \"dark\", secure=True, httponly=True, samesite=\"Lax\")\n    return resp\n"
+  },
+  "SEC045": {
+   "why": "Without CSRF tokens another site can make a logged-in user's browser submit state-changing requests.",
+   "vulnerable": "def configure_forms():\n    app.config[\"WTF_CSRF_ENABLED\"] = False\n",
+   "fixed": "def configure_forms_safe():\n    app.config[\"WTF_CSRF_ENABLED\"] = True\n"
+  },
+  "SEC046": {
+   "why": "Allowing any origin lets every website read responses meant for the application's own pages.",
+   "vulnerable": "def enable_cross_origin():\n    CORS(app)\n",
+   "fixed": "def enable_cross_origin_safe():\n    CORS(app, origins=[\"https://shop.acme-corp.com\"])\n"
+  },
+  "SEC047": {
+   "why": "Decoding a JWT without verifying its signature trusts claims anyone can write (user id, role).",
+   "vulnerable": "def read_claims(token):\n    return jwt.decode(token, options={\"verify_signature\": False})\n",
+   "fixed": "def read_claims_safe(token, key):\n    return jwt.decode(token, key, algorithms=[\"HS256\"])\n"
+  },
+  "SEC048": {
+   "why": "Accepting unknown SSH host keys lets a man in the middle impersonate the server on the first connection.",
+   "vulnerable": "def open_ssh(host):\n    client = paramiko.SSHClient()\n    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n    client.connect(host)\n    return client\n",
+   "fixed": "def open_ssh_safe(host):\n    client = paramiko.SSHClient()\n    client.load_system_host_keys()\n    client.set_missing_host_key_policy(paramiko.RejectPolicy())\n    client.connect(host)\n    return client\n"
+  },
+  "SEC049": {
+   "why": "An empty except hides failures, so an error in a security check silently lets the operation continue.",
+   "vulnerable": "def remove_lock(path):\n    try:\n        os.remove(path)\n    except FileNotFoundError:\n        pass\n",
+   "fixed": "def remove_lock_safe(path):\n    try:\n        os.remove(path)\n    except FileNotFoundError:\n        logger.debug(\"lock file already removed\")\n"
+  },
+  "SEC050": {
+   "why": "Logs are kept long, copied widely and read by many people; passwords and tokens in them are effectively disclosed.",
+   "vulnerable": "def audit_login(username, password):\n    logger.info(\"login attempt %s %s\", username, password)\n",
+   "fixed": "def audit_login_safe(username, password):\n    logger.info(\"login attempt %s (password length %d)\", username, len(password))\n"
+  }
+ }
+}

@@ -1,0 +1,39 @@
+# ──────────────────────────────────────────────────────────────────────────
+# Code Comment Generator — dependencies
+#
+# IMPORTANT: use Python 3.12 (or 3.11). PyTorch has no wheels for Python 3.14,
+# which is the default `python` on some Windows installs. See README
+# "Troubleshooting" for the venv setup command.
+#
+# For CUDA builds of torch on Windows, install torch FIRST from the CUDA index:
+#     pip install torch --index-url https://download.pytorch.org/whl/cu121
+# then `pip install -r requirements.txt`. Plain `pip install -r` gives CPU torch.
+# ──────────────────────────────────────────────────────────────────────────
+
+# ── core ──────────────────────────────────────────────────────────────────
+numpy>=1.26
+
+# ── ML (required for --train / --ml / --neurosymbolic) ────────────────────
+torch>=2.4
+transformers>=4.44,<5
+sentencepiece
+datasets>=2.19
+nltk
+
+# ── Java / C / C++ / C# / Rust input (tree-sitter parsers; COBOL has its own parser) ─────────────────────────
+tree-sitter>=0.23
+tree-sitter-java
+tree-sitter-c
+tree-sitter-cpp
+tree-sitter-c-sharp
+tree-sitter-rust
+
+# ── ML vulnerability detector (src/vulnml) ───────────────────────────────
+scikit-learn>=1.4
+
+# ── GUI (required for run_gui.py) ─────────────────────────────────────────
+PyQt6
+matplotlib          # security and evaluation charts
+
+# ── dev ───────────────────────────────────────────────────────────────────
+pytest

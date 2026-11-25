@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S84680.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-PROG0           PIC X(8).
+       01  WS-DATA0           PIC X(50).
+       01  WS-CHOICE0         PIC X.
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       RUN-HANDLER0.
+           ACCEPT WS-PROG0.
+           CALL WS-PROG0 USING WS-DATA0.
+

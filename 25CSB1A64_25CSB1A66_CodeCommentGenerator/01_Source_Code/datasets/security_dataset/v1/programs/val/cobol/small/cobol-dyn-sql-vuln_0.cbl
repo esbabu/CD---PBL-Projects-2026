@@ -1,0 +1,19 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S54770.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-CUST0           PIC X(10).
+       01  WS-SQL0            PIC X(200).
+       01  WS-NAME0           PIC X(30).
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       QUERY-CUSTOMER0.
+           ACCEPT WS-CUST0.
+           STRING "SELECT NAME FROM CUST WHERE ID = '" WS-CUST0 "'"
+               DELIMITED BY SIZE INTO WS-SQL0.
+           EXEC SQL EXECUTE IMMEDIATE :WS-SQL0 END-EXEC.
+

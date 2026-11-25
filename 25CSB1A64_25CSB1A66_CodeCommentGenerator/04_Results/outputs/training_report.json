@@ -1,0 +1,44 @@
+{
+  "trained_at": "2026-11-24T18:39:40",
+  "dataset_total": 4944,
+  "train_size": 4449,
+  "test_size": 495,
+  "data_profile": {
+    "input_mode": "AST structured features",
+    "target_mode": "NLP docstring sentence",
+    "ast_nlp_pairs": 4944
+  },
+  "ast_model": {
+    "model": "google-t5/t5-small",
+    "train_size": 4004,
+    "val_size": 445,
+    "epochs": 1,
+    "grad_accum_steps": 1,
+    "final_loss": 3.8006,
+    "loss_history": [
+      3.8006
+    ],
+    "val_loss_history": [
+      3.2741
+    ],
+    "best_epoch": 1,
+    "best_loss": 3.2741,
+    "mixed_precision": "fp32",
+    "device": "cpu"
+  },
+  "training_profile": {
+    "quality_preset": "medium",
+    "epochs": 1,
+    "batch_size": 8,
+    "grad_accum_steps": 1,
+    "learning_rate": 0.0002,
+    "codesearchnet_max": 2000,
+    "max_stdlib_files": 200
+  },
+  "input_format": "structured AST features (ast_feature_formatter)",
+  "target_format": "first sentence of function docstring",
+  "source": [
+    "CodeSearchNet Python (HF)",
+    "Python stdlib"
+  ]
+}

@@ -1,0 +1,4906 @@
+{
+ "description": "Large-file corpus: 50 files, 10 planted vulnerabilities and 10 safe twins each; expected lines come from the #! markers in snippets.py.",
+ "cases": [
+  {
+   "file": "case_01_inventory_service.py",
+   "lines": 1776,
+   "expected": [
+    {
+     "rule": "SEC001",
+     "line": 432
+    },
+    {
+     "rule": "SEC010",
+     "line": 733
+    },
+    {
+     "rule": "SEC009",
+     "line": 898
+    },
+    {
+     "rule": "SEC002",
+     "line": 1117
+    },
+    {
+     "rule": "SEC005",
+     "line": 1213
+    },
+    {
+     "rule": "SEC007",
+     "line": 1217
+    },
+    {
+     "rule": "SEC004",
+     "line": 1414
+    },
+    {
+     "rule": "SEC008",
+     "line": 1484
+    },
+    {
+     "rule": "SEC003",
+     "line": 1528
+    },
+    {
+     "rule": "SEC006",
+     "line": 1680
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC026",
+     "start": 333,
+     "end": 337
+    },
+    {
+     "rule": "SEC033",
+     "start": 797,
+     "end": 798
+    },
+    {
+     "rule": "SEC029",
+     "start": 960,
+     "end": 961
+    },
+    {
+     "rule": "SEC035",
+     "start": 1025,
+     "end": 1026
+    },
+    {
+     "rule": "SEC028",
+     "start": 1417,
+     "end": 1420
+    },
+    {
+     "rule": "SEC031",
+     "start": 1471,
+     "end": 1472
+    },
+    {
+     "rule": "SEC034",
+     "start": 1475,
+     "end": 1476
+    },
+    {
+     "rule": "SEC032",
+     "start": 1479,
+     "end": 1480
+    },
+    {
+     "rule": "SEC027",
+     "start": 1649,
+     "end": 1657
+    },
+    {
+     "rule": "SEC030",
+     "start": 1775,
+     "end": 1776
+    }
+   ]
+  },
+  {
+   "file": "case_02_billing_engine.py",
+   "lines": 2238,
+   "expected": [
+    {
+     "rule": "SEC013",
+     "line": 268
+    },
+    {
+     "rule": "SEC017",
+     "line": 355
+    },
+    {
+     "rule": "SEC020",
+     "line": 362
+    },
+    {
+     "rule": "SEC011",
+     "line": 392
+    },
+    {
+     "rule": "SEC018",
+     "line": 677
+    },
+    {
+     "rule": "SEC012",
+     "line": 1118
+    },
+    {
+     "rule": "SEC019",
+     "line": 1125
+    },
+    {
+     "rule": "SEC015",
+     "line": 1811
+    },
+    {
+     "rule": "SEC016",
+     "line": 1988
+    },
+    {
+     "rule": "SEC014",
+     "line": 2018
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC044",
+     "start": 216,
+     "end": 220
+    },
+    {
+     "rule": "SEC043",
+     "start": 260,
+     "end": 262
+    },
+    {
+     "rule": "SEC039",
+     "start": 387,
+     "end": 388
+    },
+    {
+     "rule": "SEC041",
+     "start": 1252,
+     "end": 1253
+    },
+    {
+     "rule": "SEC038",
+     "start": 1676,
+     "end": 1677
+    },
+    {
+     "rule": "SEC042",
+     "start": 1680,
+     "end": 1682
+    },
+    {
+     "rule": "SEC036",
+     "start": 1710,
+     "end": 1711
+    },
+    {
+     "rule": "SEC040",
+     "start": 1804,
+     "end": 1805
+    },
+    {
+     "rule": "SEC037",
+     "start": 1981,
+     "end": 1982
+    },
+    {
+     "rule": "SEC045",
+     "start": 1992,
+     "end": 1993
+    }
+   ]
+  },
+  {
+   "file": "case_03_customer_portal.py",
+   "lines": 2219,
+   "expected": [
+    {
+     "rule": "SEC030",
+     "line": 743
+    },
+    {
+     "rule": "SEC026",
+     "line": 799
+    },
+    {
+     "rule": "SEC025",
+     "line": 988
+    },
+    {
+     "rule": "SEC024",
+     "line": 1218
+    },
+    {
+     "rule": "SEC023",
+     "line": 1328
+    },
+    {
+     "rule": "SEC028",
+     "line": 1334
+    },
+    {
+     "rule": "SEC027",
+     "line": 1867
+    },
+    {
+     "rule": "SEC022",
+     "line": 1874
+    },
+    {
+     "rule": "SEC021",
+     "line": 1922
+    },
+    {
+     "rule": "SEC029",
+     "line": 2177
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC050",
+     "start": 299,
+     "end": 300
+    },
+    {
+     "rule": "SEC001",
+     "start": 535,
+     "end": 538
+    },
+    {
+     "rule": "SEC048",
+     "start": 643,
+     "end": 648
+    },
+    {
+     "rule": "SEC049",
+     "start": 689,
+     "end": 693
+    },
+    {
+     "rule": "SEC004",
+     "start": 763,
+     "end": 764
+    },
+    {
+     "rule": "SEC003",
+     "start": 853,
+     "end": 855
+    },
+    {
+     "rule": "SEC005",
+     "start": 978,
+     "end": 983
+    },
+    {
+     "rule": "SEC046",
+     "start": 1046,
+     "end": 1047
+    },
+    {
+     "rule": "SEC047",
+     "start": 1050,
+     "end": 1051
+    },
+    {
+     "rule": "SEC002",
+     "start": 1950,
+     "end": 1954
+    }
+   ]
+  },
+  {
+   "file": "case_04_shipping_tracker.py",
+   "lines": 2147,
+   "expected": [
+    {
+     "rule": "SEC038",
+     "line": 179
+    },
+    {
+     "rule": "SEC035",
+     "line": 334
+    },
+    {
+     "rule": "SEC040",
+     "line": 408
+    },
+    {
+     "rule": "SEC034",
+     "line": 412
+    },
+    {
+     "rule": "SEC036",
+     "line": 445
+    },
+    {
+     "rule": "SEC033",
+     "line": 770
+    },
+    {
+     "rule": "SEC032",
+     "line": 874
+    },
+    {
+     "rule": "SEC031",
+     "line": 1075
+    },
+    {
+     "rule": "SEC039",
+     "line": 1096
+    },
+    {
+     "rule": "SEC037",
+     "line": 1511
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC015",
+     "start": 337,
+     "end": 340
+    },
+    {
+     "rule": "SEC007",
+     "start": 360,
+     "end": 363
+    },
+    {
+     "rule": "SEC012",
+     "start": 415,
+     "end": 416
+    },
+    {
+     "rule": "SEC011",
+     "start": 728,
+     "end": 729
+    },
+    {
+     "rule": "SEC013",
+     "start": 906,
+     "end": 910
+    },
+    {
+     "rule": "SEC006",
+     "start": 1408,
+     "end": 1413
+    },
+    {
+     "rule": "SEC010",
+     "start": 1441,
+     "end": 1444
+    },
+    {
+     "rule": "SEC009",
+     "start": 1504,
+     "end": 1507
+    },
+    {
+     "rule": "SEC008",
+     "start": 1851,
+     "end": 1854
+    },
+    {
+     "rule": "SEC014",
+     "start": 2103,
+     "end": 2106
+    }
+   ]
+  },
+  {
+   "file": "case_05_payroll_system.py",
+   "lines": 2201,
+   "expected": [
+    {
+     "rule": "SEC041",
+     "line": 129
+    },
+    {
+     "rule": "SEC043",
+     "line": 482
+    },
+    {
+     "rule": "SEC042",
+     "line": 710
+    },
+    {
+     "rule": "SEC048",
+     "line": 715
+    },
+    {
+     "rule": "SEC049",
+     "line": 1208
+    },
+    {
+     "rule": "SEC046",
+     "line": 1378
+    },
+    {
+     "rule": "SEC044",
+     "line": 1384
+    },
+    {
+     "rule": "SEC047",
+     "line": 1463
+    },
+    {
+     "rule": "SEC050",
+     "line": 1789
+    },
+    {
+     "rule": "SEC045",
+     "line": 1880
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC022",
+     "start": 90,
+     "end": 96
+    },
+    {
+     "rule": "SEC021",
+     "start": 161,
+     "end": 165
+    },
+    {
+     "rule": "SEC024",
+     "start": 274,
+     "end": 278
+    },
+    {
+     "rule": "SEC016",
+     "start": 424,
+     "end": 428
+    },
+    {
+     "rule": "SEC018",
+     "start": 431,
+     "end": 434
+    },
+    {
+     "rule": "SEC023",
+     "start": 720,
+     "end": 725
+    },
+    {
+     "rule": "SEC025",
+     "start": 950,
+     "end": 955
+    },
+    {
+     "rule": "SEC017",
+     "start": 958,
+     "end": 960
+    },
+    {
+     "rule": "SEC019",
+     "start": 1120,
+     "end": 1125
+    },
+    {
+     "rule": "SEC020",
+     "start": 1423,
+     "end": 1428
+    }
+   ]
+  },
+  {
+   "file": "case_06_library_catalog.py",
+   "lines": 2089,
+   "expected": [
+    {
+     "rule": "SEC003",
+     "line": 318
+    },
+    {
+     "rule": "SEC010",
+     "line": 1079
+    },
+    {
+     "rule": "SEC004",
+     "line": 1165
+    },
+    {
+     "rule": "SEC008",
+     "line": 1313
+    },
+    {
+     "rule": "SEC002",
+     "line": 1557
+    },
+    {
+     "rule": "SEC009",
+     "line": 1632
+    },
+    {
+     "rule": "SEC001",
+     "line": 1782
+    },
+    {
+     "rule": "SEC007",
+     "line": 1895
+    },
+    {
+     "rule": "SEC006",
+     "line": 2048
+    },
+    {
+     "rule": "SEC005",
+     "line": 2088
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC034",
+     "start": 164,
+     "end": 165
+    },
+    {
+     "rule": "SEC031",
+     "start": 168,
+     "end": 169
+    },
+    {
+     "rule": "SEC035",
+     "start": 492,
+     "end": 493
+    },
+    {
+     "rule": "SEC030",
+     "start": 496,
+     "end": 497
+    },
+    {
+     "rule": "SEC028",
+     "start": 625,
+     "end": 628
+    },
+    {
+     "rule": "SEC033",
+     "start": 1198,
+     "end": 1199
+    },
+    {
+     "rule": "SEC027",
+     "start": 1301,
+     "end": 1309
+    },
+    {
+     "rule": "SEC032",
+     "start": 1501,
+     "end": 1502
+    },
+    {
+     "rule": "SEC029",
+     "start": 1610,
+     "end": 1611
+    },
+    {
+     "rule": "SEC026",
+     "start": 2052,
+     "end": 2056
+    }
+   ]
+  },
+  {
+   "file": "case_07_clinic_scheduler.py",
+   "lines": 1766,
+   "expected": [
+    {
+     "rule": "SEC016",
+     "line": 96
+    },
+    {
+     "rule": "SEC013",
+     "line": 331
+    },
+    {
+     "rule": "SEC020",
+     "line": 672
+    },
+    {
+     "rule": "SEC012",
+     "line": 998
+    },
+    {
+     "rule": "SEC015",
+     "line": 1115
+    },
+    {
+     "rule": "SEC018",
+     "line": 1281
+    },
+    {
+     "rule": "SEC014",
+     "line": 1307
+    },
+    {
+     "rule": "SEC017",
+     "line": 1466
+    },
+    {
+     "rule": "SEC011",
+     "line": 1680
+    },
+    {
+     "rule": "SEC019",
+     "line": 1729
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC045",
+     "start": 100,
+     "end": 101
+    },
+    {
+     "rule": "SEC036",
+     "start": 412,
+     "end": 413
+    },
+    {
+     "rule": "SEC041",
+     "start": 607,
+     "end": 608
+    },
+    {
+     "rule": "SEC037",
+     "start": 854,
+     "end": 855
+    },
+    {
+     "rule": "SEC042",
+     "start": 918,
+     "end": 920
+    },
+    {
+     "rule": "SEC043",
+     "start": 935,
+     "end": 937
+    },
+    {
+     "rule": "SEC039",
+     "start": 1165,
+     "end": 1166
+    },
+    {
+     "rule": "SEC038",
+     "start": 1498,
+     "end": 1499
+    },
+    {
+     "rule": "SEC044",
+     "start": 1605,
+     "end": 1609
+    },
+    {
+     "rule": "SEC040",
+     "start": 1746,
+     "end": 1747
+    }
+   ]
+  },
+  {
+   "file": "case_08_fleet_manager.py",
+   "lines": 2248,
+   "expected": [
+    {
+     "rule": "SEC025",
+     "line": 227
+    },
+    {
+     "rule": "SEC023",
+     "line": 253
+    },
+    {
+     "rule": "SEC028",
+     "line": 537
+    },
+    {
+     "rule": "SEC029",
+     "line": 542
+    },
+    {
+     "rule": "SEC024",
+     "line": 1047
+    },
+    {
+     "rule": "SEC021",
+     "line": 1393
+    },
+    {
+     "rule": "SEC030",
+     "line": 1398
+    },
+    {
+     "rule": "SEC022",
+     "line": 1589
+    },
+    {
+     "rule": "SEC027",
+     "line": 1941
+    },
+    {
+     "rule": "SEC026",
+     "line": 2069
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC003",
+     "start": 168,
+     "end": 170
+    },
+    {
+     "rule": "SEC047",
+     "start": 405,
+     "end": 406
+    },
+    {
+     "rule": "SEC005",
+     "start": 754,
+     "end": 759
+    },
+    {
+     "rule": "SEC001",
+     "start": 981,
+     "end": 984
+    },
+    {
+     "rule": "SEC002",
+     "start": 1051,
+     "end": 1055
+    },
+    {
+     "rule": "SEC048",
+     "start": 1718,
+     "end": 1723
+    },
+    {
+     "rule": "SEC004",
+     "start": 1945,
+     "end": 1946
+    },
+    {
+     "rule": "SEC046",
+     "start": 1949,
+     "end": 1950
+    },
+    {
+     "rule": "SEC049",
+     "start": 2055,
+     "end": 2059
+    },
+    {
+     "rule": "SEC050",
+     "start": 2062,
+     "end": 2063
+    }
+   ]
+  },
+  {
+   "file": "case_09_event_ticketing.py",
+   "lines": 1906,
+   "expected": [
+    {
+     "rule": "SEC040",
+     "line": 248
+    },
+    {
+     "rule": "SEC032",
+     "line": 346
+    },
+    {
+     "rule": "SEC035",
+     "line": 511
+    },
+    {
+     "rule": "SEC031",
+     "line": 567
+    },
+    {
+     "rule": "SEC038",
+     "line": 587
+    },
+    {
+     "rule": "SEC037",
+     "line": 591
+    },
+    {
+     "rule": "SEC033",
+     "line": 902
+    },
+    {
+     "rule": "SEC036",
+     "line": 1169
+    },
+    {
+     "rule": "SEC039",
+     "line": 1392
+    },
+    {
+     "rule": "SEC034",
+     "line": 1710
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC006",
+     "start": 126,
+     "end": 131
+    },
+    {
+     "rule": "SEC011",
+     "start": 237,
+     "end": 238
+    },
+    {
+     "rule": "SEC007",
+     "start": 241,
+     "end": 244
+    },
+    {
+     "rule": "SEC008",
+     "start": 251,
+     "end": 254
+    },
+    {
+     "rule": "SEC010",
+     "start": 281,
+     "end": 284
+    },
+    {
+     "rule": "SEC012",
+     "start": 514,
+     "end": 515
+    },
+    {
+     "rule": "SEC015",
+     "start": 1566,
+     "end": 1569
+    },
+    {
+     "rule": "SEC013",
+     "start": 1572,
+     "end": 1576
+    },
+    {
+     "rule": "SEC014",
+     "start": 1775,
+     "end": 1778
+    },
+    {
+     "rule": "SEC009",
+     "start": 1839,
+     "end": 1842
+    }
+   ]
+  },
+  {
+   "file": "case_10_hotel_booking.py",
+   "lines": 1958,
+   "expected": [
+    {
+     "rule": "SEC048",
+     "line": 467
+    },
+    {
+     "rule": "SEC049",
+     "line": 726
+    },
+    {
+     "rule": "SEC043",
+     "line": 1061
+    },
+    {
+     "rule": "SEC042",
+     "line": 1135
+    },
+    {
+     "rule": "SEC041",
+     "line": 1357
+    },
+    {
+     "rule": "SEC045",
+     "line": 1449
+    },
+    {
+     "rule": "SEC047",
+     "line": 1517
+    },
+    {
+     "rule": "SEC044",
+     "line": 1681
+    },
+    {
+     "rule": "SEC050",
+     "line": 1852
+    },
+    {
+     "rule": "SEC046",
+     "line": 1909
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC016",
+     "start": 194,
+     "end": 198
+    },
+    {
+     "rule": "SEC017",
+     "start": 306,
+     "end": 308
+    },
+    {
+     "rule": "SEC025",
+     "start": 388,
+     "end": 393
+    },
+    {
+     "rule": "SEC024",
+     "start": 437,
+     "end": 441
+    },
+    {
+     "rule": "SEC023",
+     "start": 849,
+     "end": 854
+    },
+    {
+     "rule": "SEC022",
+     "start": 996,
+     "end": 1002
+    },
+    {
+     "rule": "SEC021",
+     "start": 1088,
+     "end": 1092
+    },
+    {
+     "rule": "SEC018",
+     "start": 1510,
+     "end": 1513
+    },
+    {
+     "rule": "SEC020",
+     "start": 1602,
+     "end": 1607
+    },
+    {
+     "rule": "SEC019",
+     "start": 1670,
+     "end": 1675
+    }
+   ]
+  },
+  {
+   "file": "case_11_course_registry.py",
+   "lines": 2083,
+   "expected": [
+    {
+     "rule": "SEC007",
+     "line": 397
+    },
+    {
+     "rule": "SEC001",
+     "line": 523
+    },
+    {
+     "rule": "SEC002",
+     "line": 656
+    },
+    {
+     "rule": "SEC008",
+     "line": 846
+    },
+    {
+     "rule": "SEC006",
+     "line": 902
+    },
+    {
+     "rule": "SEC010",
+     "line": 1017
+    },
+    {
+     "rule": "SEC003",
+     "line": 1022
+    },
+    {
+     "rule": "SEC004",
+     "line": 1649
+    },
+    {
+     "rule": "SEC009",
+     "line": 1953
+    },
+    {
+     "rule": "SEC005",
+     "line": 2010
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC028",
+     "start": 52,
+     "end": 55
+    },
+    {
+     "rule": "SEC032",
+     "start": 730,
+     "end": 731
+    },
+    {
+     "rule": "SEC031",
+     "start": 906,
+     "end": 907
+    },
+    {
+     "rule": "SEC030",
+     "start": 1371,
+     "end": 1372
+    },
+    {
+     "rule": "SEC035",
+     "start": 1598,
+     "end": 1599
+    },
+    {
+     "rule": "SEC026",
+     "start": 1602,
+     "end": 1606
+    },
+    {
+     "rule": "SEC027",
+     "start": 1609,
+     "end": 1617
+    },
+    {
+     "rule": "SEC029",
+     "start": 1620,
+     "end": 1621
+    },
+    {
+     "rule": "SEC034",
+     "start": 1698,
+     "end": 1699
+    },
+    {
+     "rule": "SEC033",
+     "start": 1830,
+     "end": 1831
+    }
+   ]
+  },
+  {
+   "file": "case_12_warehouse_robotics.py",
+   "lines": 2046,
+   "expected": [
+    {
+     "rule": "SEC016",
+     "line": 242
+    },
+    {
+     "rule": "SEC014",
+     "line": 340
+    },
+    {
+     "rule": "SEC018",
+     "line": 358
+    },
+    {
+     "rule": "SEC013",
+     "line": 541
+    },
+    {
+     "rule": "SEC011",
+     "line": 801
+    },
+    {
+     "rule": "SEC019",
+     "line": 1249
+    },
+    {
+     "rule": "SEC020",
+     "line": 1736
+    },
+    {
+     "rule": "SEC012",
+     "line": 1799
+    },
+    {
+     "rule": "SEC015",
+     "line": 1954
+    },
+    {
+     "rule": "SEC017",
+     "line": 1975
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC040",
+     "start": 112,
+     "end": 113
+    },
+    {
+     "rule": "SEC043",
+     "start": 648,
+     "end": 650
+    },
+    {
+     "rule": "SEC039",
+     "start": 825,
+     "end": 826
+    },
+    {
+     "rule": "SEC045",
+     "start": 947,
+     "end": 948
+    },
+    {
+     "rule": "SEC037",
+     "start": 1108,
+     "end": 1109
+    },
+    {
+     "rule": "SEC036",
+     "start": 1298,
+     "end": 1299
+    },
+    {
+     "rule": "SEC042",
+     "start": 1579,
+     "end": 1581
+    },
+    {
+     "rule": "SEC038",
+     "start": 1728,
+     "end": 1729
+    },
+    {
+     "rule": "SEC041",
+     "start": 1957,
+     "end": 1958
+    },
+    {
+     "rule": "SEC044",
+     "start": 1990,
+     "end": 1994
+    }
+   ]
+  },
+  {
+   "file": "case_13_restaurant_orders.py",
+   "lines": 2241,
+   "expected": [
+    {
+     "rule": "SEC022",
+     "line": 55
+    },
+    {
+     "rule": "SEC027",
+     "line": 66
+    },
+    {
+     "rule": "SEC028",
+     "line": 358
+    },
+    {
+     "rule": "SEC029",
+     "line": 815
+    },
+    {
+     "rule": "SEC021",
+     "line": 949
+    },
+    {
+     "rule": "SEC023",
+     "line": 1127
+    },
+    {
+     "rule": "SEC024",
+     "line": 1150
+    },
+    {
+     "rule": "SEC025",
+     "line": 1466
+    },
+    {
+     "rule": "SEC026",
+     "line": 1696
+    },
+    {
+     "rule": "SEC030",
+     "line": 2177
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC047",
+     "start": 207,
+     "end": 208
+    },
+    {
+     "rule": "SEC005",
+     "start": 370,
+     "end": 375
+    },
+    {
+     "rule": "SEC049",
+     "start": 421,
+     "end": 425
+    },
+    {
+     "rule": "SEC001",
+     "start": 747,
+     "end": 750
+    },
+    {
+     "rule": "SEC004",
+     "start": 803,
+     "end": 804
+    },
+    {
+     "rule": "SEC002",
+     "start": 807,
+     "end": 811
+    },
+    {
+     "rule": "SEC003",
+     "start": 916,
+     "end": 918
+    },
+    {
+     "rule": "SEC046",
+     "start": 1131,
+     "end": 1132
+    },
+    {
+     "rule": "SEC048",
+     "start": 1412,
+     "end": 1417
+    },
+    {
+     "rule": "SEC050",
+     "start": 1789,
+     "end": 1790
+    }
+   ]
+  },
+  {
+   "file": "case_14_gym_membership.py",
+   "lines": 2245,
+   "expected": [
+    {
+     "rule": "SEC037",
+     "line": 232
+    },
+    {
+     "rule": "SEC039",
+     "line": 422
+    },
+    {
+     "rule": "SEC031",
+     "line": 695
+    },
+    {
+     "rule": "SEC040",
+     "line": 699
+    },
+    {
+     "rule": "SEC034",
+     "line": 905
+    },
+    {
+     "rule": "SEC036",
+     "line": 1709
+    },
+    {
+     "rule": "SEC038",
+     "line": 1955
+    },
+    {
+     "rule": "SEC033",
+     "line": 2031
+    },
+    {
+     "rule": "SEC032",
+     "line": 2129
+    },
+    {
+     "rule": "SEC035",
+     "line": 2177
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC006",
+     "start": 653,
+     "end": 658
+    },
+    {
+     "rule": "SEC015",
+     "start": 721,
+     "end": 724
+    },
+    {
+     "rule": "SEC010",
+     "start": 727,
+     "end": 730
+    },
+    {
+     "rule": "SEC009",
+     "start": 1004,
+     "end": 1007
+    },
+    {
+     "rule": "SEC007",
+     "start": 1088,
+     "end": 1091
+    },
+    {
+     "rule": "SEC014",
+     "start": 1094,
+     "end": 1097
+    },
+    {
+     "rule": "SEC012",
+     "start": 1552,
+     "end": 1553
+    },
+    {
+     "rule": "SEC013",
+     "start": 1575,
+     "end": 1579
+    },
+    {
+     "rule": "SEC011",
+     "start": 1783,
+     "end": 1784
+    },
+    {
+     "rule": "SEC008",
+     "start": 2242,
+     "end": 2245
+    }
+   ]
+  },
+  {
+   "file": "case_15_parking_lots.py",
+   "lines": 1837,
+   "expected": [
+    {
+     "rule": "SEC048",
+     "line": 131
+    },
+    {
+     "rule": "SEC050",
+     "line": 702
+    },
+    {
+     "rule": "SEC049",
+     "line": 840
+    },
+    {
+     "rule": "SEC042",
+     "line": 884
+    },
+    {
+     "rule": "SEC043",
+     "line": 1036
+    },
+    {
+     "rule": "SEC041",
+     "line": 1216
+    },
+    {
+     "rule": "SEC046",
+     "line": 1386
+    },
+    {
+     "rule": "SEC044",
+     "line": 1481
+    },
+    {
+     "rule": "SEC047",
+     "line": 1486
+    },
+    {
+     "rule": "SEC045",
+     "line": 1594
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC020",
+     "start": 88,
+     "end": 93
+    },
+    {
+     "rule": "SEC021",
+     "start": 631,
+     "end": 635
+    },
+    {
+     "rule": "SEC025",
+     "start": 808,
+     "end": 813
+    },
+    {
+     "rule": "SEC016",
+     "start": 1016,
+     "end": 1020
+    },
+    {
+     "rule": "SEC018",
+     "start": 1064,
+     "end": 1067
+    },
+    {
+     "rule": "SEC019",
+     "start": 1070,
+     "end": 1075
+    },
+    {
+     "rule": "SEC023",
+     "start": 1259,
+     "end": 1264
+    },
+    {
+     "rule": "SEC017",
+     "start": 1296,
+     "end": 1298
+    },
+    {
+     "rule": "SEC024",
+     "start": 1455,
+     "end": 1459
+    },
+    {
+     "rule": "SEC022",
+     "start": 1676,
+     "end": 1682
+    }
+   ]
+  },
+  {
+   "file": "case_16_energy_meter.py",
+   "lines": 2082,
+   "expected": [
+    {
+     "rule": "SEC005",
+     "line": 117
+    },
+    {
+     "rule": "SEC001",
+     "line": 169
+    },
+    {
+     "rule": "SEC010",
+     "line": 251
+    },
+    {
+     "rule": "SEC008",
+     "line": 528
+    },
+    {
+     "rule": "SEC003",
+     "line": 533
+    },
+    {
+     "rule": "SEC009",
+     "line": 791
+    },
+    {
+     "rule": "SEC007",
+     "line": 1204
+    },
+    {
+     "rule": "SEC006",
+     "line": 1743
+    },
+    {
+     "rule": "SEC002",
+     "line": 1878
+    },
+    {
+     "rule": "SEC004",
+     "line": 2001
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC031",
+     "start": 109,
+     "end": 110
+    },
+    {
+     "rule": "SEC029",
+     "start": 173,
+     "end": 174
+    },
+    {
+     "rule": "SEC030",
+     "start": 232,
+     "end": 233
+    },
+    {
+     "rule": "SEC032",
+     "start": 346,
+     "end": 347
+    },
+    {
+     "rule": "SEC035",
+     "start": 785,
+     "end": 786
+    },
+    {
+     "rule": "SEC034",
+     "start": 814,
+     "end": 815
+    },
+    {
+     "rule": "SEC028",
+     "start": 907,
+     "end": 910
+    },
+    {
+     "rule": "SEC027",
+     "start": 984,
+     "end": 992
+    },
+    {
+     "rule": "SEC033",
+     "start": 1332,
+     "end": 1333
+    },
+    {
+     "rule": "SEC026",
+     "start": 1868,
+     "end": 1872
+    }
+   ]
+  },
+  {
+   "file": "case_17_insurance_claims.py",
+   "lines": 2201,
+   "expected": [
+    {
+     "rule": "SEC011",
+     "line": 139
+    },
+    {
+     "rule": "SEC016",
+     "line": 145
+    },
+    {
+     "rule": "SEC013",
+     "line": 334
+    },
+    {
+     "rule": "SEC020",
+     "line": 805
+    },
+    {
+     "rule": "SEC019",
+     "line": 1002
+    },
+    {
+     "rule": "SEC014",
+     "line": 1238
+    },
+    {
+     "rule": "SEC017",
+     "line": 1299
+    },
+    {
+     "rule": "SEC018",
+     "line": 1364
+    },
+    {
+     "rule": "SEC015",
+     "line": 1689
+    },
+    {
+     "rule": "SEC012",
+     "line": 1888
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC039",
+     "start": 149,
+     "end": 150
+    },
+    {
+     "rule": "SEC044",
+     "start": 405,
+     "end": 409
+    },
+    {
+     "rule": "SEC038",
+     "start": 610,
+     "end": 611
+    },
+    {
+     "rule": "SEC043",
+     "start": 614,
+     "end": 616
+    },
+    {
+     "rule": "SEC037",
+     "start": 687,
+     "end": 688
+    },
+    {
+     "rule": "SEC040",
+     "start": 789,
+     "end": 790
+    },
+    {
+     "rule": "SEC036",
+     "start": 955,
+     "end": 956
+    },
+    {
+     "rule": "SEC042",
+     "start": 1428,
+     "end": 1430
+    },
+    {
+     "rule": "SEC041",
+     "start": 1776,
+     "end": 1777
+    },
+    {
+     "rule": "SEC045",
+     "start": 2154,
+     "end": 2155
+    }
+   ]
+  },
+  {
+   "file": "case_18_loan_origination.py",
+   "lines": 2110,
+   "expected": [
+    {
+     "rule": "SEC023",
+     "line": 201
+    },
+    {
+     "rule": "SEC027",
+     "line": 363
+    },
+    {
+     "rule": "SEC024",
+     "line": 434
+    },
+    {
+     "rule": "SEC022",
+     "line": 763
+    },
+    {
+     "rule": "SEC026",
+     "line": 808
+    },
+    {
+     "rule": "SEC025",
+     "line": 1381
+    },
+    {
+     "rule": "SEC021",
+     "line": 1435
+    },
+    {
+     "rule": "SEC029",
+     "line": 1675
+    },
+    {
+     "rule": "SEC030",
+     "line": 1913
+    },
+    {
+     "rule": "SEC028",
+     "line": 1971
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC005",
+     "start": 169,
+     "end": 174
+    },
+    {
+     "rule": "SEC046",
+     "start": 268,
+     "end": 269
+    },
+    {
+     "rule": "SEC004",
+     "start": 352,
+     "end": 353
+    },
+    {
+     "rule": "SEC047",
+     "start": 427,
+     "end": 428
+    },
+    {
+     "rule": "SEC001",
+     "start": 1221,
+     "end": 1224
+    },
+    {
+     "rule": "SEC049",
+     "start": 1291,
+     "end": 1295
+    },
+    {
+     "rule": "SEC003",
+     "start": 1298,
+     "end": 1300
+    },
+    {
+     "rule": "SEC002",
+     "start": 1678,
+     "end": 1682
+    },
+    {
+     "rule": "SEC048",
+     "start": 1685,
+     "end": 1690
+    },
+    {
+     "rule": "SEC050",
+     "start": 2021,
+     "end": 2022
+    }
+   ]
+  },
+  {
+   "file": "case_19_crm_pipeline.py",
+   "lines": 1780,
+   "expected": [
+    {
+     "rule": "SEC039",
+     "line": 288
+    },
+    {
+     "rule": "SEC040",
+     "line": 622
+    },
+    {
+     "rule": "SEC038",
+     "line": 827
+    },
+    {
+     "rule": "SEC031",
+     "line": 1128
+    },
+    {
+     "rule": "SEC032",
+     "line": 1239
+    },
+    {
+     "rule": "SEC034",
+     "line": 1470
+    },
+    {
+     "rule": "SEC036",
+     "line": 1575
+    },
+    {
+     "rule": "SEC035",
+     "line": 1579
+    },
+    {
+     "rule": "SEC037",
+     "line": 1647
+    },
+    {
+     "rule": "SEC033",
+     "line": 1734
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC009",
+     "start": 615,
+     "end": 618
+    },
+    {
+     "rule": "SEC014",
+     "start": 764,
+     "end": 767
+    },
+    {
+     "rule": "SEC007",
+     "start": 770,
+     "end": 773
+    },
+    {
+     "rule": "SEC008",
+     "start": 953,
+     "end": 956
+    },
+    {
+     "rule": "SEC013",
+     "start": 959,
+     "end": 963
+    },
+    {
+     "rule": "SEC010",
+     "start": 1096,
+     "end": 1099
+    },
+    {
+     "rule": "SEC012",
+     "start": 1486,
+     "end": 1487
+    },
+    {
+     "rule": "SEC006",
+     "start": 1638,
+     "end": 1643
+    },
+    {
+     "rule": "SEC011",
+     "start": 1723,
+     "end": 1724
+    },
+    {
+     "rule": "SEC015",
+     "start": 1727,
+     "end": 1730
+    }
+   ]
+  },
+  {
+   "file": "case_20_helpdesk_tickets.py",
+   "lines": 1860,
+   "expected": [
+    {
+     "rule": "SEC045",
+     "line": 197
+    },
+    {
+     "rule": "SEC047",
+     "line": 346
+    },
+    {
+     "rule": "SEC049",
+     "line": 604
+    },
+    {
+     "rule": "SEC041",
+     "line": 761
+    },
+    {
+     "rule": "SEC048",
+     "line": 971
+    },
+    {
+     "rule": "SEC044",
+     "line": 988
+    },
+    {
+     "rule": "SEC046",
+     "line": 1168
+    },
+    {
+     "rule": "SEC050",
+     "line": 1205
+    },
+    {
+     "rule": "SEC042",
+     "line": 1210
+    },
+    {
+     "rule": "SEC043",
+     "line": 1380
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC018",
+     "start": 115,
+     "end": 118
+    },
+    {
+     "rule": "SEC025",
+     "start": 313,
+     "end": 318
+    },
+    {
+     "rule": "SEC024",
+     "start": 321,
+     "end": 325
+    },
+    {
+     "rule": "SEC021",
+     "start": 608,
+     "end": 612
+    },
+    {
+     "rule": "SEC019",
+     "start": 764,
+     "end": 769
+    },
+    {
+     "rule": "SEC022",
+     "start": 976,
+     "end": 982
+    },
+    {
+     "rule": "SEC016",
+     "start": 992,
+     "end": 996
+    },
+    {
+     "rule": "SEC017",
+     "start": 1038,
+     "end": 1040
+    },
+    {
+     "rule": "SEC023",
+     "start": 1416,
+     "end": 1421
+    },
+    {
+     "rule": "SEC020",
+     "start": 1855,
+     "end": 1860
+    }
+   ]
+  },
+  {
+   "file": "case_21_survey_builder.py",
+   "lines": 2240,
+   "expected": [
+    {
+     "rule": "SEC006",
+     "line": 154
+    },
+    {
+     "rule": "SEC010",
+     "line": 685
+    },
+    {
+     "rule": "SEC009",
+     "line": 691
+    },
+    {
+     "rule": "SEC001",
+     "line": 756
+    },
+    {
+     "rule": "SEC002",
+     "line": 1503
+    },
+    {
+     "rule": "SEC007",
+     "line": 1528
+    },
+    {
+     "rule": "SEC003",
+     "line": 1558
+    },
+    {
+     "rule": "SEC005",
+     "line": 1634
+    },
+    {
+     "rule": "SEC008",
+     "line": 1948
+    },
+    {
+     "rule": "SEC004",
+     "line": 2143
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC031",
+     "start": 695,
+     "end": 696
+    },
+    {
+     "rule": "SEC033",
+     "start": 792,
+     "end": 793
+    },
+    {
+     "rule": "SEC030",
+     "start": 1287,
+     "end": 1288
+    },
+    {
+     "rule": "SEC034",
+     "start": 1524,
+     "end": 1525
+    },
+    {
+     "rule": "SEC027",
+     "start": 1600,
+     "end": 1608
+    },
+    {
+     "rule": "SEC026",
+     "start": 1761,
+     "end": 1765
+    },
+    {
+     "rule": "SEC029",
+     "start": 1977,
+     "end": 1978
+    },
+    {
+     "rule": "SEC035",
+     "start": 1981,
+     "end": 1982
+    },
+    {
+     "rule": "SEC028",
+     "start": 2159,
+     "end": 2162
+    },
+    {
+     "rule": "SEC032",
+     "start": 2198,
+     "end": 2199
+    }
+   ]
+  },
+  {
+   "file": "case_22_recipe_planner.py",
+   "lines": 1848,
+   "expected": [
+    {
+     "rule": "SEC016",
+     "line": 74
+    },
+    {
+     "rule": "SEC020",
+     "line": 349
+    },
+    {
+     "rule": "SEC011",
+     "line": 373
+    },
+    {
+     "rule": "SEC014",
+     "line": 600
+    },
+    {
+     "rule": "SEC017",
+     "line": 822
+    },
+    {
+     "rule": "SEC019",
+     "line": 934
+    },
+    {
+     "rule": "SEC012",
+     "line": 1587
+    },
+    {
+     "rule": "SEC015",
+     "line": 1593
+    },
+    {
+     "rule": "SEC013",
+     "line": 1599
+    },
+    {
+     "rule": "SEC018",
+     "line": 1643
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC039",
+     "start": 139,
+     "end": 140
+    },
+    {
+     "rule": "SEC041",
+     "start": 581,
+     "end": 582
+    },
+    {
+     "rule": "SEC042",
+     "start": 603,
+     "end": 605
+    },
+    {
+     "rule": "SEC040",
+     "start": 825,
+     "end": 826
+    },
+    {
+     "rule": "SEC043",
+     "start": 1453,
+     "end": 1455
+    },
+    {
+     "rule": "SEC037",
+     "start": 1636,
+     "end": 1637
+    },
+    {
+     "rule": "SEC045",
+     "start": 1664,
+     "end": 1665
+    },
+    {
+     "rule": "SEC038",
+     "start": 1719,
+     "end": 1720
+    },
+    {
+     "rule": "SEC036",
+     "start": 1771,
+     "end": 1772
+    },
+    {
+     "rule": "SEC044",
+     "start": 1787,
+     "end": 1791
+    }
+   ]
+  },
+  {
+   "file": "case_23_music_streaming.py",
+   "lines": 2218,
+   "expected": [
+    {
+     "rule": "SEC029",
+     "line": 672
+    },
+    {
+     "rule": "SEC027",
+     "line": 946
+    },
+    {
+     "rule": "SEC024",
+     "line": 1151
+    },
+    {
+     "rule": "SEC028",
+     "line": 1203
+    },
+    {
+     "rule": "SEC022",
+     "line": 1227
+    },
+    {
+     "rule": "SEC021",
+     "line": 1412
+    },
+    {
+     "rule": "SEC023",
+     "line": 1761
+    },
+    {
+     "rule": "SEC025",
+     "line": 1784
+    },
+    {
+     "rule": "SEC030",
+     "line": 1910
+    },
+    {
+     "rule": "SEC026",
+     "line": 2002
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC049",
+     "start": 64,
+     "end": 68
+    },
+    {
+     "rule": "SEC005",
+     "start": 410,
+     "end": 415
+    },
+    {
+     "rule": "SEC048",
+     "start": 534,
+     "end": 539
+    },
+    {
+     "rule": "SEC001",
+     "start": 675,
+     "end": 678
+    },
+    {
+     "rule": "SEC047",
+     "start": 681,
+     "end": 682
+    },
+    {
+     "rule": "SEC003",
+     "start": 1143,
+     "end": 1145
+    },
+    {
+     "rule": "SEC002",
+     "start": 1480,
+     "end": 1484
+    },
+    {
+     "rule": "SEC046",
+     "start": 1788,
+     "end": 1789
+    },
+    {
+     "rule": "SEC050",
+     "start": 1905,
+     "end": 1906
+    },
+    {
+     "rule": "SEC004",
+     "start": 1940,
+     "end": 1941
+    }
+   ]
+  },
+  {
+   "file": "case_24_photo_gallery.py",
+   "lines": 1751,
+   "expected": [
+    {
+     "rule": "SEC032",
+     "line": 123
+    },
+    {
+     "rule": "SEC034",
+     "line": 379
+    },
+    {
+     "rule": "SEC040",
+     "line": 464
+    },
+    {
+     "rule": "SEC031",
+     "line": 509
+    },
+    {
+     "rule": "SEC033",
+     "line": 1204
+    },
+    {
+     "rule": "SEC037",
+     "line": 1237
+    },
+    {
+     "rule": "SEC036",
+     "line": 1325
+    },
+    {
+     "rule": "SEC035",
+     "line": 1489
+    },
+    {
+     "rule": "SEC039",
+     "line": 1594
+    },
+    {
+     "rule": "SEC038",
+     "line": 1598
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC010",
+     "start": 52,
+     "end": 55
+    },
+    {
+     "rule": "SEC015",
+     "start": 110,
+     "end": 113
+    },
+    {
+     "rule": "SEC009",
+     "start": 116,
+     "end": 119
+    },
+    {
+     "rule": "SEC014",
+     "start": 126,
+     "end": 129
+    },
+    {
+     "rule": "SEC013",
+     "start": 415,
+     "end": 419
+    },
+    {
+     "rule": "SEC011",
+     "start": 731,
+     "end": 732
+    },
+    {
+     "rule": "SEC006",
+     "start": 776,
+     "end": 781
+    },
+    {
+     "rule": "SEC007",
+     "start": 1130,
+     "end": 1133
+    },
+    {
+     "rule": "SEC012",
+     "start": 1232,
+     "end": 1233
+    },
+    {
+     "rule": "SEC008",
+     "start": 1552,
+     "end": 1555
+    }
+   ]
+  },
+  {
+   "file": "case_25_news_publisher.py",
+   "lines": 1931,
+   "expected": [
+    {
+     "rule": "SEC046",
+     "line": 387
+    },
+    {
+     "rule": "SEC050",
+     "line": 758
+    },
+    {
+     "rule": "SEC041",
+     "line": 858
+    },
+    {
+     "rule": "SEC049",
+     "line": 940
+    },
+    {
+     "rule": "SEC042",
+     "line": 1140
+    },
+    {
+     "rule": "SEC047",
+     "line": 1232
+    },
+    {
+     "rule": "SEC048",
+     "line": 1312
+    },
+    {
+     "rule": "SEC045",
+     "line": 1615
+    },
+    {
+     "rule": "SEC043",
+     "line": 1726
+    },
+    {
+     "rule": "SEC044",
+     "line": 1859
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC021",
+     "start": 52,
+     "end": 56
+    },
+    {
+     "rule": "SEC025",
+     "start": 134,
+     "end": 139
+    },
+    {
+     "rule": "SEC017",
+     "start": 390,
+     "end": 392
+    },
+    {
+     "rule": "SEC022",
+     "start": 537,
+     "end": 543
+    },
+    {
+     "rule": "SEC019",
+     "start": 565,
+     "end": 570
+    },
+    {
+     "rule": "SEC020",
+     "start": 802,
+     "end": 807
+    },
+    {
+     "rule": "SEC018",
+     "start": 810,
+     "end": 813
+    },
+    {
+     "rule": "SEC024",
+     "start": 1507,
+     "end": 1511
+    },
+    {
+     "rule": "SEC023",
+     "start": 1653,
+     "end": 1658
+    },
+    {
+     "rule": "SEC016",
+     "start": 1699,
+     "end": 1703
+    }
+   ]
+  },
+  {
+   "file": "case_26_job_board.py",
+   "lines": 1743,
+   "expected": [
+    {
+     "rule": "SEC001",
+     "line": 673
+    },
+    {
+     "rule": "SEC010",
+     "line": 687
+    },
+    {
+     "rule": "SEC009",
+     "line": 712
+    },
+    {
+     "rule": "SEC003",
+     "line": 879
+    },
+    {
+     "rule": "SEC002",
+     "line": 930
+    },
+    {
+     "rule": "SEC007",
+     "line": 1162
+    },
+    {
+     "rule": "SEC005",
+     "line": 1496
+    },
+    {
+     "rule": "SEC008",
+     "line": 1578
+    },
+    {
+     "rule": "SEC004",
+     "line": 1723
+    },
+    {
+     "rule": "SEC006",
+     "line": 1730
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC026",
+     "start": 336,
+     "end": 340
+    },
+    {
+     "rule": "SEC035",
+     "start": 549,
+     "end": 550
+    },
+    {
+     "rule": "SEC030",
+     "start": 1184,
+     "end": 1185
+    },
+    {
+     "rule": "SEC031",
+     "start": 1228,
+     "end": 1229
+    },
+    {
+     "rule": "SEC032",
+     "start": 1323,
+     "end": 1324
+    },
+    {
+     "rule": "SEC033",
+     "start": 1362,
+     "end": 1363
+    },
+    {
+     "rule": "SEC029",
+     "start": 1406,
+     "end": 1407
+    },
+    {
+     "rule": "SEC027",
+     "start": 1601,
+     "end": 1609
+    },
+    {
+     "rule": "SEC034",
+     "start": 1687,
+     "end": 1688
+    },
+    {
+     "rule": "SEC028",
+     "start": 1691,
+     "end": 1694
+    }
+   ]
+  },
+  {
+   "file": "case_27_real_estate.py",
+   "lines": 1751,
+   "expected": [
+    {
+     "rule": "SEC012",
+     "line": 180
+    },
+    {
+     "rule": "SEC017",
+     "line": 574
+    },
+    {
+     "rule": "SEC013",
+     "line": 925
+    },
+    {
+     "rule": "SEC011",
+     "line": 1069
+    },
+    {
+     "rule": "SEC020",
+     "line": 1256
+    },
+    {
+     "rule": "SEC019",
+     "line": 1307
+    },
+    {
+     "rule": "SEC014",
+     "line": 1415
+    },
+    {
+     "rule": "SEC015",
+     "line": 1425
+    },
+    {
+     "rule": "SEC018",
+     "line": 1577
+    },
+    {
+     "rule": "SEC016",
+     "line": 1622
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC043",
+     "start": 52,
+     "end": 54
+    },
+    {
+     "rule": "SEC045",
+     "start": 361,
+     "end": 362
+    },
+    {
+     "rule": "SEC036",
+     "start": 518,
+     "end": 519
+    },
+    {
+     "rule": "SEC037",
+     "start": 1418,
+     "end": 1419
+    },
+    {
+     "rule": "SEC040",
+     "start": 1428,
+     "end": 1429
+    },
+    {
+     "rule": "SEC041",
+     "start": 1559,
+     "end": 1560
+    },
+    {
+     "rule": "SEC038",
+     "start": 1563,
+     "end": 1564
+    },
+    {
+     "rule": "SEC044",
+     "start": 1567,
+     "end": 1571
+    },
+    {
+     "rule": "SEC042",
+     "start": 1720,
+     "end": 1722
+    },
+    {
+     "rule": "SEC039",
+     "start": 1725,
+     "end": 1726
+    }
+   ]
+  },
+  {
+   "file": "case_28_airline_checkin.py",
+   "lines": 2192,
+   "expected": [
+    {
+     "rule": "SEC023",
+     "line": 171
+    },
+    {
+     "rule": "SEC026",
+     "line": 350
+    },
+    {
+     "rule": "SEC030",
+     "line": 355
+    },
+    {
+     "rule": "SEC028",
+     "line": 412
+    },
+    {
+     "rule": "SEC027",
+     "line": 674
+    },
+    {
+     "rule": "SEC022",
+     "line": 700
+    },
+    {
+     "rule": "SEC021",
+     "line": 946
+    },
+    {
+     "rule": "SEC024",
+     "line": 1637
+    },
+    {
+     "rule": "SEC025",
+     "line": 1853
+    },
+    {
+     "rule": "SEC029",
+     "line": 1913
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC049",
+     "start": 261,
+     "end": 265
+    },
+    {
+     "rule": "SEC005",
+     "start": 314,
+     "end": 319
+    },
+    {
+     "rule": "SEC003",
+     "start": 1046,
+     "end": 1048
+    },
+    {
+     "rule": "SEC001",
+     "start": 1204,
+     "end": 1207
+    },
+    {
+     "rule": "SEC047",
+     "start": 1320,
+     "end": 1321
+    },
+    {
+     "rule": "SEC004",
+     "start": 1843,
+     "end": 1844
+    },
+    {
+     "rule": "SEC046",
+     "start": 1847,
+     "end": 1848
+    },
+    {
+     "rule": "SEC050",
+     "start": 1857,
+     "end": 1858
+    },
+    {
+     "rule": "SEC048",
+     "start": 1979,
+     "end": 1984
+    },
+    {
+     "rule": "SEC002",
+     "start": 2188,
+     "end": 2192
+    }
+   ]
+  },
+  {
+   "file": "case_29_pharmacy_stock.py",
+   "lines": 2047,
+   "expected": [
+    {
+     "rule": "SEC039",
+     "line": 72
+    },
+    {
+     "rule": "SEC034",
+     "line": 185
+    },
+    {
+     "rule": "SEC032",
+     "line": 243
+    },
+    {
+     "rule": "SEC031",
+     "line": 475
+    },
+    {
+     "rule": "SEC033",
+     "line": 1664
+    },
+    {
+     "rule": "SEC036",
+     "line": 1668
+    },
+    {
+     "rule": "SEC035",
+     "line": 1672
+    },
+    {
+     "rule": "SEC037",
+     "line": 1753
+    },
+    {
+     "rule": "SEC038",
+     "line": 1886
+    },
+    {
+     "rule": "SEC040",
+     "line": 1953
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC009",
+     "start": 761,
+     "end": 764
+    },
+    {
+     "rule": "SEC013",
+     "start": 1132,
+     "end": 1136
+    },
+    {
+     "rule": "SEC014",
+     "start": 1180,
+     "end": 1183
+    },
+    {
+     "rule": "SEC012",
+     "start": 1241,
+     "end": 1242
+    },
+    {
+     "rule": "SEC010",
+     "start": 1405,
+     "end": 1408
+    },
+    {
+     "rule": "SEC008",
+     "start": 1423,
+     "end": 1426
+    },
+    {
+     "rule": "SEC006",
+     "start": 1437,
+     "end": 1442
+    },
+    {
+     "rule": "SEC007",
+     "start": 1561,
+     "end": 1564
+    },
+    {
+     "rule": "SEC015",
+     "start": 1575,
+     "end": 1578
+    },
+    {
+     "rule": "SEC011",
+     "start": 1708,
+     "end": 1709
+    }
+   ]
+  },
+  {
+   "file": "case_30_lab_results.py",
+   "lines": 1782,
+   "expected": [
+    {
+     "rule": "SEC049",
+     "line": 55
+    },
+    {
+     "rule": "SEC046",
+     "line": 130
+    },
+    {
+     "rule": "SEC044",
+     "line": 223
+    },
+    {
+     "rule": "SEC045",
+     "line": 650
+    },
+    {
+     "rule": "SEC048",
+     "line": 993
+    },
+    {
+     "rule": "SEC041",
+     "line": 999
+    },
+    {
+     "rule": "SEC050",
+     "line": 1260
+    },
+    {
+     "rule": "SEC042",
+     "line": 1619
+    },
+    {
+     "rule": "SEC043",
+     "line": 1707
+    },
+    {
+     "rule": "SEC047",
+     "line": 1730
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC020",
+     "start": 174,
+     "end": 179
+    },
+    {
+     "rule": "SEC018",
+     "start": 299,
+     "end": 302
+    },
+    {
+     "rule": "SEC022",
+     "start": 367,
+     "end": 373
+    },
+    {
+     "rule": "SEC021",
+     "start": 395,
+     "end": 399
+    },
+    {
+     "rule": "SEC017",
+     "start": 672,
+     "end": 674
+    },
+    {
+     "rule": "SEC016",
+     "start": 778,
+     "end": 782
+    },
+    {
+     "rule": "SEC024",
+     "start": 930,
+     "end": 934
+    },
+    {
+     "rule": "SEC019",
+     "start": 937,
+     "end": 942
+    },
+    {
+     "rule": "SEC023",
+     "start": 1088,
+     "end": 1093
+    },
+    {
+     "rule": "SEC025",
+     "start": 1096,
+     "end": 1101
+    }
+   ]
+  },
+  {
+   "file": "case_31_school_grades.py",
+   "lines": 2294,
+   "expected": [
+    {
+     "rule": "SEC002",
+     "line": 151
+    },
+    {
+     "rule": "SEC007",
+     "line": 281
+    },
+    {
+     "rule": "SEC001",
+     "line": 605
+    },
+    {
+     "rule": "SEC008",
+     "line": 635
+    },
+    {
+     "rule": "SEC003",
+     "line": 830
+    },
+    {
+     "rule": "SEC009",
+     "line": 836
+    },
+    {
+     "rule": "SEC005",
+     "line": 1183
+    },
+    {
+     "rule": "SEC010",
+     "line": 1446
+    },
+    {
+     "rule": "SEC006",
+     "line": 1527
+    },
+    {
+     "rule": "SEC004",
+     "line": 1813
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC032",
+     "start": 52,
+     "end": 53
+    },
+    {
+     "rule": "SEC029",
+     "start": 198,
+     "end": 199
+    },
+    {
+     "rule": "SEC035",
+     "start": 594,
+     "end": 595
+    },
+    {
+     "rule": "SEC031",
+     "start": 598,
+     "end": 599
+    },
+    {
+     "rule": "SEC030",
+     "start": 1626,
+     "end": 1627
+    },
+    {
+     "rule": "SEC027",
+     "start": 1715,
+     "end": 1723
+    },
+    {
+     "rule": "SEC026",
+     "start": 1805,
+     "end": 1809
+    },
+    {
+     "rule": "SEC033",
+     "start": 1916,
+     "end": 1917
+    },
+    {
+     "rule": "SEC028",
+     "start": 2012,
+     "end": 2015
+    },
+    {
+     "rule": "SEC034",
+     "start": 2085,
+     "end": 2086
+    }
+   ]
+  },
+  {
+   "file": "case_32_voting_portal.py",
+   "lines": 2108,
+   "expected": [
+    {
+     "rule": "SEC019",
+     "line": 78
+    },
+    {
+     "rule": "SEC017",
+     "line": 283
+    },
+    {
+     "rule": "SEC014",
+     "line": 371
+    },
+    {
+     "rule": "SEC012",
+     "line": 531
+    },
+    {
+     "rule": "SEC020",
+     "line": 664
+    },
+    {
+     "rule": "SEC016",
+     "line": 954
+    },
+    {
+     "rule": "SEC011",
+     "line": 1248
+    },
+    {
+     "rule": "SEC013",
+     "line": 1360
+    },
+    {
+     "rule": "SEC015",
+     "line": 1498
+    },
+    {
+     "rule": "SEC018",
+     "line": 1790
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC038",
+     "start": 52,
+     "end": 53
+    },
+    {
+     "rule": "SEC043",
+     "start": 69,
+     "end": 71
+    },
+    {
+     "rule": "SEC037",
+     "start": 140,
+     "end": 141
+    },
+    {
+     "rule": "SEC039",
+     "start": 534,
+     "end": 535
+    },
+    {
+     "rule": "SEC044",
+     "start": 576,
+     "end": 580
+    },
+    {
+     "rule": "SEC036",
+     "start": 1130,
+     "end": 1131
+    },
+    {
+     "rule": "SEC040",
+     "start": 1430,
+     "end": 1431
+    },
+    {
+     "rule": "SEC045",
+     "start": 1705,
+     "end": 1706
+    },
+    {
+     "rule": "SEC041",
+     "start": 1794,
+     "end": 1795
+    },
+    {
+     "rule": "SEC042",
+     "start": 1895,
+     "end": 1897
+    }
+   ]
+  },
+  {
+   "file": "case_33_charity_donations.py",
+   "lines": 1934,
+   "expected": [
+    {
+     "rule": "SEC026",
+     "line": 469
+    },
+    {
+     "rule": "SEC021",
+     "line": 476
+    },
+    {
+     "rule": "SEC024",
+     "line": 566
+    },
+    {
+     "rule": "SEC027",
+     "line": 781
+    },
+    {
+     "rule": "SEC025",
+     "line": 1110
+    },
+    {
+     "rule": "SEC029",
+     "line": 1115
+    },
+    {
+     "rule": "SEC023",
+     "line": 1240
+    },
+    {
+     "rule": "SEC030",
+     "line": 1329
+    },
+    {
+     "rule": "SEC022",
+     "line": 1392
+    },
+    {
+     "rule": "SEC028",
+     "line": 1765
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC003",
+     "start": 161,
+     "end": 163
+    },
+    {
+     "rule": "SEC004",
+     "start": 751,
+     "end": 752
+    },
+    {
+     "rule": "SEC001",
+     "start": 829,
+     "end": 832
+    },
+    {
+     "rule": "SEC047",
+     "start": 888,
+     "end": 889
+    },
+    {
+     "rule": "SEC046",
+     "start": 892,
+     "end": 893
+    },
+    {
+     "rule": "SEC048",
+     "start": 1057,
+     "end": 1062
+    },
+    {
+     "rule": "SEC049",
+     "start": 1082,
+     "end": 1086
+    },
+    {
+     "rule": "SEC005",
+     "start": 1381,
+     "end": 1386
+    },
+    {
+     "rule": "SEC002",
+     "start": 1396,
+     "end": 1400
+    },
+    {
+     "rule": "SEC050",
+     "start": 1442,
+     "end": 1443
+    }
+   ]
+  },
+  {
+   "file": "case_34_car_rental.py",
+   "lines": 1785,
+   "expected": [
+    {
+     "rule": "SEC033",
+     "line": 224
+    },
+    {
+     "rule": "SEC032",
+     "line": 757
+    },
+    {
+     "rule": "SEC035",
+     "line": 773
+    },
+    {
+     "rule": "SEC039",
+     "line": 1046
+    },
+    {
+     "rule": "SEC037",
+     "line": 1213
+    },
+    {
+     "rule": "SEC040",
+     "line": 1335
+    },
+    {
+     "rule": "SEC034",
+     "line": 1459
+    },
+    {
+     "rule": "SEC038",
+     "line": 1531
+    },
+    {
+     "rule": "SEC036",
+     "line": 1605
+    },
+    {
+     "rule": "SEC031",
+     "line": 1768
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC013",
+     "start": 148,
+     "end": 152
+    },
+    {
+     "rule": "SEC009",
+     "start": 615,
+     "end": 618
+    },
+    {
+     "rule": "SEC008",
+     "start": 1097,
+     "end": 1100
+    },
+    {
+     "rule": "SEC011",
+     "start": 1120,
+     "end": 1121
+    },
+    {
+     "rule": "SEC007",
+     "start": 1200,
+     "end": 1203
+    },
+    {
+     "rule": "SEC014",
+     "start": 1206,
+     "end": 1209
+    },
+    {
+     "rule": "SEC006",
+     "start": 1492,
+     "end": 1497
+    },
+    {
+     "rule": "SEC010",
+     "start": 1608,
+     "end": 1611
+    },
+    {
+     "rule": "SEC015",
+     "start": 1614,
+     "end": 1617
+    },
+    {
+     "rule": "SEC012",
+     "start": 1637,
+     "end": 1638
+    }
+   ]
+  },
+  {
+   "file": "case_35_farm_sensors.py",
+   "lines": 2189,
+   "expected": [
+    {
+     "rule": "SEC049",
+     "line": 673
+    },
+    {
+     "rule": "SEC046",
+     "line": 752
+    },
+    {
+     "rule": "SEC045",
+     "line": 979
+    },
+    {
+     "rule": "SEC050",
+     "line": 983
+    },
+    {
+     "rule": "SEC047",
+     "line": 1006
+    },
+    {
+     "rule": "SEC042",
+     "line": 1124
+    },
+    {
+     "rule": "SEC041",
+     "line": 1137
+    },
+    {
+     "rule": "SEC043",
+     "line": 1738
+    },
+    {
+     "rule": "SEC044",
+     "line": 1871
+    },
+    {
+     "rule": "SEC048",
+     "line": 2093
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC017",
+     "start": 122,
+     "end": 124
+    },
+    {
+     "rule": "SEC019",
+     "start": 418,
+     "end": 423
+    },
+    {
+     "rule": "SEC016",
+     "start": 622,
+     "end": 626
+    },
+    {
+     "rule": "SEC025",
+     "start": 677,
+     "end": 682
+    },
+    {
+     "rule": "SEC020",
+     "start": 743,
+     "end": 748
+    },
+    {
+     "rule": "SEC023",
+     "start": 842,
+     "end": 847
+    },
+    {
+     "rule": "SEC022",
+     "start": 1127,
+     "end": 1133
+    },
+    {
+     "rule": "SEC018",
+     "start": 1538,
+     "end": 1541
+    },
+    {
+     "rule": "SEC021",
+     "start": 1679,
+     "end": 1683
+    },
+    {
+     "rule": "SEC024",
+     "start": 1804,
+     "end": 1808
+    }
+   ]
+  },
+  {
+   "file": "case_36_bike_sharing.py",
+   "lines": 2144,
+   "expected": [
+    {
+     "rule": "SEC003",
+     "line": 53
+    },
+    {
+     "rule": "SEC001",
+     "line": 203
+    },
+    {
+     "rule": "SEC010",
+     "line": 517
+    },
+    {
+     "rule": "SEC006",
+     "line": 596
+    },
+    {
+     "rule": "SEC009",
+     "line": 1025
+    },
+    {
+     "rule": "SEC007",
+     "line": 1212
+    },
+    {
+     "rule": "SEC005",
+     "line": 1279
+    },
+    {
+     "rule": "SEC008",
+     "line": 1512
+    },
+    {
+     "rule": "SEC004",
+     "line": 2020
+    },
+    {
+     "rule": "SEC002",
+     "line": 2080
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC032",
+     "start": 74,
+     "end": 75
+    },
+    {
+     "rule": "SEC029",
+     "start": 499,
+     "end": 500
+    },
+    {
+     "rule": "SEC033",
+     "start": 1008,
+     "end": 1009
+    },
+    {
+     "rule": "SEC035",
+     "start": 1029,
+     "end": 1030
+    },
+    {
+     "rule": "SEC028",
+     "start": 1128,
+     "end": 1131
+    },
+    {
+     "rule": "SEC031",
+     "start": 1217,
+     "end": 1218
+    },
+    {
+     "rule": "SEC026",
+     "start": 1321,
+     "end": 1325
+    },
+    {
+     "rule": "SEC030",
+     "start": 1942,
+     "end": 1943
+    },
+    {
+     "rule": "SEC027",
+     "start": 1987,
+     "end": 1995
+    },
+    {
+     "rule": "SEC034",
+     "start": 1998,
+     "end": 1999
+    }
+   ]
+  },
+  {
+   "file": "case_37_dental_records.py",
+   "lines": 1813,
+   "expected": [
+    {
+     "rule": "SEC018",
+     "line": 98
+    },
+    {
+     "rule": "SEC017",
+     "line": 438
+    },
+    {
+     "rule": "SEC016",
+     "line": 638
+    },
+    {
+     "rule": "SEC014",
+     "line": 645
+    },
+    {
+     "rule": "SEC020",
+     "line": 1069
+    },
+    {
+     "rule": "SEC019",
+     "line": 1077
+    },
+    {
+     "rule": "SEC015",
+     "line": 1317
+    },
+    {
+     "rule": "SEC013",
+     "line": 1428
+    },
+    {
+     "rule": "SEC011",
+     "line": 1605
+    },
+    {
+     "rule": "SEC012",
+     "line": 1645
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC041",
+     "start": 52,
+     "end": 53
+    },
+    {
+     "rule": "SEC045",
+     "start": 121,
+     "end": 122
+    },
+    {
+     "rule": "SEC044",
+     "start": 125,
+     "end": 129
+    },
+    {
+     "rule": "SEC038",
+     "start": 278,
+     "end": 279
+    },
+    {
+     "rule": "SEC043",
+     "start": 648,
+     "end": 650
+    },
+    {
+     "rule": "SEC036",
+     "start": 653,
+     "end": 654
+    },
+    {
+     "rule": "SEC042",
+     "start": 751,
+     "end": 753
+    },
+    {
+     "rule": "SEC039",
+     "start": 795,
+     "end": 796
+    },
+    {
+     "rule": "SEC040",
+     "start": 1110,
+     "end": 1111
+    },
+    {
+     "rule": "SEC037",
+     "start": 1648,
+     "end": 1649
+    }
+   ]
+  },
+  {
+   "file": "case_38_museum_collection.py",
+   "lines": 1844,
+   "expected": [
+    {
+     "rule": "SEC025",
+     "line": 211
+    },
+    {
+     "rule": "SEC021",
+     "line": 365
+    },
+    {
+     "rule": "SEC024",
+     "line": 409
+    },
+    {
+     "rule": "SEC030",
+     "line": 1036
+    },
+    {
+     "rule": "SEC023",
+     "line": 1042
+    },
+    {
+     "rule": "SEC026",
+     "line": 1049
+    },
+    {
+     "rule": "SEC028",
+     "line": 1112
+    },
+    {
+     "rule": "SEC029",
+     "line": 1310
+    },
+    {
+     "rule": "SEC022",
+     "line": 1557
+    },
+    {
+     "rule": "SEC027",
+     "line": 1568
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC003",
+     "start": 393,
+     "end": 395
+    },
+    {
+     "rule": "SEC046",
+     "start": 424,
+     "end": 425
+    },
+    {
+     "rule": "SEC005",
+     "start": 736,
+     "end": 741
+    },
+    {
+     "rule": "SEC004",
+     "start": 1241,
+     "end": 1242
+    },
+    {
+     "rule": "SEC001",
+     "start": 1261,
+     "end": 1264
+    },
+    {
+     "rule": "SEC047",
+     "start": 1397,
+     "end": 1398
+    },
+    {
+     "rule": "SEC049",
+     "start": 1572,
+     "end": 1576
+    },
+    {
+     "rule": "SEC048",
+     "start": 1816,
+     "end": 1821
+    },
+    {
+     "rule": "SEC002",
+     "start": 1836,
+     "end": 1840
+    },
+    {
+     "rule": "SEC050",
+     "start": 1843,
+     "end": 1844
+    }
+   ]
+  },
+  {
+   "file": "case_39_legal_cases.py",
+   "lines": 1912,
+   "expected": [
+    {
+     "rule": "SEC032",
+     "line": 91
+    },
+    {
+     "rule": "SEC031",
+     "line": 112
+    },
+    {
+     "rule": "SEC039",
+     "line": 229
+    },
+    {
+     "rule": "SEC035",
+     "line": 387
+    },
+    {
+     "rule": "SEC037",
+     "line": 467
+    },
+    {
+     "rule": "SEC034",
+     "line": 678
+    },
+    {
+     "rule": "SEC038",
+     "line": 797
+    },
+    {
+     "rule": "SEC033",
+     "line": 1210
+    },
+    {
+     "rule": "SEC040",
+     "line": 1546
+    },
+    {
+     "rule": "SEC036",
+     "line": 1550
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC007",
+     "start": 318,
+     "end": 321
+    },
+    {
+     "rule": "SEC006",
+     "start": 415,
+     "end": 420
+    },
+    {
+     "rule": "SEC011",
+     "start": 517,
+     "end": 518
+    },
+    {
+     "rule": "SEC015",
+     "start": 545,
+     "end": 548
+    },
+    {
+     "rule": "SEC012",
+     "start": 681,
+     "end": 682
+    },
+    {
+     "rule": "SEC010",
+     "start": 720,
+     "end": 723
+    },
+    {
+     "rule": "SEC014",
+     "start": 988,
+     "end": 991
+    },
+    {
+     "rule": "SEC013",
+     "start": 1027,
+     "end": 1031
+    },
+    {
+     "rule": "SEC008",
+     "start": 1151,
+     "end": 1154
+    },
+    {
+     "rule": "SEC009",
+     "start": 1796,
+     "end": 1799
+    }
+   ]
+  },
+  {
+   "file": "case_40_travel_expenses.py",
+   "lines": 2017,
+   "expected": [
+    {
+     "rule": "SEC042",
+     "line": 70
+    },
+    {
+     "rule": "SEC050",
+     "line": 221
+    },
+    {
+     "rule": "SEC043",
+     "line": 233
+    },
+    {
+     "rule": "SEC049",
+     "line": 313
+    },
+    {
+     "rule": "SEC045",
+     "line": 318
+    },
+    {
+     "rule": "SEC047",
+     "line": 505
+    },
+    {
+     "rule": "SEC048",
+     "line": 619
+    },
+    {
+     "rule": "SEC041",
+     "line": 680
+    },
+    {
+     "rule": "SEC044",
+     "line": 1023
+    },
+    {
+     "rule": "SEC046",
+     "line": 1948
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC024",
+     "start": 106,
+     "end": 110
+    },
+    {
+     "rule": "SEC018",
+     "start": 404,
+     "end": 407
+    },
+    {
+     "rule": "SEC016",
+     "start": 410,
+     "end": 414
+    },
+    {
+     "rule": "SEC023",
+     "start": 791,
+     "end": 796
+    },
+    {
+     "rule": "SEC022",
+     "start": 849,
+     "end": 855
+    },
+    {
+     "rule": "SEC020",
+     "start": 925,
+     "end": 930
+    },
+    {
+     "rule": "SEC017",
+     "start": 944,
+     "end": 946
+    },
+    {
+     "rule": "SEC025",
+     "start": 1180,
+     "end": 1185
+    },
+    {
+     "rule": "SEC019",
+     "start": 1678,
+     "end": 1683
+    },
+    {
+     "rule": "SEC021",
+     "start": 1703,
+     "end": 1707
+    }
+   ]
+  },
+  {
+   "file": "case_41_marketplace_reviews.py",
+   "lines": 2155,
+   "expected": [
+    {
+     "rule": "SEC008",
+     "line": 93
+    },
+    {
+     "rule": "SEC002",
+     "line": 138
+    },
+    {
+     "rule": "SEC005",
+     "line": 172
+    },
+    {
+     "rule": "SEC001",
+     "line": 217
+    },
+    {
+     "rule": "SEC006",
+     "line": 263
+    },
+    {
+     "rule": "SEC003",
+     "line": 490
+    },
+    {
+     "rule": "SEC010",
+     "line": 765
+    },
+    {
+     "rule": "SEC009",
+     "line": 853
+    },
+    {
+     "rule": "SEC004",
+     "line": 1059
+    },
+    {
+     "rule": "SEC007",
+     "line": 1160
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC026",
+     "start": 142,
+     "end": 146
+    },
+    {
+     "rule": "SEC028",
+     "start": 253,
+     "end": 256
+    },
+    {
+     "rule": "SEC029",
+     "start": 354,
+     "end": 355
+    },
+    {
+     "rule": "SEC033",
+     "start": 358,
+     "end": 359
+    },
+    {
+     "rule": "SEC027",
+     "start": 634,
+     "end": 642
+    },
+    {
+     "rule": "SEC035",
+     "start": 1435,
+     "end": 1436
+    },
+    {
+     "rule": "SEC034",
+     "start": 1817,
+     "end": 1818
+    },
+    {
+     "rule": "SEC032",
+     "start": 2097,
+     "end": 2098
+    },
+    {
+     "rule": "SEC031",
+     "start": 2101,
+     "end": 2102
+    },
+    {
+     "rule": "SEC030",
+     "start": 2137,
+     "end": 2138
+    }
+   ]
+  },
+  {
+   "file": "case_42_podcast_host.py",
+   "lines": 1961,
+   "expected": [
+    {
+     "rule": "SEC018",
+     "line": 469
+    },
+    {
+     "rule": "SEC013",
+     "line": 552
+    },
+    {
+     "rule": "SEC019",
+     "line": 623
+    },
+    {
+     "rule": "SEC015",
+     "line": 731
+    },
+    {
+     "rule": "SEC016",
+     "line": 957
+    },
+    {
+     "rule": "SEC017",
+     "line": 976
+    },
+    {
+     "rule": "SEC014",
+     "line": 1060
+    },
+    {
+     "rule": "SEC011",
+     "line": 1193
+    },
+    {
+     "rule": "SEC020",
+     "line": 1359
+    },
+    {
+     "rule": "SEC012",
+     "line": 1439
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC037",
+     "start": 87,
+     "end": 88
+    },
+    {
+     "rule": "SEC045",
+     "start": 545,
+     "end": 546
+    },
+    {
+     "rule": "SEC044",
+     "start": 693,
+     "end": 697
+    },
+    {
+     "rule": "SEC043",
+     "start": 734,
+     "end": 736
+    },
+    {
+     "rule": "SEC042",
+     "start": 763,
+     "end": 765
+    },
+    {
+     "rule": "SEC041",
+     "start": 950,
+     "end": 951
+    },
+    {
+     "rule": "SEC040",
+     "start": 979,
+     "end": 980
+    },
+    {
+     "rule": "SEC038",
+     "start": 983,
+     "end": 984
+    },
+    {
+     "rule": "SEC036",
+     "start": 1196,
+     "end": 1197
+    },
+    {
+     "rule": "SEC039",
+     "start": 1933,
+     "end": 1934
+    }
+   ]
+  },
+  {
+   "file": "case_43_smart_home.py",
+   "lines": 2310,
+   "expected": [
+    {
+     "rule": "SEC028",
+     "line": 247
+    },
+    {
+     "rule": "SEC030",
+     "line": 269
+    },
+    {
+     "rule": "SEC025",
+     "line": 537
+    },
+    {
+     "rule": "SEC023",
+     "line": 582
+    },
+    {
+     "rule": "SEC029",
+     "line": 775
+    },
+    {
+     "rule": "SEC022",
+     "line": 879
+    },
+    {
+     "rule": "SEC021",
+     "line": 967
+    },
+    {
+     "rule": "SEC026",
+     "line": 1623
+    },
+    {
+     "rule": "SEC024",
+     "line": 1860
+    },
+    {
+     "rule": "SEC027",
+     "line": 2106
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC003",
+     "start": 263,
+     "end": 265
+    },
+    {
+     "rule": "SEC005",
+     "start": 334,
+     "end": 339
+    },
+    {
+     "rule": "SEC050",
+     "start": 342,
+     "end": 343
+    },
+    {
+     "rule": "SEC046",
+     "start": 512,
+     "end": 513
+    },
+    {
+     "rule": "SEC049",
+     "start": 1108,
+     "end": 1112
+    },
+    {
+     "rule": "SEC004",
+     "start": 1380,
+     "end": 1381
+    },
+    {
+     "rule": "SEC002",
+     "start": 1444,
+     "end": 1448
+    },
+    {
+     "rule": "SEC047",
+     "start": 1550,
+     "end": 1551
+    },
+    {
+     "rule": "SEC001",
+     "start": 1851,
+     "end": 1854
+    },
+    {
+     "rule": "SEC048",
+     "start": 2027,
+     "end": 2032
+    }
+   ]
+  },
+  {
+   "file": "case_44_print_shop.py",
+   "lines": 1952,
+   "expected": [
+    {
+     "rule": "SEC031",
+     "line": 53
+    },
+    {
+     "rule": "SEC033",
+     "line": 837
+    },
+    {
+     "rule": "SEC037",
+     "line": 993
+    },
+    {
+     "rule": "SEC038",
+     "line": 1045
+    },
+    {
+     "rule": "SEC040",
+     "line": 1087
+    },
+    {
+     "rule": "SEC039",
+     "line": 1120
+    },
+    {
+     "rule": "SEC034",
+     "line": 1378
+    },
+    {
+     "rule": "SEC036",
+     "line": 1488
+    },
+    {
+     "rule": "SEC032",
+     "line": 1530
+    },
+    {
+     "rule": "SEC035",
+     "line": 1634
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC009",
+     "start": 237,
+     "end": 240
+    },
+    {
+     "rule": "SEC012",
+     "start": 412,
+     "end": 413
+    },
+    {
+     "rule": "SEC010",
+     "start": 614,
+     "end": 617
+    },
+    {
+     "rule": "SEC011",
+     "start": 716,
+     "end": 717
+    },
+    {
+     "rule": "SEC015",
+     "start": 840,
+     "end": 843
+    },
+    {
+     "rule": "SEC007",
+     "start": 1161,
+     "end": 1164
+    },
+    {
+     "rule": "SEC014",
+     "start": 1256,
+     "end": 1259
+    },
+    {
+     "rule": "SEC013",
+     "start": 1480,
+     "end": 1484
+    },
+    {
+     "rule": "SEC008",
+     "start": 1619,
+     "end": 1622
+    },
+    {
+     "rule": "SEC006",
+     "start": 1656,
+     "end": 1661
+    }
+   ]
+  },
+  {
+   "file": "case_45_vet_clinic.py",
+   "lines": 1755,
+   "expected": [
+    {
+     "rule": "SEC042",
+     "line": 167
+    },
+    {
+     "rule": "SEC045",
+     "line": 234
+    },
+    {
+     "rule": "SEC048",
+     "line": 288
+    },
+    {
+     "rule": "SEC047",
+     "line": 294
+    },
+    {
+     "rule": "SEC049",
+     "line": 427
+    },
+    {
+     "rule": "SEC044",
+     "line": 558
+    },
+    {
+     "rule": "SEC041",
+     "line": 952
+    },
+    {
+     "rule": "SEC043",
+     "line": 1405
+    },
+    {
+     "rule": "SEC046",
+     "line": 1450
+    },
+    {
+     "rule": "SEC050",
+     "line": 1533
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC024",
+     "start": 158,
+     "end": 162
+    },
+    {
+     "rule": "SEC022",
+     "start": 297,
+     "end": 303
+    },
+    {
+     "rule": "SEC025",
+     "start": 325,
+     "end": 330
+    },
+    {
+     "rule": "SEC019",
+     "start": 497,
+     "end": 502
+    },
+    {
+     "rule": "SEC017",
+     "start": 562,
+     "end": 564
+    },
+    {
+     "rule": "SEC016",
+     "start": 714,
+     "end": 718
+    },
+    {
+     "rule": "SEC023",
+     "start": 1380,
+     "end": 1385
+    },
+    {
+     "rule": "SEC018",
+     "start": 1465,
+     "end": 1468
+    },
+    {
+     "rule": "SEC020",
+     "start": 1517,
+     "end": 1522
+    },
+    {
+     "rule": "SEC021",
+     "start": 1525,
+     "end": 1529
+    }
+   ]
+  },
+  {
+   "file": "case_46_tax_filing.py",
+   "lines": 2185,
+   "expected": [
+    {
+     "rule": "SEC007",
+     "line": 717
+    },
+    {
+     "rule": "SEC005",
+     "line": 807
+    },
+    {
+     "rule": "SEC009",
+     "line": 957
+    },
+    {
+     "rule": "SEC010",
+     "line": 1002
+    },
+    {
+     "rule": "SEC008",
+     "line": 1087
+    },
+    {
+     "rule": "SEC001",
+     "line": 1261
+    },
+    {
+     "rule": "SEC002",
+     "line": 1322
+    },
+    {
+     "rule": "SEC003",
+     "line": 1826
+    },
+    {
+     "rule": "SEC004",
+     "line": 1831
+    },
+    {
+     "rule": "SEC006",
+     "line": 2164
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC033",
+     "start": 511,
+     "end": 512
+    },
+    {
+     "rule": "SEC031",
+     "start": 905,
+     "end": 906
+    },
+    {
+     "rule": "SEC035",
+     "start": 1170,
+     "end": 1171
+    },
+    {
+     "rule": "SEC027",
+     "start": 1572,
+     "end": 1580
+    },
+    {
+     "rule": "SEC032",
+     "start": 1602,
+     "end": 1603
+    },
+    {
+     "rule": "SEC029",
+     "start": 1691,
+     "end": 1692
+    },
+    {
+     "rule": "SEC034",
+     "start": 1716,
+     "end": 1717
+    },
+    {
+     "rule": "SEC028",
+     "start": 1851,
+     "end": 1854
+    },
+    {
+     "rule": "SEC026",
+     "start": 1857,
+     "end": 1861
+    },
+    {
+     "rule": "SEC030",
+     "start": 2137,
+     "end": 2138
+    }
+   ]
+  },
+  {
+   "file": "case_47_game_leaderboard.py",
+   "lines": 1807,
+   "expected": [
+    {
+     "rule": "SEC016",
+     "line": 268
+    },
+    {
+     "rule": "SEC019",
+     "line": 720
+    },
+    {
+     "rule": "SEC017",
+     "line": 1036
+    },
+    {
+     "rule": "SEC013",
+     "line": 1294
+    },
+    {
+     "rule": "SEC014",
+     "line": 1487
+    },
+    {
+     "rule": "SEC011",
+     "line": 1539
+    },
+    {
+     "rule": "SEC020",
+     "line": 1584
+    },
+    {
+     "rule": "SEC012",
+     "line": 1612
+    },
+    {
+     "rule": "SEC015",
+     "line": 1738
+    },
+    {
+     "rule": "SEC018",
+     "line": 1802
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC036",
+     "start": 77,
+     "end": 78
+    },
+    {
+     "rule": "SEC045",
+     "start": 520,
+     "end": 521
+    },
+    {
+     "rule": "SEC042",
+     "start": 968,
+     "end": 970
+    },
+    {
+     "rule": "SEC043",
+     "start": 1077,
+     "end": 1079
+    },
+    {
+     "rule": "SEC044",
+     "start": 1082,
+     "end": 1086
+    },
+    {
+     "rule": "SEC037",
+     "start": 1420,
+     "end": 1421
+    },
+    {
+     "rule": "SEC040",
+     "start": 1436,
+     "end": 1437
+    },
+    {
+     "rule": "SEC039",
+     "start": 1686,
+     "end": 1687
+    },
+    {
+     "rule": "SEC038",
+     "start": 1757,
+     "end": 1758
+    },
+    {
+     "rule": "SEC041",
+     "start": 1806,
+     "end": 1807
+    }
+   ]
+  },
+  {
+   "file": "case_48_conference_talks.py",
+   "lines": 2009,
+   "expected": [
+    {
+     "rule": "SEC026",
+     "line": 55
+    },
+    {
+     "rule": "SEC022",
+     "line": 90
+    },
+    {
+     "rule": "SEC024",
+     "line": 207
+    },
+    {
+     "rule": "SEC025",
+     "line": 341
+    },
+    {
+     "rule": "SEC021",
+     "line": 822
+    },
+    {
+     "rule": "SEC023",
+     "line": 1186
+    },
+    {
+     "rule": "SEC027",
+     "line": 1485
+    },
+    {
+     "rule": "SEC030",
+     "line": 1787
+    },
+    {
+     "rule": "SEC028",
+     "line": 1884
+    },
+    {
+     "rule": "SEC029",
+     "line": 1955
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC046",
+     "start": 200,
+     "end": 201
+    },
+    {
+     "rule": "SEC001",
+     "start": 211,
+     "end": 214
+    },
+    {
+     "rule": "SEC049",
+     "start": 364,
+     "end": 368
+    },
+    {
+     "rule": "SEC050",
+     "start": 465,
+     "end": 466
+    },
+    {
+     "rule": "SEC003",
+     "start": 641,
+     "end": 643
+    },
+    {
+     "rule": "SEC048",
+     "start": 753,
+     "end": 758
+    },
+    {
+     "rule": "SEC002",
+     "start": 1471,
+     "end": 1475
+    },
+    {
+     "rule": "SEC005",
+     "start": 1647,
+     "end": 1652
+    },
+    {
+     "rule": "SEC047",
+     "start": 1888,
+     "end": 1889
+    },
+    {
+     "rule": "SEC004",
+     "start": 1931,
+     "end": 1932
+    }
+   ]
+  },
+  {
+   "file": "case_49_cloud_billing.py",
+   "lines": 2309,
+   "expected": [
+    {
+     "rule": "SEC034",
+     "line": 339
+    },
+    {
+     "rule": "SEC032",
+     "line": 846
+    },
+    {
+     "rule": "SEC036",
+     "line": 947
+    },
+    {
+     "rule": "SEC040",
+     "line": 975
+    },
+    {
+     "rule": "SEC039",
+     "line": 1210
+    },
+    {
+     "rule": "SEC037",
+     "line": 1570
+    },
+    {
+     "rule": "SEC035",
+     "line": 1797
+    },
+    {
+     "rule": "SEC031",
+     "line": 1850
+    },
+    {
+     "rule": "SEC033",
+     "line": 1930
+    },
+    {
+     "rule": "SEC038",
+     "line": 2097
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC014",
+     "start": 313,
+     "end": 316
+    },
+    {
+     "rule": "SEC010",
+     "start": 440,
+     "end": 443
+    },
+    {
+     "rule": "SEC006",
+     "start": 555,
+     "end": 560
+    },
+    {
+     "rule": "SEC007",
+     "start": 584,
+     "end": 587
+    },
+    {
+     "rule": "SEC012",
+     "start": 770,
+     "end": 771
+    },
+    {
+     "rule": "SEC013",
+     "start": 967,
+     "end": 971
+    },
+    {
+     "rule": "SEC008",
+     "start": 1125,
+     "end": 1128
+    },
+    {
+     "rule": "SEC011",
+     "start": 1573,
+     "end": 1574
+    },
+    {
+     "rule": "SEC015",
+     "start": 2100,
+     "end": 2103
+    },
+    {
+     "rule": "SEC009",
+     "start": 2255,
+     "end": 2258
+    }
+   ]
+  },
+  {
+   "file": "case_50_city_permits.py",
+   "lines": 2038,
+   "expected": [
+    {
+     "rule": "SEC042",
+     "line": 155
+    },
+    {
+     "rule": "SEC045",
+     "line": 221
+    },
+    {
+     "rule": "SEC044",
+     "line": 351
+    },
+    {
+     "rule": "SEC043",
+     "line": 629
+    },
+    {
+     "rule": "SEC050",
+     "line": 761
+    },
+    {
+     "rule": "SEC047",
+     "line": 1476
+    },
+    {
+     "rule": "SEC041",
+     "line": 1729
+    },
+    {
+     "rule": "SEC048",
+     "line": 1755
+    },
+    {
+     "rule": "SEC049",
+     "line": 1763
+    },
+    {
+     "rule": "SEC046",
+     "line": 1862
+    }
+   ],
+   "safe_twins": [
+    {
+     "rule": "SEC025",
+     "start": 340,
+     "end": 345
+    },
+    {
+     "rule": "SEC017",
+     "start": 543,
+     "end": 545
+    },
+    {
+     "rule": "SEC018",
+     "start": 581,
+     "end": 584
+    },
+    {
+     "rule": "SEC022",
+     "start": 705,
+     "end": 711
+    },
+    {
+     "rule": "SEC019",
+     "start": 986,
+     "end": 991
+    },
+    {
+     "rule": "SEC023",
+     "start": 1029,
+     "end": 1034
+    },
+    {
+     "rule": "SEC020",
+     "start": 1067,
+     "end": 1072
+    },
+    {
+     "rule": "SEC021",
+     "start": 1123,
+     "end": 1127
+    },
+    {
+     "rule": "SEC024",
+     "start": 1194,
+     "end": 1198
+    },
+    {
+     "rule": "SEC016",
+     "start": 1854,
+     "end": 1858
+    }
+   ]
+  }
+ ],
+ "total_lines": 101057
+}
