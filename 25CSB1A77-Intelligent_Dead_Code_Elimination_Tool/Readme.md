@@ -9,6 +9,10 @@
 
 * **File/Folder Name:** `Intelligent Dead Code Elimination Tool`
 * **Title Name:** IntelliDCE Full Compiler Engine, ML Pipeline & Web GUI
+* **Links:**
+  * **GitHub Repository:** https://github.com/rahul84ya/IntelliDCE.git
+  * **Google Drive (Source Code / Screen Recording):** https://drive.google.com/file/d/1Kd2Auf4poaCyy5f6NXEafjKk0qQ_pUOx/view?usp=sharing
+  * *(Also already uploaded in roll number folder)*
 * **Description:** Contains the complete source code of the project:
   - C++17 SSA compiler passes (SCCP, liveness analysis, and safety veto engine).
   - Python PyTorch Geometric Graph Neural Network (GraphSAGE) pipeline for liveness prediction.
@@ -18,6 +22,8 @@
 ---
 
 ## 2. Documentation
+
+*(Already uploaded in roll number folder)*
 
 * **File Name:** `25CSB1A77_RahulKumarChaurasiya_IntelliDCE_Report_END.docx`
   * **Title Name:** IntelliDCE End-Evaluation Final Technical Report
@@ -30,6 +36,9 @@
 ---
 
 ## 3. Screen Recordings
+
+* **Google Drive Link (Screen Recordings):** https://drive.google.com/file/d/1Kd2Auf4poaCyy5f6NXEafjKk0qQ_pUOx/view?usp=sharing  
+*(Also already uploaded in roll number folder)*
 
 * **File Name:** `IDCE END-Evaluation Screen Recording.mov`
   * **Title Name:** Full System End-Evaluation Live Demonstration
