@@ -1,0 +1,15 @@
+{
+  "id": "signature_and_source_only",
+  "name": "Signature & Source Verification Only",
+  "description": "Enforces only cryptographic signature verification and trusted source validation prior to installation. Rollback checks, logging restrictions, weak crypto bans, and memory function bans are skipped.",
+  "rules": {
+    "signature_verification": true,
+    "source_trust": true,
+    "rollback_guard": false,
+    "banned_logging": false,
+    "weak_crypto": false,
+    "banned_memory_functions": false,
+    "hardcoded_secrets": false,
+    "image_hash_verification": false
+  }
+}

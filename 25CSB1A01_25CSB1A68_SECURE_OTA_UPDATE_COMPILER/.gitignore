@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# CodeCarbon & telemetry logs
+emissions.csv
+
+# Temporary test runners & outputs
+Temporary/
+scratch/
+tests/e2e_runner
+*.out
+*.tmp
+*.pyc
+
+# OS metadata
+.DS_Store
+Thumbs.db

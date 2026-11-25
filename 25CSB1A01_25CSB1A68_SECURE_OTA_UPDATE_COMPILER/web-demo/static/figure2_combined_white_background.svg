@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1040" width="820" height="1040">
+  <!-- Crisp White Background -->
+  <rect width="820" height="1040" fill="#ffffff" />
+  <rect x="5" y="5" width="810" height="1030" fill="none" stroke="#222222" stroke-width="2" />
+  <g transform="translate(20, 15)">
+  <rect width="780" height="420" fill="#ffffff" />
+  <g transform="translate(60, 125) rotate(-90)">
+    <rect x="-95" y="-18" width="190" height="36" fill="none" stroke="#000000" stroke-width="1.5" />
+    <text x="0" y="6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">Rouge and BLEU</text>
+  </g>
+  <defs>
+    <linearGradient id="greenBarGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="rgb(145,195,105)" />
+      <stop offset="25%" stop-color="rgb(170,209,138)" />
+      <stop offset="50%" stop-color="rgb(195,224,172)" />
+      <stop offset="75%" stop-color="rgb(220,238,206)" />
+      <stop offset="100%" stop-color="rgb(245,253,240)" />
+    </linearGradient>
+  </defs>
+  <rect x="110" y="30" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="140.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="170" y="30" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="200.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="230" y="30" width="60" height="95" fill="rgb(222,239,209)" stroke="#555555" stroke-width="1" />
+  <text x="260.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.91</text>
+  <rect x="290" y="30" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="320.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="350" y="30" width="60" height="95" fill="rgb(230,244,219)" stroke="#555555" stroke-width="1" />
+  <text x="380.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.94</text>
+  <rect x="410" y="30" width="60" height="95" fill="rgb(227,242,216)" stroke="#555555" stroke-width="1" />
+  <text x="440.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.93</text>
+  <rect x="470" y="30" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="500.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="530" y="30" width="60" height="95" fill="rgb(205,229,186)" stroke="#555555" stroke-width="1" />
+  <text x="560.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.84</text>
+  <rect x="590" y="30" width="60" height="95" fill="rgb(205,229,186)" stroke="#555555" stroke-width="1" />
+  <text x="620.0" y="82.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.84</text>
+  <rect x="110" y="125" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="140.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="170" y="125" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="200.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="230" y="125" width="60" height="95" fill="rgb(207,231,189)" stroke="#555555" stroke-width="1" />
+  <text x="260.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.85</text>
+  <rect x="290" y="125" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="320.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="350" y="125" width="60" height="95" fill="rgb(217,237,202)" stroke="#555555" stroke-width="1" />
+  <text x="380.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.89</text>
+  <rect x="410" y="125" width="60" height="95" fill="rgb(152,199,115)" stroke="#555555" stroke-width="1" />
+  <text x="440.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.63</text>
+  <rect x="470" y="125" width="60" height="95" fill="rgb(245,253,240)" stroke="#555555" stroke-width="1" />
+  <text x="500.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">1.00</text>
+  <rect x="530" y="125" width="60" height="95" fill="rgb(180,215,152)" stroke="#555555" stroke-width="1" />
+  <text x="560.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.74</text>
+  <rect x="590" y="125" width="60" height="95" fill="rgb(185,218,159)" stroke="#555555" stroke-width="1" />
+  <text x="620.0" y="177.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#000000">0.76</text>
+  <rect x="110" y="30" width="540" height="190" fill="none" stroke="#000000" stroke-width="1.2" />
+  <rect x="668" y="30" width="20" height="190" fill="url(#greenBarGrad)" stroke="#000000" stroke-width="1" />
+  <line x1="688" y1="30" x2="693" y2="30" stroke="#000000" stroke-width="1" />
+  <text x="696" y="34" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">1.0000</text>
+  <line x1="688" y1="57.12250000000001" x2="693" y2="57.12250000000001" stroke="#000000" stroke-width="1" />
+  <text x="696" y="61.12250000000001" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.9429</text>
+  <line x1="688" y1="84.29249999999996" x2="693" y2="84.29249999999996" stroke="#000000" stroke-width="1" />
+  <text x="696" y="88.29249999999996" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.8857</text>
+  <line x1="688" y1="111.41499999999999" x2="693" y2="111.41499999999999" stroke="#000000" stroke-width="1" />
+  <text x="696" y="115.41499999999999" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.8286</text>
+  <line x1="688" y1="138.585" x2="693" y2="138.585" stroke="#000000" stroke-width="1" />
+  <text x="696" y="142.585" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.7714</text>
+  <line x1="688" y1="165.70749999999998" x2="693" y2="165.70749999999998" stroke="#000000" stroke-width="1" />
+  <text x="696" y="169.70749999999998" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.7143</text>
+  <line x1="688" y1="192.87749999999997" x2="693" y2="192.87749999999997" stroke="#000000" stroke-width="1" />
+  <text x="696" y="196.87749999999997" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.6571</text>
+  <line x1="688" y1="220" x2="693" y2="220" stroke="#000000" stroke-width="1" />
+  <text x="696" y="224" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.6000</text>
+  <g transform="translate(140.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Indentation</text>
+    <text x="0" y="14" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Error(Python)</text>
+  </g>
+  <g transform="translate(200.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">NameError(Typo)</text>
+  </g>
+  <g transform="translate(260.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Undefined</text>
+    <text x="0" y="14" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Variable(C)</text>
+  </g>
+  <g transform="translate(320.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Undefined</text>
+    <text x="0" y="14" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Variable(Python)</text>
+  </g>
+  <g transform="translate(380.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Type</text>
+    <text x="0" y="14" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Mismatch</text>
+  </g>
+  <g transform="translate(440.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Missing</text>
+    <text x="0" y="14" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Semicolon</text>
+  </g>
+  <g transform="translate(500.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Attribute</text>
+    <text x="0" y="14" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Error</text>
+  </g>
+  <g transform="translate(560.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Syntax Errors</text>
+  </g>
+  <g transform="translate(620.0, 235) rotate(45)">
+    <text x="0" y="0" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000">Other</text>
+  </g>
+  <text x="380.0" y="325" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">Error Types</text>
+  </g>
+  <text x="410.0" y="475" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#000000">Figure 2. (a) Error Types of BLEU Vs. ROUGE</text>
+  <line x1="25" y1="495" x2="795" y2="495" stroke="#cccccc" stroke-width="1" stroke-dasharray="4" />
+  <g transform="translate(50, 505)">
+  <rect width="720" height="510" fill="#ffffff" />
+  <g transform="translate(60, 170.0) rotate(-90)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">True label</text>
+  </g>
+  <defs>
+    <linearGradient id="blueBarGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="rgb(255,255,255)" />
+      <stop offset="25%" stop-color="rgb(207,237,250)" />
+      <stop offset="50%" stop-color="rgb(160,220,245)" />
+      <stop offset="75%" stop-color="rgb(112,202,240)" />
+      <stop offset="100%" stop-color="rgb(65,185,235)" />
+    </linearGradient>
+  </defs>
+  <rect x="110" y="25" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="154.0" y="60.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="198" y="25" width="88" height="58" fill="rgb(247,252,254)" stroke="#000000" stroke-width="1" />
+  <text x="242.0" y="60.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">4</text>
+  <rect x="286" y="25" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="330.0" y="60.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="374" y="25" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="418.0" y="60.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="462" y="25" width="88" height="58" fill="rgb(65,185,235)" stroke="#000000" stroke-width="1" />
+  <text x="506.0" y="60.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">96</text>
+  <rect x="110" y="83" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="154.0" y="118.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="198" y="83" width="88" height="58" fill="rgb(247,252,254)" stroke="#000000" stroke-width="1" />
+  <text x="242.0" y="118.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">4</text>
+  <rect x="286" y="83" width="88" height="58" fill="rgb(249,252,254)" stroke="#000000" stroke-width="1" />
+  <text x="330.0" y="118.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">3</text>
+  <rect x="374" y="83" width="88" height="58" fill="rgb(70,187,235)" stroke="#000000" stroke-width="1" />
+  <text x="418.0" y="118.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">93</text>
+  <rect x="462" y="83" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="506.0" y="118.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="110" y="141" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="154.0" y="176.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="198" y="141" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="242.0" y="176.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="286" y="141" width="88" height="58" fill="rgb(66,185,235)" stroke="#000000" stroke-width="1" />
+  <text x="330.0" y="176.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">95</text>
+  <rect x="374" y="141" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="418.0" y="176.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="462" y="141" width="88" height="58" fill="rgb(245,251,253)" stroke="#000000" stroke-width="1" />
+  <text x="506.0" y="176.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">5</text>
+  <rect x="110" y="199" width="88" height="58" fill="rgb(239,249,253)" stroke="#000000" stroke-width="1" />
+  <text x="154.0" y="234.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">8</text>
+  <rect x="198" y="199" width="88" height="58" fill="rgb(72,187,235)" stroke="#000000" stroke-width="1" />
+  <text x="242.0" y="234.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">92</text>
+  <rect x="286" y="199" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="330.0" y="234.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="374" y="199" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="418.0" y="234.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="462" y="199" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="506.0" y="234.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="110" y="257" width="88" height="58" fill="rgb(65,185,235)" stroke="#000000" stroke-width="1" />
+  <text x="154.0" y="292.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">96</text>
+  <rect x="198" y="257" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="242.0" y="292.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="286" y="257" width="88" height="58" fill="rgb(247,252,254)" stroke="#000000" stroke-width="1" />
+  <text x="330.0" y="292.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">4</text>
+  <rect x="374" y="257" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="418.0" y="292.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="462" y="257" width="88" height="58" fill="rgb(255,255,255)" stroke="#000000" stroke-width="1" />
+  <text x="506.0" y="292.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">0</text>
+  <rect x="110" y="315" width="88" height="38" fill="#d4a96a" stroke="#000000" stroke-width="1" />
+  <text x="154.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">Syntax</text>
+  <rect x="198" y="315" width="88" height="38" fill="#d4a96a" stroke="#000000" stroke-width="1" />
+  <text x="242.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">Declaration</text>
+  <rect x="286" y="315" width="88" height="38" fill="#d4a96a" stroke="#000000" stroke-width="1" />
+  <text x="330.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">Type</text>
+  <rect x="374" y="315" width="88" height="38" fill="#d4a96a" stroke="#000000" stroke-width="1" />
+  <text x="418.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">Memory</text>
+  <rect x="462" y="315" width="88" height="38" fill="#d4a96a" stroke="#000000" stroke-width="1" />
+  <text x="506.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">Scope/Flow</text>
+  <g transform="translate(154.0, 371) rotate(-90)">
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">1</text>
+  </g>
+  <g transform="translate(242.0, 371) rotate(-90)">
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">2</text>
+  </g>
+  <g transform="translate(330.0, 371) rotate(-90)">
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">3</text>
+  </g>
+  <g transform="translate(418.0, 371) rotate(-90)">
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">4</text>
+  </g>
+  <g transform="translate(506.0, 371) rotate(-90)">
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000">5</text>
+  </g>
+  <text x="330.0" y="407" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#000000">Predicted Label</text>
+  <rect x="110" y="25" width="440" height="328" fill="none" stroke="#000000" stroke-width="1.2" />
+  <rect x="568" y="25" width="20" height="290" fill="url(#blueBarGrad)" stroke="#000000" stroke-width="1" />
+  <line x1="588" y1="25" x2="593" y2="25" stroke="#000000" stroke-width="1" />
+  <text x="596" y="29" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">96.000</text>
+  <line x1="588" y1="66.42770833333333" x2="593" y2="66.42770833333333" stroke="#000000" stroke-width="1" />
+  <text x="596" y="70.42770833333333" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">82.286</text>
+  <line x1="588" y1="107.85843750000001" x2="593" y2="107.85843750000001" stroke="#000000" stroke-width="1" />
+  <text x="596" y="111.85843750000001" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">68.571</text>
+  <line x1="588" y1="149.2861458333333" x2="593" y2="149.2861458333333" stroke="#000000" stroke-width="1" />
+  <text x="596" y="153.2861458333333" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">54.857</text>
+  <line x1="588" y1="190.71385416666664" x2="593" y2="190.71385416666664" stroke="#000000" stroke-width="1" />
+  <text x="596" y="194.71385416666664" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">41.143</text>
+  <line x1="588" y1="232.1415625" x2="593" y2="232.1415625" stroke="#000000" stroke-width="1" />
+  <text x="596" y="236.1415625" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">27.429</text>
+  <line x1="588" y1="273.5722916666666" x2="593" y2="273.5722916666666" stroke="#000000" stroke-width="1" />
+  <text x="596" y="277.5722916666666" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">13.714</text>
+  <line x1="588" y1="315" x2="593" y2="315" stroke="#000000" stroke-width="1" />
+  <text x="596" y="319" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000000">0.000</text>
+  </g>
+  <text x="410.0" y="1025" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#000000">Figure 2. (b) Confusion Matrix</text>
+</svg>
