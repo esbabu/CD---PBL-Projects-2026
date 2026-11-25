@@ -1,0 +1,26 @@
+============================================================
+C++ SYNTAX ERROR CLASSIFIER PERFORMANCE REPORT
+============================================================
+
+EXECUTION SUMMARY:
+--------------------
+Total execution time: 1.184 seconds
+Files processed: 1
+Errors detected: 1
+Auto-fixes applied: 0
+Successful compilations: 0
+
+ERROR TYPE BREAKDOWN:
+--------------------
+UNMATCHED_BRACE           | Count:   1 | Fix Success:   0.0%
+
+PERFORMANCE METRICS:
+--------------------
+Average detection time: 0.055 seconds
+Min detection time: 0.055 seconds
+Max detection time: 0.055 seconds
+Average confidence score: 67.500
+Median confidence score: 67.500
+Confidence score range: 67.500 - 67.500
+
+Overall success rate: 0.0%

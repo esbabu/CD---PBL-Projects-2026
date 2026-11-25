@@ -1,0 +1,148 @@
+.classification-card {
+  background-color: #1e1e1e;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.classification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.classification-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ml-source-badge {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.engine-badge-model {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+}
+
+.engine-badge-ast {
+  background: linear-gradient(135deg, #2563eb 0%, #0284c7 100%);
+}
+
+.engine-badge-java {
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+}
+
+.classification-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.source-label {
+  font-size: 11px;
+  color: #94a3b8;
+  font-family: monospace;
+}
+
+.classification-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prediction-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.prediction-label {
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.prediction-badge {
+  background-color: #0f172a;
+  border: 1px solid #38bdf8;
+  color: #38bdf8;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.prediction-badge.clean {
+  background-color: rgba(34, 197, 94, 0.12);
+  border-color: #22c55e;
+  color: #4ade80;
+}
+
+.confidence-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.confidence-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.confidence-label {
+  color: #94a3b8;
+}
+
+.confidence-sublabel {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.confidence-value {
+  color: #38bdf8;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.confidence-meter-track {
+  width: 100%;
+  height: 6px;
+  background-color: #334155;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.confidence-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.confidence-meter-fill.clean {
+  background: linear-gradient(90deg, #22c55e, #10b981);
+}
+
+.classification-note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #94a3b8;
+  border-left: 2px solid #4f46e5;
+  padding-left: 8px;
+}
