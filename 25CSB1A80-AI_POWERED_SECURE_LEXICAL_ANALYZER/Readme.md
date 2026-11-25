@@ -7,11 +7,10 @@ An AI-powered secure lexical analyzer that analyzes source code, identifies lexi
 
 | File/Folder | Description |
 |---|---|
-| apsla.zip | Complete project source code |
+| Google Drive link to Source code and demo video| https://drive.google.com/drive/folders/1gh3GuRG9LPYsgfY4t_saQUl2-ZYcWNZV?usp=sharing |
 | mids_report.pdf | Project documentation and report |
 | ends_report.pdf | Project documentation and report |
-| Screen_Record.mp4 | Project demonstration videos |
-| README.md | Project documentation |
+
 
 ## Project Title
 AI Powered Secure Lexical Analyzer
