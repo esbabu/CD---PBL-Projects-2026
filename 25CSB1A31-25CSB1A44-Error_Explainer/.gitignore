@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Config and API keys
+ai_config.json
+groq_config.json
+.env
+.cache/
+
+# Build and temporary files
+*.exe
+*.o
+*.obj
+*.heal_backup
+security_demo
+scratch/
+
+# Logs and telemetry
+logs/
+emissions*.csv
+codecarbon_emissions.csv
+
+# OS metadata
+.DS_Store
+Thumbs.db
