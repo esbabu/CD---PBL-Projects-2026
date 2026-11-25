@@ -1,0 +1,15 @@
+{
+  "id": "rules_python",
+  "name": "Python OTA Security Protocol",
+  "description": "Enforces all Python security invariants: AST CFG dominance on install() (verify_signature, source_trusted, verify_image_hash, monotonic rollback guard), banned dynamic execution (eval, exec, pickle, os.system), weak cryptography bans (md5, sha1), and hardcoded secret detection.",
+  "rules": {
+    "signature_verification": true,
+    "source_trust": true,
+    "rollback_guard": true,
+    "banned_logging": true,
+    "weak_crypto": true,
+    "banned_memory_functions": true,
+    "hardcoded_secrets": true,
+    "image_hash_verification": true
+  }
+}

@@ -1,0 +1,315 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import csv
+import os
+import subprocess
+import sys
+import tempfile
+import warnings
+from pathlib import Path
+from typing import Any
+
+warnings.filterwarnings("ignore", category=FutureWarning)
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        prog="secure-clang",
+        description="Run secure LLVM policy checks before invoking clang.",
+        add_help=True,
+    )
+    parser.add_argument("--clang", default="clang", help="Path to clang executable")
+    parser.add_argument("--opt", default="opt", help="Path to opt executable")
+    parser.add_argument("--plugin", default="", help="Path to TraversalPass plugin .so")
+    parser.add_argument("--policy", default="", help="Path or name of security policy JSON")
+    parser.add_argument(
+        "--energy",
+        action="store_true",
+        default=False,
+        help="Enable CodeCarbon energy & emissions tracking (disabled by default for fast ~0.1s builds)",
+    )
+    parser.add_argument("compiler_args", nargs=argparse.REMAINDER, help="Arguments forwarded to clang")
+    ns = parser.parse_args()
+
+    if ns.compiler_args and ns.compiler_args[0] == "--":
+        ns.compiler_args = ns.compiler_args[1:]
+
+    if not ns.compiler_args:
+        parser.error("No clang arguments were provided")
+
+    return ns
+
+
+def resolve_plugin_path(explicit: str, repo_root: Path | None = None) -> str | None:
+    if explicit and Path(explicit).is_file():
+        return explicit
+
+    candidates = [
+        "llvm-pass/build/libTraversalPass.so",
+        "llvm-pass/build/TraversalPass.so",
+        "llvm-pass/build/Release/libTraversalPass.so",
+        "llvm-pass/build/Debug/libTraversalPass.so",
+    ]
+    for c in candidates:
+        if repo_root and (repo_root / c).is_file():
+            return str((repo_root / c).resolve())
+        if Path(c).is_file():
+            return str(Path(c).resolve())
+    return None
+
+
+def resolve_policy_path(explicit: str, repo_root: Path) -> str | None:
+    if not explicit:
+        return None
+    p = Path(explicit)
+    if p.is_file():
+        return str(p.resolve())
+    cand = repo_root / "policies" / explicit
+    if cand.is_file():
+        return str(cand.resolve())
+    cand_json = repo_root / "policies" / f"{explicit}.json"
+    if cand_json.is_file():
+        return str(cand_json.resolve())
+    return None
+
+
+def get_source_files(args: list[str]) -> list[str]:
+    files: list[str] = []
+    for a in args:
+        if a.endswith(".c") and Path(a).is_file():
+            files.append(a)
+    return files
+
+
+def build_ir_args(args: list[str]) -> list[str]:
+    out: list[str] = []
+    skip_next = False
+    for a in args:
+        if skip_next:
+            skip_next = False
+            continue
+
+        if a == "-o":
+            skip_next = True
+            continue
+
+        if a in {"-c", "-S", "-emit-llvm"}:
+            continue
+
+        if a.endswith(".c"):
+            continue
+
+        out.append(a)
+    return out
+
+
+def run_phase(
+    cmd: list[str],
+    cwd: Path,
+    phase: str,
+    tracker: Any = None,
+    extra_env: dict[str, str] | None = None,
+) -> tuple[int, float, float]:
+    energy_kwh = 0.0
+    emissions_kg = 0.0
+    env = os.environ.copy()
+    if extra_env:
+        env.update(extra_env)
+
+    if tracker is not None:
+        try:
+            tracker.start_task(phase)
+        except Exception:
+            pass
+
+    proc = subprocess.run(cmd, cwd=cwd, env=env, capture_output=True, text=True)
+
+    if tracker is not None:
+        try:
+            emissions_data = tracker.stop_task(phase)
+            if emissions_data is not None:
+                energy_kwh = float(getattr(emissions_data, "energy_consumed", 0.0) or 0.0)
+                emissions_kg = float(getattr(emissions_data, "emissions", 0.0) or 0.0)
+        except Exception:
+            pass
+
+        sys.stderr.write(
+            f"[CodeCarbon] phase={phase} energy_kwh={energy_kwh:.8f} emissions_kg={emissions_kg:.8f}\n"
+        )
+
+    if proc.stdout:
+        sys.stdout.write(proc.stdout)
+    if proc.stderr:
+        sys.stderr.write(proc.stderr)
+
+    return proc.returncode, energy_kwh, emissions_kg
+
+
+def finalize_energy(tracker: Any, total_energy_kwh: float, total_emissions_kg: float) -> None:
+    if tracker is not None:
+        try:
+            emissions = tracker.stop()
+            if emissions is not None:
+                e_val = float(emissions)
+                if e_val > 0.0:
+                    total_emissions_kg = e_val
+            if hasattr(tracker, "_total_energy") and tracker._total_energy is not None:
+                kwh_val = float(getattr(tracker._total_energy, "kWh", 0.0) or 0.0)
+                if kwh_val > 0.0:
+                    total_energy_kwh = kwh_val
+        except Exception:
+            pass
+        sys.stderr.write(
+            f"[CodeCarbon] total energy_kwh={total_energy_kwh:.8f} emissions_kg={total_emissions_kg:.8f}\n"
+        )
+
+
+def main() -> int:
+    args = parse_args()
+    repo_root = Path(__file__).resolve().parent
+    plugin = resolve_plugin_path(args.plugin, repo_root)
+    if not plugin:
+        sys.stderr.write("secure-clang: could not find plugin. Build it first or pass --plugin.\n")
+        return 2
+
+    source_files = get_source_files(args.compiler_args)
+    total_energy_kwh = 0.0
+    total_emissions_kg = 0.0
+
+    tracker = None
+    if args.energy:
+        try:
+            from codecarbon import OfflineEmissionsTracker  # type: ignore
+            tracker = OfflineEmissionsTracker(
+                country_iso_code="USA",
+                project_name="secure-clang",
+                gpu_ids=[],
+                save_to_file=False,
+                save_to_api=False,
+                log_level="error",
+            )
+            tracker.start()
+        except Exception:
+            try:
+                from codecarbon import EmissionsTracker  # type: ignore
+                tracker = EmissionsTracker(
+                    project_name="secure-clang",
+                    gpu_ids=[],
+                    save_to_file=False,
+                    save_to_api=False,
+                    log_level="error",
+                    allow_multiple_runs=True,
+                )
+                tracker.start()
+            except Exception:
+                tracker = None
+
+    policy_file = resolve_policy_path(args.policy, repo_root)
+    policy_env = {"OTA_POLICY_FILE": policy_file} if policy_file else {}
+
+    # Pre-compilation Source Security Gate: Intercept embedded prompt injection attacks
+    sys.path.insert(0, str(repo_root / "web-demo"))
+    try:
+        from security_preprocessor import check_for_indirect_injection
+        for src in source_files:
+            try:
+                src_content = Path(src).read_text(encoding="utf-8", errors="ignore")
+                injections = check_for_indirect_injection(src_content)
+                if injections:
+                    sys.stderr.write("secure-clang: error: Security policy violation detected in source code:\n")
+                    for inj in injections:
+                        desc = inj.get("description", "Prompt injection directive")
+                        match_text = inj.get("matches", [""])[0]
+                        sys.stderr.write(f"  - AI Prompt Injection Attack: {desc} ('{match_text}')\n")
+                    sys.stderr.write("secure-clang: compilation aborted to prevent AI pipeline compromise.\n")
+                    finalize_energy(tracker, total_energy_kwh, total_emissions_kg)
+                    return 1
+            except Exception:
+                pass
+    except ImportError:
+        pass
+
+    if not source_files:
+        sys.stderr.write("secure-clang: no C source input found; forwarding to clang.\n")
+        rc, e, m = run_phase(
+            [args.clang, *args.compiler_args],
+            repo_root,
+            "clang-final",
+            tracker=tracker,
+        )
+        total_energy_kwh += e
+        total_emissions_kg += m
+        finalize_energy(tracker, total_energy_kwh, total_emissions_kg)
+        return rc
+
+    tmp_files: list[Path] = []
+    try:
+        ir_args = build_ir_args(args.compiler_args)
+        for src in source_files:
+            fd, temp_path = tempfile.mkstemp(prefix="secure-clang-", suffix=".ll")
+            os.close(fd)
+            tmp_ll = Path(temp_path)
+            tmp_files.append(tmp_ll)
+
+            rc, e, m = run_phase(
+                [
+                    args.clang,
+                    *ir_args,
+                    "-g",
+                    "-S",
+                    "-emit-llvm",
+                    "-Xclang",
+                    "-disable-O0-optnone",
+                    src,
+                    "-o",
+                    str(tmp_ll),
+                ],
+                repo_root,
+                "clang-ir",
+                tracker=tracker,
+            )
+            total_energy_kwh += e
+            total_emissions_kg += m
+            if rc != 0:
+                finalize_energy(tracker, total_energy_kwh, total_emissions_kg)
+                return rc
+
+            rc, e, m = run_phase(
+                [
+                    args.opt,
+                    "-load-pass-plugin",
+                    plugin,
+                    "-passes=traversal-pass",
+                    "-disable-output",
+                    str(tmp_ll),
+                ],
+                repo_root,
+                "opt-policy",
+                tracker=tracker,
+                extra_env=policy_env,
+            )
+            total_energy_kwh += e
+            total_emissions_kg += m
+            if rc != 0:
+                finalize_energy(tracker, total_energy_kwh, total_emissions_kg)
+                return rc
+
+        rc, e, m = run_phase(
+            [args.clang, *args.compiler_args],
+            repo_root,
+            "clang-final",
+            tracker=tracker,
+        )
+        total_energy_kwh += e
+        total_emissions_kg += m
+        finalize_energy(tracker, total_energy_kwh, total_emissions_kg)
+        return rc
+    finally:
+        for t in tmp_files:
+            t.unlink(missing_ok=True)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,7 @@
+/mnt/c/Users/Nitya/Downloads/ota-update-compiler/ota-update-compiler/llvm-pass/build/CMakeFiles/intrinsics_gen.dir
+/mnt/c/Users/Nitya/Downloads/ota-update-compiler/ota-update-compiler/llvm-pass/build/CMakeFiles/omp_gen.dir
+/mnt/c/Users/Nitya/Downloads/ota-update-compiler/ota-update-compiler/llvm-pass/build/CMakeFiles/acc_gen.dir
+/mnt/c/Users/Nitya/Downloads/ota-update-compiler/ota-update-compiler/llvm-pass/build/CMakeFiles/RISCVTargetParserTableGen.dir
+/mnt/c/Users/Nitya/Downloads/ota-update-compiler/ota-update-compiler/llvm-pass/build/CMakeFiles/TraversalPass.dir
+/mnt/c/Users/Nitya/Downloads/ota-update-compiler/ota-update-compiler/llvm-pass/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Nitya/Downloads/ota-update-compiler/ota-update-compiler/llvm-pass/build/CMakeFiles/rebuild_cache.dir

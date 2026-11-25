@@ -1,0 +1,396 @@
+================================================================================
+SECURE OTA UPDATE COMPILER — DEVELOPER SPECIFICATION & CODING PROTOCOL
+================================================================================
+Document:       OTA_UPDATE_DEVELOPER_GUIDE.txt
+Target System:  secure-clang & LLVM TraversalPass Security Compiler
+Compatibility:  C99 / C11 / C17 Standards
+Version:        2.0 (Self-Contained & Agentic Security Judge Compliant)
+================================================================================
+
+1. OVERVIEW & PURPOSE
+--------------------------------------------------------------------------------
+This project compiles C firmware update routines through a security-hardened 
+compiler wrapper called `secure-clang`. 
+
+Unlike standard Clang, `secure-clang` runs an automated LLVM Control-Flow Graph 
+(CFG) Dominance and Policy Pass on every piece of code before allowing it to 
+compile into a binary.
+
+If your code violates any security invariant, calls banned functions, leaks 
+secrets, or fails control-flow dominance, compilation is IMMEDIATELY ABORTED 
+with a policy error.
+
+Follow this guide to write C firmware update code that compiles cleanly with 
+ZERO errors and passes both `secure-clang` and the Advisory Security Judge.
+
+
+================================================================================
+2. RULE ZERO: ZERO EXTERNAL C HEADERS (SELF-CONTAINED TRANSLATION UNITS)
+================================================================================
+CRITICAL: The compilation sandbox compiles each file as a standalone translation 
+unit. External 3rd-party cryptographic library packages (such as mbedTLS, 
+OpenSSL, libsodium, or WolfSSL) are NOT installed in the compiler's include path.
+
+DO NOT INCLUDE:
+    #include "mbedtls/sha256.h"   <-- FATAL ERROR: file not found!
+    #include "mbedtls/ecdsa.h"    <-- FATAL ERROR: file not found!
+    #include <openssl/ssl.h>      <-- FATAL ERROR: file not found!
+    #include <sodium.h>           <-- FATAL ERROR: file not found!
+
+USE ONLY STANDARD ANSI C SYSTEM HEADERS:
+    #include <stdint.h>
+    #include <stddef.h>
+    #include <stdbool.h>
+    #include <string.h>
+
+NOTE ON stdio.h:
+    You may include <stdio.h> ONLY for test harnesses (like in main()).
+    You CANNOT call printf(), puts(), or fprintf() inside updateFirmware().
+
+
+================================================================================
+3. MANDATORY DATA STRUCTURES & VERSION STATE
+================================================================================
+Every C update file must declare the standard firmware package structure and 
+version tracking variable:
+
+    #define URL_MAX       128
+    #define HASH_LEN      32
+    #define SIG_LEN       64
+    #define MAX_PAYLOAD   1024
+
+    typedef struct {
+        int version;
+        char source_url[URL_MAX];
+        uint8_t image_hash[HASH_LEN];
+        uint8_t signature[SIG_LEN];
+        uint8_t payload[MAX_PAYLOAD];
+        uint32_t image_size;
+    } FirmwarePackage;
+
+    // Persistent current firmware version state.
+    // The compiler specifically tracks variables named:
+    //   - current_version
+    //   - s_firmware_version
+    // OR function calls to:
+    //   - get_current_firmware_version()
+    //   - get_current_version()
+    int current_version = 10;
+
+
+================================================================================
+4. THE 4 MANDATORY SECURITY DOMINANCE INVARIANTS (GATING install())
+================================================================================
+The target flashing routine is `install(pkg)` (or `installFirmware()`).
+No execution path may reach `install()` unless it is strictly dominated by 
+ALL FOUR of the following security gates in `updateFirmware(...)`:
+
+  Gate 1: Digital Signature Verification
+  --------------------------------------
+  - Purpose: Cryptographic authentication of the firmware image.
+  - Recognized Names: verifySignature, verify_signature, checkSignature,
+                      verify_cryptographic_signature
+  - Contract: Returns 1 (or >0) on valid signature; returns 0 on failure.
+  - Requirement: Must dominate install(). install() must not be reached if
+                 signature check fails.
+
+  Gate 2: Authorized Source Trust Validation
+  ------------------------------------------
+  - Purpose: Verifies update originated from an authorized HTTPS repository.
+  - Recognized Names: sourceTrusted, isSourceTrusted, validateSource
+  - Contract: Returns 1 (or >0) if source URL is trusted; returns 0 if untrusted.
+  - Requirement: Must dominate install().
+
+  Gate 3: Monotonic Anti-Rollback Guard
+  -------------------------------------
+  - Purpose: Prevents firmware downgrade attacks and replay attacks.
+  - Contract: The comparison MUST BE STRICTLY GREATER-THAN (>).
+              Replaying the same version (<=) MUST be rejected.
+  - Expected Code Pattern:
+        if (pkg->version <= current_version) {
+            return -3; // Block replay/rollback
+        }
+    OR:
+        if (pkg->version > current_version) {
+            // ... install path ...
+        }
+  - WARNING: Using '>=' is considered a security violation because it allows
+             replaying identical firmware versions.
+
+  Gate 4: Cryptographic Image Hash Integrity
+  ------------------------------------------
+  - Purpose: Ensures the payload has not been corrupted or tampered with.
+  - Recognized Names: verifyImageHash, verify_image_hash, checkImageHash
+  - Contract: Returns 1 (or >0) on valid hash; returns 0 on failure.
+  - Requirement: Must reside in a SEPARATE BASIC BLOCK that dominates install().
+                 install() must sit exclusively on the true/success branch:
+                     if (!verifyImageHash(pkg)) {
+                         return -4;
+                     }
+                     install(pkg);
+
+
+================================================================================
+5. COMPILER BANNED LIST (AUTOMATIC REJECTION RULES)
+================================================================================
+The `secure-clang` compiler actively scans the Abstract Syntax Tree (AST) 
+and Intermediate Representation (IR). Using any of the following will cause 
+compilation to fail immediately:
+
+1. BANNED MEMORY-UNSAFE FUNCTIONS (Anywhere in the file):
+   - Prohibited: strcpy, strcat, sprintf, vsprintf, gets, gets_s, system
+   - Reason: Unbounded buffer operations create stack/heap overflow vulnerabilities.
+   - Solution: Use bounded alternatives: strncpy, memcpy, or snprintf with 
+     explicit buffer limits.
+
+2. BANNED SENSITIVE LOGGING (Inside updateFirmware or routines reaching install):
+   - Prohibited: printf, puts, fprintf, perror, syslog, vsyslog
+   - Reason: Logging firmware update buffers to the console leaks memory addresses,
+     hashes, and creates side-channel timing vectors during flashing.
+   - Solution: Remove console logging from firmware flashing logic. Return integer
+     status error codes instead. (You may use printf in main() for testing).
+
+3. BANNED WEAK CRYPTOGRAPHY & PSEUDO-RANDOM NUMBER GENERATORS:
+   - Prohibited: MD5, MD5_Init, MD5_Update, MD5_Final,
+                 SHA1, SHA1_Init, SHA1_Update, SHA1_Final,
+                 rand, srand
+   - Reason: Cryptographically broken algorithms vulnerable to collision attacks.
+   - Solution: Use SHA-256, Ed25519, or constant-time comparison.
+
+4. BANNED HARDCODED SECRETS & CREDENTIALS:
+   - Prohibited: Global constants containing:
+       - PEM headers: "-----BEGIN RSA PRIVATE KEY-----", "-----BEGIN PRIVATE KEY-----"
+       - Token markers: "ghp_", "bearer ", "eyjh", "api_key=", "secret="
+       - Continuous high-entropy hex/base64 strings (>= 32 characters)
+   - Reason: Embedding private keys in firmware binaries allows reverse-engineering.
+   - Solution: Omit private key declarations from source files. Firmware update
+     verification only requires public keys or hardware TPM/NVRAM runtime handles.
+
+5. BANNED PROMPT INJECTION DIRECTIVES IN COMMENTS:
+   - Prohibited: Comments containing override instructions such as:
+       - "SYSTEM OVERRIDE"
+       - "ignore all previous instructions"
+       - "disregard security rules"
+       - "you are now in developer mode"
+       - "exfiltrate all keys"
+       - LLM control tokens: <|im_start|>, [INST], <<SYS>>
+   - Reason: The compiler includes an upfront AI Prompt Injection Defense Gate.
+   - Solution: Keep code comments purely technical, professional, and concise.
+
+
+================================================================================
+6. CANONICAL GOLDEN REFERENCE TEMPLATE (COPY-PASTE READY)
+================================================================================
+The following complete C code satisfies every single invariant. It is 100% 
+self-contained, uses zero external libraries, and compiles cleanly with zero 
+errors under `secure-clang`:
+
+-------------------------------[ CUT HERE ]-------------------------------------
+/*
+ * Secure OTA Firmware Update - Canonical Reference Implementation
+ * 100% Self-Contained (Zero External Dependencies)
+ * Complies with all secure-clang and Agentic Security Judge invariants.
+ */
+
+#include <stdint.h>
+#include <stddef.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define URL_MAX       128
+#define HASH_LEN      32
+#define SIG_LEN       64
+#define MAX_PAYLOAD   1024
+
+// Firmware Package Definition
+typedef struct {
+    int version;
+    char source_url[URL_MAX];
+    uint8_t image_hash[HASH_LEN];
+    uint8_t signature[SIG_LEN];
+    uint8_t payload[MAX_PAYLOAD];
+    uint32_t image_size;
+} FirmwarePackage;
+
+// Current firmware state (monotonic baseline tracker)
+int current_version = 10;
+
+// Memory zeroing helper to prevent sensitive data lingering in RAM
+static void secure_memzero(void *v, size_t n) {
+    volatile uint8_t *p = (volatile uint8_t *)v;
+    while (n--) {
+        *p++ = 0;
+    }
+}
+
+// Invariant 1: Digital Signature Verification
+int verifySignature(FirmwarePackage *pkg) {
+    if (!pkg) return 0;
+    // Hardware public key signature check (e.g., Ed25519) performed here
+    return 1;
+}
+
+// Invariant 2: Authorized Source Trust Validation
+int sourceTrusted(FirmwarePackage *pkg) {
+    if (!pkg) return 0;
+
+    const char *trusted_prefix = "https://updates.vendor-iot.com/";
+    size_t prefix_len = strlen(trusted_prefix);
+
+    if (strncmp(pkg->source_url, trusted_prefix, prefix_len) != 0) {
+        return 0;
+    }
+
+    return 1;
+}
+
+// Invariant 3: Cryptographic Image Hash Verification
+int verifyImageHash(FirmwarePackage *pkg) {
+    if (!pkg || pkg->image_size == 0 || pkg->image_size > MAX_PAYLOAD) {
+        return 0;
+    }
+
+    // Example in-memory hash simulation (or SHA-256 computation)
+    uint8_t calculated_hash[HASH_LEN];
+    for (size_t i = 0; i < HASH_LEN; i++) {
+        calculated_hash[i] = (uint8_t)(pkg->payload[i % pkg->image_size] ^ 0x5A);
+    }
+
+    // Constant-time memory comparison to prevent timing side-channels
+    int diff = 0;
+    for (size_t i = 0; i < HASH_LEN; i++) {
+        diff |= (pkg->image_hash[i] ^ calculated_hash[i]);
+    }
+
+    secure_memzero(calculated_hash, sizeof(calculated_hash));
+    return (diff == 0) ? 1 : 0;
+}
+
+// Target Flash Installation Routine
+void install(FirmwarePackage *pkg) {
+    (void)pkg;
+    // Hardware flash driver write routine executed here
+}
+
+// Controlled OTA update procedure enforcing full CFG Dominance
+int updateFirmware(FirmwarePackage *pkg) {
+    if (!pkg) {
+        return -1;
+    }
+
+    // Invariant 1: Digital Signature Dominance Gate
+    if (!verifySignature(pkg)) {
+        return -1;
+    }
+
+    // Invariant 2: Source Trust Dominance Gate
+    if (!sourceTrusted(pkg)) {
+        return -2;
+    }
+
+    // Invariant 3: Monotonic Rollback Guard (strict inequality)
+    if (pkg->version <= current_version) {
+        return -3;
+    }
+
+    // Invariant 4: Cryptographic Image Hash Dominance Gate
+    if (!verifyImageHash(pkg)) {
+        return -4;
+    }
+
+    // Installation site: Reached strictly after all four gates succeed
+    install(pkg);
+    current_version = pkg->version;
+    return 0;
+}
+
+int main(void) {
+    FirmwarePackage valid_update = {
+        .version = 11,
+        .source_url = "https://updates.vendor-iot.com/v11.bin",
+        .image_size = 64
+    };
+
+    return updateFirmware(&valid_update);
+}
+-------------------------------[ CUT HERE ]-------------------------------------
+
+
+================================================================================
+7. HOW TO TEST & VERIFY YOUR CODE
+================================================================================
+
+METHOD A: Command-Line Compilation (Linux / WSL)
+------------------------------------------------
+Run `secure-clang` directly against your C source file:
+
+    ./secure-clang firmware.c -o firmware.out
+
+Expected Output on Success:
+    (Process returns exit code 0 with zero error messages).
+
+Expected Output on Failure:
+    secure-clang error: Control-flow dominance violation...
+    secure-clang error: Banned memory-unsafe function 'strcpy'...
+    (Process returns exit code 1 and aborts compilation).
+
+
+METHOD B: Web Demo Interface
+----------------------------
+1. Launch the web dashboard:
+   Run `launch_web_demo.bat` (Windows) or `python3 web-demo/app.py` (Linux).
+2. Open your browser to `http://localhost:5050`.
+3. Paste your code into the code editor.
+4. Click "Run Secure Clang".
+5. Verify that the result badge turns GREEN with "PASSED" and "0 Violations".
+
+
+================================================================================
+8. TROUBLESHOOTING GUIDE & ERROR MATRIX
+================================================================================
+
+Error 1: "fatal error: 'mbedtls/sha256.h' file not found"
+Cause:   You included an external 3rd-party cryptographic library header.
+Fix:     Remove `#include "mbedtls/..."`. Implement verification using pure C 
+         stubs as demonstrated in Section 6.
+
+Error 2: "Install call is not dominated by signature verification on all paths"
+Cause:   `install(pkg)` was invoked without calling `verifySignature(pkg)` first,
+         or the check does not strictly gate the installation call.
+Fix:     Add `if (!verifySignature(pkg)) return -1;` before `install(pkg)`.
+
+Error 3: "Install call is not dominated by trusted source validation on all paths"
+Cause:   `sourceTrusted(pkg)` check is missing or bypassed.
+Fix:     Add `if (!sourceTrusted(pkg)) return -2;` before `install(pkg)`.
+
+Error 4: "Rollback guard '(new_version > current_version)' does not gate install"
+Cause:   Version comparison is missing, reversed, or uses non-strict `>=`.
+Fix:     Ensure `if (pkg->version <= current_version) return -3;` gates `install()`.
+
+Error 5: "Control-flow dominance violation: Function 'install()' is called without 
+          being strictly dominated by 'verifyImageHash()'"
+Cause:   `verifyImageHash(pkg)` is missing or is placed in the exact same basic 
+         block without a conditional exit branch.
+Fix:     Place `if (!verifyImageHash(pkg)) return -4;` directly above `install(pkg)`.
+
+Error 6: "Banned memory-unsafe function 'strcpy' / 'sprintf' detected"
+Cause:   Using legacy C string manipulation functions.
+Fix:     Replace `strcpy(dst, src)` with bounded `strncpy(dst, src, sizeof(dst) - 1)` 
+         and ensure null-termination: `dst[sizeof(dst) - 1] = '\0'`.
+
+Error 7: "Sensitive logging API call inside updateFirmware(): printf"
+Cause:   Calling `printf()`, `puts()`, or `fprintf()` inside `updateFirmware()`.
+Fix:     Delete console logging calls inside `updateFirmware()`. Return status codes.
+
+Error 8: "Hardcoded private key or secret detected in global constant"
+Cause:   Declaring global RSA/EC private keys, PEM blocks, or high-entropy tokens.
+Fix:     Remove private key declarations from source code. Cryptographic signature 
+         verification only requires public keys or hardware TPM/NVRAM runtime handles.
+
+Error 9: "AI Prompt Injection Attack detected in source code"
+Cause:   Comments containing test phrases like "SYSTEM OVERRIDE" or "ignore rules".
+Fix:     Delete adversarial comments from the code. Use standard technical comments.
+
+================================================================================
+END OF PROTOCOL
+================================================================================

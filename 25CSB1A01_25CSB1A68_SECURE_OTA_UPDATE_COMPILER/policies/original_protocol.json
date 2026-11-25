@@ -1,0 +1,15 @@
+{
+  "id": "original_protocol",
+  "name": "Original Protocol (Full Security)",
+  "description": "Enforces all security invariants: signature verification dominance, trusted source dominance, anti-rollback guard (new > current), sensitive logging ban, weak crypto/entropy ban, and memory-unsafe function ban.",
+  "rules": {
+    "signature_verification": true,
+    "source_trust": true,
+    "rollback_guard": true,
+    "banned_logging": true,
+    "weak_crypto": true,
+    "banned_memory_functions": true,
+    "hardcoded_secrets": true,
+    "image_hash_verification": true
+  }
+}

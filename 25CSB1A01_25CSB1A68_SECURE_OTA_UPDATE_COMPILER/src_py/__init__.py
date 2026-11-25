@@ -1,0 +1,55 @@
+"""
+Secure OTA Update Subsystem - Python Runtime
+Hybrid Encrypt-Then-Sign OTA Client Implementation
+"""
+
+from .update_handler import (
+    OTA_MAGIC,
+    HEADER_SIZE,
+    UpdateStatus,
+    OtaPackage,
+    DeviceState,
+    parse_semver,
+    semver_to_u32,
+    u32_to_semver,
+    unwrap_payload_key,
+    verify_signature,
+    verify_cryptographic_signature,
+    verifySignature,
+    source_trusted,
+    sourceTrusted,
+    is_source_trusted,
+    verify_image_hash,
+    verifyImageHash,
+    decrypt_payload_aes_gcm,
+    install,
+    update_firmware,
+    updateFirmware,
+)
+
+__all__ = [
+    "OTA_MAGIC",
+    "HEADER_SIZE",
+    "UpdateStatus",
+    "OtaPackage",
+    "DeviceState",
+    "parse_semver",
+    "semver_to_u32",
+    "u32_to_semver",
+    "unwrap_payload_key",
+    "verify_signature",
+    "verify_cryptographic_signature",
+    "verifySignature",
+    "source_trusted",
+    "sourceTrusted",
+    "is_source_trusted",
+    "isSourceTrusted",
+    "verify_image_hash",
+    "verifyImageHash",
+    "decrypt_payload_aes_gcm",
+    "decryptPayloadAesGcm",
+    "install",
+    "installFirmware",
+    "update_firmware",
+    "updateFirmware",
+]
