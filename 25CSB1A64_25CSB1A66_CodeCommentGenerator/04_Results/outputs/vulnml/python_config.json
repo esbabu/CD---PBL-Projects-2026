@@ -1,0 +1,92 @@
+{
+ "language": "python",
+ "dataset": "datasets/security_dataset/v1",
+ "seed": 7,
+ "features": "TF-IDF over normalised tokens (comments removed, strings STR, numbers NUM, label-leaking identifiers and access modifiers masked), max 40,000 features",
+ "model": "LogisticRegression (lbfgs, max_iter 3000)",
+ "grid": [
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    2
+   ]
+  }
+ ],
+ "selection": "best vulnerable-vs-safe F1 on the validation split",
+ "chosen": {
+  "C": 16.0,
+  "ngram": [
+   1,
+   1
+  ],
+  "val_f1": 0.691,
+  "val_accuracy": 0.7692
+ },
+ "refit_on": "train + validation",
+ "counts": {
+  "train": 913,
+  "val": 403,
+  "test": 163
+ },
+ "train_labels": {
+  "code-injection": 15,
+  "safe": 551,
+  "hardcoded-credentials": 3,
+  "weak-crypto": 57,
+  "sql-injection": 8,
+  "error-handling": 6,
+  "deserialization": 19,
+  "path-traversal": 49,
+  "xss": 32,
+  "ssrf": 3,
+  "trust-boundary": 18,
+  "format-string": 3,
+  "cleartext": 23,
+  "authorization": 3,
+  "information-exposure": 3,
+  "xpath-injection": 30,
+  "weak-randomness": 68,
+  "open-redirect": 8,
+  "command-injection": 6,
+  "xxe": 2,
+  "ldap-injection": 6
+ },
+ "small_n": false,
+ "used_by_neurosymbolic_engine": true
+}

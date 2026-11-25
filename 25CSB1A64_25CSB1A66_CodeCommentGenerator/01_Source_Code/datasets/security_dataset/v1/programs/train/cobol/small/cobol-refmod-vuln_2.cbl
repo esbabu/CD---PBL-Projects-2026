@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S23672.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-POS2            PIC 99.
+       01  WS-RECORD2         PIC X(80).
+       01  WS-PART2           PIC X(5).
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       EXTRACT-FIELD2.
+           ACCEPT WS-POS2.
+           MOVE WS-RECORD2(WS-POS2:5) TO WS-PART2.
+

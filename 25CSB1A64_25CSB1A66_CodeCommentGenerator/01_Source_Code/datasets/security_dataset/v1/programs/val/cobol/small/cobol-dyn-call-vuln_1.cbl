@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S84681.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-PROG1           PIC X(8).
+       01  WS-DATA1           PIC X(50).
+       01  WS-CHOICE1         PIC X.
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       RUN-HANDLER1.
+           ACCEPT WS-PROG1.
+           CALL WS-PROG1 USING WS-DATA1.
+

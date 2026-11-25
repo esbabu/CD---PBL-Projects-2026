@@ -1,0 +1,15 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S60331.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-USER1           PIC X(10).
+       01  WS-PASSWORD-IN1    PIC X(12).
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       LOG-LOGIN-SAFE1.
+           DISPLAY 'LOGIN ' WS-USER1.
+

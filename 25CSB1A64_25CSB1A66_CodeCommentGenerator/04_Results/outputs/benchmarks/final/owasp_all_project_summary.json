@@ -1,0 +1,854 @@
+{
+ "cases_scored": 877,
+ "excluded_cases": [],
+ "excluded_categories": {
+  "ldapi": 29,
+  "redirect": 34,
+  "securecookie": 39,
+  "trustbound": 37,
+  "xpathi": 186,
+  "xxe": 28
+ },
+ "meta": {
+  "analyzer": {
+   "git_head": "8428ad1d1af1a4a4af710a2d1bdff55096276fbe",
+   "security_source_sha256": "c611de44bd060c36",
+   "src_dirty": true
+  },
+  "config": {
+   "category_rules": {
+    "cmdi": [
+     "SEC002"
+    ],
+    "codeinj": [
+     "SEC001"
+    ],
+    "deserialization": [
+     "SEC009",
+     "SEC010"
+    ],
+    "hash": [
+     "SEC004"
+    ],
+    "pathtraver": [
+     "SEC013"
+    ],
+    "sqli": [
+     "SEC005"
+    ],
+    "weakrand": [
+     "SEC011"
+    ],
+    "xss": [
+     "SEC014"
+    ]
+   },
+   "project_mode": true,
+   "split": "all"
+  },
+  "dataset": "OWASP BenchmarkPython",
+  "dataset_version": "v0.1 @ f1291485808b66e20ddb6b01b10dc71b3df8c8ba",
+  "python": "3.12.6",
+  "timestamp_utc": "2026-11-18T17:01:17+00:00"
+ },
+ "metrics": {
+  "confirmed": {
+   "overall": {
+    "f1": 0.44341801385681295,
+    "false_positive_rate": 0.02702702702702703,
+    "fn": 226,
+    "fp": 15,
+    "precision": 0.8648648648648649,
+    "recall": 0.2981366459627329,
+    "tn": 540,
+    "tp": 96
+   },
+   "per_category": {
+    "cmdi": {
+     "f1": 0.8799999999999999,
+     "false_positive_rate": 0.14285714285714285,
+     "fn": 2,
+     "fp": 1,
+     "precision": 0.9166666666666666,
+     "recall": 0.8461538461538461,
+     "tn": 6,
+     "tp": 11
+    },
+    "codeinj": {
+     "f1": 0.6666666666666667,
+     "false_positive_rate": 0.18181818181818182,
+     "fn": 7,
+     "fp": 6,
+     "precision": 0.6842105263157895,
+     "recall": 0.65,
+     "tn": 27,
+     "tp": 13
+    },
+    "deserialization": {
+     "f1": 0.8823529411764706,
+     "false_positive_rate": 0.027777777777777776,
+     "fn": 3,
+     "fp": 1,
+     "precision": 0.9375,
+     "recall": 0.8333333333333334,
+     "tn": 35,
+     "tp": 15
+    },
+    "hash": {
+     "f1": null,
+     "false_positive_rate": 0.0,
+     "fn": 71,
+     "fp": 0,
+     "precision": null,
+     "recall": 0.0,
+     "tn": 80,
+     "tp": 0
+    },
+    "pathtraver": {
+     "f1": 0.8571428571428572,
+     "false_positive_rate": 0.06796116504854369,
+     "fn": 11,
+     "fp": 7,
+     "precision": 0.8852459016393442,
+     "recall": 0.8307692307692308,
+     "tn": 96,
+     "tp": 54
+    },
+    "sqli": {
+     "f1": 0.7499999999999999,
+     "false_positive_rate": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "precision": 1.0,
+     "recall": 0.6,
+     "tn": 11,
+     "tp": 3
+    },
+    "weakrand": {
+     "f1": null,
+     "false_positive_rate": 0.0,
+     "fn": 99,
+     "fp": 0,
+     "precision": null,
+     "recall": 0.0,
+     "tn": 227,
+     "tp": 0
+    },
+    "xss": {
+     "f1": null,
+     "false_positive_rate": 0.0,
+     "fn": 31,
+     "fp": 0,
+     "precision": null,
+     "recall": 0.0,
+     "tn": 58,
+     "tp": 0
+    }
+   }
+  },
+  "confirmed+potential": {
+   "overall": {
+    "f1": 0.9160739687055476,
+    "false_positive_rate": 0.1063063063063063,
+    "fn": 0,
+    "fp": 59,
+    "precision": 0.8451443569553806,
+    "recall": 1.0,
+    "tn": 496,
+    "tp": 322
+   },
+   "per_category": {
+    "cmdi": {
+     "f1": 0.962962962962963,
+     "false_positive_rate": 0.14285714285714285,
+     "fn": 0,
+     "fp": 1,
+     "precision": 0.9285714285714286,
+     "recall": 1.0,
+     "tn": 6,
+     "tp": 13
+    },
+    "codeinj": {
+     "f1": 0.7272727272727273,
+     "false_positive_rate": 0.45454545454545453,
+     "fn": 0,
+     "fp": 15,
+     "precision": 0.5714285714285714,
+     "recall": 1.0,
+     "tn": 18,
+     "tp": 20
+    },
+    "deserialization": {
+     "f1": 0.8372093023255813,
+     "false_positive_rate": 0.19444444444444445,
+     "fn": 0,
+     "fp": 7,
+     "precision": 0.72,
+     "recall": 1.0,
+     "tn": 29,
+     "tp": 18
+    },
+    "hash": {
+     "f1": 1.0,
+     "false_positive_rate": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "tn": 80,
+     "tp": 71
+    },
+    "pathtraver": {
+     "f1": 0.8387096774193548,
+     "false_positive_rate": 0.24271844660194175,
+     "fn": 0,
+     "fp": 25,
+     "precision": 0.7222222222222222,
+     "recall": 1.0,
+     "tn": 78,
+     "tp": 65
+    },
+    "sqli": {
+     "f1": 1.0,
+     "false_positive_rate": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "tn": 11,
+     "tp": 5
+    },
+    "weakrand": {
+     "f1": 1.0,
+     "false_positive_rate": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "tn": 227,
+     "tp": 99
+    },
+    "xss": {
+     "f1": 0.8493150684931507,
+     "false_positive_rate": 0.1896551724137931,
+     "fn": 0,
+     "fp": 11,
+     "precision": 0.7380952380952381,
+     "recall": 1.0,
+     "tn": 47,
+     "tp": 31
+    }
+   }
+  }
+ },
+ "metrics_by_split": {
+  "dev": {
+   "confirmed": {
+    "overall": {
+     "f1": 0.47017543859649125,
+     "false_positive_rate": 0.02617801047120419,
+     "fn": 141,
+     "fp": 10,
+     "precision": 0.8701298701298701,
+     "recall": 0.32211538461538464,
+     "tn": 372,
+     "tp": 67
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": 0.9,
+      "false_positive_rate": 0.16666666666666666,
+      "fn": 1,
+      "fp": 1,
+      "precision": 0.9,
+      "recall": 0.9,
+      "tn": 5,
+      "tp": 9
+     },
+     "codeinj": {
+      "f1": 0.6666666666666667,
+      "false_positive_rate": 0.2,
+      "fn": 3,
+      "fp": 5,
+      "precision": 0.6153846153846154,
+      "recall": 0.7272727272727273,
+      "tn": 20,
+      "tp": 8
+     },
+     "deserialization": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 28,
+      "tp": 10
+     },
+     "hash": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 48,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 49,
+      "tp": 0
+     },
+     "pathtraver": {
+      "f1": 0.9135802469135802,
+      "false_positive_rate": 0.05194805194805195,
+      "fn": 3,
+      "fp": 4,
+      "precision": 0.9024390243902439,
+      "recall": 0.925,
+      "tn": 73,
+      "tp": 37
+     },
+     "sqli": {
+      "f1": 0.8571428571428571,
+      "false_positive_rate": 0.0,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.75,
+      "tn": 8,
+      "tp": 3
+     },
+     "weakrand": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 64,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 148,
+      "tp": 0
+     },
+     "xss": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 21,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 41,
+      "tp": 0
+     }
+    }
+   },
+   "confirmed+potential": {
+    "overall": {
+     "f1": 0.9162995594713657,
+     "false_positive_rate": 0.09947643979057591,
+     "fn": 0,
+     "fp": 38,
+     "precision": 0.8455284552845529,
+     "recall": 1.0,
+     "tn": 344,
+     "tp": 208
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": 0.9523809523809523,
+      "false_positive_rate": 0.16666666666666666,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "tn": 5,
+      "tp": 10
+     },
+     "codeinj": {
+      "f1": 0.7096774193548387,
+      "false_positive_rate": 0.36,
+      "fn": 0,
+      "fp": 9,
+      "precision": 0.55,
+      "recall": 1.0,
+      "tn": 16,
+      "tp": 11
+     },
+     "deserialization": {
+      "f1": 0.8,
+      "false_positive_rate": 0.17857142857142858,
+      "fn": 0,
+      "fp": 5,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "tn": 23,
+      "tp": 10
+     },
+     "hash": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 49,
+      "tp": 48
+     },
+     "pathtraver": {
+      "f1": 0.8247422680412371,
+      "false_positive_rate": 0.22077922077922077,
+      "fn": 0,
+      "fp": 17,
+      "precision": 0.7017543859649122,
+      "recall": 1.0,
+      "tn": 60,
+      "tp": 40
+     },
+     "sqli": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 8,
+      "tp": 4
+     },
+     "weakrand": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 148,
+      "tp": 64
+     },
+     "xss": {
+      "f1": 0.8750000000000001,
+      "false_positive_rate": 0.14634146341463414,
+      "fn": 0,
+      "fp": 6,
+      "precision": 0.7777777777777778,
+      "recall": 1.0,
+      "tn": 35,
+      "tp": 21
+     }
+    }
+   }
+  },
+  "heldout": {
+   "confirmed": {
+    "overall": {
+     "f1": 0.39189189189189194,
+     "false_positive_rate": 0.028901734104046242,
+     "fn": 85,
+     "fp": 5,
+     "precision": 0.8529411764705882,
+     "recall": 0.2543859649122807,
+     "tn": 168,
+     "tp": 29
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": 0.8,
+      "false_positive_rate": 0.0,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "tn": 1,
+      "tp": 2
+     },
+     "codeinj": {
+      "f1": 0.6666666666666667,
+      "false_positive_rate": 0.125,
+      "fn": 4,
+      "fp": 1,
+      "precision": 0.8333333333333334,
+      "recall": 0.5555555555555556,
+      "tn": 7,
+      "tp": 5
+     },
+     "deserialization": {
+      "f1": 0.7142857142857143,
+      "false_positive_rate": 0.125,
+      "fn": 3,
+      "fp": 1,
+      "precision": 0.8333333333333334,
+      "recall": 0.625,
+      "tn": 7,
+      "tp": 5
+     },
+     "hash": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 23,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 31,
+      "tp": 0
+     },
+     "pathtraver": {
+      "f1": 0.7555555555555556,
+      "false_positive_rate": 0.11538461538461539,
+      "fn": 8,
+      "fp": 3,
+      "precision": 0.85,
+      "recall": 0.68,
+      "tn": 23,
+      "tp": 17
+     },
+     "sqli": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 1,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 3,
+      "tp": 0
+     },
+     "weakrand": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 35,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 79,
+      "tp": 0
+     },
+     "xss": {
+      "f1": null,
+      "false_positive_rate": 0.0,
+      "fn": 10,
+      "fp": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tn": 17,
+      "tp": 0
+     }
+    }
+   },
+   "confirmed+potential": {
+    "overall": {
+     "f1": 0.9156626506024096,
+     "false_positive_rate": 0.12138728323699421,
+     "fn": 0,
+     "fp": 21,
+     "precision": 0.8444444444444444,
+     "recall": 1.0,
+     "tn": 152,
+     "tp": 114
+    },
+    "per_category": {
+     "cmdi": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 1,
+      "tp": 3
+     },
+     "codeinj": {
+      "f1": 0.7499999999999999,
+      "false_positive_rate": 0.75,
+      "fn": 0,
+      "fp": 6,
+      "precision": 0.6,
+      "recall": 1.0,
+      "tn": 2,
+      "tp": 9
+     },
+     "deserialization": {
+      "f1": 0.888888888888889,
+      "false_positive_rate": 0.25,
+      "fn": 0,
+      "fp": 2,
+      "precision": 0.8,
+      "recall": 1.0,
+      "tn": 6,
+      "tp": 8
+     },
+     "hash": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 31,
+      "tp": 23
+     },
+     "pathtraver": {
+      "f1": 0.8620689655172413,
+      "false_positive_rate": 0.3076923076923077,
+      "fn": 0,
+      "fp": 8,
+      "precision": 0.7575757575757576,
+      "recall": 1.0,
+      "tn": 18,
+      "tp": 25
+     },
+     "sqli": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 3,
+      "tp": 1
+     },
+     "weakrand": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 79,
+      "tp": 35
+     },
+     "xss": {
+      "f1": 0.8,
+      "false_positive_rate": 0.29411764705882354,
+      "fn": 0,
+      "fp": 5,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "tn": 12,
+      "tp": 10
+     }
+    }
+   }
+  }
+ },
+ "new_categories": {
+  "category_rules": {
+   "redirect": [
+    "SEC017"
+   ],
+   "xxe": [
+    "SEC018"
+   ]
+  },
+  "metrics": {
+   "confirmed": {
+    "overall": {
+     "f1": 0.9,
+     "false_positive_rate": 0.024390243902439025,
+     "fn": 3,
+     "fp": 1,
+     "precision": 0.9473684210526315,
+     "recall": 0.8571428571428571,
+     "tn": 40,
+     "tp": 18
+    },
+    "per_category": {
+     "redirect": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 21,
+      "tp": 13
+     },
+     "xxe": {
+      "f1": 0.7142857142857143,
+      "false_positive_rate": 0.05,
+      "fn": 3,
+      "fp": 1,
+      "precision": 0.8333333333333334,
+      "recall": 0.625,
+      "tn": 19,
+      "tp": 5
+     }
+    }
+   },
+   "confirmed+potential": {
+    "overall": {
+     "f1": 0.9767441860465117,
+     "false_positive_rate": 0.024390243902439025,
+     "fn": 0,
+     "fp": 1,
+     "precision": 0.9545454545454546,
+     "recall": 1.0,
+     "tn": 40,
+     "tp": 21
+    },
+    "per_category": {
+     "redirect": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 21,
+      "tp": 13
+     },
+     "xxe": {
+      "f1": 0.9411764705882353,
+      "false_positive_rate": 0.05,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.8888888888888888,
+      "recall": 1.0,
+      "tn": 19,
+      "tp": 8
+     }
+    }
+   }
+  },
+  "metrics_by_split": {
+   "dev": {
+    "confirmed": {
+     "overall": {
+      "f1": 0.9285714285714286,
+      "false_positive_rate": 0.03333333333333333,
+      "fn": 1,
+      "fp": 1,
+      "precision": 0.9285714285714286,
+      "recall": 0.9285714285714286,
+      "tn": 29,
+      "tp": 13
+     },
+     "per_category": {
+      "redirect": {
+       "f1": 1.0,
+       "false_positive_rate": 0.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tn": 15,
+       "tp": 9
+      },
+      "xxe": {
+       "f1": 0.8000000000000002,
+       "false_positive_rate": 0.06666666666666667,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.8,
+       "recall": 0.8,
+       "tn": 14,
+       "tp": 4
+      }
+     }
+    },
+    "confirmed+potential": {
+     "overall": {
+      "f1": 0.9655172413793104,
+      "false_positive_rate": 0.03333333333333333,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.9333333333333333,
+      "recall": 1.0,
+      "tn": 29,
+      "tp": 14
+     },
+     "per_category": {
+      "redirect": {
+       "f1": 1.0,
+       "false_positive_rate": 0.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tn": 15,
+       "tp": 9
+      },
+      "xxe": {
+       "f1": 0.9090909090909091,
+       "false_positive_rate": 0.06666666666666667,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.8333333333333334,
+       "recall": 1.0,
+       "tn": 14,
+       "tp": 5
+      }
+     }
+    }
+   },
+   "heldout": {
+    "confirmed": {
+     "overall": {
+      "f1": 0.8333333333333333,
+      "false_positive_rate": 0.0,
+      "fn": 2,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.7142857142857143,
+      "tn": 11,
+      "tp": 5
+     },
+     "per_category": {
+      "redirect": {
+       "f1": 1.0,
+       "false_positive_rate": 0.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tn": 6,
+       "tp": 4
+      },
+      "xxe": {
+       "f1": 0.5,
+       "false_positive_rate": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.3333333333333333,
+       "tn": 5,
+       "tp": 1
+      }
+     }
+    },
+    "confirmed+potential": {
+     "overall": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tn": 11,
+      "tp": 7
+     },
+     "per_category": {
+      "redirect": {
+       "f1": 1.0,
+       "false_positive_rate": 0.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tn": 6,
+       "tp": 4
+      },
+      "xxe": {
+       "f1": 1.0,
+       "false_positive_rate": 0.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tn": 5,
+       "tp": 3
+      }
+     }
+    }
+   }
+  }
+ },
+ "performance": {
+  "files": 1230,
+  "peak_traced_memory_kb": 197908.4,
+  "total_ms": 132893.3
+ },
+ "unit": "OWASP test case x its category (file-level, OWASP convention)"
+}

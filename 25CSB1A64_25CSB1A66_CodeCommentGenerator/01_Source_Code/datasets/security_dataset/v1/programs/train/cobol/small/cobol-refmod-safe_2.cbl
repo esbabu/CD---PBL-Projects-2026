@@ -1,0 +1,19 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S76972.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-POS2            PIC 99.
+       01  WS-RECORD2         PIC X(80).
+       01  WS-PART2           PIC X(5).
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       EXTRACT-FIELD-SAFE2.
+           ACCEPT WS-POS2.
+           IF WS-POS2 IS NUMERIC AND WS-POS2 > 0 AND WS-POS2 < 76
+               MOVE WS-RECORD2(WS-POS2:5) TO WS-PART2
+           END-IF.
+

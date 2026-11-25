@@ -1,0 +1,741 @@
+{
+  "meta": {
+    "dataset": "agent-fix-eval",
+    "dataset_version": "fixtures + OWASP BenchmarkPython",
+    "config": {
+      "max_attempts": 3,
+      "llm": false
+    },
+    "analyzer": {
+      "git_head": "4f4c33d8ea0dd02d199c9319dcce029c83909756",
+      "src_dirty": true,
+      "security_source_sha256": "0bc37f15667d1d26"
+    },
+    "timestamp_utc": "2026-11-20T10:45:23+00:00",
+    "python": "3.12.6"
+  },
+  "fixtures": {
+    "dataset": "tests/security_fixtures (files with # expect: labels)",
+    "run": {
+      "files": 7,
+      "files_not_parsable": 0,
+      "files_changed": 4,
+      "seconds": 1.0
+    },
+    "per_rule": {
+      "SEC001": {
+        "findings": 4,
+        "attempted": 4,
+        "fixed_verified": 2,
+        "needs_manual_fix": 2,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 0.5,
+        "fix_rate_of_all": 0.5
+      },
+      "SEC002": {
+        "findings": 14,
+        "attempted": 14,
+        "fixed_verified": 8,
+        "needs_manual_fix": 6,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 0.571,
+        "fix_rate_of_all": 0.571
+      },
+      "SEC003": {
+        "findings": 8,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 8,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC004": {
+        "findings": 1,
+        "attempted": 1,
+        "fixed_verified": 1,
+        "needs_manual_fix": 0,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 1.0,
+        "fix_rate_of_all": 1.0
+      },
+      "SEC005": {
+        "findings": 21,
+        "attempted": 21,
+        "fixed_verified": 11,
+        "needs_manual_fix": 10,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 0.524,
+        "fix_rate_of_all": 0.524
+      },
+      "SEC006": {
+        "findings": 1,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 1,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC007": {
+        "findings": 1,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 1,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC008": {
+        "findings": 1,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 1,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC009": {
+        "findings": 3,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 3,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC010": {
+        "findings": 3,
+        "attempted": 3,
+        "fixed_verified": 3,
+        "needs_manual_fix": 0,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 1.0,
+        "fix_rate_of_all": 1.0
+      },
+      "SEC011": {
+        "findings": 1,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 1,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC012": {
+        "findings": 1,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 1,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC013": {
+        "findings": 7,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 7,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC014": {
+        "findings": 6,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 6,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC015": {
+        "findings": 2,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 2,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      }
+    },
+    "overall": {
+      "findings": 74,
+      "attempted": 43,
+      "fixed_verified": 25,
+      "needs_manual_fix": 49,
+      "rejected_patches": 0,
+      "fix_rate_of_attempted": 0.581,
+      "fix_rate_of_all": 0.338
+    },
+    "files": [
+      {
+        "file": "tests\\security_fixtures\\cmdi_vulnerable.py",
+        "findings": 14,
+        "fixed": 8,
+        "needs_manual_fix": 6,
+        "rejected_patches": 0,
+        "findings_before": 14,
+        "findings_after": 6
+      },
+      {
+        "file": "tests\\security_fixtures\\code_deser_vulnerable.py",
+        "findings": 10,
+        "fixed": 5,
+        "needs_manual_fix": 5,
+        "rejected_patches": 0,
+        "findings_before": 10,
+        "findings_after": 5
+      },
+      {
+        "file": "tests\\security_fixtures\\path_vulnerable.py",
+        "findings": 7,
+        "fixed": 0,
+        "needs_manual_fix": 7,
+        "rejected_patches": 0,
+        "findings_before": 7,
+        "findings_after": 7
+      },
+      {
+        "file": "tests\\security_fixtures\\patterns_mixed.py",
+        "findings": 7,
+        "fixed": 2,
+        "needs_manual_fix": 5,
+        "rejected_patches": 0,
+        "findings_before": 7,
+        "findings_after": 5
+      },
+      {
+        "file": "tests\\security_fixtures\\secrets_vulnerable.py",
+        "findings": 8,
+        "fixed": 0,
+        "needs_manual_fix": 8,
+        "rejected_patches": 0,
+        "findings_before": 8,
+        "findings_after": 8
+      },
+      {
+        "file": "tests\\security_fixtures\\sqli_vulnerable.py",
+        "findings": 20,
+        "fixed": 10,
+        "needs_manual_fix": 10,
+        "rejected_patches": 0,
+        "findings_before": 20,
+        "findings_after": 10
+      },
+      {
+        "file": "tests\\security_fixtures\\xss_vulnerable.py",
+        "findings": 8,
+        "fixed": 0,
+        "needs_manual_fix": 8,
+        "rejected_patches": 0,
+        "findings_before": 8,
+        "findings_after": 8
+      }
+    ]
+  },
+  "owasp": {
+    "dataset": "OWASP BenchmarkPython (all test cases)",
+    "run": {
+      "files": 1230,
+      "files_not_parsable": 0,
+      "files_changed": 130,
+      "seconds": 16.5
+    },
+    "per_rule": {
+      "SEC001": {
+        "findings": 35,
+        "attempted": 35,
+        "fixed_verified": 16,
+        "needs_manual_fix": 19,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 0.457,
+        "fix_rate_of_all": 0.457
+      },
+      "SEC002": {
+        "findings": 15,
+        "attempted": 15,
+        "fixed_verified": 0,
+        "needs_manual_fix": 15,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 0.0,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC004": {
+        "findings": 71,
+        "attempted": 71,
+        "fixed_verified": 71,
+        "needs_manual_fix": 0,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 1.0,
+        "fix_rate_of_all": 1.0
+      },
+      "SEC005": {
+        "findings": 5,
+        "attempted": 5,
+        "fixed_verified": 5,
+        "needs_manual_fix": 0,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 1.0,
+        "fix_rate_of_all": 1.0
+      },
+      "SEC006": {
+        "findings": 351,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 351,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC009": {
+        "findings": 20,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 20,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC010": {
+        "findings": 5,
+        "attempted": 5,
+        "fixed_verified": 5,
+        "needs_manual_fix": 0,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 1.0,
+        "fix_rate_of_all": 1.0
+      },
+      "SEC011": {
+        "findings": 99,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 99,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC013": {
+        "findings": 95,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 95,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC014": {
+        "findings": 1104,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 1104,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC017": {
+        "findings": 14,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 14,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC018": {
+        "findings": 9,
+        "attempted": 9,
+        "fixed_verified": 9,
+        "needs_manual_fix": 0,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 1.0,
+        "fix_rate_of_all": 1.0
+      },
+      "SEC019": {
+        "findings": 18,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 18,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC020": {
+        "findings": 79,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 79,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC028": {
+        "findings": 23,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 23,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      },
+      "SEC044": {
+        "findings": 24,
+        "attempted": 24,
+        "fixed_verified": 24,
+        "needs_manual_fix": 0,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": 1.0,
+        "fix_rate_of_all": 1.0
+      },
+      "SEC049": {
+        "findings": 66,
+        "attempted": 0,
+        "fixed_verified": 0,
+        "needs_manual_fix": 66,
+        "rejected_patches": 0,
+        "fix_rate_of_attempted": null,
+        "fix_rate_of_all": 0.0
+      }
+    },
+    "overall": {
+      "findings": 2033,
+      "attempted": 164,
+      "fixed_verified": 130,
+      "needs_manual_fix": 1903,
+      "rejected_patches": 0,
+      "fix_rate_of_attempted": 0.793,
+      "fix_rate_of_all": 0.064
+    },
+    "by_case_label": {
+      "real_vulnerability": {
+        "per_rule": {
+          "SEC001": {
+            "findings": 20,
+            "attempted": 20,
+            "fixed_verified": 10,
+            "needs_manual_fix": 10,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 0.5,
+            "fix_rate_of_all": 0.5
+          },
+          "SEC002": {
+            "findings": 13,
+            "attempted": 13,
+            "fixed_verified": 0,
+            "needs_manual_fix": 13,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 0.0,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC004": {
+            "findings": 71,
+            "attempted": 71,
+            "fixed_verified": 71,
+            "needs_manual_fix": 0,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 1.0,
+            "fix_rate_of_all": 1.0
+          },
+          "SEC005": {
+            "findings": 5,
+            "attempted": 5,
+            "fixed_verified": 5,
+            "needs_manual_fix": 0,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 1.0,
+            "fix_rate_of_all": 1.0
+          },
+          "SEC006": {
+            "findings": 105,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 105,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC009": {
+            "findings": 13,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 13,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC010": {
+            "findings": 5,
+            "attempted": 5,
+            "fixed_verified": 5,
+            "needs_manual_fix": 0,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 1.0,
+            "fix_rate_of_all": 1.0
+          },
+          "SEC011": {
+            "findings": 99,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 99,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC013": {
+            "findings": 65,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 65,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC014": {
+            "findings": 538,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 538,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC017": {
+            "findings": 13,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 13,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC018": {
+            "findings": 8,
+            "attempted": 8,
+            "fixed_verified": 8,
+            "needs_manual_fix": 0,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 1.0,
+            "fix_rate_of_all": 1.0
+          },
+          "SEC019": {
+            "findings": 16,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 16,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC020": {
+            "findings": 51,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 51,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC028": {
+            "findings": 18,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 18,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC044": {
+            "findings": 24,
+            "attempted": 24,
+            "fixed_verified": 24,
+            "needs_manual_fix": 0,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 1.0,
+            "fix_rate_of_all": 1.0
+          },
+          "SEC049": {
+            "findings": 23,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 23,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          }
+        },
+        "overall": {
+          "findings": 1087,
+          "attempted": 146,
+          "fixed_verified": 123,
+          "needs_manual_fix": 964,
+          "rejected_patches": 0,
+          "fix_rate_of_attempted": 0.842,
+          "fix_rate_of_all": 0.113
+        }
+      },
+      "false_positive_case": {
+        "per_rule": {
+          "SEC001": {
+            "findings": 15,
+            "attempted": 15,
+            "fixed_verified": 6,
+            "needs_manual_fix": 9,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 0.4,
+            "fix_rate_of_all": 0.4
+          },
+          "SEC002": {
+            "findings": 2,
+            "attempted": 2,
+            "fixed_verified": 0,
+            "needs_manual_fix": 2,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 0.0,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC006": {
+            "findings": 246,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 246,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC009": {
+            "findings": 7,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 7,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC013": {
+            "findings": 30,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 30,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC014": {
+            "findings": 566,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 566,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC017": {
+            "findings": 1,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 1,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC018": {
+            "findings": 1,
+            "attempted": 1,
+            "fixed_verified": 1,
+            "needs_manual_fix": 0,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": 1.0,
+            "fix_rate_of_all": 1.0
+          },
+          "SEC019": {
+            "findings": 2,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 2,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC020": {
+            "findings": 28,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 28,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC028": {
+            "findings": 5,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 5,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          },
+          "SEC049": {
+            "findings": 43,
+            "attempted": 0,
+            "fixed_verified": 0,
+            "needs_manual_fix": 43,
+            "rejected_patches": 0,
+            "fix_rate_of_attempted": null,
+            "fix_rate_of_all": 0.0
+          }
+        },
+        "overall": {
+          "findings": 946,
+          "attempted": 18,
+          "fixed_verified": 7,
+          "needs_manual_fix": 939,
+          "rejected_patches": 0,
+          "fix_rate_of_attempted": 0.389,
+          "fix_rate_of_all": 0.007
+        }
+      }
+    },
+    "real_cases_with_category_finding_fully_fixed": {
+      "cmdi": {
+        "flagged_before": 13,
+        "cleared_after": 0
+      },
+      "codeinj": {
+        "flagged_before": 20,
+        "cleared_after": 10
+      },
+      "deserialization": {
+        "flagged_before": 18,
+        "cleared_after": 5
+      },
+      "hash": {
+        "flagged_before": 71,
+        "cleared_after": 71
+      },
+      "pathtraver": {
+        "flagged_before": 65,
+        "cleared_after": 0
+      },
+      "redirect": {
+        "flagged_before": 13,
+        "cleared_after": 0
+      },
+      "sqli": {
+        "flagged_before": 5,
+        "cleared_after": 5
+      },
+      "weakrand": {
+        "flagged_before": 99,
+        "cleared_after": 0
+      },
+      "xss": {
+        "flagged_before": 31,
+        "cleared_after": 0
+      },
+      "xxe": {
+        "flagged_before": 8,
+        "cleared_after": 8
+      }
+    }
+  }
+}

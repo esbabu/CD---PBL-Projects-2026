@@ -1,0 +1,18 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S24951.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-IDX1            PIC 99.
+       01  WS-TAB1.
+           05  WS-ENTRY1      PIC X(10) OCCURS 10 TIMES.
+       01  WS-OUT1            PIC X(10).
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       LOOKUP-ENTRY1.
+           ACCEPT WS-IDX1.
+           MOVE WS-ENTRY1(WS-IDX1) TO WS-OUT1.
+

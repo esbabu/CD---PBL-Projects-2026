@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. S23670.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-POS0            PIC 99.
+       01  WS-RECORD0         PIC X(80).
+       01  WS-PART0           PIC X(5).
+       PROCEDURE DIVISION.
+       MAIN-PARA.
+           DISPLAY 'START'.
+           GOBACK.
+
+       EXTRACT-FIELD0.
+           ACCEPT WS-POS0.
+           MOVE WS-RECORD0(WS-POS0:5) TO WS-PART0.
+

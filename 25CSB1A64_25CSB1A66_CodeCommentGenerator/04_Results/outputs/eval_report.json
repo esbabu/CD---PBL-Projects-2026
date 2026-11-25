@@ -1,0 +1,1821 @@
+{
+  "ast_model": {
+    "n_samples": 200,
+    "bleu4_mean": 0.0427,
+    "bleu4_std": 0.0638,
+    "rouge_l_mean": 0.2533,
+    "rouge_l_std": 0.1854,
+    "exact_match_rate": 0.0,
+    "per_function": [
+      {
+        "func_name": "what",
+        "reference": "Guess the type of a sound file.",
+        "hypothesis": "Returns a filename.",
+        "bleu4": 0.03,
+        "rouge_l": 0.2,
+        "exact_match": 0,
+        "confidence": 0.3033
+      },
+      {
+        "func_name": "getName",
+        "reference": "Return a string used for identification purposes only.",
+        "hypothesis": "Get the name of a given name.",
+        "bleu4": 0.0286,
+        "rouge_l": 0.1333,
+        "exact_match": 0,
+        "confidence": 0.3132
+      },
+      {
+        "func_name": "copy",
+        "reference": "Return a shallow copy of a RangeSet.",
+        "hypothesis": "Copy a copy of a class.",
+        "bleu4": 0.1838,
+        "rouge_l": 0.6154,
+        "exact_match": 0,
+        "confidence": 0.3547
+      },
+      {
+        "func_name": "make_dnsentryitem_recordname",
+        "reference": "Create a node for DnsEntryItem/RecordName.",
+        "hypothesis": "Make a dnsentryitem_recordname.",
+        "bleu4": 0.114,
+        "rouge_l": 0.6,
+        "exact_match": 0,
+        "confidence": 0.5985
+      },
+      {
+        "func_name": "_get_size",
+        "reference": "return the size of the next object.",
+        "hypothesis": "Get the size of a token.",
+        "bleu4": 0.171,
+        "rouge_l": 0.4615,
+        "exact_match": 0,
+        "confidence": 0.3875
+      },
+      {
+        "func_name": "body_blocks",
+        "reference": "for some reason this works and few other attempted methods work Search for certain node types, find the first nodes sibl",
+        "hypothesis": "Return a list of bodyblocks.",
+        "bleu4": 0.0002,
+        "rouge_l": 0.0909,
+        "exact_match": 0,
+        "confidence": 0.3003
+      },
+      {
+        "func_name": "expect",
+        "reference": "Stub a function call, and set up an expected call count.",
+        "hypothesis": "Expect a vs. obj.",
+        "bleu4": 0.014,
+        "rouge_l": 0.1333,
+        "exact_match": 0,
+        "confidence": 0.2802
+      },
+      {
+        "func_name": "__create_url_node_for_content",
+        "reference": "Creates the required <url> node for the sitemap xml.",
+        "hypothesis": "Create a node for content.",
+        "bleu4": 0.0511,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.5204
+      },
+      {
+        "func_name": "download",
+        "reference": "Download the dataset to a local file.",
+        "hypothesis": "Download a file from the filename.",
+        "bleu4": 0.0489,
+        "rouge_l": 0.4615,
+        "exact_match": 0,
+        "confidence": 0.3518
+      },
+      {
+        "func_name": "disable_interspersed_args",
+        "reference": "Set parsing to stop on the first non-option. Use this if you have a command processor which runs another command that ha",
+        "hypothesis": "Deactivate interspersed args.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.4672
+      },
+      {
+        "func_name": "stn",
+        "reference": "Convert a string to a null-terminated bytes object.",
+        "hypothesis": "Return a stn encoding.",
+        "bleu4": 0.023,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.3168
+      },
+      {
+        "func_name": "descriptions",
+        "reference": "Get descriptions for a range of groups.",
+        "hypothesis": "Return a list of descriptions.",
+        "bleu4": 0.0474,
+        "rouge_l": 0.3333,
+        "exact_match": 0,
+        "confidence": 0.3547
+      },
+      {
+        "func_name": "millipede",
+        "reference": "Output the millipede.",
+        "hypothesis": "Return a millipede format for a template.",
+        "bleu4": 0.033,
+        "rouge_l": 0.2,
+        "exact_match": 0,
+        "confidence": 0.3004
+      },
+      {
+        "func_name": "do_down",
+        "reference": "d(own) [count].",
+        "hypothesis": "Return a dropdown of arg.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.2495
+      },
+      {
+        "func_name": "move",
+        "reference": "Recursively move a file or directory to another location. This is similar to the Unix \"mv\" command. Return the file or d",
+        "hypothesis": "Move a file from src to dst.",
+        "bleu4": 0.0155,
+        "rouge_l": 0.2581,
+        "exact_match": 0,
+        "confidence": 0.5279
+      },
+      {
+        "func_name": "_config_bootstrap",
+        "reference": "Go through and establish the defaults on the file system.",
+        "hypothesis": "Create a config bootstrap.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.4243
+      },
+      {
+        "func_name": "connect_ex",
+        "reference": "Connects to remote ADDR, and then wraps the connection in an SSL channel.",
+        "hypothesis": "Connects to a network.",
+        "bleu4": 0.0179,
+        "rouge_l": 0.2353,
+        "exact_match": 0,
+        "confidence": 0.2815
+      },
+      {
+        "func_name": "send_signal",
+        "reference": "Send signal to subprocess.",
+        "hypothesis": "Send a signal to the receiver.",
+        "bleu4": 0.0955,
+        "rouge_l": 0.6,
+        "exact_match": 0,
+        "confidence": 0.4075
+      },
+      {
+        "func_name": "update_webhook",
+        "reference": "Register webhook (if it doesn't exit).",
+        "hypothesis": "Update a webhook URL.",
+        "bleu4": 0.038,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.3859
+      },
+      {
+        "func_name": "get",
+        "reference": "Function get Get an object by id.",
+        "hypothesis": "Get obj, id, sub_object.",
+        "bleu4": 0.0474,
+        "rouge_l": 0.3333,
+        "exact_match": 0,
+        "confidence": 0.4498
+      },
+      {
+        "func_name": "__process_url_wrapper_elements",
+        "reference": "Creates the url nodes for pelican.urlwrappers.Category and pelican.urlwrappers.Tag. :param elements: list of wrapper ele",
+        "hypothesis": "Process url-wrapper-elements.",
+        "bleu4": 0.0004,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.3669
+      },
+      {
+        "func_name": "list_to_alpha3",
+        "reference": "Parse all the language codes in a given list into ISO 639 Part 2 codes and optionally expand them with synonyms (i.e. ot",
+        "hypothesis": "List languages to alpha3 and add them to the list.",
+        "bleu4": 0.0045,
+        "rouge_l": 0.2051,
+        "exact_match": 0,
+        "confidence": 0.3383
+      },
+      {
+        "func_name": "empty",
+        "reference": "Return True if the queue is empty, False otherwise.",
+        "hypothesis": "Return a string that is empty.",
+        "bleu4": 0.058,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.3265
+      },
+      {
+        "func_name": "voidcmd",
+        "reference": "Send a command and expect a response beginning with '2'.",
+        "hypothesis": "Return a voidcmd.",
+        "bleu4": 0.011,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.5023
+      },
+      {
+        "func_name": "order_by",
+        "reference": "Set the sort for this query. Not all attributes are sorting candidates. To sort in descending order, call ``Query.order_",
+        "hypothesis": "Order a clone by sort_key.",
+        "bleu4": 0.0037,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.3789
+      },
+      {
+        "func_name": "get_symbol_map",
+        "reference": "If you need the symbol map, use this method.",
+        "hypothesis": "Get a symbol map.",
+        "bleu4": 0.0487,
+        "rouge_l": 0.3077,
+        "exact_match": 0,
+        "confidence": 0.4985
+      },
+      {
+        "func_name": "ismethod",
+        "reference": "Return true if the object is an instance method.",
+        "hypothesis": "Return if the object is a method.",
+        "bleu4": 0.3419,
+        "rouge_l": 0.75,
+        "exact_match": 0,
+        "confidence": 0.3842
+      },
+      {
+        "func_name": "__init__",
+        "reference": "Create a barrier, initialised to 'parties' threads.",
+        "hypothesis": "Init a new thread.",
+        "bleu4": 0.038,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.2811
+      },
+      {
+        "func_name": "push_async_exit",
+        "reference": "Registers a coroutine function with the standard __aexit__ method signature.",
+        "hypothesis": "Push_async_exit.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.5015
+      },
+      {
+        "func_name": "get_collection",
+        "reference": "Get objects collection taking into account generated queryset of parent view.",
+        "hypothesis": "Get_collection from a parent-queryset.",
+        "bleu4": 0.0251,
+        "rouge_l": 0.3529,
+        "exact_match": 0,
+        "confidence": 0.3075
+      },
+      {
+        "func_name": "_already_decorated_with_invariants",
+        "reference": "Check if the function has been already decorated with an invariant check by going through its decorator stack.",
+        "hypothesis": "Decorated with invariants.",
+        "bleu4": 0.0016,
+        "rouge_l": 0.1905,
+        "exact_match": 0,
+        "confidence": 0.389
+      },
+      {
+        "func_name": "getpeercert",
+        "reference": "Returns a formatted version of the data in the certificate provided by the other end of the SSL channel.",
+        "hypothesis": "Get a peercert.",
+        "bleu4": 0.0005,
+        "rouge_l": 0.0909,
+        "exact_match": 0,
+        "confidence": 0.3467
+      },
+      {
+        "func_name": "TemporaryFile",
+        "reference": "Create and return a temporary file.",
+        "hypothesis": "TemporaryFile is a temporary file.",
+        "bleu4": 0.2177,
+        "rouge_l": 0.5455,
+        "exact_match": 0,
+        "confidence": 0.3331
+      },
+      {
+        "func_name": "put",
+        "reference": "Example PUT method.",
+        "hypothesis": "Put a uid in a string.",
+        "bleu4": 0.0408,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.3568
+      },
+      {
+        "func_name": "apropos",
+        "reference": "Print all the one-line module summaries that contain a substring.",
+        "hypothesis": "Apropos a key.",
+        "bleu4": 0.0079,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.4178
+      },
+      {
+        "func_name": "peek",
+        "reference": "If alive then return (obj, func, args, kwargs); otherwise return None.",
+        "hypothesis": "Return a peek of the registry.",
+        "bleu4": 0.0177,
+        "rouge_l": 0.1176,
+        "exact_match": 0,
+        "confidence": 0.3112
+      },
+      {
+        "func_name": "_intenum_converter",
+        "reference": "Convert a numeric family value to an IntEnum member.",
+        "hypothesis": "Innum_converter is a converter.",
+        "bleu4": 0.0241,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.3077
+      },
+      {
+        "func_name": "rewind",
+        "reference": "Return the uncompressed stream file position indicator to the beginning of the file.",
+        "hypothesis": "Rewind the OSError.",
+        "bleu4": 0.0041,
+        "rouge_l": 0.125,
+        "exact_match": 0,
+        "confidence": 0.4106
+      },
+      {
+        "func_name": "pprint",
+        "reference": "Pretty-print a Python object to a stream [default is sys.stdout].",
+        "hypothesis": "Pprint a pprint object.",
+        "bleu4": 0.0129,
+        "rouge_l": 0.25,
+        "exact_match": 0,
+        "confidence": 0.3499
+      },
+      {
+        "func_name": "write_list_to_csv",
+        "reference": "Write a list of rows in dict or list form to a csv.",
+        "hypothesis": "Write a list of rows to csv.",
+        "bleu4": 0.2838,
+        "rouge_l": 0.7,
+        "exact_match": 0,
+        "confidence": 0.592
+      },
+      {
+        "func_name": "set_seqs",
+        "reference": "Set the two sequences to be compared.",
+        "hypothesis": "Set a and b.",
+        "bleu4": 0.038,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.4788
+      },
+      {
+        "func_name": "__contains__",
+        "reference": "Returns True if self has at least the same flags set as other.",
+        "hypothesis": "Contains the other as a string.",
+        "bleu4": 0.0167,
+        "rouge_l": 0.2105,
+        "exact_match": 0,
+        "confidence": 0.2765
+      },
+      {
+        "func_name": "__ordered_values_by_indexes",
+        "reference": "Return values (intensities) by indexes.",
+        "hypothesis": "Return a list of __ordered values by indexes.",
+        "bleu4": 0.0699,
+        "rouge_l": 0.6154,
+        "exact_match": 0,
+        "confidence": 0.4127
+      },
+      {
+        "func_name": "bye",
+        "reference": "Shut the turtlegraphics window.",
+        "hypothesis": "Return a string bye.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3372
+      },
+      {
+        "func_name": "is_relative_to",
+        "reference": "Return True if the path is relative to another path or False.",
+        "hypothesis": "Return if the object is relative.",
+        "bleu4": 0.0475,
+        "rouge_l": 0.5556,
+        "exact_match": 0,
+        "confidence": 0.2884
+      },
+      {
+        "func_name": "__setitem__",
+        "reference": "Changes anything not dundered or not a descriptor.",
+        "hypothesis": "Set the value of a key.",
+        "bleu4": 0.0293,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.3628
+      },
+      {
+        "func_name": "connect",
+        "reference": ":type source: integer :type target: integer.",
+        "hypothesis": "Connect a source to a target.",
+        "bleu4": 0.0485,
+        "rouge_l": 0.3333,
+        "exact_match": 0,
+        "confidence": 0.4684
+      },
+      {
+        "func_name": "guess_all_extensions",
+        "reference": "Guess the extensions for a file based on its MIME type.",
+        "hypothesis": "Return a list of all extensions.",
+        "bleu4": 0.0211,
+        "rouge_l": 0.1176,
+        "exact_match": 0,
+        "confidence": 0.283
+      },
+      {
+        "func_name": "open_r",
+        "reference": "t.open_r(file) and t.open_w(file) implement t.open(file, 'r') and t.open(file, 'w') respectively.",
+        "hypothesis": "Open a file in r.",
+        "bleu4": 0.0035,
+        "rouge_l": 0.24,
+        "exact_match": 0,
+        "confidence": 0.3188
+      },
+      {
+        "func_name": "_load_json_file",
+        "reference": "load json file and check file content format.",
+        "hypothesis": "Open a JSON file.",
+        "bleu4": 0.0625,
+        "rouge_l": 0.3333,
+        "exact_match": 0,
+        "confidence": 0.2992
+      },
+      {
+        "func_name": "_station",
+        "reference": "Extract station name.",
+        "hypothesis": "Return a'station'.",
+        "bleu4": 0.1136,
+        "rouge_l": 0.3333,
+        "exact_match": 0,
+        "confidence": 0.2937
+      },
+      {
+        "func_name": "_check_prefix",
+        "reference": "Check that every line in the given list starts with the given prefix; if any line does not, then raise a ValueError.",
+        "hypothesis": "Check the prefix for a line.",
+        "bleu4": 0.0042,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.4262
+      },
+      {
+        "func_name": "spawnv",
+        "reference": "spawnv(mode, file, args) -> integer.",
+        "hypothesis": "Return a spawnv file.",
+        "bleu4": 0.0744,
+        "rouge_l": 0.4444,
+        "exact_match": 0,
+        "confidence": 0.3637
+      },
+      {
+        "func_name": "send",
+        "reference": "Send data to remote.",
+        "hypothesis": "Send a message to a file.",
+        "bleu4": 0.0485,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.2986
+      },
+      {
+        "func_name": "is_socket",
+        "reference": "Whether this path is a socket.",
+        "hypothesis": "Return a socket.",
+        "bleu4": 0.0884,
+        "rouge_l": 0.4444,
+        "exact_match": 0,
+        "confidence": 0.4394
+      },
+      {
+        "func_name": "_richcmp",
+        "reference": "Helper for comparison operators, for internal use only.",
+        "hypothesis": "richcmp.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.304
+      },
+      {
+        "func_name": "read_all",
+        "reference": "Read all data until EOF; block until connection closed.",
+        "hypothesis": "Read all of the docstrings.",
+        "bleu4": 0.0511,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.2334
+      },
+      {
+        "func_name": "_is_single_bit",
+        "reference": "True if only one bit set in num (should be an int).",
+        "hypothesis": "Return a single bit of num.",
+        "bleu4": 0.0179,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.4232
+      },
+      {
+        "func_name": "goto",
+        "reference": "Context object for changing directory.",
+        "hypothesis": "Get a file from a directory.",
+        "bleu4": 0.0408,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.3488
+      },
+      {
+        "func_name": "parse150",
+        "reference": "Parse the '150' response for a RETR request. Returns the expected transfer size or None; size is not guaranteed to be pr",
+        "hypothesis": "Parse the m.group data structure.",
+        "bleu4": 0.0031,
+        "rouge_l": 0.125,
+        "exact_match": 0,
+        "confidence": 0.3128
+      },
+      {
+        "func_name": "rename",
+        "reference": "Rename old mailbox name to new.",
+        "hypothesis": "Rename a newmailbox.",
+        "bleu4": 0.0418,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.5504
+      },
+      {
+        "func_name": "create_new_page",
+        "reference": "NewPageStyle 0 - Create a Page that has Default Page Style 1 - Create a blank page with no title 2 - Createa blank page ",
+        "hypothesis": "Creates a new page.",
+        "bleu4": 0.0004,
+        "rouge_l": 0.1333,
+        "exact_match": 0,
+        "confidence": 0.487
+      },
+      {
+        "func_name": "get_sort_arg_defs",
+        "reference": "Expand all abbreviations that are unique.",
+        "hypothesis": "Get a sort of arg defs.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.2863
+      },
+      {
+        "func_name": "clean",
+        "reference": "Delete old files in \"tmp\".",
+        "hypothesis": "Clean the os.listdir.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3928
+      },
+      {
+        "func_name": "get_full_url",
+        "reference": "Get full url including any additional parameters.",
+        "hypothesis": "Get a full url.",
+        "bleu4": 0.0888,
+        "rouge_l": 0.5455,
+        "exact_match": 0,
+        "confidence": 0.3898
+      },
+      {
+        "func_name": "home",
+        "reference": "Move turtle to the origin - coordinates (0,0).",
+        "hypothesis": "Return a home as a setheading.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.2869
+      },
+      {
+        "func_name": "timeit",
+        "reference": "Time 'number' executions of the main statement.",
+        "hypothesis": "Return a timeit for a specified number.",
+        "bleu4": 0.033,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.3193
+      },
+      {
+        "func_name": "debug_interactive_inspect_node",
+        "reference": "Call after segmentation to see selected node neighborhood. User have to select one node by click. :return:.",
+        "hypothesis": "Debug interactive inspect_node.",
+        "bleu4": 0.0031,
+        "rouge_l": 0.0952,
+        "exact_match": 0,
+        "confidence": 0.5684
+      },
+      {
+        "func_name": "safeimport",
+        "reference": "Import a module; handle errors; return None if the module isn't found.",
+        "hypothesis": "Return a safeimport file.",
+        "bleu4": 0.0101,
+        "rouge_l": 0.1176,
+        "exact_match": 0,
+        "confidence": 0.3442
+      },
+      {
+        "func_name": "process_action",
+        "reference": "Process the action and update the related object, returns a boolean if a change is made.",
+        "hypothesis": "Return a process-action.",
+        "bleu4": 0.0053,
+        "rouge_l": 0.2,
+        "exact_match": 0,
+        "confidence": 0.2261
+      },
+      {
+        "func_name": "_prune_breaks",
+        "reference": "Prune breakpoints for filename:lineno.",
+        "hypothesis": "prune_breaks.",
+        "bleu4": 0.0334,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.3385
+      },
+      {
+        "func_name": "_setup_helper",
+        "reference": "Print the shell integration code.",
+        "hypothesis": "Setup a Helper.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.4112
+      },
+      {
+        "func_name": "body",
+        "reference": "Process a BODY command.",
+        "hypothesis": "Returns a spec of a message.",
+        "bleu4": 0.0408,
+        "rouge_l": 0.2,
+        "exact_match": 0,
+        "confidence": 0.2367
+      },
+      {
+        "func_name": "get_is_notification",
+        "reference": "We say if the message should trigger a notification.",
+        "hypothesis": "Get an obj notification.",
+        "bleu4": 0.023,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.3851
+      },
+      {
+        "func_name": "_split",
+        "reference": "_split(text : string) -> [string].",
+        "hypothesis": "Split text to a text.",
+        "bleu4": 0.1136,
+        "rouge_l": 0.4444,
+        "exact_match": 0,
+        "confidence": 0.2829
+      },
+      {
+        "func_name": "fail",
+        "reference": "Raise an exception for unimplemented types.",
+        "hypothesis": "False if the object is an object.",
+        "bleu4": 0.033,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.3444
+      },
+      {
+        "func_name": "close",
+        "reference": "Close the loop.",
+        "hypothesis": "Close a string and return it.",
+        "bleu4": 0.0408,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.248
+      },
+      {
+        "func_name": "v6_int_to_packed",
+        "reference": "Represent an address as 16 packed bytes in network (big-endian) order.",
+        "hypothesis": "v6_int_to_packed.",
+        "bleu4": 0.0109,
+        "rouge_l": 0.125,
+        "exact_match": 0,
+        "confidence": 0.4177
+      },
+      {
+        "func_name": "isdata",
+        "reference": "Check if an object is of a type that probably means it's data.",
+        "hypothesis": "Return a data object.",
+        "bleu4": 0.0087,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.3218
+      },
+      {
+        "func_name": "extract_schemas_from_file",
+        "reference": "Extract schemas from 'source_path'.",
+        "hypothesis": "Extract schemas from a file.",
+        "bleu4": 0.2659,
+        "rouge_l": 0.6,
+        "exact_match": 0,
+        "confidence": 0.4081
+      },
+      {
+        "func_name": "search",
+        "reference": "Search for a object of given type in the database.",
+        "hypothesis": "Search for a table object class.",
+        "bleu4": 0.1115,
+        "rouge_l": 0.5,
+        "exact_match": 0,
+        "confidence": 0.3587
+      },
+      {
+        "func_name": "nolog",
+        "reference": "Dummy function, assigned to log when logging is disabled.",
+        "hypothesis": "Returns a nolog.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3014
+      },
+      {
+        "func_name": "toFile",
+        "reference": "Save the suffix array instance including all features attached in filename.",
+        "hypothesis": "ToFile a filename.",
+        "bleu4": 0.0079,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.3684
+      },
+      {
+        "func_name": "iterweekdays",
+        "reference": "Return an iterator for one week of weekday numbers starting with the configured first one.",
+        "hypothesis": "Return a list of iterweekdays.",
+        "bleu4": 0.0086,
+        "rouge_l": 0.2,
+        "exact_match": 0,
+        "confidence": 0.3986
+      },
+      {
+        "func_name": "compat_get_paginated_response",
+        "reference": "get_paginated_response is unknown to DRF 3.0.",
+        "hypothesis": "Compute the paginated response.",
+        "bleu4": 0.0487,
+        "rouge_l": 0.3077,
+        "exact_match": 0,
+        "confidence": 0.3839
+      },
+      {
+        "func_name": "_parse_geo_file",
+        "reference": "Scan SH12A GEO file for references to external files (like voxelised geometry) and return them.",
+        "hypothesis": "Parse a geo file.",
+        "bleu4": 0.0109,
+        "rouge_l": 0.2105,
+        "exact_match": 0,
+        "confidence": 0.3702
+      },
+      {
+        "func_name": "store",
+        "reference": "Alters flag dispositions for messages in mailbox.",
+        "hypothesis": "Store a message in a command.",
+        "bleu4": 0.0346,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.3778
+      },
+      {
+        "func_name": "__init__",
+        "reference": "Initializes a new ThreadPoolExecutor instance.",
+        "hypothesis": "Initer a thread.",
+        "bleu4": 0.0583,
+        "rouge_l": 0.25,
+        "exact_match": 0,
+        "confidence": 0.3081
+      },
+      {
+        "func_name": "parse_args",
+        "reference": "parse_args(args : [string] = sys.argv[1:], values : Values = None) -> (values : Values, args : [string]).",
+        "hypothesis": "Parse args.",
+        "bleu4": 0.0008,
+        "rouge_l": 0.25,
+        "exact_match": 0,
+        "confidence": 0.5136
+      },
+      {
+        "func_name": "_candidate_tempdir_list",
+        "reference": "Generate a list of candidate temporary directories which _get_default_tempdir will try.",
+        "hypothesis": "Return a _candidate_tempdir_list.",
+        "bleu4": 0.0153,
+        "rouge_l": 0.3333,
+        "exact_match": 0,
+        "confidence": 0.4499
+      },
+      {
+        "func_name": "is_loopback",
+        "reference": "Test if the address is a loopback address.",
+        "hypothesis": "Returns a loopback.",
+        "bleu4": 0.0454,
+        "rouge_l": 0.3636,
+        "exact_match": 0,
+        "confidence": 0.3837
+      },
+      {
+        "func_name": "has_section",
+        "reference": "Indicate whether the named section is present in the configuration.",
+        "hypothesis": "Return a section of the section.",
+        "bleu4": 0.0249,
+        "rouge_l": 0.25,
+        "exact_match": 0,
+        "confidence": 0.3438
+      },
+      {
+        "func_name": "restore_bucket",
+        "reference": "Restore bucket from SQL.",
+        "hypothesis": "Return a table_name.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3418
+      },
+      {
+        "func_name": "compile_path",
+        "reference": "Byte-compile all module on sys.path.",
+        "hypothesis": "Compile a path in a given path.",
+        "bleu4": 0.0393,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.3213
+      },
+      {
+        "func_name": "getacl",
+        "reference": "Get the ACLs for a mailbox.",
+        "hypothesis": "Get acl from a mailbox.",
+        "bleu4": 0.1029,
+        "rouge_l": 0.5455,
+        "exact_match": 0,
+        "confidence": 0.4224
+      },
+      {
+        "func_name": "_format_text",
+        "reference": "Format a paragraph of free-form text for inclusion in the help output at the current indentation level.",
+        "hypothesis": "Format a text in a given text.",
+        "bleu4": 0.0173,
+        "rouge_l": 0.32,
+        "exact_match": 0,
+        "confidence": 0.2735
+      },
+      {
+        "func_name": "shell_escape",
+        "reference": "r\"\"\"Given bl\"a, returns \"bl\\\\\"a\".",
+        "hypothesis": "Return a shell-escape object.",
+        "bleu4": 0.036,
+        "rouge_l": 0.1667,
+        "exact_match": 0,
+        "confidence": 0.3588
+      },
+      {
+        "func_name": "patch_env",
+        "reference": "Set specified value to yaml path. Example: patch('application/components/child/configuration/__locator.application-id','",
+        "hypothesis": "Patch env, path, value.",
+        "bleu4": 0.0009,
+        "rouge_l": 0.0741,
+        "exact_match": 0,
+        "confidence": 0.4605
+      },
+      {
+        "func_name": "make_processitem_portlist_portitem_remoteip",
+        "reference": "Create a node for ProcessItem/PortList/PortItem/remoteIP.",
+        "hypothesis": "Make a processitem/portlist/portitem_remoteip.",
+        "bleu4": 0.385,
+        "rouge_l": 0.7143,
+        "exact_match": 0,
+        "confidence": 0.4823
+      },
+      {
+        "func_name": "update_parameter",
+        "reference": "Updates the parameter attached to an Indicator or IndicatorItem node.",
+        "hypothesis": "Update a Parameter for a given parameter.",
+        "bleu4": 0.0215,
+        "rouge_l": 0.1176,
+        "exact_match": 0,
+        "confidence": 0.3438
+      },
+      {
+        "func_name": "clear_cache",
+        "reference": "Clear the filecmp cache.",
+        "hypothesis": "Clear a cache.",
+        "bleu4": 0.0968,
+        "rouge_l": 0.5714,
+        "exact_match": 0,
+        "confidence": 0.4517
+      },
+      {
+        "func_name": "_make_netmask",
+        "reference": "Make a (netmask, prefix_len) tuple from the given argument.",
+        "hypothesis": "Makes a netmask.",
+        "bleu4": 0.0233,
+        "rouge_l": 0.3077,
+        "exact_match": 0,
+        "confidence": 0.3415
+      },
+      {
+        "func_name": "main",
+        "reference": "Add standard site-specific directories to the module search path.",
+        "hypothesis": "Returns the main usersite.",
+        "bleu4": 0.0179,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.2274
+      },
+      {
+        "func_name": "get_soup",
+        "reference": "Get BeautifulSoup object for a url. Requires either global user agent to be set or appropriate user agent parameter(s) t",
+        "hypothesis": "Get a url from the downloader.",
+        "bleu4": 0.0056,
+        "rouge_l": 0.2069,
+        "exact_match": 0,
+        "confidence": 0.3244
+      },
+      {
+        "func_name": "make_prefetchitem_accessedfilelist_accessedfile",
+        "reference": "Create a node for PrefetchItem/AccessedFileList/AccessedFile.",
+        "hypothesis": "Make a prefetchitem-accessedfilelist.",
+        "bleu4": 0.0888,
+        "rouge_l": 0.5455,
+        "exact_match": 0,
+        "confidence": 0.4907
+      },
+      {
+        "func_name": "handle_timeout",
+        "reference": "Wait for zombies after self.timeout seconds of inactivity.",
+        "hypothesis": "Returns a timeout.",
+        "bleu4": 0.0154,
+        "rouge_l": 0.1667,
+        "exact_match": 0,
+        "confidence": 0.3357
+      },
+      {
+        "func_name": "save",
+        "reference": "Save all changes in a LdapChanges.",
+        "hypothesis": "Save a python to a database.",
+        "bleu4": 0.0485,
+        "rouge_l": 0.3333,
+        "exact_match": 0,
+        "confidence": 0.342
+      },
+      {
+        "func_name": "_getline",
+        "reference": "Internal: return one line from the server, stripping _CRLF. Raise EOFError if the connection is closed. Returns a bytes ",
+        "hypothesis": "Get a NNTPDataError.",
+        "bleu4": 0.0004,
+        "rouge_l": 0.087,
+        "exact_match": 0,
+        "confidence": 0.3553
+      },
+      {
+        "func_name": "convert_references_json",
+        "reference": "Check for references that will not pass schema validation, fix or convert them to unknown.",
+        "hypothesis": "Convert references_json to unknown.",
+        "bleu4": 0.0183,
+        "rouge_l": 0.3,
+        "exact_match": 0,
+        "confidence": 0.4886
+      },
+      {
+        "func_name": "import_tokens",
+        "reference": "Import a list of string as tokens.",
+        "hypothesis": "Import tokens from tokens to tokens.",
+        "bleu4": 0.0411,
+        "rouge_l": 0.3077,
+        "exact_match": 0,
+        "confidence": 0.3245
+      },
+      {
+        "func_name": "readexactly",
+        "reference": "Read exactly `n` bytes.",
+        "hypothesis": "readexactly as n.",
+        "bleu4": 0.0814,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.3066
+      },
+      {
+        "func_name": "maybe_newline",
+        "reference": "Adds a newline if it isn't the start of generated source.",
+        "hypothesis": "Returns a new line.",
+        "bleu4": 0.0109,
+        "rouge_l": 0.125,
+        "exact_match": 0,
+        "confidence": 0.347
+      },
+      {
+        "func_name": "hardlink_to",
+        "reference": "Make this path a hard link pointing to the same file as *target*.",
+        "hypothesis": "Hardlink to a target.",
+        "bleu4": 0.0111,
+        "rouge_l": 0.2353,
+        "exact_match": 0,
+        "confidence": 0.4108
+      },
+      {
+        "func_name": "read",
+        "reference": "Read 'size' bytes from remote.",
+        "hypothesis": "Read a file as a size.",
+        "bleu4": 0.0485,
+        "rouge_l": 0.3636,
+        "exact_match": 0,
+        "confidence": 0.3378
+      },
+      {
+        "func_name": "generate",
+        "reference": "Yields pieces of ATOM XML.",
+        "hypothesis": "Generate a text block.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3058
+      },
+      {
+        "func_name": "run",
+        "reference": "Modified ``run`` that captures return value and exceptions from ``target``.",
+        "hypothesis": "Run a target.",
+        "bleu4": 0.0131,
+        "rouge_l": 0.3077,
+        "exact_match": 0,
+        "confidence": 0.2472
+      },
+      {
+        "func_name": "user_return",
+        "reference": "This function is called when a return trap is set here.",
+        "hypothesis": "Return the user's return value.",
+        "bleu4": 0.0177,
+        "rouge_l": 0.1176,
+        "exact_match": 0,
+        "confidence": 0.4352
+      },
+      {
+        "func_name": "discard",
+        "reference": "Remove element from the RangeSet if it is a member.",
+        "hypothesis": "Return a list of elements.",
+        "bleu4": 0.0198,
+        "rouge_l": 0.1333,
+        "exact_match": 0,
+        "confidence": 0.2598
+      },
+      {
+        "func_name": "git_tags",
+        "reference": "Calls ``git tag -l --sort=-v:refname`` (sorts output) and returns the output as a UTF-8 encoded string. Raises a NoGitTa",
+        "hypothesis": "Return a string of git tags.",
+        "bleu4": 0.0016,
+        "rouge_l": 0.2162,
+        "exact_match": 0,
+        "confidence": 0.34
+      },
+      {
+        "func_name": "create",
+        "reference": "Create a new token.",
+        "hypothesis": "Create a result for a token.",
+        "bleu4": 0.0955,
+        "rouge_l": 0.6,
+        "exact_match": 0,
+        "confidence": 0.3473
+      },
+      {
+        "func_name": "env_bool_flag",
+        "reference": "Converts an environment variable into a boolean. Empty string (presence in env) is treated as ``True``.",
+        "hypothesis": "env_bool_flag.",
+        "bleu4": 0.0015,
+        "rouge_l": 0.1053,
+        "exact_match": 0,
+        "confidence": 0.4863
+      },
+      {
+        "func_name": "get_event_loop_policy",
+        "reference": "Get the current event loop policy.",
+        "hypothesis": "Get event_loop_policy.",
+        "bleu4": 0.2592,
+        "rouge_l": 0.8,
+        "exact_match": 0,
+        "confidence": 0.4301
+      },
+      {
+        "func_name": "is_loopback",
+        "reference": "Test if the address is a loopback address.",
+        "hypothesis": "Returns a loopback.",
+        "bleu4": 0.0454,
+        "rouge_l": 0.3636,
+        "exact_match": 0,
+        "confidence": 0.3845
+      },
+      {
+        "func_name": "contrib_inline_aff",
+        "reference": "Given a contrib tag, look for an aff tag directly inside it.",
+        "hypothesis": "Return a contrib-inline aff.",
+        "bleu4": 0.031,
+        "rouge_l": 0.3529,
+        "exact_match": 0,
+        "confidence": 0.3373
+      },
+      {
+        "func_name": "standard_b64encode",
+        "reference": "Encode bytes-like object s using the standard Base64 alphabet.",
+        "hypothesis": "Standard b64encode.",
+        "bleu4": 0.0027,
+        "rouge_l": 0.1667,
+        "exact_match": 0,
+        "confidence": 0.5011
+      },
+      {
+        "func_name": "read_list_from_csv",
+        "reference": "Read a list of rows in dict or list form from a csv.",
+        "hypothesis": "Read_list_from_csv.",
+        "bleu4": 0.012,
+        "rouge_l": 0.4706,
+        "exact_match": 0,
+        "confidence": 0.5217
+      },
+      {
+        "func_name": "readline",
+        "reference": "Read a line of uncompressed bytes from the file.",
+        "hypothesis": "Read a line from size to size.",
+        "bleu4": 0.132,
+        "rouge_l": 0.5,
+        "exact_match": 0,
+        "confidence": 0.2774
+      },
+      {
+        "func_name": "modifyModlist",
+        "reference": "Build differential modify list for calling LDAPObject.modify()/modify_s().",
+        "hypothesis": "Modify a Modlist.",
+        "bleu4": 0.011,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.3066
+      },
+      {
+        "func_name": "next",
+        "reference": "Return the next message in a one-time iteration.",
+        "hypothesis": "Returns a new string.",
+        "bleu4": 0.023,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.2309
+      },
+      {
+        "func_name": "__format__",
+        "reference": "Format this fraction according to the given format specification.",
+        "hypothesis": "Format a frac_part.rstrip.",
+        "bleu4": 0.0241,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.3151
+      },
+      {
+        "func_name": "get_vector",
+        "reference": "Return the vector for this survey.",
+        "hypothesis": "Get a vector.",
+        "bleu4": 0.0418,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.331
+      },
+      {
+        "func_name": "output",
+        "reference": "Pretty print travel times.",
+        "hypothesis": "Return the output of j.departure.time.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.495
+      },
+      {
+        "func_name": "commonpath",
+        "reference": "Given a sequence of path names, returns the longest common sub-path.",
+        "hypothesis": "Return a common path to a path.",
+        "bleu4": 0.0229,
+        "rouge_l": 0.3158,
+        "exact_match": 0,
+        "confidence": 0.2989
+      },
+      {
+        "func_name": "read_sudoers",
+        "reference": "Read the sudoers entry for the specified user.",
+        "hypothesis": "Read sudoers from a command.",
+        "bleu4": 0.0351,
+        "rouge_l": 0.3077,
+        "exact_match": 0,
+        "confidence": 0.3519
+      },
+      {
+        "func_name": "_generic_class_getitem",
+        "reference": "Parameterizes a generic class.",
+        "hypothesis": "Return a generic class.",
+        "bleu4": 0.3976,
+        "rouge_l": 0.75,
+        "exact_match": 0,
+        "confidence": 0.3286
+      },
+      {
+        "func_name": "list_folders",
+        "reference": "Return a list of folder names.",
+        "hypothesis": "List a list of folders.",
+        "bleu4": 0.2177,
+        "rouge_l": 0.5455,
+        "exact_match": 0,
+        "confidence": 0.3909
+      },
+      {
+        "func_name": "get_stats",
+        "reference": "Send CLI command that returns list of integer counters.",
+        "hypothesis": "Get stats from obj.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.5035
+      },
+      {
+        "func_name": "begin_fill",
+        "reference": "Called just before drawing a shape to be filled.",
+        "hypothesis": "Start_filling with a new line.",
+        "bleu4": 0.0248,
+        "rouge_l": 0.1333,
+        "exact_match": 0,
+        "confidence": 0.2682
+      },
+      {
+        "func_name": "colorize_output",
+        "reference": "r\"\"\"Print output to console using provided color mappings.",
+        "hypothesis": "Colorize the output in a single line.",
+        "bleu4": 0.0248,
+        "rouge_l": 0.125,
+        "exact_match": 0,
+        "confidence": 0.2896
+      },
+      {
+        "func_name": "store",
+        "reference": "Add a result to the cache.",
+        "hypothesis": "Store key, expiry, data.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3908
+      },
+      {
+        "func_name": "set_read_buffer_limits",
+        "reference": "Set the high- and low-water limits for read flow control.",
+        "hypothesis": "Set the read_buffer_limits.",
+        "bleu4": 0.0407,
+        "rouge_l": 0.375,
+        "exact_match": 0,
+        "confidence": 0.4955
+      },
+      {
+        "func_name": "import_app",
+        "reference": "Upload application from file.",
+        "hypothesis": "Import a list of files, category, overwrite, name.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3885
+      },
+      {
+        "func_name": "normcase",
+        "reference": "Normalize case of pathname. Has no effect under Posix.",
+        "hypothesis": "Returns a normcase.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3424
+      },
+      {
+        "func_name": "Union",
+        "reference": "Union type; Union[X, Y] means either X or Y.",
+        "hypothesis": "Return a tuple.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.2825
+      },
+      {
+        "func_name": "writedocs",
+        "reference": "Write out HTML documentation for all modules in a directory tree.",
+        "hypothesis": "Write a list of pkgpaths.",
+        "bleu4": 0.0192,
+        "rouge_l": 0.25,
+        "exact_match": 0,
+        "confidence": 0.3867
+      },
+      {
+        "func_name": "connection_made",
+        "reference": "Called when the low-level connection is made.",
+        "hypothesis": "Return a connection to the server.",
+        "bleu4": 0.0348,
+        "rouge_l": 0.1429,
+        "exact_match": 0,
+        "confidence": 0.3257
+      },
+      {
+        "func_name": "monthdatescalendar",
+        "reference": "Return a matrix (list of lists) representing a month's calendar. Each row represents a week; week entries are datetime.d",
+        "hypothesis": "Return a monthdatescalendar.",
+        "bleu4": 0.0004,
+        "rouge_l": 0.16,
+        "exact_match": 0,
+        "confidence": 0.4159
+      },
+      {
+        "func_name": "query_job_ids",
+        "reference": "Get one or more job IDs and their status associated with a build version.",
+        "hypothesis": "Return a list of ids for a project.",
+        "bleu4": 0.0156,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.2811
+      },
+      {
+        "func_name": "test_tiff",
+        "reference": "Verify if the image is a TIFF (can be in Motorola or Intel byte order).",
+        "hypothesis": "Test if h is a tiff.",
+        "bleu4": 0.0484,
+        "rouge_l": 0.381,
+        "exact_match": 0,
+        "confidence": 0.3589
+      },
+      {
+        "func_name": "split_voxels",
+        "reference": "Second step of algorithm :return:().",
+        "hypothesis": "Split vtk files into a filename.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.4086
+      },
+      {
+        "func_name": "_unpublish",
+        "reference": "Process an unpublish action on the related object, returns a boolean if a change is made.",
+        "hypothesis": "Unpublish a new obj.",
+        "bleu4": 0.0048,
+        "rouge_l": 0.2,
+        "exact_match": 0,
+        "confidence": 0.3673
+      },
+      {
+        "func_name": "__init__",
+        "reference": "Creates a StreamRecoder instance which implements a two-way conversion: encode and decode work on the frontend (the data",
+        "hypothesis": "Init a stream, encode, decode, Writer.",
+        "bleu4": 0.0004,
+        "rouge_l": 0.1905,
+        "exact_match": 0,
+        "confidence": 0.3679
+      },
+      {
+        "func_name": "_get_chunks",
+        "reference": "Iterates over zip()ed iterables in chunks.",
+        "hypothesis": "Get a list of chunks.",
+        "bleu4": 0.036,
+        "rouge_l": 0.1667,
+        "exact_match": 0,
+        "confidence": 0.2742
+      },
+      {
+        "func_name": "get_window_location",
+        "reference": "Get a window's location.",
+        "hypothesis": "Get the location of a window.",
+        "bleu4": 0.1027,
+        "rouge_l": 0.5455,
+        "exact_match": 0,
+        "confidence": 0.4071
+      },
+      {
+        "func_name": "set_applications_from_meta",
+        "reference": "Parses meta and update or create each application :param str metadata: path or url to meta.yml :param list[str] exclude:",
+        "hypothesis": "Set applications from metadata.",
+        "bleu4": 0.0002,
+        "rouge_l": 0.0606,
+        "exact_match": 0,
+        "confidence": 0.4318
+      },
+      {
+        "func_name": "decodebytes",
+        "reference": "Decode a bytestring of base-64 data into a bytes object.",
+        "hypothesis": "Decode bytebytes.",
+        "bleu4": 0.0017,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.401
+      },
+      {
+        "func_name": "write",
+        "reference": "Write some data bytes to the transport.",
+        "hypothesis": "Write the data to a ssl.",
+        "bleu4": 0.0489,
+        "rouge_l": 0.4615,
+        "exact_match": 0,
+        "confidence": 0.293
+      },
+      {
+        "func_name": "_check",
+        "reference": "Check if TarFile is still open, and if the operation's mode corresponds to TarFile's mode.",
+        "hypothesis": "Check if mode is the same as mode.",
+        "bleu4": 0.0251,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.3474
+      },
+      {
+        "func_name": "formatweek",
+        "reference": "Return a complete week as a table row.",
+        "hypothesis": "Format a week for a given week.",
+        "bleu4": 0.0377,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.3208
+      },
+      {
+        "func_name": "get_status",
+        "reference": "Get the AmCAT status page.",
+        "hypothesis": "Get the status of the URL.",
+        "bleu4": 0.0955,
+        "rouge_l": 0.5455,
+        "exact_match": 0,
+        "confidence": 0.4391
+      },
+      {
+        "func_name": "_signature_get_partial",
+        "reference": "Private helper to calculate how 'wrapped_sig' signature will look like after applying a 'functools.partial' object (or a",
+        "hypothesis": "Return a signature-get-partial object.",
+        "bleu4": 0.0084,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.2901
+      },
+      {
+        "func_name": "main",
+        "reference": "Entry point when called on the command-line.",
+        "hypothesis": "Return the main ArgumentParser.",
+        "bleu4": 0.0296,
+        "rouge_l": 0.1667,
+        "exact_match": 0,
+        "confidence": 0.3848
+      },
+      {
+        "func_name": "_read_defaults",
+        "reference": "Reads the defaults passed in the initializer, implicitly converting values to strings like the rest of the API.",
+        "hypothesis": "Read defaults and return the defaults.",
+        "bleu4": 0.0117,
+        "rouge_l": 0.1667,
+        "exact_match": 0,
+        "confidence": 0.3186
+      },
+      {
+        "func_name": "runcode",
+        "reference": "Execute a code object.",
+        "hypothesis": "Run a code from a given code.",
+        "bleu4": 0.0699,
+        "rouge_l": 0.3636,
+        "exact_match": 0,
+        "confidence": 0.3053
+      },
+      {
+        "func_name": "edit",
+        "reference": "Edit in the widget window and collect the results.",
+        "hypothesis": "Edit a command for a given command.",
+        "bleu4": 0.0248,
+        "rouge_l": 0.125,
+        "exact_match": 0,
+        "confidence": 0.2111
+      },
+      {
+        "func_name": "all_tasks",
+        "reference": "Return a set of all tasks for the loop.",
+        "hypothesis": "Return a list of all tasks.",
+        "bleu4": 0.1541,
+        "rouge_l": 0.6667,
+        "exact_match": 0,
+        "confidence": 0.2934
+      },
+      {
+        "func_name": "author_affiliations",
+        "reference": "compile author affiliations for json output.",
+        "hypothesis": "Creates a list of authoraffiliations.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3911
+      },
+      {
+        "func_name": "compat_pagination_messages",
+        "reference": "For DRF 3.1 and higher, pagination is defined at the paginator level (see http://www.django-rest-framework.org/topics/3.",
+        "hypothesis": "Compat pagination messages.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0488,
+        "exact_match": 0,
+        "confidence": 0.4487
+      },
+      {
+        "func_name": "_is_elf",
+        "reference": "Return True if the given file is an ELF file.",
+        "hypothesis": "Return if the filename is an elf.",
+        "bleu4": 0.1402,
+        "rouge_l": 0.7059,
+        "exact_match": 0,
+        "confidence": 0.3342
+      },
+      {
+        "func_name": "add",
+        "reference": "Add processor functions.",
+        "hypothesis": "Add a key to a string.",
+        "bleu4": 0.0408,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.3796
+      },
+      {
+        "func_name": "components",
+        "reference": "Find the components, i.e.",
+        "hypothesis": "Return a list of components in a soup.",
+        "bleu4": 0.0278,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.3309
+      },
+      {
+        "func_name": "debug_script",
+        "reference": "Debug a test script. `src` is the script, as a string.",
+        "hypothesis": "Debug a debugscript.",
+        "bleu4": 0.0167,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.4593
+      },
+      {
+        "func_name": "overload",
+        "reference": "Decorator for overloaded functions/methods.",
+        "hypothesis": "Overload a func loop.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.2267
+      },
+      {
+        "func_name": "removeDomain",
+        "reference": "Function removeDomain Delete a domain from a subnet.",
+        "hypothesis": "Remove a subnetId.",
+        "bleu4": 0.0215,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.4194
+      },
+      {
+        "func_name": "adjustScrolls",
+        "reference": "Adjust scrollbars according to window- and canvas-size.",
+        "hypothesis": "AdjustScrolls to a scroll.",
+        "bleu4": 0.0296,
+        "rouge_l": 0.1667,
+        "exact_match": 0,
+        "confidence": 0.3156
+      },
+      {
+        "func_name": "_find_new_",
+        "reference": "Returns the __new__ to be used for creating the enum members.",
+        "hypothesis": "Find a new member type.",
+        "bleu4": 0.0162,
+        "rouge_l": 0.125,
+        "exact_match": 0,
+        "confidence": 0.4023
+      },
+      {
+        "func_name": "shapesize",
+        "reference": "Set/return turtle's stretchfactors/outline. Set resizemode to \"user\".",
+        "hypothesis": "Shape a tuple.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3641
+      },
+      {
+        "func_name": "formattree",
+        "reference": "Produce HTML for a class tree as given by inspect.getclasstree().",
+        "hypothesis": "formattree: tree, modname, parent.",
+        "bleu4": 0.014,
+        "rouge_l": 0.1333,
+        "exact_match": 0,
+        "confidence": 0.3583
+      },
+      {
+        "func_name": "read",
+        "reference": "Helper function to read Document in TTL-TXT format (i.e. ${docname}_*.txt) E.g. read('~/data/myfile') is the same as Doc",
+        "hypothesis": "Read a path from 'path' to 'tsv'.",
+        "bleu4": 0.0026,
+        "rouge_l": 0.0606,
+        "exact_match": 0,
+        "confidence": 0.3852
+      },
+      {
+        "func_name": "remove_extension",
+        "reference": "Unregister an extension code. For testing only.",
+        "hypothesis": "Remove the extension from the module.",
+        "bleu4": 0.0346,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.447
+      },
+      {
+        "func_name": "remove_folder",
+        "reference": "Delete the named folder, which must be empty.",
+        "hypothesis": "Remove a folder from the folder.",
+        "bleu4": 0.0348,
+        "rouge_l": 0.2857,
+        "exact_match": 0,
+        "confidence": 0.4893
+      },
+      {
+        "func_name": "register",
+        "reference": "Register a virtual subclass of an ABC.",
+        "hypothesis": "Registers a subclass.",
+        "bleu4": 0.0356,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.3767
+      },
+      {
+        "func_name": "__get_table",
+        "reference": "Get table by bucket.",
+        "hypothesis": "Get a table from a bucket.",
+        "bleu4": 0.0537,
+        "rouge_l": 0.6,
+        "exact_match": 0,
+        "confidence": 0.3161
+      },
+      {
+        "func_name": "is_link_local",
+        "reference": "Test if the address is reserved for link-local.",
+        "hypothesis": "Return if a link is local.",
+        "bleu4": 0.035,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.3276
+      },
+      {
+        "func_name": "_proc_group",
+        "reference": "Return whether group is \"default\" or \"override\".",
+        "hypothesis": "Create a _proc_group.",
+        "bleu4": 0.038,
+        "rouge_l": 0.1818,
+        "exact_match": 0,
+        "confidence": 0.2989
+      },
+      {
+        "func_name": "set_event_loop",
+        "reference": "Set the event loop for the current context to loop.",
+        "hypothesis": "Set a loop for the event.",
+        "bleu4": 0.1304,
+        "rouge_l": 0.5,
+        "exact_match": 0,
+        "confidence": 0.3895
+      },
+      {
+        "func_name": "is_tarfile",
+        "reference": "Return True if name points to a tar archive that we are able to handle, else return False.",
+        "hypothesis": "Return a tarfile.",
+        "bleu4": 0.0009,
+        "rouge_l": 0.1905,
+        "exact_match": 0,
+        "confidence": 0.3523
+      },
+      {
+        "func_name": "watson_request",
+        "reference": "Makes a single request to the IBM Watson text-to-speech API.",
+        "hypothesis": "Requires a watson-request.",
+        "bleu4": 0.0143,
+        "rouge_l": 0.25,
+        "exact_match": 0,
+        "confidence": 0.2792
+      },
+      {
+        "func_name": "right",
+        "reference": "Turn turtle right by angle units.",
+        "hypothesis": "Returns a right angle.",
+        "bleu4": 0.058,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.3323
+      },
+      {
+        "func_name": "_process_state",
+        "reference": "Process the application state configuration.",
+        "hypothesis": "Process state of json.",
+        "bleu4": 0.0744,
+        "rouge_l": 0.4444,
+        "exact_match": 0,
+        "confidence": 0.4456
+      },
+      {
+        "func_name": "keywords",
+        "reference": "Find the keywords from the set of kwd-group tags which are typically labelled as the author keywords.",
+        "hypothesis": "Return a list of keywords.",
+        "bleu4": 0.0047,
+        "rouge_l": 0.1739,
+        "exact_match": 0,
+        "confidence": 0.3322
+      },
+      {
+        "func_name": "is_package",
+        "reference": "is_package(fullname) -> bool.",
+        "hypothesis": "Return if the package is fullname.",
+        "bleu4": 0.0537,
+        "rouge_l": 0.4,
+        "exact_match": 0,
+        "confidence": 0.2966
+      },
+      {
+        "func_name": "abs_paths",
+        "reference": "Set all module __file__ and __cached__ attributes to an absolute path.",
+        "hypothesis": "Return a list of sys.modules.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3204
+      },
+      {
+        "func_name": "license_loader",
+        "reference": "Loads licenses from the given directory.",
+        "hypothesis": "Return a licenseloader.",
+        "bleu4": 0.0,
+        "rouge_l": 0.0,
+        "exact_match": 0,
+        "confidence": 0.3121
+      },
+      {
+        "func_name": "sgraph",
+        "reference": "Runs METIS or hMETIS and returns the labels found by those (hyper-)graph partitioning algorithms.",
+        "hypothesis": "Create a graph for sys.platform.",
+        "bleu4": 0.0091,
+        "rouge_l": 0.0952,
+        "exact_match": 0,
+        "confidence": 0.3167
+      },
+      {
+        "func_name": "_gt_from_ge",
+        "reference": "Return a > b. Computed by @total_ordering from (a >= b) and (a != b).",
+        "hypothesis": "Return a gt from the other.",
+        "bleu4": 0.0298,
+        "rouge_l": 0.3158,
+        "exact_match": 0,
+        "confidence": 0.4009
+      },
+      {
+        "func_name": "unpack_archive",
+        "reference": "Unpack an archive.",
+        "hypothesis": "Unpack a file in a directory.",
+        "bleu4": 0.0408,
+        "rouge_l": 0.2222,
+        "exact_match": 0,
+        "confidence": 0.3173
+      },
+      {
+        "func_name": "_is_descriptor",
+        "reference": "Returns True if obj is a descriptor, False otherwise.",
+        "hypothesis": "Return if obj is descriptor.",
+        "bleu4": 0.1284,
+        "rouge_l": 0.5714,
+        "exact_match": 0,
+        "confidence": 0.4981
+      },
+      {
+        "func_name": "query_artifacts",
+        "reference": "Query API again for artifacts.",
+        "hypothesis": "query_artifacts.",
+        "bleu4": 0.0397,
+        "rouge_l": 0.5714,
+        "exact_match": 0,
+        "confidence": 0.5554
+      },
+      {
+        "func_name": "contains",
+        "reference": "Same as b in a (note reversed operands).",
+        "hypothesis": "Return a and b loops.",
+        "bleu4": 0.0351,
+        "rouge_l": 0.1538,
+        "exact_match": 0,
+        "confidence": 0.3918
+      }
+    ]
+  },
+  "summary": {
+    "bleu4_mean": 0.0427,
+    "rouge_l_mean": 0.2533,
+    "exact_match_rate": 0.0,
+    "best_bleu4": 0.0427,
+    "best_rouge_l": 0.2533,
+    "best_exact_match": 0.0,
+    "dataset_size": 4944
+  }
+}

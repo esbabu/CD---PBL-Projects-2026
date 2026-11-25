@@ -1,0 +1,101 @@
+{
+ "language": "csharp",
+ "dataset": "datasets/security_dataset/v1",
+ "seed": 7,
+ "features": "TF-IDF over normalised tokens (comments removed, strings STR, numbers NUM, label-leaking identifiers and access modifiers masked), max 40,000 features",
+ "model": "LogisticRegression (lbfgs, max_iter 3000)",
+ "grid": [
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 1.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 4.0,
+   "ngram": [
+    1,
+    2
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    1
+   ]
+  },
+  {
+   "C": 16.0,
+   "ngram": [
+    1,
+    2
+   ]
+  }
+ ],
+ "selection": "best vulnerable-vs-safe F1 on the validation split",
+ "chosen": {
+  "C": 16.0,
+  "ngram": [
+   1,
+   2
+  ],
+  "val_f1": 0.9159,
+  "val_accuracy": 0.9623
+ },
+ "refit_on": "train + validation",
+ "counts": {
+  "train": 2562,
+  "val": 716,
+  "test": 539
+ },
+ "train_labels": {
+  "command-injection": 17,
+  "ssrf": 3,
+  "open-redirect": 19,
+  "deserialization": 3,
+  "safe": 1932,
+  "weak-crypto": 15,
+  "xxe": 3,
+  "hardcoded-credentials": 7,
+  "weak-randomness": 5,
+  "xss": 53,
+  "ldap-injection": 11,
+  "xpath-injection": 17,
+  "header-injection": 27,
+  "trust-boundary": 16,
+  "authorization": 3,
+  "error-handling": 18,
+  "information-exposure": 13,
+  "race-condition": 7,
+  "input-validation": 38,
+  "log-injection": 10,
+  "index-validation": 30,
+  "format-string": 22,
+  "integer-overflow": 112,
+  "path-traversal": 30,
+  "cleartext": 24,
+  "resource-exhaustion": 73,
+  "memory-management": 6,
+  "null-dereference": 16,
+  "sql-injection": 20,
+  "code-injection": 12
+ },
+ "small_n": false,
+ "used_by_neurosymbolic_engine": true
+}

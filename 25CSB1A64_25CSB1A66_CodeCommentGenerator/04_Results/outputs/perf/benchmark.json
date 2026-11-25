@@ -1,0 +1,2785 @@
+{
+ "machine": {
+  "python": "3.12.6",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+  "cpus": 12
+ },
+ "config": {
+  "small_files_per_language": 8,
+  "long_files_per_language": 2
+ },
+ "languages": {
+  "python": {
+   "files": 10,
+   "lines": 3382,
+   "per_file": [
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/long/TestPythonProgram01.py",
+     "kind": "long",
+     "ms": 16187.32,
+     "lines": 1635,
+     "findings": 34,
+     "comments": 268
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/long/TestPythonProgram02.py",
+     "kind": "long",
+     "ms": 11160.03,
+     "lines": 1297,
+     "findings": 21,
+     "comments": 197
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC002-vuln_0.py",
+     "kind": "small",
+     "ms": 111.33,
+     "lines": 57,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC002-vuln_1.py",
+     "kind": "small",
+     "ms": 70.52,
+     "lines": 57,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC002-vuln_2.py",
+     "kind": "small",
+     "ms": 78.75,
+     "lines": 57,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC002-safe_0.py",
+     "kind": "small",
+     "ms": 92.57,
+     "lines": 57,
+     "findings": 0,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC002-safe_1.py",
+     "kind": "small",
+     "ms": 99.26,
+     "lines": 57,
+     "findings": 0,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC002-safe_2.py",
+     "kind": "small",
+     "ms": 89.01,
+     "lines": 57,
+     "findings": 0,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC011-vuln_0.py",
+     "kind": "small",
+     "ms": 120.99,
+     "lines": 54,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/python/small/python-SEC011-vuln_1.py",
+     "kind": "small",
+     "ms": 115.58,
+     "lines": 54,
+     "findings": 1,
+     "comments": 1
+    }
+   ],
+   "blocks": {
+    "pipeline.parse": {
+     "calls": 10,
+     "total_ms": 75.658,
+     "mean_ms": 7.566,
+     "median_ms": 0.921,
+     "p95_ms": 43.769,
+     "max_ms": 43.769,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 6964.1,
+     "mean_peak_kb": 6292.9
+    },
+    "pipeline.validate": {
+     "calls": 10,
+     "total_ms": 54.335,
+     "mean_ms": 5.434,
+     "median_ms": 0.653,
+     "p95_ms": 30.508,
+     "max_ms": 30.508,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 36.8,
+     "mean_peak_kb": 29.1
+    },
+    "pipeline.extract": {
+     "calls": 10,
+     "total_ms": 106.376,
+     "mean_ms": 10.638,
+     "median_ms": 0.596,
+     "p95_ms": 62.025,
+     "max_ms": 62.025,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 184.1,
+     "mean_peak_kb": 160.4
+    },
+    "pipeline.analyze": {
+     "calls": 10,
+     "total_ms": 1379.313,
+     "mean_ms": 137.931,
+     "median_ms": 13.744,
+     "p95_ms": 1180.948,
+     "max_ms": 1180.948,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 12554.1,
+     "mean_peak_kb": 11241.7
+    },
+    "pipeline.generate": {
+     "calls": 10,
+     "total_ms": 869.869,
+     "mean_ms": 86.987,
+     "median_ms": 1.304,
+     "p95_ms": 477.356,
+     "max_ms": 477.356,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 323.2,
+     "mean_peak_kb": 293.5
+    },
+    "pipeline.attach": {
+     "calls": 10,
+     "total_ms": 124.183,
+     "mean_ms": 12.418,
+     "median_ms": 1.211,
+     "p95_ms": 71.618,
+     "max_ms": 71.618,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 7026.6,
+     "mean_peak_kb": 6350.4
+    },
+    "pipeline.build_ir": {
+     "calls": 10,
+     "total_ms": 615.154,
+     "mean_ms": 61.515,
+     "median_ms": 1.288,
+     "p95_ms": 315.322,
+     "max_ms": 315.322,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 4308.6,
+     "mean_peak_kb": 3787.0
+    },
+    "pipeline.analysis": {
+     "calls": 10,
+     "total_ms": 292.309,
+     "mean_ms": 29.231,
+     "median_ms": 0.498,
+     "p95_ms": 170.59,
+     "max_ms": 170.59,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1379.1,
+     "mean_peak_kb": 1210.0
+    },
+    "pipeline.security": {
+     "calls": 10,
+     "total_ms": 4.822,
+     "mean_ms": 0.482,
+     "median_ms": 0.112,
+     "p95_ms": 2.589,
+     "max_ms": 2.589,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 61.3,
+     "mean_peak_kb": 55.0
+    },
+    "security.parse": {
+     "calls": 42,
+     "total_ms": 537.706,
+     "mean_ms": 12.803,
+     "median_ms": 0.73,
+     "p95_ms": 42.401,
+     "max_ms": 60.027,
+     "lines": 23680,
+     "lines_per_s": 44038.9,
+     "peak_kb": 6960.7,
+     "mean_peak_kb": 6353.2
+    },
+    "security.ir_lowering": {
+     "calls": 42,
+     "total_ms": 2680.357,
+     "mean_ms": 63.818,
+     "median_ms": 2.17,
+     "p95_ms": 202.637,
+     "max_ms": 304.296,
+     "lines": 23680,
+     "lines_per_s": 8834.6,
+     "peak_kb": 4364.7,
+     "mean_peak_kb": 3821.5
+    },
+    "security.cfg_dataflow_taint": {
+     "calls": 42,
+     "total_ms": 12415.096,
+     "mean_ms": 295.598,
+     "median_ms": 6.297,
+     "p95_ms": 1001.032,
+     "max_ms": 1029.514,
+     "lines": 23680,
+     "lines_per_s": 1907.4,
+     "peak_kb": 1058.7,
+     "mean_peak_kb": 952.9
+    },
+    "security.rules_and_findings": {
+     "calls": 42,
+     "total_ms": 4670.323,
+     "mean_ms": 111.198,
+     "median_ms": 4.062,
+     "p95_ms": 424.413,
+     "max_ms": 431.398,
+     "lines": 23680,
+     "lines_per_s": 5070.3,
+     "peak_kb": 4559.9,
+     "mean_peak_kb": 4123.6
+    },
+    "ml.predict": {
+     "calls": 10,
+     "total_ms": 795.034,
+     "mean_ms": 79.503,
+     "median_ms": 5.405,
+     "p95_ms": 383.146,
+     "max_ms": 383.146,
+     "lines": 3382,
+     "lines_per_s": 4253.9,
+     "peak_kb": 6907.0,
+     "mean_peak_kb": 6242.8
+    },
+    "neurosymbolic.fuse": {
+     "calls": 10,
+     "total_ms": 5.547,
+     "mean_ms": 0.555,
+     "median_ms": 0.091,
+     "p95_ms": 2.402,
+     "max_ms": 2.402,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 10.0,
+     "mean_peak_kb": 8.2
+    },
+    "rag.retrieve": {
+     "calls": 62,
+     "total_ms": 1077.718,
+     "mean_ms": 17.383,
+     "median_ms": 16.181,
+     "p95_ms": 28.843,
+     "max_ms": 137.455,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 204.5,
+     "mean_peak_kb": 162.3
+    },
+    "agent.strategy": {
+     "calls": 13,
+     "total_ms": 1181.602,
+     "mean_ms": 90.892,
+     "median_ms": 112.815,
+     "p95_ms": 131.671,
+     "max_ms": 145.048,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 10316.0,
+     "mean_peak_kb": 9504.3
+    },
+    "agent.verify_patch": {
+     "calls": 13,
+     "total_ms": 15287.126,
+     "mean_ms": 1175.933,
+     "median_ms": 1351.672,
+     "p95_ms": 1827.411,
+     "max_ms": 1873.779,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 12515.0,
+     "mean_peak_kb": 11480.4
+    },
+    "agent.fix_and_verify": {
+     "calls": 10,
+     "total_ms": 20690.872,
+     "mean_ms": 2069.087,
+     "median_ms": 32.74,
+     "p95_ms": 13049.262,
+     "max_ms": 13049.262,
+     "lines": 3382,
+     "lines_per_s": 163.5,
+     "peak_kb": 13060.9,
+     "mean_peak_kb": 11708.5
+    },
+    "e2e": {
+     "calls": 10,
+     "total_ms": 27855.498,
+     "mean_ms": 2785.55,
+     "median_ms": 69.822,
+     "p95_ms": 16175.543,
+     "max_ms": 16175.543,
+     "lines": 3382,
+     "lines_per_s": 121.4,
+     "peak_kb": 22568.6,
+     "mean_peak_kb": 20012.0
+    }
+   },
+   "groups": {
+    "Parsing & AST": {
+     "total_ms": 129.99,
+     "share_of_measured": 0.0028,
+     "mean_ms_per_file": 13.0,
+     "peak_kb": 6964.1
+    },
+    "Features & preprocessing": {
+     "total_ms": 1485.69,
+     "share_of_measured": 0.032,
+     "mean_ms_per_file": 148.57,
+     "peak_kb": 12554.1
+    },
+    "Comment generation": {
+     "total_ms": 994.05,
+     "share_of_measured": 0.0214,
+     "mean_ms_per_file": 99.41,
+     "peak_kb": 7026.6
+    },
+    "IR & CFG": {
+     "total_ms": 4125.53,
+     "share_of_measured": 0.0889,
+     "mean_ms_per_file": 412.55,
+     "peak_kb": 6960.7
+    },
+    "Data flow & taint": {
+     "total_ms": 12415.1,
+     "share_of_measured": 0.2676,
+     "mean_ms_per_file": 1241.51,
+     "peak_kb": 1058.7
+    },
+    "Vulnerability detection (rules)": {
+     "total_ms": 4670.32,
+     "share_of_measured": 0.1007,
+     "mean_ms_per_file": 467.03,
+     "peak_kb": 4559.9
+    },
+    "ML model": {
+     "total_ms": 795.03,
+     "share_of_measured": 0.0171,
+     "mean_ms_per_file": 79.5,
+     "peak_kb": 6907.0
+    },
+    "Neuro-symbolic fusion": {
+     "total_ms": 5.55,
+     "share_of_measured": 0.0001,
+     "mean_ms_per_file": 0.55,
+     "peak_kb": 10.0
+    },
+    "RAG retrieval": {
+     "total_ms": 1077.72,
+     "share_of_measured": 0.0232,
+     "mean_ms_per_file": 107.77,
+     "peak_kb": 204.5
+    },
+    "Agentic remediation": {
+     "total_ms": 20690.87,
+     "share_of_measured": 0.446,
+     "mean_ms_per_file": 2069.09,
+     "peak_kb": 13060.9
+    }
+   },
+   "end_to_end": {
+    "total_ms": 27855.498,
+    "mean_ms_per_file": 2785.55,
+    "median_ms_per_file": 69.822,
+    "p95_ms_per_file": 16175.543,
+    "lines_per_second": 121.4,
+    "files_per_second": 0.359,
+    "peak_kb_memory_pass": 22568.6,
+    "rss_delta_kb_memory_pass": 2044.0
+   },
+   "bottleneck": "Agentic remediation"
+  },
+  "java": {
+   "files": 10,
+   "lines": 3785,
+   "per_file": [
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/long/TestJavaProgram01.java",
+     "kind": "long",
+     "ms": 4472.91,
+     "lines": 1796,
+     "findings": 80,
+     "comments": 323
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/long/TestJavaProgram02.java",
+     "kind": "long",
+     "ms": 3984.44,
+     "lines": 1707,
+     "findings": 75,
+     "comments": 301
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-remember_0.java",
+     "kind": "small",
+     "ms": 25.75,
+     "lines": 34,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-remember_1.java",
+     "kind": "small",
+     "ms": 23.89,
+     "lines": 34,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-remember_2.java",
+     "kind": "small",
+     "ms": 27.69,
+     "lines": 34,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-parseXml_0.java",
+     "kind": "small",
+     "ms": 22.1,
+     "lines": 36,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-parseXml_1.java",
+     "kind": "small",
+     "ms": 20.34,
+     "lines": 36,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-parseXml_2.java",
+     "kind": "small",
+     "ms": 21.15,
+     "lines": 36,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-parseXmlSafe_0.java",
+     "kind": "small",
+     "ms": 28.87,
+     "lines": 36,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/java/small/java-parseXmlSafe_1.java",
+     "kind": "small",
+     "ms": 34.27,
+     "lines": 36,
+     "findings": 0,
+     "comments": 2
+    }
+   ],
+   "blocks": {
+    "pipeline.parse": {
+     "calls": 10,
+     "total_ms": 230.219,
+     "mean_ms": 23.022,
+     "median_ms": 0.875,
+     "p95_ms": 120.841,
+     "max_ms": 120.841,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 3760.3,
+     "mean_peak_kb": 3681.6
+    },
+    "pipeline.validate": {
+     "calls": 10,
+     "total_ms": 0.082,
+     "mean_ms": 0.008,
+     "median_ms": 0.007,
+     "p95_ms": 0.017,
+     "max_ms": 0.017,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.extract": {
+     "calls": 10,
+     "total_ms": 0.074,
+     "mean_ms": 0.007,
+     "median_ms": 0.007,
+     "p95_ms": 0.015,
+     "max_ms": 0.015,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.analyze": {
+     "calls": 10,
+     "total_ms": 0.223,
+     "mean_ms": 0.022,
+     "median_ms": 0.007,
+     "p95_ms": 0.104,
+     "max_ms": 0.104,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.generate": {
+     "calls": 10,
+     "total_ms": 148.903,
+     "mean_ms": 14.89,
+     "median_ms": 0.641,
+     "p95_ms": 91.263,
+     "max_ms": 91.263,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 171.1,
+     "mean_peak_kb": 160.6
+    },
+    "pipeline.attach": {
+     "calls": 10,
+     "total_ms": 10.124,
+     "mean_ms": 1.012,
+     "median_ms": 0.09,
+     "p95_ms": 4.824,
+     "max_ms": 4.824,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 980.3,
+     "mean_peak_kb": 960.3
+    },
+    "pipeline.build_ir": {
+     "calls": 10,
+     "total_ms": 570.504,
+     "mean_ms": 57.05,
+     "median_ms": 0.896,
+     "p95_ms": 308.089,
+     "max_ms": 308.089,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 5413.6,
+     "mean_peak_kb": 5302.5
+    },
+    "pipeline.analysis": {
+     "calls": 10,
+     "total_ms": 235.514,
+     "mean_ms": 23.551,
+     "median_ms": 0.319,
+     "p95_ms": 140.585,
+     "max_ms": 140.585,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1188.5,
+     "mean_peak_kb": 1150.0
+    },
+    "security.parse_and_ir_lowering": {
+     "calls": 20,
+     "total_ms": 694.23,
+     "mean_ms": 34.712,
+     "median_ms": 0.948,
+     "p95_ms": 152.624,
+     "max_ms": 262.356,
+     "lines": 7570,
+     "lines_per_s": 10904.2,
+     "peak_kb": 5417.6,
+     "mean_peak_kb": 4569.3
+    },
+    "security.cfg_dataflow_taint": {
+     "calls": 20,
+     "total_ms": 4598.45,
+     "mean_ms": 229.922,
+     "median_ms": 3.733,
+     "p95_ms": 1220.109,
+     "max_ms": 1234.746,
+     "lines": 7570,
+     "lines_per_s": 1646.2,
+     "peak_kb": 559.2,
+     "mean_peak_kb": 544.0
+    },
+    "security.rules_and_findings": {
+     "calls": 20,
+     "total_ms": 928.864,
+     "mean_ms": 46.443,
+     "median_ms": 1.729,
+     "p95_ms": 225.817,
+     "max_ms": 321.247,
+     "lines": 7570,
+     "lines_per_s": 8149.7,
+     "peak_kb": 4015.1,
+     "mean_peak_kb": 3494.8
+    },
+    "security.memory_safety": {
+     "calls": 20,
+     "total_ms": 0.189,
+     "mean_ms": 0.009,
+     "median_ms": 0.009,
+     "p95_ms": 0.016,
+     "max_ms": 0.018,
+     "lines": 7570,
+     "lines_per_s": 40052910.1,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.security": {
+     "calls": 10,
+     "total_ms": 3137.736,
+     "mean_ms": 313.774,
+     "median_ms": 7.869,
+     "p95_ms": 1746.531,
+     "max_ms": 1746.531,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 9973.0,
+     "mean_peak_kb": 6304.4
+    },
+    "ml.predict": {
+     "calls": 10,
+     "total_ms": 991.899,
+     "mean_ms": 99.19,
+     "median_ms": 5.121,
+     "p95_ms": 481.597,
+     "max_ms": 481.597,
+     "lines": 3785,
+     "lines_per_s": 3815.9,
+     "peak_kb": 531.6,
+     "mean_peak_kb": 526.4
+    },
+    "neurosymbolic.fuse": {
+     "calls": 10,
+     "total_ms": 5.68,
+     "mean_ms": 0.568,
+     "median_ms": 0.062,
+     "p95_ms": 2.559,
+     "max_ms": 2.559,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 16.6,
+     "mean_peak_kb": 13.9
+    },
+    "rag.retrieve": {
+     "calls": 16,
+     "total_ms": 3.341,
+     "mean_ms": 0.209,
+     "median_ms": 0.225,
+     "p95_ms": 0.312,
+     "max_ms": 0.328,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.6,
+     "mean_peak_kb": 1.4
+    },
+    "e2e": {
+     "calls": 10,
+     "total_ms": 8642.953,
+     "mean_ms": 864.295,
+     "median_ms": 25.965,
+     "p95_ms": 4467.119,
+     "max_ms": 4467.119,
+     "lines": 3785,
+     "lines_per_s": 437.9,
+     "peak_kb": 17818.8,
+     "mean_peak_kb": 15106.0
+    }
+   },
+   "groups": {
+    "Parsing & AST": {
+     "total_ms": 230.3,
+     "share_of_measured": 0.0274,
+     "mean_ms_per_file": 23.03,
+     "peak_kb": 3760.3
+    },
+    "Features & preprocessing": {
+     "total_ms": 0.3,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.03,
+     "peak_kb": 1.0
+    },
+    "Comment generation": {
+     "total_ms": 159.03,
+     "share_of_measured": 0.0189,
+     "mean_ms_per_file": 15.9,
+     "peak_kb": 980.3
+    },
+    "IR & CFG": {
+     "total_ms": 1500.25,
+     "share_of_measured": 0.1782,
+     "mean_ms_per_file": 150.02,
+     "peak_kb": 5417.6
+    },
+    "Data flow & taint": {
+     "total_ms": 4598.45,
+     "share_of_measured": 0.5462,
+     "mean_ms_per_file": 459.84,
+     "peak_kb": 559.2
+    },
+    "Vulnerability detection (rules)": {
+     "total_ms": 929.05,
+     "share_of_measured": 0.1104,
+     "mean_ms_per_file": 92.91,
+     "peak_kb": 4015.1
+    },
+    "ML model": {
+     "total_ms": 991.9,
+     "share_of_measured": 0.1178,
+     "mean_ms_per_file": 99.19,
+     "peak_kb": 531.6
+    },
+    "Neuro-symbolic fusion": {
+     "total_ms": 5.68,
+     "share_of_measured": 0.0007,
+     "mean_ms_per_file": 0.57,
+     "peak_kb": 16.6
+    },
+    "RAG retrieval": {
+     "total_ms": 3.34,
+     "share_of_measured": 0.0004,
+     "mean_ms_per_file": 0.33,
+     "peak_kb": 1.6
+    },
+    "Agentic remediation": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    }
+   },
+   "end_to_end": {
+    "total_ms": 8642.953,
+    "mean_ms_per_file": 864.295,
+    "median_ms_per_file": 25.965,
+    "p95_ms_per_file": 4467.119,
+    "lines_per_second": 437.9,
+    "files_per_second": 1.157,
+    "peak_kb_memory_pass": 17818.8,
+    "rss_delta_kb_memory_pass": 116.0
+   },
+   "bottleneck": "Data flow & taint"
+  },
+  "csharp": {
+   "files": 10,
+   "lines": 2887,
+   "per_file": [
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/long/TestCsharpProgram01.cs",
+     "kind": "long",
+     "ms": 1006.86,
+     "lines": 1100,
+     "findings": 32,
+     "comments": 168
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/long/TestCsharpProgram02.cs",
+     "kind": "long",
+     "ms": 1570.46,
+     "lines": 1505,
+     "findings": 70,
+     "comments": 217
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-ReadFile_0.cs",
+     "kind": "small",
+     "ms": 14.31,
+     "lines": 35,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-ReadFile_1.cs",
+     "kind": "small",
+     "ms": 21.3,
+     "lines": 35,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-ReadFile_2.cs",
+     "kind": "small",
+     "ms": 18.97,
+     "lines": 35,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-ReadFileSafe_0.cs",
+     "kind": "small",
+     "ms": 18.42,
+     "lines": 35,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-ReadFileSafe_1.cs",
+     "kind": "small",
+     "ms": 23.84,
+     "lines": 35,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-ReadFileSafe_2.cs",
+     "kind": "small",
+     "ms": 21.82,
+     "lines": 35,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-Delete_0.cs",
+     "kind": "small",
+     "ms": 11.63,
+     "lines": 36,
+     "findings": 2,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/csharp/small/csharp-Delete_1.cs",
+     "kind": "small",
+     "ms": 14.45,
+     "lines": 36,
+     "findings": 2,
+     "comments": 2
+    }
+   ],
+   "blocks": {
+    "pipeline.parse": {
+     "calls": 10,
+     "total_ms": 292.36,
+     "mean_ms": 29.236,
+     "median_ms": 1.992,
+     "p95_ms": 216.185,
+     "max_ms": 216.185,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 7702.4,
+     "mean_peak_kb": 6538.4
+    },
+    "pipeline.validate": {
+     "calls": 10,
+     "total_ms": 0.069,
+     "mean_ms": 0.007,
+     "median_ms": 0.006,
+     "p95_ms": 0.014,
+     "max_ms": 0.014,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.extract": {
+     "calls": 10,
+     "total_ms": 0.047,
+     "mean_ms": 0.005,
+     "median_ms": 0.005,
+     "p95_ms": 0.01,
+     "max_ms": 0.01,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.analyze": {
+     "calls": 10,
+     "total_ms": 0.113,
+     "mean_ms": 0.011,
+     "median_ms": 0.007,
+     "p95_ms": 0.035,
+     "max_ms": 0.035,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.generate": {
+     "calls": 10,
+     "total_ms": 48.844,
+     "mean_ms": 4.884,
+     "median_ms": 0.35,
+     "p95_ms": 26.175,
+     "max_ms": 26.175,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 112.2,
+     "mean_peak_kb": 106.0
+    },
+    "pipeline.attach": {
+     "calls": 10,
+     "total_ms": 3.574,
+     "mean_ms": 0.357,
+     "median_ms": 0.055,
+     "p95_ms": 1.843,
+     "max_ms": 1.843,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 698.9,
+     "mean_peak_kb": 594.0
+    },
+    "pipeline.build_ir": {
+     "calls": 10,
+     "total_ms": 130.516,
+     "mean_ms": 13.052,
+     "median_ms": 0.911,
+     "p95_ms": 81.232,
+     "max_ms": 81.232,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 4343.0,
+     "mean_peak_kb": 3677.8
+    },
+    "pipeline.analysis": {
+     "calls": 10,
+     "total_ms": 79.26,
+     "mean_ms": 7.926,
+     "median_ms": 0.267,
+     "p95_ms": 40.161,
+     "max_ms": 40.161,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 734.8,
+     "mean_peak_kb": 641.6
+    },
+    "security.parse_and_ir_lowering": {
+     "calls": 20,
+     "total_ms": 451.265,
+     "mean_ms": 22.563,
+     "median_ms": 0.879,
+     "p95_ms": 162.464,
+     "max_ms": 169.985,
+     "lines": 5774,
+     "lines_per_s": 12795.1,
+     "peak_kb": 4346.1,
+     "mean_peak_kb": 3616.5
+    },
+    "security.cfg_dataflow_taint": {
+     "calls": 20,
+     "total_ms": 885.318,
+     "mean_ms": 44.266,
+     "median_ms": 2.013,
+     "p95_ms": 240.954,
+     "max_ms": 269.608,
+     "lines": 5774,
+     "lines_per_s": 6522.0,
+     "peak_kb": 522.3,
+     "mean_peak_kb": 407.2
+    },
+    "security.rules_and_findings": {
+     "calls": 20,
+     "total_ms": 365.518,
+     "mean_ms": 18.276,
+     "median_ms": 1.325,
+     "p95_ms": 116.19,
+     "max_ms": 116.26,
+     "lines": 5774,
+     "lines_per_s": 15796.8,
+     "peak_kb": 3096.7,
+     "mean_peak_kb": 1887.9
+    },
+    "security.memory_safety": {
+     "calls": 20,
+     "total_ms": 0.146,
+     "mean_ms": 0.007,
+     "median_ms": 0.006,
+     "p95_ms": 0.014,
+     "max_ms": 0.02,
+     "lines": 5774,
+     "lines_per_s": 39547945.2,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.security": {
+     "calls": 10,
+     "total_ms": 884.472,
+     "mean_ms": 88.447,
+     "median_ms": 4.671,
+     "p95_ms": 448.167,
+     "max_ms": 448.167,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 7975.9,
+     "mean_peak_kb": 5398.3
+    },
+    "ml.predict": {
+     "calls": 10,
+     "total_ms": 364.248,
+     "mean_ms": 36.425,
+     "median_ms": 3.714,
+     "p95_ms": 181.246,
+     "max_ms": 181.246,
+     "lines": 2887,
+     "lines_per_s": 7925.9,
+     "peak_kb": 436.8,
+     "mean_peak_kb": 365.3
+    },
+    "neurosymbolic.fuse": {
+     "calls": 10,
+     "total_ms": 2.9,
+     "mean_ms": 0.29,
+     "median_ms": 0.029,
+     "p95_ms": 1.826,
+     "max_ms": 1.826,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.6,
+     "mean_peak_kb": 1.5
+    },
+    "rag.retrieve": {
+     "calls": 17,
+     "total_ms": 2.509,
+     "mean_ms": 0.148,
+     "median_ms": 0.105,
+     "p95_ms": 0.276,
+     "max_ms": 0.743,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.6,
+     "mean_peak_kb": 1.6
+    },
+    "e2e": {
+     "calls": 10,
+     "total_ms": 2713.817,
+     "mean_ms": 271.382,
+     "median_ms": 19.696,
+     "p95_ms": 1568.26,
+     "max_ms": 1568.26,
+     "lines": 2887,
+     "lines_per_s": 1063.8,
+     "peak_kb": 11645.5,
+     "mean_peak_kb": 10150.5
+    }
+   },
+   "groups": {
+    "Parsing & AST": {
+     "total_ms": 292.43,
+     "share_of_measured": 0.1113,
+     "mean_ms_per_file": 29.24,
+     "peak_kb": 7702.4
+    },
+    "Features & preprocessing": {
+     "total_ms": 0.16,
+     "share_of_measured": 0.0001,
+     "mean_ms_per_file": 0.02,
+     "peak_kb": 1.0
+    },
+    "Comment generation": {
+     "total_ms": 52.42,
+     "share_of_measured": 0.02,
+     "mean_ms_per_file": 5.24,
+     "peak_kb": 698.9
+    },
+    "IR & CFG": {
+     "total_ms": 661.04,
+     "share_of_measured": 0.2517,
+     "mean_ms_per_file": 66.1,
+     "peak_kb": 4346.1
+    },
+    "Data flow & taint": {
+     "total_ms": 885.32,
+     "share_of_measured": 0.337,
+     "mean_ms_per_file": 88.53,
+     "peak_kb": 522.3
+    },
+    "Vulnerability detection (rules)": {
+     "total_ms": 365.66,
+     "share_of_measured": 0.1392,
+     "mean_ms_per_file": 36.57,
+     "peak_kb": 3096.7
+    },
+    "ML model": {
+     "total_ms": 364.25,
+     "share_of_measured": 0.1387,
+     "mean_ms_per_file": 36.42,
+     "peak_kb": 436.8
+    },
+    "Neuro-symbolic fusion": {
+     "total_ms": 2.9,
+     "share_of_measured": 0.0011,
+     "mean_ms_per_file": 0.29,
+     "peak_kb": 1.6
+    },
+    "RAG retrieval": {
+     "total_ms": 2.51,
+     "share_of_measured": 0.001,
+     "mean_ms_per_file": 0.25,
+     "peak_kb": 1.6
+    },
+    "Agentic remediation": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    }
+   },
+   "end_to_end": {
+    "total_ms": 2713.817,
+    "mean_ms_per_file": 271.382,
+    "median_ms_per_file": 19.696,
+    "p95_ms_per_file": 1568.26,
+    "lines_per_second": 1063.8,
+    "files_per_second": 3.685,
+    "peak_kb_memory_pass": 11645.5,
+    "rss_delta_kb_memory_pass": -708.0
+   },
+   "bottleneck": "Data flow & taint"
+  },
+  "c": {
+   "files": 10,
+   "lines": 3420,
+   "per_file": [
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/long/TestCProgram01.c",
+     "kind": "long",
+     "ms": 3032.42,
+     "lines": 1774,
+     "findings": 62,
+     "comments": 316
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/long/TestCProgram02.c",
+     "kind": "long",
+     "ms": 2219.9,
+     "lines": 1489,
+     "findings": 51,
+     "comments": 257
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-load_records_0.c",
+     "kind": "small",
+     "ms": 26.71,
+     "lines": 21,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-load_records_1.c",
+     "kind": "small",
+     "ms": 26.39,
+     "lines": 21,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-load_records_2.c",
+     "kind": "small",
+     "ms": 28.38,
+     "lines": 21,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-release_0.c",
+     "kind": "small",
+     "ms": 14.79,
+     "lines": 18,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-release_1.c",
+     "kind": "small",
+     "ms": 13.04,
+     "lines": 18,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-release_2.c",
+     "kind": "small",
+     "ms": 13.19,
+     "lines": 18,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-release_safe_0.c",
+     "kind": "small",
+     "ms": 17.02,
+     "lines": 20,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/c/small/c-release_safe_1.c",
+     "kind": "small",
+     "ms": 19.53,
+     "lines": 20,
+     "findings": 0,
+     "comments": 2
+    }
+   ],
+   "blocks": {
+    "pipeline.parse": {
+     "calls": 10,
+     "total_ms": 165.63,
+     "mean_ms": 16.563,
+     "median_ms": 1.006,
+     "p95_ms": 79.68,
+     "max_ms": 79.68,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 3189.9,
+     "mean_peak_kb": 2917.7
+    },
+    "pipeline.validate": {
+     "calls": 10,
+     "total_ms": 0.087,
+     "mean_ms": 0.009,
+     "median_ms": 0.009,
+     "p95_ms": 0.012,
+     "max_ms": 0.012,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.extract": {
+     "calls": 10,
+     "total_ms": 0.077,
+     "mean_ms": 0.008,
+     "median_ms": 0.008,
+     "p95_ms": 0.009,
+     "max_ms": 0.009,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.analyze": {
+     "calls": 10,
+     "total_ms": 0.191,
+     "mean_ms": 0.019,
+     "median_ms": 0.009,
+     "p95_ms": 0.07,
+     "max_ms": 0.07,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.generate": {
+     "calls": 10,
+     "total_ms": 89.11,
+     "mean_ms": 8.911,
+     "median_ms": 0.468,
+     "p95_ms": 50.78,
+     "max_ms": 50.78,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 132.3,
+     "mean_peak_kb": 118.0
+    },
+    "pipeline.attach": {
+     "calls": 10,
+     "total_ms": 8.322,
+     "mean_ms": 0.832,
+     "median_ms": 0.078,
+     "p95_ms": 4.444,
+     "max_ms": 4.444,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 744.6,
+     "mean_peak_kb": 680.5
+    },
+    "pipeline.build_ir": {
+     "calls": 10,
+     "total_ms": 452.916,
+     "mean_ms": 45.292,
+     "median_ms": 0.971,
+     "p95_ms": 354.045,
+     "max_ms": 354.045,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 4768.9,
+     "mean_peak_kb": 4337.6
+    },
+    "pipeline.analysis": {
+     "calls": 10,
+     "total_ms": 238.44,
+     "mean_ms": 23.844,
+     "median_ms": 0.541,
+     "p95_ms": 143.856,
+     "max_ms": 143.856,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1013.2,
+     "mean_peak_kb": 929.7
+    },
+    "security.parse_and_ir_lowering": {
+     "calls": 20,
+     "total_ms": 668.811,
+     "mean_ms": 33.441,
+     "median_ms": 0.853,
+     "p95_ms": 161.186,
+     "max_ms": 271.658,
+     "lines": 6840,
+     "lines_per_s": 10227.1,
+     "peak_kb": 4771.9,
+     "mean_peak_kb": 3802.1
+    },
+    "security.cfg_dataflow_taint": {
+     "calls": 20,
+     "total_ms": 1897.705,
+     "mean_ms": 94.885,
+     "median_ms": 3.307,
+     "p95_ms": 516.804,
+     "max_ms": 561.409,
+     "lines": 6840,
+     "lines_per_s": 3604.4,
+     "peak_kb": 478.8,
+     "mean_peak_kb": 417.2
+    },
+    "security.rules_and_findings": {
+     "calls": 20,
+     "total_ms": 390.302,
+     "mean_ms": 19.515,
+     "median_ms": 0.878,
+     "p95_ms": 96.504,
+     "max_ms": 108.61,
+     "lines": 6840,
+     "lines_per_s": 17524.9,
+     "peak_kb": 1519.2,
+     "mean_peak_kb": 1390.8
+    },
+    "security.memory_safety": {
+     "calls": 20,
+     "total_ms": 234.875,
+     "mean_ms": 11.744,
+     "median_ms": 0.265,
+     "p95_ms": 63.285,
+     "max_ms": 74.349,
+     "lines": 6840,
+     "lines_per_s": 29121.9,
+     "peak_kb": 61.2,
+     "mean_peak_kb": 60.1
+    },
+    "pipeline.security": {
+     "calls": 10,
+     "total_ms": 1629.233,
+     "mean_ms": 162.923,
+     "median_ms": 5.359,
+     "p95_ms": 936.933,
+     "max_ms": 936.933,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 6813.5,
+     "mean_peak_kb": 4317.0
+    },
+    "ml.predict": {
+     "calls": 10,
+     "total_ms": 1103.55,
+     "mean_ms": 110.355,
+     "median_ms": 5.465,
+     "p95_ms": 623.123,
+     "max_ms": 623.123,
+     "lines": 3420,
+     "lines_per_s": 3099.1,
+     "peak_kb": 440.6,
+     "mean_peak_kb": 405.2
+    },
+    "neurosymbolic.fuse": {
+     "calls": 10,
+     "total_ms": 5.322,
+     "mean_ms": 0.532,
+     "median_ms": 0.042,
+     "p95_ms": 2.592,
+     "max_ms": 2.592,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.6,
+     "mean_peak_kb": 1.6
+    },
+    "rag.retrieve": {
+     "calls": 16,
+     "total_ms": 3.328,
+     "mean_ms": 0.208,
+     "median_ms": 0.211,
+     "p95_ms": 0.344,
+     "max_ms": 0.58,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.6,
+     "mean_peak_kb": 1.5
+    },
+    "e2e": {
+     "calls": 10,
+     "total_ms": 5393.3,
+     "mean_ms": 539.33,
+     "median_ms": 22.159,
+     "p95_ms": 3025.498,
+     "max_ms": 3025.498,
+     "lines": 3420,
+     "lines_per_s": 634.1,
+     "peak_kb": 13599.8,
+     "mean_peak_kb": 11010.2
+    }
+   },
+   "groups": {
+    "Parsing & AST": {
+     "total_ms": 165.72,
+     "share_of_measured": 0.0315,
+     "mean_ms_per_file": 16.57,
+     "peak_kb": 3189.9
+    },
+    "Features & preprocessing": {
+     "total_ms": 0.27,
+     "share_of_measured": 0.0001,
+     "mean_ms_per_file": 0.03,
+     "peak_kb": 1.0
+    },
+    "Comment generation": {
+     "total_ms": 97.43,
+     "share_of_measured": 0.0185,
+     "mean_ms_per_file": 9.74,
+     "peak_kb": 744.6
+    },
+    "IR & CFG": {
+     "total_ms": 1360.17,
+     "share_of_measured": 0.2587,
+     "mean_ms_per_file": 136.02,
+     "peak_kb": 4771.9
+    },
+    "Data flow & taint": {
+     "total_ms": 1897.7,
+     "share_of_measured": 0.3609,
+     "mean_ms_per_file": 189.77,
+     "peak_kb": 478.8
+    },
+    "Vulnerability detection (rules)": {
+     "total_ms": 625.18,
+     "share_of_measured": 0.1189,
+     "mean_ms_per_file": 62.52,
+     "peak_kb": 1519.2
+    },
+    "ML model": {
+     "total_ms": 1103.55,
+     "share_of_measured": 0.2099,
+     "mean_ms_per_file": 110.35,
+     "peak_kb": 440.6
+    },
+    "Neuro-symbolic fusion": {
+     "total_ms": 5.32,
+     "share_of_measured": 0.001,
+     "mean_ms_per_file": 0.53,
+     "peak_kb": 1.6
+    },
+    "RAG retrieval": {
+     "total_ms": 3.33,
+     "share_of_measured": 0.0006,
+     "mean_ms_per_file": 0.33,
+     "peak_kb": 1.6
+    },
+    "Agentic remediation": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    }
+   },
+   "end_to_end": {
+    "total_ms": 5393.3,
+    "mean_ms_per_file": 539.33,
+    "median_ms_per_file": 22.159,
+    "p95_ms_per_file": 3025.498,
+    "lines_per_second": 634.1,
+    "files_per_second": 1.854,
+    "peak_kb_memory_pass": 13599.8,
+    "rss_delta_kb_memory_pass": -3468.0
+   },
+   "bottleneck": "Data flow & taint"
+  },
+  "cpp": {
+   "files": 10,
+   "lines": 3137,
+   "per_file": [
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/long/TestCppProgram01.cpp",
+     "kind": "long",
+     "ms": 3325.69,
+     "lines": 1592,
+     "findings": 91,
+     "comments": 327
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/long/TestCppProgram02.cpp",
+     "kind": "long",
+     "ms": 2695.41,
+     "lines": 1448,
+     "findings": 77,
+     "comments": 301
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/small/cpp-openLog_0.cpp",
+     "kind": "small",
+     "ms": 25.72,
+     "lines": 29,
+     "findings": 1,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/small/cpp-openLog_1.cpp",
+     "kind": "small",
+     "ms": 25.81,
+     "lines": 29,
+     "findings": 1,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/small/cpp-openLog_2.cpp",
+     "kind": "small",
+     "ms": 27.5,
+     "lines": 29,
+     "findings": 1,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/snippets/SEC030.cpp",
+     "kind": "small",
+     "ms": 15.33,
+     "lines": 2,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/snippets/SEC032.cpp",
+     "kind": "small",
+     "ms": 17.0,
+     "lines": 2,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/snippets/SEC037.cpp",
+     "kind": "small",
+     "ms": 16.88,
+     "lines": 2,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/snippets/SEC053.cpp",
+     "kind": "small",
+     "ms": 31.43,
+     "lines": 2,
+     "findings": 1,
+     "comments": 1
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cpp/snippets/SEC057.cpp",
+     "kind": "small",
+     "ms": 19.51,
+     "lines": 2,
+     "findings": 1,
+     "comments": 1
+    }
+   ],
+   "blocks": {
+    "pipeline.parse": {
+     "calls": 10,
+     "total_ms": 384.732,
+     "mean_ms": 38.473,
+     "median_ms": 0.937,
+     "p95_ms": 311.319,
+     "max_ms": 311.319,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 2812.6,
+     "mean_peak_kb": 2678.3
+    },
+    "pipeline.validate": {
+     "calls": 10,
+     "total_ms": 0.108,
+     "mean_ms": 0.011,
+     "median_ms": 0.01,
+     "p95_ms": 0.015,
+     "max_ms": 0.015,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.extract": {
+     "calls": 10,
+     "total_ms": 0.088,
+     "mean_ms": 0.009,
+     "median_ms": 0.009,
+     "p95_ms": 0.012,
+     "max_ms": 0.012,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.analyze": {
+     "calls": 10,
+     "total_ms": 0.201,
+     "mean_ms": 0.02,
+     "median_ms": 0.011,
+     "p95_ms": 0.072,
+     "max_ms": 0.072,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.generate": {
+     "calls": 10,
+     "total_ms": 97.394,
+     "mean_ms": 9.739,
+     "median_ms": 0.434,
+     "p95_ms": 50.696,
+     "max_ms": 50.696,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 132.6,
+     "mean_peak_kb": 127.7
+    },
+    "pipeline.attach": {
+     "calls": 10,
+     "total_ms": 9.628,
+     "mean_ms": 0.963,
+     "median_ms": 0.084,
+     "p95_ms": 5.141,
+     "max_ms": 5.141,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 769.5,
+     "mean_peak_kb": 740.5
+    },
+    "pipeline.build_ir": {
+     "calls": 10,
+     "total_ms": 275.412,
+     "mean_ms": 27.541,
+     "median_ms": 0.786,
+     "p95_ms": 145.592,
+     "max_ms": 145.592,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 4334.6,
+     "mean_peak_kb": 3048.0
+    },
+    "pipeline.analysis": {
+     "calls": 10,
+     "total_ms": 230.308,
+     "mean_ms": 23.031,
+     "median_ms": 0.576,
+     "p95_ms": 136.092,
+     "max_ms": 136.092,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 869.3,
+     "mean_peak_kb": 838.5
+    },
+    "security.parse_and_ir_lowering": {
+     "calls": 20,
+     "total_ms": 730.082,
+     "mean_ms": 36.504,
+     "median_ms": 0.943,
+     "p95_ms": 127.074,
+     "max_ms": 350.686,
+     "lines": 6274,
+     "lines_per_s": 8593.6,
+     "peak_kb": 4331.6,
+     "mean_peak_kb": 4157.8
+    },
+    "security.cfg_dataflow_taint": {
+     "calls": 20,
+     "total_ms": 2614.346,
+     "mean_ms": 130.717,
+     "median_ms": 3.221,
+     "p95_ms": 685.501,
+     "max_ms": 693.002,
+     "lines": 6274,
+     "lines_per_s": 2399.8,
+     "peak_kb": 628.6,
+     "mean_peak_kb": 543.0
+    },
+    "security.rules_and_findings": {
+     "calls": 20,
+     "total_ms": 443.755,
+     "mean_ms": 22.188,
+     "median_ms": 0.934,
+     "p95_ms": 113.329,
+     "max_ms": 120.991,
+     "lines": 6274,
+     "lines_per_s": 14138.4,
+     "peak_kb": 1388.8,
+     "mean_peak_kb": 1328.1
+    },
+    "security.memory_safety": {
+     "calls": 20,
+     "total_ms": 205.964,
+     "mean_ms": 10.298,
+     "median_ms": 0.227,
+     "p95_ms": 57.487,
+     "max_ms": 61.37,
+     "lines": 6274,
+     "lines_per_s": 30461.6,
+     "peak_kb": 37.4,
+     "mean_peak_kb": 37.3
+    },
+    "pipeline.security": {
+     "calls": 10,
+     "total_ms": 2051.599,
+     "mean_ms": 205.16,
+     "median_ms": 5.819,
+     "p95_ms": 1017.623,
+     "max_ms": 1017.623,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 6483.2,
+     "mean_peak_kb": 6214.2
+    },
+    "ml.predict": {
+     "calls": 10,
+     "total_ms": 970.285,
+     "mean_ms": 97.028,
+     "median_ms": 5.457,
+     "p95_ms": 468.053,
+     "max_ms": 468.053,
+     "lines": 3137,
+     "lines_per_s": 3233.1,
+     "peak_kb": 433.0,
+     "mean_peak_kb": 375.4
+    },
+    "neurosymbolic.fuse": {
+     "calls": 10,
+     "total_ms": 9.448,
+     "mean_ms": 0.945,
+     "median_ms": 0.093,
+     "p95_ms": 4.562,
+     "max_ms": 4.562,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 3.1,
+     "mean_peak_kb": 2.8
+    },
+    "rag.retrieve": {
+     "calls": 18,
+     "total_ms": 4.196,
+     "mean_ms": 0.233,
+     "median_ms": 0.213,
+     "p95_ms": 0.603,
+     "max_ms": 0.676,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.6,
+     "mean_peak_kb": 1.6
+    },
+    "e2e": {
+     "calls": 10,
+     "total_ms": 6180.082,
+     "mean_ms": 618.008,
+     "median_ms": 24.266,
+     "p95_ms": 3319.503,
+     "max_ms": 3319.503,
+     "lines": 3137,
+     "lines_per_s": 507.6,
+     "peak_kb": 16747.4,
+     "mean_peak_kb": 11007.6
+    }
+   },
+   "groups": {
+    "Parsing & AST": {
+     "total_ms": 384.84,
+     "share_of_measured": 0.0644,
+     "mean_ms_per_file": 38.48,
+     "peak_kb": 2812.6
+    },
+    "Features & preprocessing": {
+     "total_ms": 0.29,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.03,
+     "peak_kb": 1.0
+    },
+    "Comment generation": {
+     "total_ms": 107.02,
+     "share_of_measured": 0.0179,
+     "mean_ms_per_file": 10.7,
+     "peak_kb": 769.5
+    },
+    "IR & CFG": {
+     "total_ms": 1235.8,
+     "share_of_measured": 0.2068,
+     "mean_ms_per_file": 123.58,
+     "peak_kb": 4334.6
+    },
+    "Data flow & taint": {
+     "total_ms": 2614.35,
+     "share_of_measured": 0.4375,
+     "mean_ms_per_file": 261.43,
+     "peak_kb": 628.6
+    },
+    "Vulnerability detection (rules)": {
+     "total_ms": 649.72,
+     "share_of_measured": 0.1087,
+     "mean_ms_per_file": 64.97,
+     "peak_kb": 1388.8
+    },
+    "ML model": {
+     "total_ms": 970.28,
+     "share_of_measured": 0.1624,
+     "mean_ms_per_file": 97.03,
+     "peak_kb": 433.0
+    },
+    "Neuro-symbolic fusion": {
+     "total_ms": 9.45,
+     "share_of_measured": 0.0016,
+     "mean_ms_per_file": 0.94,
+     "peak_kb": 3.1
+    },
+    "RAG retrieval": {
+     "total_ms": 4.2,
+     "share_of_measured": 0.0007,
+     "mean_ms_per_file": 0.42,
+     "peak_kb": 1.6
+    },
+    "Agentic remediation": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    }
+   },
+   "end_to_end": {
+    "total_ms": 6180.082,
+    "mean_ms_per_file": 618.008,
+    "median_ms_per_file": 24.266,
+    "p95_ms_per_file": 3319.503,
+    "lines_per_second": 507.6,
+    "files_per_second": 1.618,
+    "peak_kb_memory_pass": 16747.4,
+    "rss_delta_kb_memory_pass": -1860.0
+   },
+   "bottleneck": "Data flow & taint"
+  },
+  "rust": {
+   "files": 10,
+   "lines": 3137,
+   "per_file": [
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/long/TestRustProgram01.rs",
+     "kind": "long",
+     "ms": 2426.49,
+     "lines": 1127,
+     "findings": 31,
+     "comments": 199
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/long/TestRustProgram02.rs",
+     "kind": "long",
+     "ms": 4167.69,
+     "lines": 1817,
+     "findings": 54,
+     "comments": 325
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-proxy_0.rs",
+     "kind": "small",
+     "ms": 29.69,
+     "lines": 24,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-proxy_1.rs",
+     "kind": "small",
+     "ms": 28.91,
+     "lines": 24,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-proxy_2.rs",
+     "kind": "small",
+     "ms": 27.07,
+     "lines": 24,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-proxy_safe_0.rs",
+     "kind": "small",
+     "ms": 33.12,
+     "lines": 25,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-proxy_safe_1.rs",
+     "kind": "small",
+     "ms": 32.36,
+     "lines": 25,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-proxy_safe_2.rs",
+     "kind": "small",
+     "ms": 34.32,
+     "lines": 25,
+     "findings": 0,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-first_byte_0.rs",
+     "kind": "small",
+     "ms": 15.65,
+     "lines": 23,
+     "findings": 1,
+     "comments": 2
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/rust/small/rust-first_byte_1.rs",
+     "kind": "small",
+     "ms": 16.16,
+     "lines": 23,
+     "findings": 1,
+     "comments": 2
+    }
+   ],
+   "blocks": {
+    "pipeline.parse": {
+     "calls": 10,
+     "total_ms": 501.876,
+     "mean_ms": 50.188,
+     "median_ms": 2.776,
+     "p95_ms": 325.852,
+     "max_ms": 325.852,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 10703.6,
+     "mean_peak_kb": 8642.8
+    },
+    "pipeline.validate": {
+     "calls": 10,
+     "total_ms": 0.132,
+     "mean_ms": 0.013,
+     "median_ms": 0.012,
+     "p95_ms": 0.028,
+     "max_ms": 0.028,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.extract": {
+     "calls": 10,
+     "total_ms": 0.091,
+     "mean_ms": 0.009,
+     "median_ms": 0.009,
+     "p95_ms": 0.012,
+     "max_ms": 0.012,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.analyze": {
+     "calls": 10,
+     "total_ms": 0.294,
+     "mean_ms": 0.029,
+     "median_ms": 0.011,
+     "p95_ms": 0.138,
+     "max_ms": 0.138,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.generate": {
+     "calls": 10,
+     "total_ms": 111.536,
+     "mean_ms": 11.154,
+     "median_ms": 0.544,
+     "p95_ms": 69.27,
+     "max_ms": 69.27,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 153.0,
+     "mean_peak_kb": 121.0
+    },
+    "pipeline.attach": {
+     "calls": 10,
+     "total_ms": 10.196,
+     "mean_ms": 1.02,
+     "median_ms": 0.106,
+     "p95_ms": 6.407,
+     "max_ms": 6.407,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 951.6,
+     "mean_peak_kb": 758.0
+    },
+    "pipeline.build_ir": {
+     "calls": 10,
+     "total_ms": 703.228,
+     "mean_ms": 70.323,
+     "median_ms": 1.896,
+     "p95_ms": 411.251,
+     "max_ms": 411.251,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 3591.8,
+     "mean_peak_kb": 3569.5
+    },
+    "pipeline.analysis": {
+     "calls": 10,
+     "total_ms": 195.485,
+     "mean_ms": 19.548,
+     "median_ms": 0.775,
+     "p95_ms": 135.182,
+     "max_ms": 135.182,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 871.8,
+     "mean_peak_kb": 705.8
+    },
+    "security.parse_and_ir_lowering": {
+     "calls": 20,
+     "total_ms": 898.898,
+     "mean_ms": 44.945,
+     "median_ms": 1.526,
+     "p95_ms": 226.245,
+     "max_ms": 407.199,
+     "lines": 6274,
+     "lines_per_s": 6979.7,
+     "peak_kb": 5751.9,
+     "mean_peak_kb": 3977.8
+    },
+    "security.cfg_dataflow_taint": {
+     "calls": 20,
+     "total_ms": 3077.419,
+     "mean_ms": 153.871,
+     "median_ms": 5.673,
+     "p95_ms": 949.658,
+     "max_ms": 966.875,
+     "lines": 6274,
+     "lines_per_s": 2038.7,
+     "peak_kb": 402.2,
+     "mean_peak_kb": 325.8
+    },
+    "security.rules_and_findings": {
+     "calls": 20,
+     "total_ms": 1137.465,
+     "mean_ms": 56.873,
+     "median_ms": 2.565,
+     "p95_ms": 293.36,
+     "max_ms": 373.666,
+     "lines": 6274,
+     "lines_per_s": 5515.8,
+     "peak_kb": 4152.2,
+     "mean_peak_kb": 3129.5
+    },
+    "security.memory_safety": {
+     "calls": 20,
+     "total_ms": 0.238,
+     "mean_ms": 0.012,
+     "median_ms": 0.011,
+     "p95_ms": 0.019,
+     "max_ms": 0.019,
+     "lines": 6274,
+     "lines_per_s": 26361344.5,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.security": {
+     "calls": 10,
+     "total_ms": 2390.329,
+     "mean_ms": 239.033,
+     "median_ms": 9.931,
+     "p95_ms": 1501.505,
+     "max_ms": 1501.505,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 10296.4,
+     "mean_peak_kb": 8316.8
+    },
+    "ml.predict": {
+     "calls": 10,
+     "total_ms": 0.088,
+     "mean_ms": 0.009,
+     "median_ms": 0.007,
+     "p95_ms": 0.018,
+     "max_ms": 0.018,
+     "lines": 3137,
+     "lines_per_s": 35647727.3,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "rag.retrieve": {
+     "calls": 15,
+     "total_ms": 4.749,
+     "mean_ms": 0.317,
+     "median_ms": 0.253,
+     "p95_ms": 0.624,
+     "max_ms": 0.705,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.6,
+     "mean_peak_kb": 1.6
+    },
+    "e2e": {
+     "calls": 10,
+     "total_ms": 6787.212,
+     "mean_ms": 678.721,
+     "median_ms": 29.696,
+     "p95_ms": 4159.066,
+     "max_ms": 4159.066,
+     "lines": 3137,
+     "lines_per_s": 462.2,
+     "peak_kb": 18136.4,
+     "mean_peak_kb": 16256.9
+    }
+   },
+   "groups": {
+    "Parsing & AST": {
+     "total_ms": 502.01,
+     "share_of_measured": 0.0756,
+     "mean_ms_per_file": 50.2,
+     "peak_kb": 10703.6
+    },
+    "Features & preprocessing": {
+     "total_ms": 0.39,
+     "share_of_measured": 0.0001,
+     "mean_ms_per_file": 0.04,
+     "peak_kb": 1.0
+    },
+    "Comment generation": {
+     "total_ms": 121.73,
+     "share_of_measured": 0.0183,
+     "mean_ms_per_file": 12.17,
+     "peak_kb": 951.6
+    },
+    "IR & CFG": {
+     "total_ms": 1797.61,
+     "share_of_measured": 0.2707,
+     "mean_ms_per_file": 179.76,
+     "peak_kb": 5751.9
+    },
+    "Data flow & taint": {
+     "total_ms": 3077.42,
+     "share_of_measured": 0.4633,
+     "mean_ms_per_file": 307.74,
+     "peak_kb": 402.2
+    },
+    "Vulnerability detection (rules)": {
+     "total_ms": 1137.7,
+     "share_of_measured": 0.1713,
+     "mean_ms_per_file": 113.77,
+     "peak_kb": 4152.2
+    },
+    "ML model": {
+     "total_ms": 0.09,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.01,
+     "peak_kb": 1.0
+    },
+    "Neuro-symbolic fusion": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    },
+    "RAG retrieval": {
+     "total_ms": 4.75,
+     "share_of_measured": 0.0007,
+     "mean_ms_per_file": 0.47,
+     "peak_kb": 1.6
+    },
+    "Agentic remediation": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    }
+   },
+   "end_to_end": {
+    "total_ms": 6787.212,
+    "mean_ms_per_file": 678.721,
+    "median_ms_per_file": 29.696,
+    "p95_ms_per_file": 4159.066,
+    "lines_per_second": 462.2,
+    "files_per_second": 1.473,
+    "peak_kb_memory_pass": 18136.4,
+    "rss_delta_kb_memory_pass": 904.0
+   },
+   "bottleneck": "Data flow & taint"
+  },
+  "cobol": {
+   "files": 10,
+   "lines": 2795,
+   "per_file": [
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/long/TestCobolProgram01.cbl",
+     "kind": "long",
+     "ms": 9214.31,
+     "lines": 1504,
+     "findings": 42,
+     "comments": 186
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/long/TestCobolProgram02.cbl",
+     "kind": "long",
+     "ms": 5228.26,
+     "lines": 1139,
+     "findings": 45,
+     "comments": 139
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-subscript-vuln_0.cbl",
+     "kind": "small",
+     "ms": 18.46,
+     "lines": 19,
+     "findings": 1,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-subscript-vuln_1.cbl",
+     "kind": "small",
+     "ms": 18.25,
+     "lines": 19,
+     "findings": 1,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-subscript-vuln_2.cbl",
+     "kind": "small",
+     "ms": 17.2,
+     "lines": 19,
+     "findings": 1,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-subscript-safe_0.cbl",
+     "kind": "small",
+     "ms": 21.06,
+     "lines": 21,
+     "findings": 0,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-subscript-safe_1.cbl",
+     "kind": "small",
+     "ms": 24.4,
+     "lines": 21,
+     "findings": 0,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-subscript-safe_2.cbl",
+     "kind": "small",
+     "ms": 25.21,
+     "lines": 21,
+     "findings": 0,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-xctl-vuln_0.cbl",
+     "kind": "small",
+     "ms": 16.78,
+     "lines": 16,
+     "findings": 1,
+     "comments": 3
+    },
+    {
+     "path": "datasets/security_dataset/v1/programs/test/cobol/small/cobol-xctl-vuln_1.cbl",
+     "kind": "small",
+     "ms": 15.89,
+     "lines": 16,
+     "findings": 1,
+     "comments": 3
+    }
+   ],
+   "blocks": {
+    "pipeline.parse": {
+     "calls": 10,
+     "total_ms": 394.564,
+     "mean_ms": 39.456,
+     "median_ms": 1.789,
+     "p95_ms": 247.127,
+     "max_ms": 247.127,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 3795.8,
+     "mean_peak_kb": 3313.1
+    },
+    "pipeline.validate": {
+     "calls": 10,
+     "total_ms": 0.123,
+     "mean_ms": 0.012,
+     "median_ms": 0.012,
+     "p95_ms": 0.016,
+     "max_ms": 0.016,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.extract": {
+     "calls": 10,
+     "total_ms": 0.095,
+     "mean_ms": 0.009,
+     "median_ms": 0.009,
+     "p95_ms": 0.012,
+     "max_ms": 0.012,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.analyze": {
+     "calls": 10,
+     "total_ms": 0.273,
+     "mean_ms": 0.027,
+     "median_ms": 0.013,
+     "p95_ms": 0.092,
+     "max_ms": 0.092,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.generate": {
+     "calls": 10,
+     "total_ms": 32.241,
+     "mean_ms": 3.224,
+     "median_ms": 0.467,
+     "p95_ms": 15.962,
+     "max_ms": 15.962,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 77.7,
+     "mean_peak_kb": 67.8
+    },
+    "pipeline.attach": {
+     "calls": 10,
+     "total_ms": 8.175,
+     "mean_ms": 0.818,
+     "median_ms": 0.109,
+     "p95_ms": 3.769,
+     "max_ms": 3.769,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 572.9,
+     "mean_peak_kb": 492.8
+    },
+    "pipeline.build_ir": {
+     "calls": 10,
+     "total_ms": 177.094,
+     "mean_ms": 17.709,
+     "median_ms": 0.979,
+     "p95_ms": 98.62,
+     "max_ms": 98.62,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 2649.9,
+     "mean_peak_kb": 2355.2
+    },
+    "pipeline.analysis": {
+     "calls": 10,
+     "total_ms": 2856.443,
+     "mean_ms": 285.644,
+     "median_ms": 1.131,
+     "p95_ms": 2118.756,
+     "max_ms": 2118.756,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 150483.5,
+     "mean_peak_kb": 104285.1
+    },
+    "security.parse_and_ir_lowering": {
+     "calls": 20,
+     "total_ms": 779.744,
+     "mean_ms": 38.987,
+     "median_ms": 1.075,
+     "p95_ms": 239.161,
+     "max_ms": 255.345,
+     "lines": 5590,
+     "lines_per_s": 7169.0,
+     "peak_kb": 2805.2,
+     "mean_peak_kb": 2432.6
+    },
+    "security.cfg_dataflow_taint": {
+     "calls": 20,
+     "total_ms": 10124.254,
+     "mean_ms": 506.213,
+     "median_ms": 4.405,
+     "p95_ms": 3072.814,
+     "max_ms": 3169.632,
+     "lines": 5590,
+     "lines_per_s": 552.1,
+     "peak_kb": 22220.8,
+     "mean_peak_kb": 18977.8
+    },
+    "security.rules_and_findings": {
+     "calls": 20,
+     "total_ms": 8.429,
+     "mean_ms": 0.421,
+     "median_ms": 0.061,
+     "p95_ms": 1.918,
+     "max_ms": 2.143,
+     "lines": 5590,
+     "lines_per_s": 663186.6,
+     "peak_kb": 1.4,
+     "mean_peak_kb": 1.4
+    },
+    "security.memory_safety": {
+     "calls": 20,
+     "total_ms": 0.172,
+     "mean_ms": 0.009,
+     "median_ms": 0.009,
+     "p95_ms": 0.011,
+     "max_ms": 0.013,
+     "lines": 5590,
+     "lines_per_s": 32500000.0,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "pipeline.security": {
+     "calls": 10,
+     "total_ms": 5394.64,
+     "mean_ms": 539.464,
+     "median_ms": 6.095,
+     "p95_ms": 3460.252,
+     "max_ms": 3460.252,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 24730.0,
+     "mean_peak_kb": 21150.8
+    },
+    "ml.predict": {
+     "calls": 10,
+     "total_ms": 0.071,
+     "mean_ms": 0.007,
+     "median_ms": 0.007,
+     "p95_ms": 0.009,
+     "max_ms": 0.009,
+     "lines": 2795,
+     "lines_per_s": 39366197.2,
+     "peak_kb": 1.0,
+     "mean_peak_kb": 1.0
+    },
+    "rag.retrieve": {
+     "calls": 15,
+     "total_ms": 2.852,
+     "mean_ms": 0.19,
+     "median_ms": 0.166,
+     "p95_ms": 0.384,
+     "max_ms": 0.391,
+     "lines": 0,
+     "lines_per_s": null,
+     "peak_kb": 1.7,
+     "mean_peak_kb": 1.6
+    },
+    "e2e": {
+     "calls": 10,
+     "total_ms": 14581.411,
+     "mean_ms": 1458.141,
+     "median_ms": 18.564,
+     "p95_ms": 9209.529,
+     "max_ms": 9209.529,
+     "lines": 2795,
+     "lines_per_s": 191.7,
+     "peak_kb": 153678.5,
+     "mean_peak_kb": 107084.8
+    }
+   },
+   "groups": {
+    "Parsing & AST": {
+     "total_ms": 394.69,
+     "share_of_measured": 0.0274,
+     "mean_ms_per_file": 39.47,
+     "peak_kb": 3795.8
+    },
+    "Features & preprocessing": {
+     "total_ms": 0.37,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.04,
+     "peak_kb": 1.0
+    },
+    "Comment generation": {
+     "total_ms": 40.42,
+     "share_of_measured": 0.0028,
+     "mean_ms_per_file": 4.04,
+     "peak_kb": 572.9
+    },
+    "IR & CFG": {
+     "total_ms": 3813.28,
+     "share_of_measured": 0.2651,
+     "mean_ms_per_file": 381.33,
+     "peak_kb": 150483.5
+    },
+    "Data flow & taint": {
+     "total_ms": 10124.25,
+     "share_of_measured": 0.7038,
+     "mean_ms_per_file": 1012.43,
+     "peak_kb": 22220.8
+    },
+    "Vulnerability detection (rules)": {
+     "total_ms": 8.6,
+     "share_of_measured": 0.0006,
+     "mean_ms_per_file": 0.86,
+     "peak_kb": 1.4
+    },
+    "ML model": {
+     "total_ms": 0.07,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.01,
+     "peak_kb": 1.0
+    },
+    "Neuro-symbolic fusion": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    },
+    "RAG retrieval": {
+     "total_ms": 2.85,
+     "share_of_measured": 0.0002,
+     "mean_ms_per_file": 0.29,
+     "peak_kb": 1.7
+    },
+    "Agentic remediation": {
+     "total_ms": 0,
+     "share_of_measured": 0.0,
+     "mean_ms_per_file": 0.0,
+     "peak_kb": null
+    }
+   },
+   "end_to_end": {
+    "total_ms": 14581.411,
+    "mean_ms_per_file": 1458.141,
+    "median_ms_per_file": 18.564,
+    "p95_ms_per_file": 9209.529,
+    "lines_per_second": 191.7,
+    "files_per_second": 0.686,
+    "peak_kb_memory_pass": 153678.5,
+    "rss_delta_kb_memory_pass": -232.0
+   },
+   "bottleneck": "Data flow & taint"
+  }
+ },
+ "cold_start": {
+  "python": {
+   "total_ms": 22660.918,
+   "blocks": {
+    "pipeline.parse": 34.355,
+    "pipeline.validate": 24.875,
+    "pipeline.extract": 41.428,
+    "security.parse": 282.728,
+    "security.ir_lowering": 2413.44,
+    "security.cfg_dataflow_taint": 6516.275,
+    "security.rules_and_findings": 1562.132,
+    "pipeline.analyze": 725.721,
+    "pipeline.generate": 260.471,
+    "pipeline.attach": 43.533,
+    "pipeline.build_ir": 92.198,
+    "pipeline.analysis": 55.053,
+    "pipeline.security": 2.697,
+    "ml.predict": 7368.526,
+    "neurosymbolic.fuse": 1.526,
+    "rag.retrieve": 1682.679,
+    "agent.strategy": 619.35,
+    "agent.verify_patch": 8744.777,
+    "agent.fix_and_verify": 12776.879,
+    "e2e": 22444.521
+   }
+  },
+  "java": {
+   "total_ms": 4442.422,
+   "blocks": {
+    "pipeline.parse": 322.58,
+    "pipeline.validate": 0.02,
+    "pipeline.extract": 0.016,
+    "pipeline.analyze": 0.11,
+    "pipeline.generate": 82.815,
+    "pipeline.attach": 4.68,
+    "pipeline.build_ir": 165.524,
+    "pipeline.analysis": 154.354,
+    "security.parse_and_ir_lowering": 302.214,
+    "security.cfg_dataflow_taint": 2161.158,
+    "security.rules_and_findings": 490.966,
+    "security.memory_safety": 0.028,
+    "pipeline.security": 1663.588,
+    "ml.predict": 633.03,
+    "neurosymbolic.fuse": 2.271,
+    "rag.retrieve": 0.91,
+    "e2e": 4435.392
+   }
+  },
+  "csharp": {
+   "total_ms": 1777.95,
+   "blocks": {
+    "pipeline.parse": 129.61,
+    "pipeline.validate": 0.007,
+    "pipeline.extract": 0.006,
+    "pipeline.analyze": 0.034,
+    "pipeline.generate": 24.744,
+    "pipeline.attach": 1.76,
+    "pipeline.build_ir": 59.67,
+    "pipeline.analysis": 63.183,
+    "security.parse_and_ir_lowering": 173.827,
+    "security.cfg_dataflow_taint": 744.619,
+    "security.rules_and_findings": 348.376,
+    "security.memory_safety": 0.026,
+    "pipeline.security": 759.313,
+    "ml.predict": 186.171,
+    "neurosymbolic.fuse": 0.695,
+    "rag.retrieve": 0.391,
+    "e2e": 1775.627
+   }
+  },
+  "c": {
+   "total_ms": 2460.79,
+   "blocks": {
+    "pipeline.parse": 73.657,
+    "pipeline.validate": 0.007,
+    "pipeline.extract": 0.005,
+    "pipeline.analyze": 0.044,
+    "pipeline.generate": 39.934,
+    "pipeline.attach": 5.386,
+    "pipeline.build_ir": 112.391,
+    "pipeline.analysis": 110.608,
+    "security.parse_and_ir_lowering": 380.816,
+    "security.cfg_dataflow_taint": 908.974,
+    "security.rules_and_findings": 150.946,
+    "security.memory_safety": 88.873,
+    "pipeline.security": 800.112,
+    "ml.predict": 527.437,
+    "neurosymbolic.fuse": 1.79,
+    "rag.retrieve": 0.484,
+    "e2e": 2453.917
+   }
+  },
+  "cpp": {
+   "total_ms": 3358.623,
+   "blocks": {
+    "pipeline.parse": 131.879,
+    "pipeline.validate": 0.014,
+    "pipeline.extract": 0.012,
+    "pipeline.analyze": 0.09,
+    "pipeline.generate": 64.668,
+    "pipeline.attach": 6.251,
+    "pipeline.build_ir": 374.561,
+    "pipeline.analysis": 127.672,
+    "security.parse_and_ir_lowering": 282.647,
+    "security.cfg_dataflow_taint": 1332.767,
+    "security.rules_and_findings": 250.725,
+    "security.memory_safety": 111.904,
+    "pipeline.security": 1034.859,
+    "ml.predict": 567.162,
+    "neurosymbolic.fuse": 4.215,
+    "rag.retrieve": 0.528,
+    "e2e": 3354.71
+   }
+  },
+  "rust": {
+   "total_ms": 2486.538,
+   "blocks": {
+    "pipeline.parse": 213.565,
+    "pipeline.validate": 0.014,
+    "pipeline.extract": 0.01,
+    "pipeline.analyze": 0.09,
+    "pipeline.generate": 47.455,
+    "pipeline.attach": 3.989,
+    "pipeline.build_ir": 134.981,
+    "pipeline.analysis": 86.683,
+    "security.parse_and_ir_lowering": 269.788,
+    "security.cfg_dataflow_taint": 1130.25,
+    "security.rules_and_findings": 548.151,
+    "security.memory_safety": 0.034,
+    "pipeline.security": 1101.397,
+    "ml.predict": 0.014,
+    "rag.retrieve": 2.347,
+    "e2e": 2480.558
+   }
+  },
+  "cobol": {
+   "total_ms": 9288.072,
+   "blocks": {
+    "pipeline.parse": 107.162,
+    "pipeline.validate": 0.012,
+    "pipeline.extract": 0.008,
+    "pipeline.analyze": 0.064,
+    "pipeline.generate": 13.49,
+    "pipeline.attach": 3.0,
+    "pipeline.build_ir": 289.798,
+    "pipeline.analysis": 2017.881,
+    "security.parse_and_ir_lowering": 197.63,
+    "security.cfg_dataflow_taint": 6553.27,
+    "security.rules_and_findings": 4.231,
+    "security.memory_safety": 0.02,
+    "pipeline.security": 3470.274,
+    "ml.predict": 0.007,
+    "rag.retrieve": 0.809,
+    "e2e": 9283.634
+   }
+  }
+ },
+ "process_rss_mb": {
+  "start": 34.2,
+  "end": 227.7
+ },
+ "overall_groups": {
+  "Parsing & AST": {
+   "total_ms": 2100.0,
+   "share": 0.0234
+  },
+  "Features & preprocessing": {
+   "total_ms": 1487.5,
+   "share": 0.0166
+  },
+  "Comment generation": {
+   "total_ms": 1572.1,
+   "share": 0.0175
+  },
+  "IR & CFG": {
+   "total_ms": 14493.7,
+   "share": 0.1616
+  },
+  "Data flow & taint": {
+   "total_ms": 35612.6,
+   "share": 0.397
+  },
+  "Vulnerability detection (rules)": {
+   "total_ms": 8386.2,
+   "share": 0.0935
+  },
+  "ML model": {
+   "total_ms": 4225.2,
+   "share": 0.0471
+  },
+  "Neuro-symbolic fusion": {
+   "total_ms": 28.9,
+   "share": 0.0003
+  },
+  "RAG retrieval": {
+   "total_ms": 1098.7,
+   "share": 0.0122
+  },
+  "Agentic remediation": {
+   "total_ms": 20690.9,
+   "share": 0.2307
+  }
+ },
+ "overall_bottleneck": "Data flow & taint"
+}
