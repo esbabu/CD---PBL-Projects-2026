@@ -22,7 +22,8 @@ This can support security and maintenance teams in banks and fintech companies t
 - **01_Source_Code/** — application, security analyzer, datasets, and tests. Start with [README.md](01_Source_Code/README.md) for setup and usage.
 - **02_Documentation/** — project reports, technical guides, presentation, demo script, and figures.
 - **04_Results/** — evaluation metrics, benchmark summaries, and model outputs.
-- **Screen recording** — attached as an individual asset to the [submission release](https://github.com/smnawfal/25CSB1A64_25CSB1A66_CodeCommentGenerator/releases/tag/submission-25CSB1A64-25CSB1A66) because it exceeds GitHub's per-file repository size limit.
+- **Complete project ZIP** — [Download from Google Drive](https://drive.google.com/file/d/1gYwbsN5a5ePPh0r300wPxvkC2kWX44Ae/view).
+- **Screen recording** — the only manually uploaded asset in the [submission release](https://github.com/smnawfal/25CSB1A64_25CSB1A66_CodeCommentGenerator/releases/tag/submission-25CSB1A64-25CSB1A66); GitHub’s source-code archives are generated automatically.
 
 ## Further details
 
